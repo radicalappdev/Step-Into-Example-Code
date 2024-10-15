@@ -20,8 +20,8 @@ def Xform "Root"
             bindMaterialAs = "weakerThanDescendants"
         )
         double size = 0.8
-        float3 xformOp:scale = (1, 0.1, 1)
-        float3 xformOp:translate = (0, -0.05, 0)
+        float3 xformOp:scale = (1, 0.05, 1)
+        float3 xformOp:translate = (0, -0.025, 0)
         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
     }
 

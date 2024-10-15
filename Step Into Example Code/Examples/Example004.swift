@@ -20,6 +20,8 @@ struct Example004: View {
             if let scene = try? await Entity(named: "GestureLabs", in: realityKitContentBundle) {
                 content.add(scene)
 
+                scene.position.y = -0.4
+
             }
         }
     }
