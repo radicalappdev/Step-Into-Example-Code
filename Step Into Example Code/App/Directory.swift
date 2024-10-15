@@ -19,7 +19,7 @@ struct Directory: View {
         .ornament(attachmentAnchor: .scene(.top)) {
             HStack {
                 Image(systemName: "arrow.down.to.line")
-                Text("Step Into Examples")
+                Text("Step Into Example Code")
             }
             .font(.largeTitle)
             .padding(20)
@@ -30,7 +30,7 @@ struct Directory: View {
         }
         .ornament(attachmentAnchor: .scene(.bottom)) {
             HStack {
-                Text("https://stepinto.vision/category/examples/")
+                Text("https://stepinto.vision/category/example-code/")
             }
             .padding(20)
             .background(.thickMaterial)
