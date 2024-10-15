@@ -40,7 +40,7 @@ struct Example004: View {
     }
 
     var tapExample: some Gesture {
-        SpatialTapGesture()
+        TapGesture()
             .targetedToAnyEntity()
             .onEnded { value in
                 if(selected == value.entity.name) {
