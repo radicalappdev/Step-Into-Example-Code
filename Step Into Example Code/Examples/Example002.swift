@@ -1,4 +1,4 @@
-//  Step Into Vision - Examples
+//  Step Into Vision - Example Code
 //
 //  Title: Example002
 //

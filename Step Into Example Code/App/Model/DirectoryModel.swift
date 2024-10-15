@@ -43,24 +43,31 @@ class ModelData {
 
         Example(title: "Example 001",
             type: .WINDOW,
-            date: Date("10/03/2024"),
+            date: Date("10/15/2024"),
             isFeatured: false,
             subtitle: "Open a 2D Window",
             description: "Testing out the window")
 
         ,Example(title: "Example 002",
              type: .VOLUME,
-             date: Date("10/03/2024"),
+             date: Date("10/15/2024"),
              isFeatured: false,
              subtitle: "Open a Volume",
              description: "Testing out the volume")
 
         ,Example(title: "Example 003",
              type: .SPACE,
-             date: Date("10/03/2024"),
+             date: Date("10/15/2024"),
              isFeatured: false,
              subtitle: "Open Immersive Space",
              description: "Testing out the immersive space")
+
+        ,Example(title: "Example 004",
+                 type: .VOLUME,
+                 date: Date("10/15/2024"),
+                 isFeatured: true,
+                 subtitle: "Tap Gesture",
+                 description: "Using a tap gesture with RealityKit")
 
     ]
 
