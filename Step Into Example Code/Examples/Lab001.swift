@@ -1,6 +1,6 @@
-//  Step Into Vision - Labs
+//  Step Into Vision - Examples
 //
-//  Title: Lab001
+//  Title: Example001
 //
 //  Subtitle: Example of a 2D Window
 //
@@ -12,7 +12,7 @@
 
 import SwiftUI
 
-struct Lab001: View {
+struct Example001: View {
     var body: some View {
         VStack {
             Text("A Regular Window")
@@ -23,5 +23,5 @@ struct Lab001: View {
 }
 
 #Preview {
-    Lab001()
+    Example001()
 }

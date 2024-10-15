@@ -1,25 +1,25 @@
 //
-//  LabListRow.swift
-//  Step Into Labs
+//  ExampleListRow.swift
+//  Step Into Examples
 //
 //  Created by Joseph Simpson on 10/3/24.
 //
 
 import SwiftUI
 
-struct LabListRow: View {
-    var lab: Lab
+struct ExampleListRow: View {
+    var example: Example
 
     var body: some View {
         HStack {
-            Text("\(lab.title) - \(lab.subtitle)")
+            Text("\(example.title) - \(example.subtitle)")
             Spacer()
-            if(lab.success == false) {
+            if(example.success == false) {
                 Image(systemName: "x.circle.fill")
                     .foregroundColor(.red)
                     .padding(4)
             }
-            switch lab.type {
+            switch example.type {
             case .WINDOW, .WINDOW_ALT:
                 Image(systemName: "macwindow")
             case .VOLUME:
@@ -36,6 +36,6 @@ struct LabListRow: View {
 
 #Preview {
     let modelData = ModelData()
-    let length = modelData.labData.count
-    return LabListRow(lab: modelData.labData[length - 1])
+    let length = modelData.exampleData.count
+    return ExampleListRow(example: modelData.exampleData[length - 1])
 }

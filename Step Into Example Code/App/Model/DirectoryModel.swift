@@ -1,13 +1,13 @@
 //
 //  DirectoryModel.swift
-//  Step Into Labs
+//  Step Into Examples
 //
 //  Created by Joseph Simpson on 10/3/24.
 //
 
 import SwiftUI
 
-enum LabType: String {
+enum ExampleType: String {
     case WINDOW  = "Window Content"
     case WINDOW_ALT  = "Plain Window Content"
     case VOLUME = "Volume Content"
@@ -15,9 +15,9 @@ enum LabType: String {
     case SPACE_FULL = "Full Immersive Space"
 }
 
-struct Lab: Identifiable {
+struct Example: Identifiable {
     let id = UUID()
-    var type: LabType
+    var type: ExampleType
     var isFeatured = false
     var date: Date
     var title: String
@@ -25,7 +25,7 @@ struct Lab: Identifiable {
     var description: String
     var success: Bool = true
 
-    init(title: String, type: LabType, date: Date, isFeatured: Bool = false, subtitle: String, description: String, success: Bool = true) {
+    init(title: String, type: ExampleType, date: Date, isFeatured: Bool = false, subtitle: String, description: String, success: Bool = true) {
         self.title = title
         self.type = type
         self.isFeatured = isFeatured
@@ -39,27 +39,27 @@ struct Lab: Identifiable {
 
 @Observable
 class ModelData {
-    var labData: [Lab] = [
+    var exampleData: [Example] = [
 
-        Lab(title: "Lab 001",
+        Example(title: "Example 001",
             type: .WINDOW,
             date: Date("10/03/2024"),
             isFeatured: false,
-            subtitle: "Example of a 2D Window",
+            subtitle: "Open a 2D Window",
             description: "Testing out the window")
 
-        ,Lab(title: "Lab 002",
+        ,Example(title: "Example 002",
              type: .VOLUME,
              date: Date("10/03/2024"),
              isFeatured: false,
-             subtitle: "Example of a 3D Volume",
+             subtitle: "Open a Volume",
              description: "Testing out the volume")
 
-        ,Lab(title: "Lab 003",
+        ,Example(title: "Example 003",
              type: .SPACE,
              date: Date("10/03/2024"),
              isFeatured: false,
-             subtitle: "Example of anImmersive Space",
+             subtitle: "Open Immersive Space",
              description: "Testing out the immersive space")
 
     ]

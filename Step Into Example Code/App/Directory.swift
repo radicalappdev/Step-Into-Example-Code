@@ -1,6 +1,6 @@
 //
 //  ContentView.swift
-//  Step Into Labs
+//  Step Into Examples
 //
 //  Created by Joseph Simpson on 10/3/24.
 //
@@ -13,13 +13,13 @@ struct Directory: View {
 
     var body: some View {
         NavigationStack {
-            LabList()
+            ExampleList()
         }
         .padding(EdgeInsets(top: 36, leading: 0, bottom: 0, trailing: 0))
         .ornament(attachmentAnchor: .scene(.top)) {
             HStack {
                 Image(systemName: "arrow.down.to.line")
-                Text("Step Into Labs")
+                Text("Step Into Examples")
             }
             .font(.largeTitle)
             .padding(20)
@@ -30,7 +30,7 @@ struct Directory: View {
         }
         .ornament(attachmentAnchor: .scene(.bottom)) {
             HStack {
-                Text("https://stepinto.vision/category/labs/")
+                Text("https://stepinto.vision/category/examples/")
             }
             .padding(20)
             .background(.thickMaterial)

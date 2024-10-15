@@ -1,21 +1,21 @@
 //
-//  LabRouter.swift
-//  Step Into Labs
+//  ExampleRouter.swift
+//  Step Into Examples
 //
 //  Created by Joseph Simpson on 10/3/24.
 //
 
 import SwiftUI
 
-struct LabRouter: View {
+struct ExampleRouter: View {
     @Binding var route: String?
 
     @ViewBuilder
     var body: some View {
         switch route {
-        case "Lab 001": Lab001()
-        case "Lab 002": Lab002()
-        case "Lab 003": Lab003()
+        case "Example 001": Example001()
+        case "Example 002": Example002()
+        case "Example 003": Example003()
 
         case .none, .some:
 

@@ -1,16 +1,16 @@
 //
-//  LabDetail.swift
-//  Step Into Labs
+//  ExampleDetail.swift
+//  Step Into Examples
 //
 //  Created by Joseph Simpson on 10/3/24.
 //
 
 import SwiftUI
 
-struct LabDetail: View {
+struct ExampleDetail: View {
 
-    // Pass a lab as a parameter
-    var lab: Lab
+    // Pass a example as a parameter
+    var example: Example
 
     // 2D Windows
     @Environment(\.openWindow) private var openWindow
@@ -21,28 +21,28 @@ struct LabDetail: View {
     @Environment(\.dismissImmersiveSpace) var dismissImmersiveSpace
 
     // Local state
-    @State private var showLabContent = false
-    @State private var labIsOpen = false
+    @State private var showExampleContent = false
+    @State private var exampleIsOpen = false
     @State private var currentRoute: String?
 
-    init(lab: Lab) {
-        self.lab = lab
-        _currentRoute = State(initialValue: lab.title)
+    init(example: Example) {
+        self.example = example
+        _currentRoute = State(initialValue: example.title)
     }
 
     var body: some View {
         List {
             Section() {
                 VStack(alignment: .leading) {
-                    Text("\(lab.title) - \(lab.subtitle)")
+                    Text("\(example.title) - \(example.subtitle)")
                         .font(.title)
-                    Text("\(lab.date.formatted(date: .long, time: .omitted))")
+                    Text("\(example.date.formatted(date: .long, time: .omitted))")
                         .font(.subheadline)
                 }
-                Text(.init(lab.description))
-                if(lab.success == false) {
+                Text(.init(example.description))
+                if(example.success == false) {
                     HStack {
-                        Text("This lab was marked as a failure")
+                        Text("This example was marked as a failure")
                         Spacer()
                         Image(systemName: "x.circle.fill")
                             .foregroundColor(.red)
@@ -54,10 +54,10 @@ struct LabDetail: View {
             Section() {
 
                 HStack(alignment: .center, content: {
-                    Text(lab.type.rawValue)
+                    Text(example.type.rawValue)
                     Spacer()
-                    Toggle(isOn: $showLabContent) {
-                        Text(showLabContent ? "Close Lab" : "Open Lab")
+                    Toggle(isOn: $showExampleContent) {
+                        Text(showExampleContent ? "Close Example" : "Open Example")
                     }
                     .toggleStyle(.button)
                 })
@@ -65,88 +65,88 @@ struct LabDetail: View {
             }
         }
         .listStyle(.grouped)
-        .onChange(of: showLabContent) { _, newValue in
+        .onChange(of: showExampleContent) { _, newValue in
             Task {
-                if(lab.type == .WINDOW) {
+                if(example.type == .WINDOW) {
                     handleWindow()
-                } else if (lab.type == .WINDOW_ALT) {
+                } else if (example.type == .WINDOW_ALT) {
                     handleWindowAlt()
-                } else if (lab.type == .VOLUME) {
+                } else if (example.type == .VOLUME) {
                     handleVolume()
-                } else if (lab.type == .SPACE) {
+                } else if (example.type == .SPACE) {
                     await handleSpace(newValue: newValue)
-                } else if (lab.type == .SPACE_FULL) {
+                } else if (example.type == .SPACE_FULL) {
                     await handleSpaceFull(newValue: newValue)
                 }
             }
         }
-        .navigationTitle("Step Into Labs")
+        .navigationTitle("Step Into Examples")
     }
 
     func handleWindow() {
-        if(labIsOpen) {
+        if(exampleIsOpen) {
             dismissWindow(id: "RouterWindow")
-            labIsOpen = false
-            showLabContent = false
+            exampleIsOpen = false
+            showExampleContent = false
         } else {
-            openWindow(id: "RouterWindow", value: lab.title)
-            labIsOpen = true
+            openWindow(id: "RouterWindow", value: example.title)
+            exampleIsOpen = true
         }
     }
 
     func handleWindowAlt() {
-        if(labIsOpen) {
+        if(exampleIsOpen) {
             dismissWindow(id: "RouterWindowAlt")
-            labIsOpen = false
-            showLabContent = false
+            exampleIsOpen = false
+            showExampleContent = false
         } else {
-            openWindow(id: "RouterWindowAlt", value: lab.title)
-            labIsOpen = true
+            openWindow(id: "RouterWindowAlt", value: example.title)
+            exampleIsOpen = true
         }
     }
 
     func handleVolume() {
-        if(labIsOpen) {
+        if(exampleIsOpen) {
             dismissWindow(id: "RouterVolume")
-            labIsOpen = false
-            showLabContent = false
+            exampleIsOpen = false
+            showExampleContent = false
         } else {
-            openWindow(id: "RouterVolume", value: lab.title)
-            labIsOpen = true
+            openWindow(id: "RouterVolume", value: example.title)
+            exampleIsOpen = true
         }
     }
 
     func handleSpace(newValue: Bool) async {
         if newValue {
-            switch await openImmersiveSpace(id: "RouterSpace", value: lab.title) {
+            switch await openImmersiveSpace(id: "RouterSpace", value: example.title) {
             case .opened:
-                labIsOpen = true
+                exampleIsOpen = true
             case .error, .userCancelled:
                 fallthrough
             @unknown default:
-                labIsOpen = false
-                showLabContent = false
+                exampleIsOpen = false
+                showExampleContent = false
             }
-        } else if labIsOpen {
+        } else if exampleIsOpen {
             await dismissImmersiveSpace()
-            labIsOpen = false
+            exampleIsOpen = false
         }
     }
 
     func handleSpaceFull(newValue: Bool) async {
         if newValue {
-            switch await openImmersiveSpace(id: "RouterSpaceFull", value: lab.title) {
+            switch await openImmersiveSpace(id: "RouterSpaceFull", value: example.title) {
             case .opened:
-                labIsOpen = true
+                exampleIsOpen = true
             case .error, .userCancelled:
                 fallthrough
             @unknown default:
-                labIsOpen = false
-                showLabContent = false
+                exampleIsOpen = false
+                showExampleContent = false
             }
-        } else if labIsOpen {
+        } else if exampleIsOpen {
             await dismissImmersiveSpace()
-            labIsOpen = false
+            exampleIsOpen = false
         }
     }
 
@@ -154,6 +154,6 @@ struct LabDetail: View {
 
 #Preview {
     let modelData = ModelData()
-    let length = modelData.labData.count
-    return LabDetail(lab: modelData.labData[length - 1])
+    let length = modelData.exampleData.count
+    return ExampleDetail(example: modelData.exampleData[length - 1])
 }

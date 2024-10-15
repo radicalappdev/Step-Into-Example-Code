@@ -25,9 +25,9 @@ struct StepIntoApp: App {
 
         // Router scenes
 
-        // 1. Window: Use this window group to open 2D windows with Lab Content based on the Router
+        // 1. Window: Use this window group to open 2D windows with Example Content based on the Router
         WindowGroup(id: "RouterWindow", for: String.self, content: { $route in
-            LabRouter(route: $route)
+            ExampleRouter(route: $route)
         })
         .defaultSize(CGSize(width: 680, height: 400))
         .defaultWindowPlacement { _, context in
@@ -37,9 +37,9 @@ struct StepIntoApp: App {
             return WindowPlacement(.none)
         }
 
-        // 1. Window: Use this window group to open 2D windows with Lab Content based on the Router
+        // 1. Window: Use this window group to open 2D windows with Example Content based on the Router
         WindowGroup(id: "RouterWindowAlt", for: String.self, content: { $route in
-            LabRouter(route: $route)
+            ExampleRouter(route: $route)
         })
         .windowStyle(.plain)
         .defaultSize(CGSize(width: 680, height: 400))
@@ -53,7 +53,7 @@ struct StepIntoApp: App {
         // 2. Volume:  Use this window group to open 3D Volumes
         WindowGroup(id: "RouterVolume", for: String.self, content: { $route in
             let initialSize = Size3D(width: 500, height: 500, depth: 500)
-            LabRouter(route: $route)
+            ExampleRouter(route: $route)
                 .frame(minWidth: initialSize.width, maxWidth: initialSize.width * 2,
                        minHeight: initialSize.height, maxHeight: initialSize.height * 2)
                 .frame(minDepth: initialSize.depth, maxDepth: initialSize.depth * 2)
@@ -69,14 +69,14 @@ struct StepIntoApp: App {
 
         .windowResizability(.contentMinSize)
 
-        // 3. Space:  Use this immersive scene to open a lab in a full space
+        // 3. Space:  Use this immersive scene to open a example in a full space
         ImmersiveSpace(id: "RouterSpace", for: String.self, content: { $route in
-            LabRouter(route: $route)
+            ExampleRouter(route: $route)
         })
 
-        // 4. Space Full:  Use this immersive scene to open a lab in a full space
+        // 4. Space Full:  Use this immersive scene to open a example in a full space
         ImmersiveSpace(id: "RouterSpaceFull", for: String.self, content: { $route in
-            LabRouter(route: $route)
+            ExampleRouter(route: $route)
         })
         .immersionStyle(selection: $exampleImmersionStyle, in: .full)
 

@@ -40,7 +40,7 @@ struct ContentView: View {
                     .animation(.none, value: 0)
                     .fontWeight(.semibold)
 
-                    
+
                 }
             }
         }

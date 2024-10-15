@@ -1,37 +1,37 @@
 //
-//  LabList.swift
-//  Step Into Labs
+//  ExampleList.swift
+//  Step Into Examples
 //
 //  Created by Joseph Simpson on 10/3/24.
 //
 
 import SwiftUI
 
-struct LabList: View {
+struct ExampleList: View {
     @Environment(ModelData.self) var modelData
 
-    var featuredLabs: [Lab] {
-        modelData.labData.filter { $0.isFeatured }
+    var featuredExamples: [Example] {
+        modelData.exampleData.filter { $0.isFeatured }
     }
 
     var body: some View {
         List {
-            Section(header: Text("Featured Labs")) {
-                ForEach(featuredLabs) { lab in
+            Section(header: Text("Featured Examples")) {
+                ForEach(featuredExamples) { example in
                     NavigationLink {
-                        LabDetail(lab: lab)
+                        ExampleDetail(example: example)
                     } label: {
-                        LabListRow(lab: lab)
+                        ExampleListRow(example: example)
                     }
                 }
             }
 
-            Section(header: Text("All Labs")) {
-                ForEach(modelData.labData) { lab in
+            Section(header: Text("All Examples")) {
+                ForEach(modelData.exampleData) { example in
                     NavigationLink {
-                        LabDetail(lab: lab)
+                        ExampleDetail(example: example)
                     } label: {
-                        LabListRow(lab: lab)
+                        ExampleListRow(example: example)
                     }
                 }
             }
@@ -43,6 +43,6 @@ struct LabList: View {
 
 #Preview {
     let modelData = ModelData()
-    return LabList()
+    return ExampleList()
         .environment(modelData)
 }

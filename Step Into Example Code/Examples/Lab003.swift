@@ -1,6 +1,6 @@
-//  Step Into Vision - Labs
+//  Step Into Vision - Examples
 //
-//  Title: Lab003
+//  Title: Example003
 //
 //  Subtitle: Example of anImmersive Space
 //
@@ -13,7 +13,7 @@
 import SwiftUI
 import RealityKit
 
-struct Lab003: View {
+struct Example003: View {
 
     let count: Int = 12
     let radius: Float = 160
@@ -26,7 +26,7 @@ struct Lab003: View {
             model.position = SIMD3(x: 0.8, y: 1, z: -2)
             content.add(model)
 
-            if let attachmentEntity = attachments.entity(for: "SphereLabel") {
+            if let attachmentEntity = attachments.entity(for: "SphereExampleel") {
                 attachmentEntity.position = model.position + [0, 0.16, 0]
                 model.addChild(attachmentEntity)
                 content.add(attachmentEntity)
@@ -35,7 +35,7 @@ struct Lab003: View {
         } update: { content, attachments in
             // ...
         } attachments: {
-            Attachment(id: "SphereLabel") {
+            Attachment(id: "SphereExampleel") {
                 Text("An Immersive Space")
                     .font(.largeTitle)
                     .padding(18)
@@ -47,5 +47,5 @@ struct Lab003: View {
 }
 
 #Preview {
-    Lab003()
+    Example003()
 }

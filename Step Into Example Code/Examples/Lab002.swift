@@ -1,6 +1,6 @@
-//  Step Into Vision - Labs
+//  Step Into Vision - Examples
 //
-//  Title: Lab002
+//  Title: Example002
 //
 //  Subtitle: Example of a 3D Volume
 //
@@ -13,7 +13,7 @@
 import SwiftUI
 import RealityKit
 
-struct Lab002: View {
+struct Example002: View {
     var body: some View {
         RealityView { content in
             let model = ModelEntity(
@@ -31,5 +31,5 @@ struct Lab002: View {
 }
 
 #Preview {
-    Lab002()
+    Example002()
 }
