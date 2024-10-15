@@ -83,7 +83,26 @@
       [
         "CB436AE6-DE73-445D-83B2-F22373E6F73A",
         "Root",
+        "ToyRocket",
+        "geom"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "CB436AE6-DE73-445D-83B2-F22373E6F73A",
+        "Root",
         "Base"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "CB436AE6-DE73-445D-83B2-F22373E6F73A",
+        "Root",
+        "ToyRocket"
       ],
       {
         "isExpanded" : true,

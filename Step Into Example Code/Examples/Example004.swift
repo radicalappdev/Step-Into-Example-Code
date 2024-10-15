@@ -47,7 +47,6 @@ struct Example004: View {
                     selected = ""
                 } else {
                     selected = value.entity.name
-
                 }
             }
     }

@@ -63,6 +63,14 @@ def Xform "Root"
         {
             uniform token info:id = "RealityKit.InputTarget"
         }
+
+        over "geom" (
+            variants = {
+                string styles = "realistic"
+            }
+        )
+        {
+        }
     }
 
     def "ToyCar" (
