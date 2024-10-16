@@ -1,6 +1,6 @@
 //  Step Into Vision - Example Code
 //
-//  Title: Example004
+//  Title: Example 004
 //
 //  Subtitle:
 //
@@ -16,7 +16,7 @@ import RealityKitContent
 
 struct Example004: View {
 
-    @State var selected: String = ""
+    @State var selected: Entity? = nil
 
     var body: some View {
         RealityView { content in
@@ -28,14 +28,6 @@ struct Example004: View {
                 scene.position.y = -0.4
             }
         }
-        .ornament(attachmentAnchor: .scene(.back), ornament: {
-            Text(selected)
-                .font(.largeTitle)
-                .padding(18)
-                .background(.stepGreen)
-                .cornerRadius(12)
-                .opacity(selected.isEmpty ? 0 : 1)
-        })
         .gesture(tapExample)
     }
 
@@ -43,10 +35,17 @@ struct Example004: View {
         TapGesture()
             .targetedToAnyEntity()
             .onEnded { value in
-                if(selected == value.entity.name) {
-                    selected = ""
+                if selected === value.entity {
+                    // If the same entity is tapped, lower it and deselect.
+                    selected?.position.y = 0
+                    selected = nil
                 } else {
-                    selected = value.entity.name
+                    // Lower the previously selected entity (if any).
+                    selected?.position.y = 0
+
+                    // Raise the new entity and select it.
+                    value.entity.position.y = 0.1
+                    selected = value.entity
                 }
             }
     }
