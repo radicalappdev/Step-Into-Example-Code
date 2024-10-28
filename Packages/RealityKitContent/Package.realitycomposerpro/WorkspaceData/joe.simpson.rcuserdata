@@ -15,6 +15,28 @@
   "sceneCameraHistory" : {
     "4EA577E8-CF08-4F6B-8090-61CB20667042" : [
       {
+        "date" : 751842275.490995,
+        "title" : "Untitled",
+        "transform" : [
+          0.99996895,
+          -0.00043677675,
+          -0.007867536,
+          0,
+          -0.0036516206,
+          0.8590868,
+          -0.51181674,
+          0,
+          0.0069824457,
+          0.5118296,
+          0.85905856,
+          0,
+          0,
+          0.8320426,
+          1.4370507,
+          1
+        ]
+      },
+      {
         "date" : 751841169.375382,
         "title" : "Untitled",
         "transform" : [
@@ -263,5 +285,5 @@
   "sceneViewportBackgroundColors" : {
 
   },
-  "selectedSceneRelativePath" : "GestureLabsHelpers.usda"
+  "selectedSceneRelativePath" : "GestureLabs.usda"
 }

@@ -31,6 +31,7 @@ struct Example005: View {
                     toyRocket.components.set(HoverEffectComponent())
                     rocket = toyRocket
                 }
+                
             }
 
             if let scene = try? await Entity(named: "GestureLabsHelpers", in: realityKitContentBundle) {
@@ -74,10 +75,11 @@ struct Example005: View {
 
                 if let rocket = rocket {
 
-                    let tappedPosition = value.convert(value.location3D, from: .local, to: .scene)
+                    let tappedPosition = value.convert(value.location3D, from: .global, to: .scene)
                     print("spatial tapped: \(tappedPosition)")
 
                     rocket.position = tappedPosition
+//                    rocket.setPosition(tappedPosition, relativeTo: rocket.parent)
                 }
 
 
