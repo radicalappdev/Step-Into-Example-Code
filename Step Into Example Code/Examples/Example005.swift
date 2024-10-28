@@ -16,6 +16,8 @@ import RealityKitContent
 
 struct Example005: View {
 
+    @State var rocket: Entity?
+
     var body: some View {
         RealityView { content in
             // Load the scene from the Reality Kit bindle
@@ -24,6 +26,11 @@ struct Example005: View {
 
                 // Lower the entire scene to the bottom of the volume
                 scene.position.y = -0.4
+
+                if let toyRocket = scene.findEntity(named: "ToyRocket") {
+                    toyRocket.components.set(HoverEffectComponent())
+                    rocket = toyRocket
+                }
             }
 
             if let scene = try? await Entity(named: "GestureLabsHelpers", in: realityKitContentBundle) {
@@ -44,13 +51,35 @@ struct Example005: View {
 
             }
         }
-        .gesture(tapExample)
+//        .gesture(tapExample)
+        .gesture(spatialTapExample)
     }
 
     var tapExample: some Gesture {
         TapGesture()
             .targetedToAnyEntity()
             .onEnded { value in
+                if let rocket = rocket {
+                    rocket.position = value.entity.position
+                }
+                print("tapped: \(value)")
+
+            }
+    }
+    var spatialTapExample: some Gesture {
+        SpatialTapGesture()
+            .targetedToAnyEntity()
+            .onEnded { value in
+                print("spatial tapped: \(value.location3D)")
+
+                if let rocket = rocket {
+
+                    let tappedPosition = value.convert(value.location3D, from: .local, to: .scene)
+                    print("spatial tapped: \(tappedPosition)")
+
+                    rocket.position = tappedPosition
+                }
+
 
             }
     }
