@@ -15,7 +15,6 @@ import RealityKit
 import RealityKitContent
 
 struct Example005: View {
-    @State var selected: Entity? = nil
 
     var body: some View {
         RealityView { content in
@@ -26,6 +25,24 @@ struct Example005: View {
                 // Lower the entire scene to the bottom of the volume
                 scene.position.y = -0.4
             }
+
+            if let scene = try? await Entity(named: "GestureLabsHelpers", in: realityKitContentBundle) {
+                content.add(scene)
+
+                // Lower the entire scene to the bottom of the volume
+                scene.position.y = -0.4
+
+                if let place1 = scene.findEntity(named: "Place1") {
+                    place1.components.set(HoverEffectComponent())
+                }
+                if let place2 = scene.findEntity(named: "Place2") {
+                    place2.components.set(HoverEffectComponent())
+                }
+                if let place3 = scene.findEntity(named: "Place3") {
+                    place3.components.set(HoverEffectComponent())
+                }
+
+            }
         }
         .gesture(tapExample)
     }
@@ -34,18 +51,7 @@ struct Example005: View {
         TapGesture()
             .targetedToAnyEntity()
             .onEnded { value in
-                if selected === value.entity {
-                    // If the same entity is tapped, lower it and deselect.
-                    selected?.position.y = 0
-                    selected = nil
-                } else {
-                    // Lower the previously selected entity (if any).
-                    selected?.position.y = 0
 
-                    // Raise the new entity and select it.
-                    value.entity.position.y = 0.1
-                    selected = value.entity
-                }
             }
     }
 }

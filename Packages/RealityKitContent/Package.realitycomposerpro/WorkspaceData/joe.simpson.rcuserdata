@@ -1,14 +1,42 @@
 {
   "advancedEditorSelectedIdentifier" : "ProjectBrowser",
   "openSceneRelativePaths" : [
-    "GestureLabs.usda"
+    "GestureLabs.usda",
+    "GestureLabsHelpers.usda"
   ],
   "recentIdentifiers" : {
+    "4EA577E8-CF08-4F6B-8090-61CB20667042" : [
+
+    ],
     "CB436AE6-DE73-445D-83B2-F22373E6F73A" : [
 
     ]
   },
   "sceneCameraHistory" : {
+    "4EA577E8-CF08-4F6B-8090-61CB20667042" : [
+      {
+        "date" : 751841169.375382,
+        "title" : "Untitled",
+        "transform" : [
+          0.99999994,
+          0,
+          -0,
+          0,
+          -0,
+          0.8590841,
+          -0.51183426,
+          0,
+          0,
+          0.51183426,
+          0.8590841,
+          0,
+          0,
+          0.8320426,
+          1.4370507,
+          1
+        ]
+      }
+    ],
     "CB436AE6-DE73-445D-83B2-F22373E6F73A" : [
       {
         "date" : 750717728.462959,
@@ -235,5 +263,5 @@
   "sceneViewportBackgroundColors" : {
 
   },
-  "selectedSceneRelativePath" : "GestureLabs.usda"
+  "selectedSceneRelativePath" : "GestureLabsHelpers.usda"
 }
