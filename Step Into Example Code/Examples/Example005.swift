@@ -62,9 +62,9 @@ struct Example005: View {
             .onEnded { value in
                 print("spatial tapped: \(value.location3D)")
 
-                
+
                 if let rocket = rocket, let indicator = indicator {
-                    let tappedPosition = value.convert(value.location3D, from: .global, to: .scene)
+                    let tappedPosition = value.convert(value.location3D, from: .local, to: rocket)
                     print("spatial tapped position: \(tappedPosition)")
                     indicator.position = tappedPosition
                 }
