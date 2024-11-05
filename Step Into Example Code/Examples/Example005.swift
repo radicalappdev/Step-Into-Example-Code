@@ -16,38 +16,24 @@ import RealityKitContent
 
 struct Example005: View {
 
-    @State var rocket: Entity?
+    @State var subject: Entity?
     @State var indicator: Entity?
 
     var body: some View {
         RealityView { content in
             // Load the scene from the Reality Kit bindle
-            if let scene = try? await Entity(named: "GestureLabs", in: realityKitContentBundle) {
+            if let scene = try? await Entity(named: "SpatialTapLab", in: realityKitContentBundle) {
                 content.add(scene)
 
                 let indicatorModel = ModelEntity(
-                    mesh: .generateSphere(radius: 0.01),
+                    mesh: .generateSphere(radius: 0.025),
                     materials: [SimpleMaterial(color: .black, isMetallic: false)])
 
-                // Lower the entire scene to the bottom of the volume
-                scene.position.y = -0.4
-
-                // Get the rocket and save it for later
-                if let toyRocket = scene.findEntity(named: "ToyRocket") {
-                    toyRocket.scale = .init(repeating: 2.5)
-                    toyRocket.components.set(HoverEffectComponent())
-                    toyRocket.addChild(indicatorModel)
-                    rocket = toyRocket
+                if let cube = scene.findEntity(named: "Cube") {
+                    cube.components.set(HoverEffectComponent())
+                    cube.addChild(indicatorModel)
+                    subject = cube
                     indicator = indicatorModel
-
-
-                }
-
-
-                // Remove the items we don't need
-                if let toyCar = scene.findEntity(named: "ToyCar"), let toyBiplane = scene.findEntity(named: "ToyBiplane") {
-                    toyCar.removeFromParent()
-                    toyBiplane.removeFromParent()
                 }
 
             }
@@ -60,12 +46,11 @@ struct Example005: View {
         SpatialTapGesture()
             .targetedToAnyEntity()
             .onEnded { value in
-                print("spatial tapped: \(value.location3D)")
 
-
-                if let rocket = rocket, let indicator = indicator {
-                    let tappedPosition = value.convert(value.location3D, from: .local, to: rocket)
-                    print("spatial tapped position: \(tappedPosition)")
+                if let subject = subject, let indicator = indicator {
+                    // Convert the location3D value to the coordinate space of the subject
+                    // Place the indicator on the surface of the subject
+                    let tappedPosition = value.convert(value.location3D, from: .local, to: subject)
                     indicator.position = tappedPosition
                 }
 

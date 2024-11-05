@@ -62,6 +62,27 @@
       }
     ]
   },
+  "61A7FA42-C29D-4B9E-9A5C-7E857895FAA7" : {
+    "objectMetadataList" : [
+      [
+        "61A7FA42-C29D-4B9E-9A5C-7E857895FAA7",
+        "Root",
+        "Cube"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "61A7FA42-C29D-4B9E-9A5C-7E857895FAA7",
+        "Root"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      }
+    ]
+  },
   "65F6F990-A780-4474-B78B-572E0E4E273D" : {
     "objectMetadataList" : [
       [
@@ -105,15 +126,6 @@
       [
         "CB436AE6-DE73-445D-83B2-F22373E6F73A",
         "Root"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "CB436AE6-DE73-445D-83B2-F22373E6F73A",
-        "Root",
-        "ToyRocket"
       ],
       {
         "isExpanded" : true,

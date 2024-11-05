@@ -1,10 +1,14 @@
 {
   "advancedEditorSelectedIdentifier" : "ProjectBrowser",
   "openSceneRelativePaths" : [
-    "GestureLabs.usda"
+    "GestureLabs.usda",
+    "SpatialTapLab.usda"
   ],
   "recentIdentifiers" : {
     "4EA577E8-CF08-4F6B-8090-61CB20667042" : [
+
+    ],
+    "61A7FA42-C29D-4B9E-9A5C-7E857895FAA7" : [
 
     ],
     "CB436AE6-DE73-445D-83B2-F22373E6F73A" : [
@@ -54,6 +58,30 @@
           0,
           0.8320426,
           1.4370507,
+          1
+        ]
+      }
+    ],
+    "61A7FA42-C29D-4B9E-9A5C-7E857895FAA7" : [
+      {
+        "date" : 752498230.70831,
+        "title" : "Untitled",
+        "transform" : [
+          0.9822548,
+          3.3943124e-09,
+          -0.18755138,
+          0,
+          -0.09223509,
+          0.87071633,
+          -0.48305887,
+          0,
+          0.16330406,
+          0.49178565,
+          0.8552653,
+          0,
+          0.41230258,
+          1.2792184,
+          2.1593347,
           1
         ]
       }
@@ -284,5 +312,5 @@
   "sceneViewportBackgroundColors" : {
 
   },
-  "selectedSceneRelativePath" : "GestureLabs.usda"
+  "selectedSceneRelativePath" : "SpatialTapLab.usda"
 }
