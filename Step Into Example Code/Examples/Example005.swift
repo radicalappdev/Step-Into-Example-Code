@@ -21,14 +21,16 @@ struct Example005: View {
 
     var body: some View {
         RealityView { content in
-            // Load the scene from the Reality Kit bindle
+            // Load the scene from the bundle
             if let scene = try? await Entity(named: "SpatialTapLab", in: realityKitContentBundle) {
                 content.add(scene)
 
+                // We will place this indicator at the location of our taps
                 let indicatorModel = ModelEntity(
                     mesh: .generateSphere(radius: 0.025),
                     materials: [SimpleMaterial(color: .black, isMetallic: false)])
 
+                // Get the cube from the scene. This has Input and Collision components
                 if let cube = scene.findEntity(named: "Cube") {
                     cube.components.set(HoverEffectComponent())
                     cube.addChild(indicatorModel)

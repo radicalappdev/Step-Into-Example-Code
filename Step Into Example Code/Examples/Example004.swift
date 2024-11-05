@@ -20,7 +20,7 @@ struct Example004: View {
 
     var body: some View {
         RealityView { content in
-            // Load the scene from the Reality Kit bindle
+            // Load the scene from the Reality Kit bundle
             if let scene = try? await Entity(named: "GestureLabs", in: realityKitContentBundle) {
                 content.add(scene)
 
