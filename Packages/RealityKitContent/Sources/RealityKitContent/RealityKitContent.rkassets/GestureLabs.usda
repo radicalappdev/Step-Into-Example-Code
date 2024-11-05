@@ -70,6 +70,97 @@ def Xform "Root"
             }
         )
         {
+            over "realistic"
+            {
+                over "materials"
+                {
+                    over "usdpreviewsurface1sg"
+                    {
+                        string inputs:file6:varname (
+                            customData = {
+                                dictionary realitykit = {
+                                    float2 positionInSubgraph = (321.375, 970.5)
+                                }
+                            }
+                        )
+                        string inputs:file7:varname (
+                            customData = {
+                                dictionary realitykit = {
+                                    float2 positionInSubgraph = (532.875, 970.5)
+                                }
+                            }
+                        )
+                        string inputs:file8:varname (
+                            customData = {
+                                dictionary realitykit = {
+                                    float2 positionInSubgraph = (746.375, 970.5)
+                                }
+                            }
+                        )
+                        string inputs:file9:varname (
+                            customData = {
+                                dictionary realitykit = {
+                                    float2 positionInSubgraph = (959.375, 970.5)
+                                }
+                            }
+                        )
+                        string inputs:file10:varname (
+                            customData = {
+                                dictionary realitykit = {
+                                    float2 positionInSubgraph = (1178.875, 970.5)
+                                }
+                            }
+                        )
+                        token outputs:realitykit:vertex
+                        float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (1415.25, 397.5)
+
+                        over "file9_mtlx"
+                        {
+                            float2 ui:nodegraph:node:pos = (622.75, 612)
+                        }
+
+                        over "file10_mtlx"
+                        {
+                            float2 ui:nodegraph:node:pos = (350, 532)
+                        }
+
+                        over "Lookup_st"
+                        {
+                            float2 ui:nodegraph:node:pos = (91, 441.5)
+                        }
+
+                        over "file10_mtlx_scale"
+                        {
+                            float2 ui:nodegraph:node:pos = (622.75, 433.5)
+                        }
+
+                        over "toy_rocket_realistic_mat_mtlx"
+                        {
+                            float2 ui:nodegraph:node:pos = (1162, 397.5)
+                        }
+
+                        over "file10_mtlx_offset"
+                        {
+                            float2 ui:nodegraph:node:pos = (892.25, 433.5)
+                        }
+
+                        over "file7_mtlx"
+                        {
+                            float2 ui:nodegraph:node:pos = (350, 271)
+                        }
+
+                        over "file8_mtlx"
+                        {
+                            float2 ui:nodegraph:node:pos = (892.25, 782.5)
+                        }
+
+                        over "file6_mtlx"
+                        {
+                            float2 ui:nodegraph:node:pos = (622.75, 100.5)
+                        }
+                    }
+                }
+            }
         }
     }
 
