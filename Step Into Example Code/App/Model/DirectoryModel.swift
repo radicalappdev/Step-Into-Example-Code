@@ -65,16 +65,23 @@ class ModelData {
         ,Example(title: "Example 004",
                  type: .VOLUME,
                  date: Date("10/15/2024"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Tap Gesture",
                  description: "Using a tap gesture with RealityKit")
 
         ,Example(title: "Example 005",
                  type: .VOLUME,
                  date: Date("10/28/2024"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Spatial Tap Gesture",
                  description: "Expanding on the Spatial version of tap gesture with RealityKit")
+
+        ,Example(title: "Example 006",
+                 type: .VOLUME,
+                 date: Date("11/7/2024"),
+                 isFeatured: true,
+                 subtitle: "Long Press Gesture",
+                 description: "Using the LongPressGesture with RealityKit")
 
     ]
 
