@@ -16,9 +16,6 @@ import RealityKitContent
 
 struct Example006: View {
 
-    @GestureState private var isDetectingLongPress = false
-    @State private var completedLongPress = false
-
     var body: some View {
         RealityView { content in
             // Load the scene from the Reality Kit bundle
@@ -33,9 +30,8 @@ struct Example006: View {
     }
 
     var longPress: some Gesture {
-        LongPressGesture(minimumDuration: 1)
+        LongPressGesture(minimumDuration: 3)
             .targetedToAnyEntity()
-
             .onEnded { value in
 
                 value.entity.scale = .init(repeating: 2)
