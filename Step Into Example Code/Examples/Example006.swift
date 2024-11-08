@@ -2,11 +2,11 @@
 //
 //  Title: Example006
 //
-//  Subtitle:
+//  Subtitle: Long Press Gesture
 //
-//  Description:
+//  Description: Using the LongPressGesture with a RealityKit Entity
 //
-//  Type:
+//  Type: Space
 //
 //  Created by Joseph Simpson on 11/7/24.
 
@@ -37,19 +37,23 @@ struct Example006: View {
             .targetedToAnyEntity()
             .onEnded { value in
 
-                let transform = Transform(
-                    scale: SIMD3<Float>(repeating: 2),
-                    rotation: simd_quatf(angle: 0, axis: SIMD3<Float>(0, 0, 0)),
-                    translation: SIMD3<Float>(value.entity.position.x, 0.3, value.entity.position.z)
-                )
+                if selected === value.entity {
+                    lowerEntity(value.entity)
 
-                value.entity
-                    .move(
-                        to: transform,
-                        relativeTo: value.entity.parent!,
-                        duration: 1.0,
-                        timingFunction: .easeInOut
-                    )
+                } else {
+
+                    // Lower an existing selected entity
+                    if let selected {
+                        lowerEntity(selected)
+                    }
+
+                    // Raise the long-pressed entity
+                    raiseEntity(value.entity)
+
+                    selected = value.entity
+
+                }
+
 
             }
     }
@@ -58,24 +62,40 @@ struct Example006: View {
         TapGesture()
             .targetedToAnyEntity()
             .onEnded { value in
-
-                print("GESTURE tapped")
-                let transform = Transform(
-                    scale: SIMD3<Float>(repeating: 1),
-                    rotation: simd_quatf(angle: 0, axis: SIMD3<Float>(0, 0, 0)),
-                    translation: SIMD3<Float>(value.entity.position.x, 0, value.entity.position.z)
-                )
-
-                value.entity
-                    .move(
-                        to: transform,
-                        relativeTo: value.entity.parent!,
-                        duration: 0.2,
-                        timingFunction: .easeInOut
-                    )
-
-
+                lowerEntity(value.entity)
             }
+    }
+
+    func raiseEntity(_ entity: Entity) {
+        let transform = Transform(
+            scale: SIMD3<Float>(repeating: 2),
+            rotation: simd_quatf(angle: 0, axis: SIMD3<Float>(0, 0, 0)),
+            translation: SIMD3<Float>(entity.position.x, 0.3, entity.position.z)
+        )
+
+        entity
+            .move(
+                to: transform,
+                relativeTo: entity.parent!,
+                duration: 1.0,
+                timingFunction: .easeInOut
+            )
+    }
+
+    func lowerEntity(_ entity: Entity) {
+        let transform = Transform(
+            scale: SIMD3<Float>(repeating: 1),
+            rotation: simd_quatf(angle: 0, axis: SIMD3<Float>(0, 0, 0)),
+            translation: SIMD3<Float>(entity.position.x, 0, entity.position.z)
+        )
+
+        entity
+            .move(
+                to: transform,
+                relativeTo: entity.parent!,
+                duration: 0.2,
+                timingFunction: .easeInOut
+            )
     }
 }
 

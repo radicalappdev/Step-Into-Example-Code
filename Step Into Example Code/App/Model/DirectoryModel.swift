@@ -81,7 +81,7 @@ class ModelData {
                  date: Date("11/7/2024"),
                  isFeatured: true,
                  subtitle: "Long Press Gesture",
-                 description: "Using the LongPressGesture with RealityKit")
+                 description: "Using the LongPressGesture with a RealityKit Entity")
 
     ]
 
