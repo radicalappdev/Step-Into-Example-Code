@@ -6,7 +6,7 @@
 //
 //  Description: Using the LongPressGesture with a RealityKit Entity
 //
-//  Type: Space
+//  Type: Volume
 //
 //  Created by Joseph Simpson on 11/7/24.
 

@@ -83,6 +83,13 @@ class ModelData {
                  subtitle: "Long Press Gesture",
                  description: "Using the LongPressGesture with a RealityKit Entity")
 
+        ,Example(title: "Example 007",
+                 type: .VOLUME,
+                 date: Date("11/8/2024"),
+                 isFeatured: true,
+                 subtitle: "Drag Gesture",
+                 description: "Using the DragGesture to move entities.")
+
     ]
 
 }
