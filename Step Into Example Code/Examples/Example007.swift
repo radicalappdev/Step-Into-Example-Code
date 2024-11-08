@@ -29,17 +29,10 @@ struct Example007: View {
     }
 
     var dragGesture: some Gesture {
-
         DragGesture()
             .targetedToAnyEntity()
             .onChanged { value in
-
-                value.entity.position = value.convert(value.location3D, from: .global, to: value.entity.parent!)
-
-
-            }
-            .onEnded { value in
-                print(value.entity)
+                value.entity.position = value.convert(value.location3D, from: .local, to: value.entity.parent!)
             }
     }
 }
