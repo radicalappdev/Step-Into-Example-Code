@@ -4,7 +4,7 @@
 //
 //  Subtitle: Rotate Gesture 3D Basics
 //
-//  Description: Using the RotateGesture3D to rotate entities around an axis. Issue: This lab doesn't take into account the initial orientation of the entity. If the has a rotation value on the Y axis is anything other than 0, you will see the entity "snap" to the starting value of the geture. We will fix this in another example.
+//  Description: Using the RotateGesture3D to rotate entities around an axis. Issue: This lab doesn't take into account the initial orientation of the entity. If the entity has a rotation value on the Y axis is anything other than 0, you will see the entity "snap" to the starting value of the gesture. We will fix this in another example.
 //
 //  Type: Volume
 //
