@@ -4,7 +4,7 @@
 //
 //  Subtitle: Magnify Gesture Basics
 //
-//  Description: Using the MagnifyGesture to scale entities.
+//  Description: Using the MagnifyGesture to scale entities. Issue: This lab doesn't take into account the initial scale of the entity. If the entity starts at a scale of anything other than 1, you will see it "snap" to the starting scale of the gesture. We will fix this in another example.
 //
 //  Type: Volume
 //

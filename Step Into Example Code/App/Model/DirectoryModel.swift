@@ -42,25 +42,25 @@ class ModelData {
     var exampleData: [Example] = [
 
         Example(title: "Example 001",
-            type: .WINDOW,
-            date: Date("10/15/2024"),
-            isFeatured: false,
-            subtitle: "Open a 2D Window",
-            description: "Testing out the window")
+                type: .WINDOW,
+                date: Date("10/15/2024"),
+                isFeatured: false,
+                subtitle: "Open a 2D Window",
+                description: "Testing out the window")
 
         ,Example(title: "Example 002",
-             type: .VOLUME,
-             date: Date("10/15/2024"),
-             isFeatured: false,
-             subtitle: "Open a Volume",
-             description: "Testing out the volume")
+                 type: .VOLUME,
+                 date: Date("10/15/2024"),
+                 isFeatured: false,
+                 subtitle: "Open a Volume",
+                 description: "Testing out the volume")
 
         ,Example(title: "Example 003",
-             type: .SPACE,
-             date: Date("10/15/2024"),
-             isFeatured: false,
-             subtitle: "Open Immersive Space",
-             description: "Testing out the immersive space")
+                 type: .SPACE,
+                 date: Date("10/15/2024"),
+                 isFeatured: false,
+                 subtitle: "Open Immersive Space",
+                 description: "Testing out the immersive space")
 
         ,Example(title: "Example 004",
                  type: .VOLUME,
@@ -95,7 +95,13 @@ class ModelData {
                  date: Date("11/10/2024"),
                  isFeatured: true,
                  subtitle: "Magnify Gesture Basics",
-                 description: "Using the MagnifyGesture to scale entities.")
+                 description: """
+Using the MagnifyGesture to scale entities.
+
+Issue: This lab doesn't take into account the initial scale of the entity. If the entity starts at a scale of anything other than 1, you will see it "snap" to the starting scale of the gesture. 
+
+We will fix this in another example.
+""")
 
         ,Example(title: "Example 009",
                  type: .VOLUME,
