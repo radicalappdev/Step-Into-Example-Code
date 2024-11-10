@@ -4,7 +4,7 @@
 //
 //  Subtitle: Drag Gesture
 //
-//  Description: Using the DragGesture to move entities.
+//  Description: Using the DragGesture to move entities. **Issue:** This lab doesn't take into account the difference between the position of the entity and the starting position of th gesture **on that entity**. Depending on where you tap, you may see the entity "snap" to a new position when starting this gesture. We will fix this in another example.
 //
 //  Type: Volume
 //

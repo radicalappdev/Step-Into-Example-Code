@@ -88,7 +88,13 @@ class ModelData {
                  date: Date("11/8/2024"),
                  isFeatured: true,
                  subtitle: "Drag Gesture Basics",
-                 description: "Using the DragGesture to move entities.")
+                 description: """
+Using the DragGesture to move entities.
+
+**Issue:** This lab doesn't take into account the difference between the position of the entity and the starting position of th gesture **on that entity**. Depending on where you tap, you may see the entity "snap" to a new position when starting this gesture. 
+
+We will fix this in another example.
+""")
 
         ,Example(title: "Example 008",
                  type: .VOLUME,
@@ -98,7 +104,7 @@ class ModelData {
                  description: """
 Using the MagnifyGesture to scale entities.
 
-Issue: This lab doesn't take into account the initial scale of the entity. If the entity starts at a scale of anything other than 1, you will see it "snap" to the starting scale of the gesture. 
+**Issue:** This lab doesn't take into account the initial scale of the entity. If the entity starts at a scale of anything other than 1, you will see it "snap" to the starting scale of the gesture. 
 
 We will fix this in another example.
 """)
