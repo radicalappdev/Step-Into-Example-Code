@@ -21,6 +21,7 @@ struct ExampleRouter: View {
         case "Example 006": Example006()
         case "Example 007": Example007()
         case "Example 008": Example008()
+        case "Example 009": Example009()
 
         case .none, .some:
 

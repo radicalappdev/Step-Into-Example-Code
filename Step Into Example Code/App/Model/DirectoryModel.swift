@@ -97,6 +97,13 @@ class ModelData {
                  subtitle: "Magnify Gesture Basics",
                  description: "Using the MagnifyGesture to scale entities.")
 
+        ,Example(title: "Example 009",
+                 type: .VOLUME,
+                 date: Date("11/10/2024"),
+                 isFeatured: true,
+                 subtitle: "Rotate Gesture 3D Basics",
+                 description: "Using the RotateGesture3D to rotate entities around an axis.")
+
     ]
 
 }
