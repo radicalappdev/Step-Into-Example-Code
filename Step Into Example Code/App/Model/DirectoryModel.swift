@@ -102,7 +102,13 @@ class ModelData {
                  date: Date("11/10/2024"),
                  isFeatured: true,
                  subtitle: "Rotate Gesture 3D Basics",
-                 description: "Using the RotateGesture3D to rotate entities around an axis.")
+                 description: """
+                 Using the RotateGesture3D to rotate entities around an axis.
+                 
+                 **Issue:** This lab doesn't take into account the initial orientation of the entity. If the has a rotation value on the Y axis is anything other than 0, you will see the entity "snap" to the starting value of the geture. 
+                 
+                 We will fix this in another example.
+                 """)
 
     ]
 
