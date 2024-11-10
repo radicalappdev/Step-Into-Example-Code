@@ -87,8 +87,15 @@ class ModelData {
                  type: .VOLUME,
                  date: Date("11/8/2024"),
                  isFeatured: true,
-                 subtitle: "Drag Gesture",
+                 subtitle: "Drag Gesture Basics",
                  description: "Using the DragGesture to move entities.")
+
+        ,Example(title: "Example 008",
+                 type: .VOLUME,
+                 date: Date("11/10/2024"),
+                 isFeatured: true,
+                 subtitle: "Magnify Gesture Basics",
+                 description: "Using the MagnifyGesture to scale entities.")
 
     ]
 
