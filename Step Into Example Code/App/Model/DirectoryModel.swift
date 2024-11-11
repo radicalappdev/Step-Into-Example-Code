@@ -122,6 +122,15 @@ We will fix this in another example.
                  We will fix this in another example.
                  """)
 
+        ,Example(title: "Example 010",
+                 type: .VOLUME,
+                 date: Date("11/11/2024"),
+                 isFeatured: true,
+                 subtitle: "Drag Gesture Improved",
+                 description: """
+Expanding on Drag Gesture Basics to remove the "snapping" bug when the gesture first starts.
+""")
+
     ]
 
 }
