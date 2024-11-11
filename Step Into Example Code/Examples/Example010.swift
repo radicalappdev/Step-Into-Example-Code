@@ -4,7 +4,7 @@
 //
 //  Subtitle: Drag Gesture Improved
 //
-//  Description: Expanding on Drag Gesture Basics to remove the "snapping" bug when the gesture first starts. Capture the initial position of the entity when the gesture starts. Add the movement + initial position to get the new position.
+//  Description: Expanding on Drag Gesture Basics to fix the "snapping" bug when the gesture first starts. Capture the initial position of the entity when the gesture starts. Add the movement + initial position to get the new position.
 //
 //  Type: Volume
 //
@@ -16,9 +16,6 @@ import RealityKitContent
 
 struct Example010: View {
 
-    @State var isDragging: Bool = false
-    @State var initialPosition: SIMD3<Float> = .zero
-
     var body: some View {
         RealityView { content in
             // Load the scene from the Reality Kit bundle
@@ -29,32 +26,43 @@ struct Example010: View {
                 scene.position.y = -0.4
             }
         }
-        .gesture(dragGesture)
+        .modifier(DragGestureImproved010())
     }
 
-    var dragGesture: some Gesture {
-        DragGesture()
-            .targetedToAnyEntity()
-            .onChanged { value in
+}
 
-                // We we start the gesture, cache the entity position
-                if !isDragging {
-                    isDragging = true
-                    initialPosition = value.entity.position
-                }
+fileprivate struct DragGestureImproved010: ViewModifier {
 
-                // Calculate vector by which to move the entity
-                let movement = value.convert(value.gestureValue.translation3D, from: .local, to: .scene)
+    @State var isDragging: Bool = false
+    @State var initialPosition: SIMD3<Float> = .zero
 
-                // Add the initial position and the movement to get the new position
-                value.entity.position = initialPosition + movement
+    func body(content: Content) -> some View {
+        content
+            .gesture(
+                DragGesture()
+                    .targetedToAnyEntity()
+                    .onChanged { value in
 
-            }
-            .onEnded { value in
-                // Clean up when the gesture has ended
-                isDragging = false
-                initialPosition = .zero
-            }
+                        // We we start the gesture, cache the entity position
+                        if !isDragging {
+                            isDragging = true
+                            initialPosition = value.entity.position
+                        }
+
+                        // Calculate vector by which to move the entity
+                        let movement = value.convert(value.gestureValue.translation3D, from: .local, to: .scene)
+
+                        // Add the initial position and the movement to get the new position
+                        value.entity.position = initialPosition + movement
+
+                    }
+                    .onEnded { value in
+                        // Clean up when the gesture has ended
+                        isDragging = false
+                        initialPosition = .zero
+                    }
+            )
+
     }
 }
 
