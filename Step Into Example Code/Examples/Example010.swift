@@ -4,7 +4,7 @@
 //
 //  Subtitle: Drag Gesture Improved
 //
-//  Description: Expanding on Drag Gesture Basics to remove the "snapping" bug when the gesture first starts.
+//  Description: Expanding on Drag Gesture Basics to remove the "snapping" bug when the gesture first starts. Capture the initial position of the entity when the gesture starts. Add the movement + initial position to get the new position.
 //
 //  Type: Volume
 //
