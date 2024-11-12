@@ -133,6 +133,17 @@ Expanding on Drag Gesture Basics to fix the "snapping" bug when the gesture firs
 Capture the initial position of the entity when the gesture starts. Add the movement + initial position to get the new position.
 """)
 
+        ,Example(title: "Example 011",
+                 type: .VOLUME,
+                 date: Date("11/12/2024"),
+                 isFeatured: true,
+                 subtitle: "Magnify Gesture Improved",
+                 description: """
+Expanding on Magnify Gesture Basics to fix the "snapping" bug when the gesture first starts.
+
+Capture the initial scale of the entity when the gesture starts. Multiply the magnification by the initial scale to get the new scale.
+""")
+
     ]
 
 }
