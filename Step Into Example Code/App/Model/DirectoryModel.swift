@@ -144,6 +144,17 @@ Expanding on Magnify Gesture Basics to fix the "snapping" bug when the gesture f
 Capture the initial scale of the entity when the gesture starts. Multiply the magnification by the initial scale to get the new scale.
 """)
 
+        ,Example(title: "Example 012",
+                 type: .VOLUME,
+                 date: Date("11/13/2024"),
+                 isFeatured: true,
+                 subtitle: "Rotate Gesture 3D Improved",
+                 description: """
+                 Expanding on the RotateGesture3D basics example to fix the "snapping" bug when the gesture first starts.
+                 
+                 Capture the initial orientation when the gesture starts and add it to the rotation from the gesture.
+                 """)
+
     ]
 
 }
