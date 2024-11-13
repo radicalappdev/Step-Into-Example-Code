@@ -53,6 +53,8 @@ fileprivate struct RotateGesture3DImproved: ViewModifier {
 
                         let rotation = value.rotation
                         let rotationTransform = Transform(AffineTransform3D(rotation: rotation))
+
+                        // Multiply the initial orientation by the gesture rotation
                         value.entity.transform.rotation = initialOrientation * rotationTransform.rotation
 
                     }
@@ -63,10 +65,7 @@ fileprivate struct RotateGesture3DImproved: ViewModifier {
                             vector: .init(repeating: 0.0)
                         )
                     }
-
-
             )
-
     }
 }
 
