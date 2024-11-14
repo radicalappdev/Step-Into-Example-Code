@@ -79,14 +79,14 @@ class ModelData {
         ,Example(title: "Example 006",
                  type: .VOLUME,
                  date: Date("11/7/2024"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Long Press Gesture",
                  description: "Using the LongPressGesture with a RealityKit Entity")
 
         ,Example(title: "Example 007",
                  type: .VOLUME,
                  date: Date("11/8/2024"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Drag Gesture Basics",
                  description: """
 Using the DragGesture to move entities.
@@ -99,7 +99,7 @@ We will fix this in another example.
         ,Example(title: "Example 008",
                  type: .VOLUME,
                  date: Date("11/10/2024"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Magnify Gesture Basics",
                  description: """
 Using the MagnifyGesture to scale entities.
@@ -112,7 +112,7 @@ We will fix this in another example.
         ,Example(title: "Example 009",
                  type: .VOLUME,
                  date: Date("11/10/2024"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Rotate Gesture 3D Basics",
                  description: """
                  Using the RotateGesture3D to rotate entities around an axis.
@@ -125,7 +125,7 @@ We will fix this in another example.
         ,Example(title: "Example 010",
                  type: .VOLUME,
                  date: Date("11/11/2024"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Drag Gesture Improved",
                  description: """
 Expanding on Drag Gesture Basics to fix the "snapping" bug when the gesture first starts.
@@ -136,7 +136,7 @@ Capture the initial position of the entity when the gesture starts. Add the move
         ,Example(title: "Example 011",
                  type: .VOLUME,
                  date: Date("11/12/2024"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Magnify Gesture Improved",
                  description: """
 Expanding on Magnify Gesture Basics to fix the "snapping" bug when the gesture first starts.
@@ -147,7 +147,7 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
         ,Example(title: "Example 012",
                  type: .VOLUME,
                  date: Date("11/13/2024"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Rotate Gesture 3D Improved",
                  description: """
                  Expanding on the RotateGesture3D basics example to fix the "snapping" bug when the gesture first starts.
