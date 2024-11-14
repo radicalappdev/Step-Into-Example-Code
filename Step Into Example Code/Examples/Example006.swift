@@ -53,8 +53,6 @@ struct Example006: View {
                     selected = value.entity
 
                 }
-
-
             }
     }
 

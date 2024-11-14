@@ -2,11 +2,11 @@
 //
 //  Title: Example013
 //
-//  Subtitle:
+//  Subtitle: Combine Gestures in a Sequence
 //
-//  Description:
+//  Description: An example of using SequenceGesture to create a Long Press + Drag gesture.
 //
-//  Type:
+//  Type: Volume
 //
 //  Created by Joseph Simpson on 11/14/24.
 
@@ -36,14 +36,15 @@ fileprivate struct LongPressDragGesture: ViewModifier {
 
     func body(content: Content) -> some View {
         content
-            .gesture(
-                longPress
-                    .sequenced(before: dragGesture))
-
+            .gesture(longPress.sequenced(before: dragGesture))
     }
 
     var longPress: some Gesture {
         LongPressGesture(minimumDuration: 1.0)
+            .targetedToAnyEntity()
+            .onEnded { value in
+                raiseEntity(value.entity)
+            }
     }
 
     var dragGesture: some Gesture {
@@ -68,8 +69,44 @@ fileprivate struct LongPressDragGesture: ViewModifier {
                 // Clean up when the gesture has ended
                 isDragging = false
                 initialPosition = .zero
+                lowerEntity(value.entity)
             }
 
+    }
+
+
+    /// Raise the entity over 0.2 seconds
+    func raiseEntity(_ entity: Entity) {
+        let transform = Transform(
+            scale: SIMD3<Float>(repeating: 1),
+            rotation: simd_quatf(angle: 0, axis: SIMD3<Float>(0, 0, 0)),
+            translation: SIMD3<Float>(entity.position.x, 0.1, entity.position.z)
+        )
+
+        entity
+            .move(
+                to: transform,
+                relativeTo: entity.parent!,
+                duration: 0.2,
+                timingFunction: .easeInOut
+            )
+    }
+
+    /// Lower the entity over 0.2 seconds
+    func lowerEntity(_ entity: Entity) {
+        let transform = Transform(
+            scale: SIMD3<Float>(repeating: 1),
+            rotation: simd_quatf(angle: 0, axis: SIMD3<Float>(0, 0, 0)),
+            translation: SIMD3<Float>(entity.position.x, 0, entity.position.z)
+        )
+
+        entity
+            .move(
+                to: transform,
+                relativeTo: entity.parent!,
+                duration: 0.2,
+                timingFunction: .easeInOut
+            )
     }
 }
 

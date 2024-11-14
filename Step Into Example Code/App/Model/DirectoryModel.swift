@@ -160,9 +160,7 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  date: Date("11/14/2024"),
                  isFeatured: true,
                  subtitle: "Combine Gestures in a Sequence",
-                 description: """
-                 TBD
-                 """)
+                 description: "An example of using SequenceGesture to create a Long Press + Drag gesture.")
 
     ]
 
