@@ -155,6 +155,15 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  Capture the initial orientation when the gesture starts and add it to the rotation from the gesture.
                  """)
 
+        ,Example(title: "Example 013",
+                 type: .VOLUME,
+                 date: Date("11/14/2024"),
+                 isFeatured: true,
+                 subtitle: "Combine Gestures in a Sequence",
+                 description: """
+                 TBD
+                 """)
+
     ]
 
 }

@@ -27,8 +27,6 @@ struct Example012: View {
         }
         .modifier(RotateGesture3DImproved())
     }
-
-
 }
 
 fileprivate struct RotateGesture3DImproved: ViewModifier {
