@@ -23,6 +23,18 @@ struct Example014: View {
 
                 // Lower the entire scene to the bottom of the volume
                 scene.position.y = -0.4
+
+                if let rocket = scene.findEntity(named: "ToyRocket"), let car = scene.findEntity(named: "ToyCar"), let plane = scene.findEntity(named: "ToyBiplane") {
+                    let transform = Transform(
+                        scale: SIMD3<Float>(repeating: 3),
+                        rotation: simd_quatf(angle: 0.4, axis: SIMD3<Float>(0, 1, 0)),
+                        translation: rocket.position
+                    )
+                    rocket.transform = transform
+                    car.removeFromParent()
+                    plane.removeFromParent()
+
+                }
             }
         }
         .modifier(ScaleAndRotateGesture())
