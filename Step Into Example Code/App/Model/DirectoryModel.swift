@@ -159,8 +159,15 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  type: .VOLUME,
                  date: Date("11/14/2024"),
                  isFeatured: true,
-                 subtitle: "Combine Gestures in a Sequence",
+                 subtitle: "Combine gestures in a Sequence",
                  description: "An example of using SequenceGesture to create a Long Press + Drag gesture.")
+
+        ,Example(title: "Example 014",
+                 type: .VOLUME,
+                 date: Date("11/15/2024"),
+                 isFeatured: true,
+                 subtitle: "Simultaneously combine gestures",
+                 description: "An example of using SimultaneousGesture to create a Magnify + Rotate gesture.")
 
     ]
 
