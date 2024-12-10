@@ -52,6 +52,8 @@ struct Example017: View {
                 }
             }
         }
+        .persistentSystemOverlays(.hidden)
+
         .task { try! await session.run([provider]) }
         .task {
             for await update in provider.anchorUpdates {
