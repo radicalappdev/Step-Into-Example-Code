@@ -63,9 +63,10 @@ struct Example017: View {
                 let handAnchor = update.anchor
                 for jointName in tipJoints {
                     if let joint = handAnchor.handSkeleton?.joint(jointName),
-                       let jointEntity = leftCollection.findEntity(named: jointName.description) {
-                        jointEntity.setTransformMatrix(handAnchor.originFromAnchorTransform * joint.anchorFromJointTransform,
-                                                     relativeTo: nil)
+                       let sphere = leftCollection.findEntity(named: jointName.description) {
+                        let transform = handAnchor.originFromAnchorTransform 
+                        let jointTransform = joint.anchorFromJointTransform
+                        sphere.setTransformMatrix(transform * jointTransform, relativeTo: nil)
                     }
                 }
             }
@@ -76,9 +77,10 @@ struct Example017: View {
                 let handAnchor = update.anchor
                 for jointName in tipJoints {
                     if let joint = handAnchor.handSkeleton?.joint(jointName),
-                       let jointEntity = rightCollection.findEntity(named: jointName.description) {
-                        jointEntity.setTransformMatrix(handAnchor.originFromAnchorTransform * joint.anchorFromJointTransform,
-                                                     relativeTo: nil)
+                       let sphere = rightCollection.findEntity(named: jointName.description) {
+                        let transform = handAnchor.originFromAnchorTransform 
+                        let jointTransform = joint.anchorFromJointTransform
+                        sphere.setTransformMatrix(transform * jointTransform, relativeTo: nil)
                     }
                 }
             }
