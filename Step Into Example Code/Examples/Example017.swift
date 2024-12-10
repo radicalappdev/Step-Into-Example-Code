@@ -16,8 +16,8 @@ import RealityKitContent
 import ARKit
 
 struct Example017: View {
-    let session = ARKitSession()
-    let provider = HandTrackingProvider()
+    let arSession = ARKitSession()
+    let handTrackingProvider = HandTrackingProvider()
     let leftCollection = Entity()
     let rightCollection = Entity()
     
@@ -54,19 +54,30 @@ struct Example017: View {
         }
         .persistentSystemOverlays(.hidden)
 
-        .task { try! await session.run([provider]) }
+        .task { try! await arSession.run([handTrackingProvider]) }
+        // Left hand tracking task
         .task {
-            for await update in provider.anchorUpdates {
+            for await update in handTrackingProvider.anchorUpdates where update.anchor.chirality == .left {
                 let handAnchor = update.anchor
-                let collection = handAnchor.chirality == .left ? leftCollection : rightCollection
-                
                 for jointName in tipJoints {
-                    guard let joint = handAnchor.handSkeleton?.joint(jointName),
-                          let jointEntity = collection.findEntity(named: jointName.description) else {
-                        continue
+                    if let joint = handAnchor.handSkeleton?.joint(jointName),
+                       let jointEntity = leftCollection.findEntity(named: jointName.description) {
+                        jointEntity.setTransformMatrix(handAnchor.originFromAnchorTransform * joint.anchorFromJointTransform,
+                                                     relativeTo: nil)
                     }
-                    jointEntity.setTransformMatrix(handAnchor.originFromAnchorTransform * joint.anchorFromJointTransform,
-                                                 relativeTo: nil)
+                }
+            }
+        }
+        // Right hand tracking task
+        .task {
+            for await update in handTrackingProvider.anchorUpdates where update.anchor.chirality == .right {
+                let handAnchor = update.anchor
+                for jointName in tipJoints {
+                    if let joint = handAnchor.handSkeleton?.joint(jointName),
+                       let jointEntity = rightCollection.findEntity(named: jointName.description) {
+                        jointEntity.setTransformMatrix(handAnchor.originFromAnchorTransform * joint.anchorFromJointTransform,
+                                                     relativeTo: nil)
+                    }
                 }
             }
         }
