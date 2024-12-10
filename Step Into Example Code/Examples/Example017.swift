@@ -40,6 +40,7 @@ struct Example017: View {
                         sphere.name = jointName.description
                         leftCollection.addChild(sphere)
                     }
+                    leftHandSphere.isEnabled = false
                 }
                 
                 if let rightHandSphere = scene.findEntity(named: "StepSphereGreen") {
@@ -49,6 +50,7 @@ struct Example017: View {
                         sphere.name = jointName.description
                         rightCollection.addChild(sphere)
                     }
+                    rightHandSphere.isEnabled = false
                 }
             }
         }
