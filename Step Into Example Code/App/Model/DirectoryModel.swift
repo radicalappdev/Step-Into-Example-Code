@@ -183,6 +183,13 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  subtitle: "We can hide the system hand menu in Immersive Spaces",
                  description: "SwiftUI has a modifier called `persistentSystemOverlays` that allows us to hide the system hand menu in Immersive Spaces.")
 
+        ,Example(title: "Example 017",
+                 type: .SPACE,
+                 date: Date("12/10/2024"),
+                 isFeatured: true,
+                 subtitle: "Getting started with Hand Tracking",
+                 description: "")
+
     ]
 
 }

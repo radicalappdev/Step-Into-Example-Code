@@ -2,7 +2,8 @@
   "advancedEditorSelectedIdentifier" : "ProjectBrowser",
   "openSceneRelativePaths" : [
     "GestureLabs.usda",
-    "SpatialTapLab.usda"
+    "SpatialTapLab.usda",
+    "HandTrackingLabs.usda"
   ],
   "recentIdentifiers" : {
     "4EA577E8-CF08-4F6B-8090-61CB20667042" : [
@@ -312,5 +313,5 @@
   "sceneViewportBackgroundColors" : {
 
   },
-  "selectedSceneRelativePath" : "GestureLabs.usda"
+  "selectedSceneRelativePath" : "HandTrackingLabs.usda"
 }
