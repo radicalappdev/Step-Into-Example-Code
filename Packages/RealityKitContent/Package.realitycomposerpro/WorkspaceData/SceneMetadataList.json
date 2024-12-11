@@ -121,6 +121,36 @@
       {
         "isExpanded" : true,
         "isLocked" : false
+      },
+      [
+        "A72E7856-797B-4E44-AAE6-A7A3C948CBC4",
+        "Root",
+        "StepDome",
+        "SkyDome"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "A72E7856-797B-4E44-AAE6-A7A3C948CBC4",
+        "Root",
+        "StepDome"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "A72E7856-797B-4E44-AAE6-A7A3C948CBC4",
+        "Root",
+        "StepDome",
+        "SkyDome",
+        "Looks"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
       }
     ]
   },
