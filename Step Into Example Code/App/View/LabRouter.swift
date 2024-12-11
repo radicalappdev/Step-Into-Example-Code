@@ -27,7 +27,7 @@ struct ExampleRouter: View {
         case "Example 012": Example012()
         case "Example 013": Example013()
         case "Example 014": Example014()
-//        case "Example 015": Example015()
+        case "Example 015": Example015()
         case "Example 016": Example016()
         case "Example 017": Example017()
 

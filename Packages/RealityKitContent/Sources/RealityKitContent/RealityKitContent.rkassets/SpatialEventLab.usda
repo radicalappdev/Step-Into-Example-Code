@@ -1,0 +1,75 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "Reality Composer Pro Version 2.0 (448.0.16.0.3)"
+    }
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "Root"
+{
+    def "StepDome" (
+        active = true
+        prepend references = @BuildingBlocks/StepDome.usda@
+    )
+    {
+        float2 ui:nodegraph:node:pos = (20, 20)
+        int ui:nodegraph:node:stackingOrder = 1
+        float3 xformOp:scale = (1, 1, 1)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def "StepSphereBlue" (
+        active = true
+        prepend references = @BuildingBlocks/StepSphereBlue.usda@
+    )
+    {
+        double radius = 0.1
+        float2 ui:nodegraph:node:pos = (20, 20)
+        int ui:nodegraph:node:stackingOrder = 1
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (0.3, 1, -0.4)
+
+        over "Collider"
+        {
+        }
+
+        over "InputTarget"
+        {
+        }
+    }
+
+    def "StepSphereGreen" (
+        active = true
+        prepend references = @BuildingBlocks/StepSphereGreen.usda@
+    )
+    {
+        double radius = 0.1
+        float2 ui:nodegraph:node:pos = (20, 20)
+        int ui:nodegraph:node:stackingOrder = 1
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (0, 1, -0.4)
+
+        over "Collider"
+        {
+        }
+
+        over "InputTarget"
+        {
+        }
+    }
+
+    def "StepSphereRed" (
+        active = true
+        prepend references = @BuildingBlocks/StepSphereRed.usda@
+    )
+    {
+        float2 ui:nodegraph:node:pos = (20, 20)
+        int ui:nodegraph:node:stackingOrder = 1
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (-0.3, 1, -0.4)
+    }
+}
+

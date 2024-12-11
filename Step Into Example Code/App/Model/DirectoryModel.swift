@@ -169,12 +169,12 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  subtitle: "Simultaneously combine gestures",
                  description: "An example of using SimultaneousGesture to create a Magnify + Rotate gesture.")
 
-//        ,Example(title: "Example 015",
-//                 type: .VOLUME,
-//                 date: Date("11/15/2024"),
-//                 isFeatured: true,
-//                 subtitle: "",
-//                 description: "")
+        ,Example(title: "Example 015",
+                 type: .SPACE,
+                 date: Date("12/11/2024"),
+                 isFeatured: true,
+                 subtitle: "Exploring SpatialEventGesture",
+                 description: "What can we do with SpatialEventGesture?")
 
         ,Example(title: "Example 016",
                  type: .SPACE,
