@@ -45,6 +45,8 @@ struct SpatialEventGestureExample: ViewModifier {
     @State var isDragging: Bool = false
     @State var initialPosition: SIMD3<Float> = .zero
 
+    @State var chirality: Chirality?
+
     func body(content: Content) -> some View {
         content
             .gesture(
@@ -52,13 +54,7 @@ struct SpatialEventGestureExample: ViewModifier {
                     .onChanged { events in
                         for event in events {
                             if event.phase == .active {
-                                if (event.chirality == .left) {
-                                    // move up and down
-                                }
-                                if (event.chirality == .right) {
-                                    // move side to side
-                                }
-
+                                chirality = event.chirality
                             }
                         }
                     }
