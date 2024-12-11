@@ -57,7 +57,8 @@ struct Example017: View {
         .persistentSystemOverlays(.hidden)
 
         .task { try! await arSession.run([handTrackingProvider]) }
-        // Left hand tracking task
+
+        // Left Hand: Receive updates from the provider and process them over time
         .task {
             for await update in handTrackingProvider.anchorUpdates where update.anchor.chirality == .left {
                 let handAnchor = update.anchor
@@ -71,7 +72,7 @@ struct Example017: View {
                 }
             }
         }
-        // Right hand tracking task
+        // Right Hand: Receive updates from the provider and process them over time
         .task {
             for await update in handTrackingProvider.anchorUpdates where update.anchor.chirality == .right {
                 let handAnchor = update.anchor
@@ -85,9 +86,30 @@ struct Example017: View {
                 }
             }
         }
+        // Alternate version using latestAnchors instead of anchorUpdates
+//        .task {
+//            while true {
+//                let anchors = handTrackingProvider.latestAnchors
+//                if let handAnchor = anchors.rightHand {
+//                    for jointName in tipJoints {
+//                        if let joint = handAnchor.handSkeleton?.joint(jointName),
+//                           let sphere = rightCollection.findEntity(named: jointName.description) {
+//                            let transform = handAnchor.originFromAnchorTransform
+//                            let jointTransform = joint.anchorFromJointTransform
+//                            sphere.setTransformMatrix(transform * jointTransform, relativeTo: nil)
+//                        }
+//                    }
+//                }
+//                try? await Task.sleep(for: .milliseconds(8)) // ~120fps
+//            }
+//        }
+
     }
 }
 
 #Preview {
     Example017()
 }
+
+
+
