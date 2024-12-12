@@ -75,7 +75,10 @@ struct Example018: View {
         // Right Hand: Using handAnchors(at:) for predicted hand positions
         .task {
             while true {
-                if let handAnchor = handTrackingProvider.handAnchors(at: Date.now.timeIntervalSinceNow).rightHand {
+                let predictionTime = Date.now.timeIntervalSinceNow
+                // let predictionTime = Date.now.timeIntervalSinceNow + (1.0/15.0)
+                // let predictionTime = Date.now.timeIntervalSinceNow + (1.0/30.0)
+                if let handAnchor = handTrackingProvider.handAnchors(at: predictionTime).rightHand {
                     for jointName in tipJoints {
                         if let joint = handAnchor.handSkeleton?.joint(jointName),
                            let sphere = rightCollection.findEntity(named: jointName.description) {
@@ -85,41 +88,12 @@ struct Example018: View {
                         }
                     }
                 }
-                try? await Task.sleep(for: .seconds(1/120))
+                 try? await Task.sleep(for: .seconds(1/30))
+                // try? await Task.sleep(for: .seconds(1/60))
+//                try? await Task.sleep(for: .seconds(1/120))
             }
         }
 
-        // Right Hand: Receive updates from the provider and process them over time
-//        .task {
-//            for await update in handTrackingProvider.anchorUpdates where update.anchor.chirality == .right {
-//                let handAnchor = update.anchor
-//                for jointName in tipJoints {
-//                    if let joint = handAnchor.handSkeleton?.joint(jointName),
-//                       let sphere = rightCollection.findEntity(named: jointName.description) {
-//                        let transform = handAnchor.originFromAnchorTransform
-//                        let jointTransform = joint.anchorFromJointTransform
-//                        sphere.setTransformMatrix(transform * jointTransform, relativeTo: nil)
-//                    }
-//                }
-//            }
-//        }
-        // Alternate version using latestAnchors instead of anchorUpdates
-//        .task {
-//            while true {
-//                let anchors = handTrackingProvider.latestAnchors
-//                if let handAnchor = anchors.rightHand {
-//                    for jointName in tipJoints {
-//                        if let joint = handAnchor.handSkeleton?.joint(jointName),
-//                           let sphere = rightCollection.findEntity(named: jointName.description) {
-//                            let transform = handAnchor.originFromAnchorTransform
-//                            let jointTransform = joint.anchorFromJointTransform
-//                            sphere.setTransformMatrix(transform * jointTransform, relativeTo: nil)
-//                        }
-//                    }
-//                }
-//                try? await Task.sleep(for: .milliseconds(8)) // ~120fps
-//            }
-//        }
 
     }
 }
