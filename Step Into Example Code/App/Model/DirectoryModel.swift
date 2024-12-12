@@ -188,7 +188,14 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  date: Date("12/10/2024"),
                  isFeatured: true,
                  subtitle: "Getting started with Hand Tracking",
-                 description: "")
+                 description: "Explring two ways to anchor entities to our hands")
+
+        ,Example(title: "Example 018",
+                 type: .SPACE,
+                 date: Date("12/12/2024"),
+                 isFeatured: true,
+                 subtitle: "Hand tracking with handAnchors(at:)",
+                 description: "Explring a way to get the predicted post of hand anchors")
 
     ]
 

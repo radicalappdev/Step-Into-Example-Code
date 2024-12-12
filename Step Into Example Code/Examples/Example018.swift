@@ -72,6 +72,23 @@ struct Example018: View {
                 }
             }
         }
+        // Right Hand: Using handAnchors(at:) for predicted hand positions
+        .task {
+            while true {
+                if let handAnchor = handTrackingProvider.handAnchors(at: Date.now.timeIntervalSinceNow).rightHand {
+                    for jointName in tipJoints {
+                        if let joint = handAnchor.handSkeleton?.joint(jointName),
+                           let sphere = rightCollection.findEntity(named: jointName.description) {
+                            let transform = handAnchor.originFromAnchorTransform
+                            let jointTransform = joint.anchorFromJointTransform
+                            sphere.setTransformMatrix(transform * jointTransform, relativeTo: nil)
+                        }
+                    }
+                }
+                try? await Task.sleep(for: .seconds(1/120))
+            }
+        }
+
         // Right Hand: Receive updates from the provider and process them over time
 //        .task {
 //            for await update in handTrackingProvider.anchorUpdates where update.anchor.chirality == .right {
