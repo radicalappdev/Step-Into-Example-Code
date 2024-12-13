@@ -72,7 +72,7 @@ struct SpatialEventGestureExample: ViewModifier {
                                     targetEntity = entity
                                     lastHandPosition = SIMD3(
                                         Float(event.location3D.x),
-                                        Float(event.location3D.y),
+                                        Float(-event.location3D.y),
                                         Float(event.location3D.z)
                                     )
                                     isDragging = true
@@ -83,7 +83,7 @@ struct SpatialEventGestureExample: ViewModifier {
                                 // Continue moving the same entity
                                 let currentHandPosition = SIMD3(
                                     Float(event.location3D.x),
-                                    Float(event.location3D.y),
+                                    Float(-event.location3D.y),
                                     Float(event.location3D.z)
                                 )
                                 
