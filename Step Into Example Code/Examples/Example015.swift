@@ -16,8 +16,6 @@ import RealityKitContent
 
 struct Example015: View {
 
-    
-    
     var body: some View {
         RealityView { content, attachments in
 

@@ -10,9 +10,10 @@
 
 def Xform "Root"
 {
+    reorder nameChildren = ["StepDome", "StepSphereBlue", "StepSphereGreen", "StepSphereRed", "CubeGreen"]
     def "StepDome" (
         active = true
-        prepend references = @BuildingBlocks/StepDome.usda@
+        references = @BuildingBlocks/StepDome.usda@
     )
     {
         float2 ui:nodegraph:node:pos = (20, 20)
@@ -23,7 +24,7 @@ def Xform "Root"
 
     def "StepSphereBlue" (
         active = true
-        prepend references = @BuildingBlocks/StepSphereBlue.usda@
+        references = @BuildingBlocks/StepSphereBlue.usda@
     )
     {
         double radius = 0.1
@@ -54,13 +55,19 @@ def Xform "Root"
 
             def RealityKitStruct "material"
             {
+                double restitution = 0.5
             }
+        }
+
+        def RealityKitComponent "MotionState"
+        {
+            uniform token info:id = "RealityKit.MotionState"
         }
     }
 
     def "StepSphereGreen" (
         active = true
-        prepend references = @BuildingBlocks/StepSphereGreen.usda@
+        references = @BuildingBlocks/StepSphereGreen.usda@
     )
     {
         double radius = 0.1
@@ -91,13 +98,19 @@ def Xform "Root"
 
             def RealityKitStruct "material"
             {
+                double restitution = 0.5
             }
+        }
+
+        def RealityKitComponent "MotionState"
+        {
+            uniform token info:id = "RealityKit.MotionState"
         }
     }
 
     def "StepSphereRed" (
         active = true
-        prepend references = @BuildingBlocks/StepSphereRed.usda@
+        references = @BuildingBlocks/StepSphereRed.usda@
     )
     {
         float2 ui:nodegraph:node:pos = (20, 20)
@@ -119,11 +132,17 @@ def Xform "Root"
 
             def RealityKitStruct "material"
             {
+                double restitution = 0.5
             }
+        }
+
+        def RealityKitComponent "MotionState"
+        {
+            uniform token info:id = "RealityKit.MotionState"
         }
     }
 
-    def Cube "Cube" (
+    def Cube "CubeGreen" (
         active = true
         prepend apiSchemas = ["MaterialBindingAPI"]
     )
@@ -172,7 +191,13 @@ def Xform "Root"
 
             def RealityKitStruct "material"
             {
+                double restitution = 0.5
             }
+        }
+
+        def RealityKitComponent "MotionState"
+        {
+            uniform token info:id = "RealityKit.MotionState"
         }
     }
 }
