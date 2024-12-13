@@ -53,45 +53,43 @@ struct SpatialEventGestureExample: ViewModifier {
             .gesture(
                 SpatialEventGesture()
                     .onChanged { events in
+                        // If we're dragging but there are no events targeting our entity, end the drag
+                        if isDragging && !events.contains(where: { $0.targetedEntity === targetEntity }) {
+                            print("Lost target, ending drag")
+                            isDragging = false
+                            targetEntity = nil
+                            lastHandPosition = nil
+                            return
+                        }
+                        
                         for event in events {
-                            switch event.phase {
-                            case .active:
-                                if !isDragging {
-                                    // Just grab the entity and start tracking
-                                    if let entity = event.targetedEntity {
-                                        targetEntity = entity
-                                        lastHandPosition = SIMD3(
-                                            Float(event.location3D.x),
-                                            Float(event.location3D.y),
-                                            Float(event.location3D.z)
-                                        )
-                                        isDragging = true
-                                    }
-                                } else {
-                                    // Move the entity with a very small fraction of the hand movement
-                                    guard let entity = targetEntity,
-                                          let lastHand = lastHandPosition else { return }
-                                        
-                                    let currentHandPosition = SIMD3(
+                            // Only process active events
+                            guard event.phase == .active else { continue }
+                            
+                            if !isDragging {
+                                // Only grab a new entity if we're not already dragging
+                                if let entity = event.targetedEntity {
+                                    targetEntity = entity
+                                    lastHandPosition = SIMD3(
                                         Float(event.location3D.x),
                                         Float(event.location3D.y),
                                         Float(event.location3D.z)
                                     )
-                                    
-                                    // Calculate a tiny movement delta
-                                    let delta = (currentHandPosition - lastHand) * 0.001
-                                    
-                                    // Apply small incremental change
-                                    entity.position += delta
-                                    
-                                    // Update for next frame
-                                    lastHandPosition = currentHandPosition
+                                    isDragging = true
                                 }
-                                    
-                            case .ended, .cancelled:
-                                isDragging = false
-                                targetEntity = nil
-                                lastHandPosition = nil
+                            } else if let entity = targetEntity,
+                                      let lastHand = lastHandPosition,
+                                      event.targetedEntity === entity {
+                                // Continue moving the same entity
+                                let currentHandPosition = SIMD3(
+                                    Float(event.location3D.x),
+                                    Float(event.location3D.y),
+                                    Float(event.location3D.z)
+                                )
+                                
+                                let delta = (currentHandPosition - lastHand) * 0.001
+                                entity.position += delta
+                                lastHandPosition = currentHandPosition
                             }
                         }
                     }
