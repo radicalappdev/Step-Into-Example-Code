@@ -49,6 +49,7 @@ struct Example019: View {
         } update: { content in
 
         }
+        .persistentSystemOverlays(.hidden)
     }
 }
 
