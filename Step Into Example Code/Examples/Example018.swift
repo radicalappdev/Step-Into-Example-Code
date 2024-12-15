@@ -89,8 +89,6 @@ struct Example018: View {
                     }
                 }
                  try? await Task.sleep(for: .seconds(1/30))
-                // try? await Task.sleep(for: .seconds(1/60))
-//                try? await Task.sleep(for: .seconds(1/120))
             }
         }
 
