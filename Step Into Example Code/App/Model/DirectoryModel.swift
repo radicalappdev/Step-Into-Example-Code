@@ -197,6 +197,13 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  subtitle: "Hand tracking with handAnchors(at:)",
                  description: "Explring a way to get the predicted post of hand anchors")
 
+        ,Example(title: "Example 018",
+                 type: .SPACE,
+                 date: Date("12/15/2024"),
+                 isFeatured: true,
+                 subtitle: "AnchorEntity Hands",
+                 description: "Using AnchorEntity in RealityKit without ARKit.")
+
     ]
 
 }
