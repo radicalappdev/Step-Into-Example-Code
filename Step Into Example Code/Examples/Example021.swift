@@ -24,6 +24,7 @@ struct Example021: View {
                 if let subject = scene.findEntity(named: "StepSphereRed"), let leftHandSphere = scene.findEntity(named: "StepSphereBlue"), let rightHandSphere = scene.findEntity(named: "StepSphereGreen") {
 
 
+
                     leftHandSphere.name = "leftIndex"
                     let indexTipAnchor = AnchorEntity(.hand(.left, location: .indexFingerTip), trackingMode: .continuous)
                     indexTipAnchor.addChild(leftHandSphere)
@@ -32,7 +33,7 @@ struct Example021: View {
                     let thumbTipAnchor = AnchorEntity(.hand(.left, location: .thumbTip), trackingMode: .continuous)
                     let leftThumb = leftHandSphere.clone(recursive: true)
                     leftThumb.name = "leftThumb"
-                    thumbTipAnchor.addChild(leftHandSphere.clone(recursive: true))
+                    thumbTipAnchor.addChild(leftThumb)
                     content.add(thumbTipAnchor)
 
 
@@ -53,16 +54,20 @@ struct Example021: View {
                         if (event.entityA.name == "leftIndex" && event.entityB.name == "leftThumb") ||
                             (event.entityA.name == "leftThumb" && event.entityB.name == "leftIndex") {
                             print("Collision detected! Index finger and thumb")
-                            // Add specific response for index-thumb collision here
+                            subject.setScale(subject.scale * 1.1, relativeTo: subject.parent)
                         }
                         // When we detect a collision between leftIndex and rightPalm, reset the subject scale to 1.0
                         if (event.entityA.name == "leftIndex" && event.entityB.name == "rightPalm") ||
                             (event.entityA.name == "rightPalm" && event.entityB.name == "leftIndex") {
                             print("Collision detected! Index finger and right palm")
-                            
+                            subject.setScale(SIMD3<Float>(1.0, 1.0, 1.0), relativeTo: nil)
                         }
                     }
 
+                    let configuration = SpatialTrackingSession.Configuration(
+                        tracking: [.hand])
+                    let session = SpatialTrackingSession()
+                    await session.run(configuration)
 
                 }
 
