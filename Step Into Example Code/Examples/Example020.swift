@@ -49,11 +49,45 @@ struct Example020: View {
                 }
 
                 if let rightHandSphere = scene.findEntity(named: "StepSphereGreen") {
-                    let indexTipAnchor = AnchorEntity(.hand(.right, location: .indexFingerTip), trackingMode: .continuous)
-                    indexTipAnchor.addChild(rightHandSphere)
-                    indexTipAnchor.position = rightHandSphere.position
-                    content.add(indexTipAnchor)
+                    let joints: [AnchoringComponent.Target.HandLocation.HandJoint] = [
+                        .forearmArm,
+                        .forearmWrist,
+                        .indexFingerIntermediateBase,
+                        .indexFingerIntermediateTip,
+                        .indexFingerKnuckle,
+                        .indexFingerMetacarpal,
+                        .indexFingerTip,
+                        .littleFingerIntermediateBase,
+                        .littleFingerIntermediateTip,
+                        .littleFingerKnuckle,
+                        .littleFingerMetacarpal,
+                        .littleFingerTip,
+                        .middleFingerIntermediateBase,
+                        .middleFingerIntermediateTip,
+                        .middleFingerKnuckle,
+                        .middleFingerMetacarpal,
+                        .middleFingerTip,
+                        .ringFingerIntermediateBase,
+                        .ringFingerIntermediateTip,
+                        .ringFingerKnuckle,
+                        .ringFingerMetacarpal,
+                        .ringFingerTip,
+                        .thumbIntermediateBase,
+                        .thumbIntermediateTip,
+                        .thumbKnuckle,
+                        .thumbTip,
+                        .wrist
+                    ]
                     
+                    for joint in joints {
+                        let anchor = AnchorEntity(
+                            .hand(.right, location: .joint(for: joint)),
+                            trackingMode: .continuous
+                        )
+                        anchor.addChild(rightHandSphere.clone(recursive: true))
+                        anchor.position = rightHandSphere.position
+                        content.add(anchor)
+                    }
                 }
 
             }
