@@ -22,6 +22,7 @@ struct Example020: View {
             if let scene = try? await Entity(named: "HandTrackingLabs", in: realityKitContentBundle) {
                 content.add(scene)
 
+                // Left Hand: Create and customize entities for each primary location
                 if let leftHandSphere = scene.findEntity(named: "StepSphereBlue") {
                     let indexTipAnchor = AnchorEntity(.hand(.left, location: .indexFingerTip), trackingMode: .continuous)
                     indexTipAnchor.addChild(leftHandSphere)
@@ -48,7 +49,10 @@ struct Example020: View {
                     content.add(aboveHandAnchor)
                 }
 
+                // Right Hand: Create an entity for each joint
                 if let rightHandSphere = scene.findEntity(named: "StepSphereGreen") {
+                    // In ARKit, joints are availble as a ENUM HandSkeleton.JointName.allCases
+                    // But in RealityKit we are not so lucky. Create an array of all joints to iterate over.
                     let joints: [AnchoringComponent.Target.HandLocation.HandJoint] = [
                         .forearmArm,
                         .forearmWrist,
@@ -91,9 +95,6 @@ struct Example020: View {
                 }
 
             }
-
-        } update: { content in
-
         }
         .persistentSystemOverlays(.hidden)
     }
