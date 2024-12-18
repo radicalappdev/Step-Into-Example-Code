@@ -204,6 +204,13 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  subtitle: "AnchorEntity Hands",
                  description: "Using AnchorEntity in RealityKit without ARKit.")
 
+        ,Example(title: "Example 020",
+                 type: .SPACE,
+                 date: Date("12/18/2024"),
+                 isFeatured: true,
+                 subtitle: "Expanding on AnchorEntity for hands",
+                 description: "")
+
     ]
 
 }

@@ -1,20 +1,21 @@
 //  Step Into Vision - Example Code
 //
-//  Title: Example019
+//  Title: Example020
 //
-//  Subtitle: AnchorEntity Hands
+//  Subtitle:
 //
-//  Description: Using AnchorEntity in RealityKit without ARKit.
+//  Description:
 //
-//  Type: Space
+//  Type:
 //
-//  Created by Joseph Simpson on 12/15/24.
+//  Created by Joseph Simpson on 12/18/24.
 
 import SwiftUI
 import RealityKit
 import RealityKitContent
 
-struct Example019: View {
+struct Example020: View {
+
     var body: some View {
         RealityView { content in
 
@@ -22,27 +23,28 @@ struct Example019: View {
                 content.add(scene)
 
                 if let leftHandSphere = scene.findEntity(named: "StepSphereBlue") {
-                    let leftHandAnchor = AnchorEntity(.hand(.left, location: .indexFingerTip),
-                                                      trackingMode: .continuous)
+                    let leftHandAnchor = AnchorEntity(.hand(.left, location: .indexFingerTip), trackingMode: .continuous)
                     leftHandAnchor.addChild(leftHandSphere)
                     leftHandAnchor.position = leftHandSphere.position
                     content.add(leftHandAnchor)
                 }
 
                 if let rightHandSphere = scene.findEntity(named: "StepSphereGreen") {
-                    let rightHandAnchor = AnchorEntity(.hand(.right, location: .indexFingerTip),
-                                                       trackingMode: .predicted)
+                    let rightHandAnchor = AnchorEntity(.hand(.right, location: .indexFingerTip), trackingMode: .continuous)
                     rightHandAnchor.addChild(rightHandSphere)
                     rightHandAnchor.position = rightHandSphere.position
                     content.add(rightHandAnchor)
                 }
 
             }
+
+        } update: { content in
+
         }
-        .persistentSystemOverlays(.hidden)
+//        .persistentSystemOverlays(.hidden)
     }
 }
 
 #Preview {
-    Example019()
+    Example020()
 }
