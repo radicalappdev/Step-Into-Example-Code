@@ -211,7 +211,7 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  subtitle: "AnchorEntity Locations and Joints for Hands",
                  description: "Unpacking all the locations and joints that we can track with AnchorEntity in RealityKit.")
 
-        ,Example(title: "Example 020",
+        ,Example(title: "Example 021",
                  type: .SPACE,
                  date: Date("12/18/2024"),
                  isFeatured: true,

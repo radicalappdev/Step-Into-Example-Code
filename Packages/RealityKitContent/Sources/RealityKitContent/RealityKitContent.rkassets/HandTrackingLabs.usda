@@ -28,10 +28,15 @@ def Xform "Root"
         float3 xformOp:scale = (1, 1, 1)
         float3 xformOp:translate = (0, 0, 0)
 
-        over "Collider" (
-            active = false
-        )
+        over "Collider"
         {
+            token type = "Trigger"
+
+            over "Shape"
+            {
+                float radius = 0.01
+                token shapeType = "Sphere"
+            }
         }
 
         over "InputTarget" (
@@ -49,10 +54,15 @@ def Xform "Root"
         double radius = 0.01
         float3 xformOp:scale = (1, 1, 1)
 
-        over "Collider" (
-            active = false
-        )
+        over "Collider"
         {
+            token type = "Trigger"
+
+            over "Shape"
+            {
+                float radius = 0.01
+                token shapeType = "Sphere"
+            }
         }
 
         over "InputTarget" (
@@ -68,6 +78,7 @@ def Xform "Root"
     )
     {
         float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (0.6, 1.2, -1)
     }
 }
 
