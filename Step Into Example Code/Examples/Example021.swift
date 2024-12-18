@@ -21,7 +21,9 @@ struct Example021: View {
             if let scene = try? await Entity(named: "HandTrackingLabs", in: realityKitContentBundle) {
                 content.add(scene)
 
-                if let leftHandSphere = scene.findEntity(named: "StepSphereBlue") {
+                if let subject = scene.findEntity(named: "StepSphereRed"), let leftHandSphere = scene.findEntity(named: "StepSphereBlue"), let rightHandSphere = scene.findEntity(named: "StepSphereGreen") {
+
+
                     leftHandSphere.name = "leftIndex"
                     let indexTipAnchor = AnchorEntity(.hand(.left, location: .indexFingerTip), trackingMode: .continuous)
                     indexTipAnchor.addChild(leftHandSphere)
@@ -32,9 +34,8 @@ struct Example021: View {
                     leftThumb.name = "leftThumb"
                     thumbTipAnchor.addChild(leftHandSphere.clone(recursive: true))
                     content.add(thumbTipAnchor)
-                }
 
-                if let rightHandSphere = scene.findEntity(named: "StepSphereGreen") {
+
                     rightHandSphere.name = "rightPalm"
                     let palmAnchor = AnchorEntity(.hand(.right, location: .palm), trackingMode: .continuous)
                     palmAnchor.addChild(rightHandSphere.clone(recursive: true))
@@ -42,13 +43,19 @@ struct Example021: View {
                     palmAnchor.scale = [3, 3, 3]
                     content.add(palmAnchor)
 
+
+                    // Add collision subscription
+                    content.subscribe(to: CollisionEvents.Began.self) { event in
+                        print("Collision detected!", event)
+                        // Add your collision response here
+
+                        // When we detect the leftIndex and leftThumb collision, scale the subect up by 10%
+                        // When we detect a collision between leftIndex and rightPalm, reset the subject scale to 1.0
+                    }
+
+
                 }
 
-                // Add collision subscription
-                content.subscribe(to: CollisionEvents.Began.self) { event in
-                    print("Collision detected!", event)
-                    // Add your collision response here
-                }
 
             }
 
