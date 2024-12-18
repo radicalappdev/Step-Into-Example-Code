@@ -46,11 +46,21 @@ struct Example021: View {
 
                     // Add collision subscription
                     content.subscribe(to: CollisionEvents.Began.self) { event in
-                        print("Collision detected!", event)
+                        print("Collision detected!", event.entityA.name, event.entityB.name)
                         // Add your collision response here
 
                         // When we detect the leftIndex and leftThumb collision, scale the subect up by 10%
+                        if (event.entityA.name == "leftIndex" && event.entityB.name == "leftThumb") ||
+                            (event.entityA.name == "leftThumb" && event.entityB.name == "leftIndex") {
+                            print("Collision detected! Index finger and thumb")
+                            // Add specific response for index-thumb collision here
+                        }
                         // When we detect a collision between leftIndex and rightPalm, reset the subject scale to 1.0
+                        if (event.entityA.name == "leftIndex" && event.entityB.name == "rightPalm") ||
+                            (event.entityA.name == "rightPalm" && event.entityB.name == "leftIndex") {
+                            print("Collision detected! Index finger and right palm")
+                            
+                        }
                     }
 
 

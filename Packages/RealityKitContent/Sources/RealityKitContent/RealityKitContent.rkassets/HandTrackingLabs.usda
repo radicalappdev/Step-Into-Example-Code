@@ -53,6 +53,7 @@ def Xform "Root"
     {
         double radius = 0.01
         float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (0.1, 0, 0)
 
         over "Collider"
         {
