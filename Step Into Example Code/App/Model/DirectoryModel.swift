@@ -208,8 +208,8 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  type: .SPACE,
                  date: Date("12/18/2024"),
                  isFeatured: true,
-                 subtitle: "Expanding on AnchorEntity for hands",
-                 description: "")
+                 subtitle: "AnchorEntity Locations and Joints for Hands",
+                 description: "Unpacking all the locations and joints that we can track with AnchorEntity in RealityKit.")
 
     ]
 

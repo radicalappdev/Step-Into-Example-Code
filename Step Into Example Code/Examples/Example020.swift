@@ -2,11 +2,11 @@
 //
 //  Title: Example020
 //
-//  Subtitle:
+//  Subtitle: AnchorEntity Locations and Joints for Hands
 //
-//  Description:
+//  Description: Unpacking all the locations and joints that we can track with AnchorEntity in RealityKit.
 //
-//  Type:
+//  Type: Space
 //
 //  Created by Joseph Simpson on 12/18/24.
 
