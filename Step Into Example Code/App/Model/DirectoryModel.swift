@@ -158,14 +158,14 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
         ,Example(title: "Example 013",
                  type: .VOLUME,
                  date: Date("11/14/2024"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Combine gestures in a Sequence",
                  description: "An example of using SequenceGesture to create a Long Press + Drag gesture.")
 
         ,Example(title: "Example 014",
                  type: .VOLUME,
                  date: Date("11/15/2024"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Simultaneously combine gestures",
                  description: "An example of using SimultaneousGesture to create a Magnify + Rotate gesture.")
 
@@ -179,21 +179,21 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
         ,Example(title: "Example 016",
                  type: .SPACE,
                  date: Date("12/04/2024"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "We can hide the system hand menu in Immersive Spaces",
                  description: "SwiftUI has a modifier called `persistentSystemOverlays` that allows us to hide the system hand menu in Immersive Spaces.")
 
         ,Example(title: "Example 017",
                  type: .SPACE,
                  date: Date("12/10/2024"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Getting started with Hand Tracking",
                  description: "Explring two ways to anchor entities to our hands")
 
         ,Example(title: "Example 018",
                  type: .SPACE,
                  date: Date("12/12/2024"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Hand tracking with handAnchors(at:)",
                  description: "Explring a way to get the predicted post of hand anchors")
 
@@ -210,6 +210,13 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  isFeatured: true,
                  subtitle: "AnchorEntity Locations and Joints for Hands",
                  description: "Unpacking all the locations and joints that we can track with AnchorEntity in RealityKit.")
+
+        ,Example(title: "Example 020",
+                 type: .SPACE,
+                 date: Date("12/18/2024"),
+                 isFeatured: true,
+                 subtitle: "Explore trigger collisions with AnchorEntity",
+                 description: "Can we trigger collisions with AnchorEntity without ARKit?")
 
     ]
 
