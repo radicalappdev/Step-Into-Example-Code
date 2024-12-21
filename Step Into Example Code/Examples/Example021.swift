@@ -19,33 +19,39 @@ struct Example021: View {
         RealityView { content, attachments in
 
             if let scene = try? await Entity(named: "HandTrackingLabs", in: realityKitContentBundle) {
+                // Add physics simulation to the scene level
+                scene.components.set(PhysicsSimulationComponent())
                 content.add(scene)
 
                 if let subject = scene.findEntity(named: "StepSphereRed"), let leftHandSphere = scene.findEntity(named: "StepSphereBlue"), let rightHandSphere = scene.findEntity(named: "StepSphereGreen") {
 
+                    // Create a root entity for all hand tracking
+                    let handTrackingRoot = Entity()
+                    handTrackingRoot.components.set(PhysicsSimulationComponent())
+                    content.add(handTrackingRoot)
 
-
+                    // Set up index finger sphere
                     leftHandSphere.name = "leftIndex"
                     let indexTipAnchor = AnchorEntity(.hand(.left, location: .indexFingerTip), trackingMode: .continuous)
                     indexTipAnchor.addChild(leftHandSphere)
-                    content.add(indexTipAnchor)
+                    handTrackingRoot.addChild(indexTipAnchor)
 
+                    // Set up thumb sphere
                     let thumbTipAnchor = AnchorEntity(.hand(.left, location: .thumbTip), trackingMode: .continuous)
                     let leftThumb = leftHandSphere.clone(recursive: true)
                     leftThumb.name = "leftThumb"
                     thumbTipAnchor.addChild(leftThumb)
-                    content.add(thumbTipAnchor)
+                    handTrackingRoot.addChild(thumbTipAnchor)
 
-
+                    // Set up palm sphere
                     rightHandSphere.name = "rightPalm"
                     let palmAnchor = AnchorEntity(.hand(.right, location: .palm), trackingMode: .continuous)
                     palmAnchor.addChild(rightHandSphere.clone(recursive: true))
-                    palmAnchor.position =  [0, 0.05, 0]
+                    palmAnchor.position = [0, 0.05, 0]
                     palmAnchor.scale = [3, 3, 3]
-                    content.add(palmAnchor)
+                    handTrackingRoot.addChild(palmAnchor)
 
-
-                    // Add collision subscription
+                    // Keep collision subscription on content
                     content.subscribe(to: CollisionEvents.Began.self) { event in
                         print("Collision detected!", event.entityA.name, event.entityB.name)
                         // Add your collision response here
@@ -64,10 +70,10 @@ struct Example021: View {
                         }
                     }
 
-                    let configuration = SpatialTrackingSession.Configuration(
-                        tracking: [.hand])
-                    let session = SpatialTrackingSession()
-                    await session.run(configuration)
+//                    let configuration = SpatialTrackingSession.Configuration(
+//                        tracking: [.hand])
+//                    let session = SpatialTrackingSession()
+//                    await session.run(configuration)
 
                 }
 
