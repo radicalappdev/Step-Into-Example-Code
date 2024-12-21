@@ -164,6 +164,17 @@ def Xform "Root"
                 }
             }
         }
+
+        over "Collider"
+        {
+            token type = "Trigger"
+
+            over "Shape"
+            {
+                float radius = 0.1
+                token shapeType = "Sphere"
+            }
+        }
     }
 }
 

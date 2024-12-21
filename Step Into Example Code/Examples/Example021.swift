@@ -30,22 +30,24 @@ struct Example021: View {
                 let configuration = SpatialTrackingSession.Configuration(
                     tracking: [.hand])
                 let session = SpatialTrackingSession()
-                trackedSession = session
                 await session.run(configuration)
+                trackedSession = session
 
 
                 if let subject = scene.findEntity(named: "StepSphereRed"), let leftHandSphere = scene.findEntity(named: "StepSphereBlue"), let rightHandSphere = scene.findEntity(named: "StepSphereGreen") {
 
                     // Set up left index finger sphere
                     leftHandSphere.name = "leftIndex"
-                    let indexTipAnchor = AnchorEntity(.hand(.left, location: .indexFingerTip), trackingMode: .continuous)
-                    indexTipAnchor.addChild(leftHandSphere)
+                    let leftIndexAnchor = AnchorEntity(.hand(.left, location: .indexFingerTip), trackingMode: .continuous)
+                    leftIndexAnchor.addChild(leftHandSphere)
+                    content.add(leftIndexAnchor)
 
 
                     // Set up right index finger sphere
                     rightHandSphere.name = "rightIndex"
-                    let palmAnchor = AnchorEntity(.hand(.right, location: .indexFingerTip), trackingMode: .continuous)
-                    palmAnchor.addChild(rightHandSphere.clone(recursive: true))
+                    let rightIndexAnchor = AnchorEntity(.hand(.right, location: .indexFingerTip), trackingMode: .continuous)
+                    rightIndexAnchor.addChild(rightHandSphere.clone(recursive: true))
+                    content.add(rightIndexAnchor)  
 
 
                     collisionBeganSubject = content
