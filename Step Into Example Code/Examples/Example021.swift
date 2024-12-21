@@ -17,6 +17,7 @@ import RealityKitContent
 struct Example021: View {
 
     @State var trackedSession: SpatialTrackingSession?
+    @State var collisionBeganUnfiltered: EventSubscription?
     @State var collisionBeganSubject: EventSubscription?
 
     var body: some View {
@@ -47,15 +48,20 @@ struct Example021: View {
                     rightHandSphere.name = "rightIndex"
                     let rightIndexAnchor = AnchorEntity(.hand(.right, location: .indexFingerTip), trackingMode: .continuous)
                     rightIndexAnchor.addChild(rightHandSphere.clone(recursive: true))
-                    content.add(rightIndexAnchor)  
+                    content.add(rightIndexAnchor)
 
+                    collisionBeganUnfiltered = content.subscribe(to: CollisionEvents.Began.self)  { collisionEvent in
+                        print("Collision unfiltered \(collisionEvent.entityA.name) and \(collisionEvent.entityB.name)")
+                        collisionEvent.entityA.components[ParticleEmitterComponent.self]?.burst()
 
-                    collisionBeganSubject = content
-                        .subscribe(to: CollisionEvents.Began.self, on: subject)  { collisionEvent in
-                            print("Collision Subject Bounce \(collisionEvent.entityA.name) and \(collisionEvent.entityB.name)")
-                            // Do something to show the trigger
-                            subject.components[ParticleEmitterComponent.self]?.burst()
-                        }
+                    }
+
+//                    collisionBeganSubject = content
+//                        .subscribe(to: CollisionEvents.Began.self, on: subject)  { collisionEvent in
+//                            print("Collision Subject Bounce \(collisionEvent.entityA.name) and \(collisionEvent.entityB.name)")
+//                            // Do something to show the trigger
+//                            subject.components[ParticleEmitterComponent.self]?.burst()
+//                        }
 
                 }
 
