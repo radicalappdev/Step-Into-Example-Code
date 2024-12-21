@@ -16,33 +16,28 @@ import RealityKitContent
 
 struct Example021: View {
 
-    @State var trackedSession: SpatialTrackingSession?
-    @State var collisionBeganUnfiltered: EventSubscription?
-    @State var collisionBeganSubjectColor: EventSubscription?
-
     var body: some View {
-        RealityView { content, attachments in
+        RealityView { content in
 
             if let scene = try? await Entity(named: "HandTrackingLabs", in: realityKitContentBundle) {
-                // Add physics simulation to the scene level
-                scene.components.set(PhysicsSimulationComponent())
                 content.add(scene)
 
+                // 1. Set up a Spatial Tracking Session with hand tracking.
+                // This will add ARKit features to our Anchor Entities.
                 let configuration = SpatialTrackingSession.Configuration(
                     tracking: [.hand])
                 let session = SpatialTrackingSession()
                 await session.run(configuration)
-                trackedSession = session
-
 
                 if let subject = scene.findEntity(named: "StepSphereRed"), let leftHandSphere = scene.findEntity(named: "StepSphereBlue"), let rightHandSphere = scene.findEntity(named: "StepSphereGreen") {
-
                     content.add(subject)
 
-
+                    // 2. Anchor some spheres to our index fingers
                     // Set up left index finger sphere
                     leftHandSphere.name = "leftIndex"
                     let leftIndexAnchor = AnchorEntity(.hand(.left, location: .indexFingerTip), trackingMode: .continuous)
+
+                    // 3. Disable the default physics simulation on the anchor
                     leftIndexAnchor.anchoring.physicsSimulation = .none
                     leftIndexAnchor.addChild(leftHandSphere)
                     content.add(leftIndexAnchor)
@@ -55,13 +50,13 @@ struct Example021: View {
                     rightIndexAnchor.addChild(rightHandSphere.clone(recursive: true))
                     content.add(rightIndexAnchor)
 
-                    collisionBeganUnfiltered = content.subscribe(to: CollisionEvents.Began.self)  { collisionEvent in
+                    _ = content.subscribe(to: CollisionEvents.Began.self)  { collisionEvent in
                         print("Collision unfiltered \(collisionEvent.entityA.name) and \(collisionEvent.entityB.name)")
                         collisionEvent.entityA.components[ParticleEmitterComponent.self]?.burst()
 
                     }
 
-                    collisionBeganSubjectColor = content
+                    _ = content
                         .subscribe(to: CollisionEvents.Began.self, on: subject)  { collisionEvent in
                             print("Collision Subject Color Change \(collisionEvent.entityA.name) and \(collisionEvent.entityB.name)")
                             if(collisionEvent.entityB.name == "leftIndex") {
@@ -70,17 +65,7 @@ struct Example021: View {
                                 swapColorEntity(subject, color: .stepGreen)
                             }
                         }
-
                 }
-
-
-            }
-
-        } update: { content, attachments in
-
-        } attachments: {
-            Attachment(id: "AttachmentContent") {
-                Text("")
             }
         }
     }
