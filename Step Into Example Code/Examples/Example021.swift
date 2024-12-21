@@ -18,7 +18,7 @@ struct Example021: View {
 
     @State var trackedSession: SpatialTrackingSession?
     @State var collisionBeganUnfiltered: EventSubscription?
-    @State var collisionBeganSubject: EventSubscription?
+    @State var collisionBeganSubjectColor: EventSubscription?
 
     var body: some View {
         RealityView { content, attachments in
@@ -61,10 +61,14 @@ struct Example021: View {
 
                     }
 
-                    collisionBeganSubject = content
+                    collisionBeganSubjectColor = content
                         .subscribe(to: CollisionEvents.Began.self, on: subject)  { collisionEvent in
-                            print("Collision Subject Bounce \(collisionEvent.entityA.name) and \(collisionEvent.entityB.name)")
-                            subject.components[ParticleEmitterComponent.self]?.burst()
+                            print("Collision Subject Color Change \(collisionEvent.entityA.name) and \(collisionEvent.entityB.name)")
+                            if(collisionEvent.entityB.name == "leftIndex") {
+                                swapColorEntity(subject, color: .stepBlue)
+                            } else if (collisionEvent.entityB.name == "rightIndex") {
+                                swapColorEntity(subject, color: .stepGreen)
+                            }
                         }
 
                 }
@@ -78,6 +82,13 @@ struct Example021: View {
             Attachment(id: "AttachmentContent") {
                 Text("")
             }
+        }
+    }
+
+    func swapColorEntity(_ entity: Entity, color: UIColor) {
+        if var mat = entity.components[ModelComponent.self]?.materials.first as? PhysicallyBasedMaterial {
+            mat.baseColor = .init(tint: color)
+            entity.components[ModelComponent.self]?.materials[0] = mat
         }
     }
 }
