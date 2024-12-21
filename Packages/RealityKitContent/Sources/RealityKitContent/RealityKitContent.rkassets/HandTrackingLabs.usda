@@ -54,8 +54,9 @@ def Xform "Root"
             {
                 token birthDirection = "Normal"
                 token birthLocation = "Surface"
+                int64 burstCount = 50
                 float3 emissionDirection = (0, 1, 0)
-                double emissionDuration = 0.05
+                double emissionDuration = 0.03
                 double emissionDurationVariation = 0
                 token emitterShape = "Sphere"
                 double idleDuration = 3
@@ -63,7 +64,7 @@ def Xform "Root"
                 bool isLocal = 0
                 bool isSpawningEnabled = 0
                 bool loops = 0
-                float particleSpeed = 0.5
+                float particleSpeed = 0.3
                 float particleSpeedVariation = 0.1
                 float3 shapeSize = (0.01, 0.01, 0.01)
                 bool spawnInheritParentColor = 0
@@ -165,8 +166,9 @@ def Xform "Root"
             {
                 token birthDirection = "Normal"
                 token birthLocation = "Surface"
+                int64 burstCount = 50
                 float3 emissionDirection = (0, 1, 0)
-                double emissionDuration = 0.05
+                double emissionDuration = 0.03
                 double emissionDurationVariation = 0
                 token emitterShape = "Sphere"
                 double idleDuration = 3
@@ -174,7 +176,7 @@ def Xform "Root"
                 bool isLocal = 0
                 bool isSpawningEnabled = 0
                 bool loops = 0
-                float particleSpeed = 0.5
+                float particleSpeed = 0.3
                 float particleSpeedVariation = 0.1
                 float3 shapeSize = (0.01, 0.01, 0.01)
                 bool spawnInheritParentColor = 0
