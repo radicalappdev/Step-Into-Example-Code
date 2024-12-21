@@ -2,13 +2,13 @@
 //
 //  Title: Example021
 //
-//  Subtitle:
+//  Subtitle: Hand Anchored Collision Triggers
 //
-//  Description:
+//  Description: We can add a Spatial Tracking Session if we need to track collision triggers in our scene.
 //
-//  Type:
+//  Type: Space
 //
-//  Created by Joseph Simpson on 12/18/24.
+//  Created by Joseph Simpson on 12/21/24.
 
 import SwiftUI
 import RealityKit

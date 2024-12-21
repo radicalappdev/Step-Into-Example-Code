@@ -213,10 +213,10 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
 
         ,Example(title: "Example 021",
                  type: .SPACE,
-                 date: Date("12/18/2024"),
+                 date: Date("12/21/2024"),
                  isFeatured: true,
-                 subtitle: "Explore trigger collisions with AnchorEntity",
-                 description: "Can we trigger collisions with AnchorEntity without ARKit?")
+                 subtitle: "Hand Anchored Collision Triggers",
+                 description: "We can add a Spatial Tracking Session if we need to track collision triggers in our scene.")
 
     ]
 
