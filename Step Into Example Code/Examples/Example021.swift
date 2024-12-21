@@ -40,6 +40,7 @@ struct Example021: View {
                     // Set up left index finger sphere
                     leftHandSphere.name = "leftIndex"
                     let leftIndexAnchor = AnchorEntity(.hand(.left, location: .indexFingerTip), trackingMode: .continuous)
+                    leftIndexAnchor.anchoring.physicsSimulation = .none
                     leftIndexAnchor.addChild(leftHandSphere)
                     content.add(leftIndexAnchor)
 
@@ -47,6 +48,7 @@ struct Example021: View {
                     // Set up right index finger sphere
                     rightHandSphere.name = "rightIndex"
                     let rightIndexAnchor = AnchorEntity(.hand(.right, location: .indexFingerTip), trackingMode: .continuous)
+                    rightIndexAnchor.anchoring.physicsSimulation = .none
                     rightIndexAnchor.addChild(rightHandSphere.clone(recursive: true))
                     content.add(rightIndexAnchor)
 
