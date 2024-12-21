@@ -99,8 +99,7 @@
     "objectMetadataList" : [
       [
         "7CCDFE09-BCF8-4A48-99D6-A1740674C1D0",
-        "Root",
-        "CubeGreen"
+        "Root"
       ],
       {
         "isExpanded" : true,
@@ -108,7 +107,8 @@
       },
       [
         "7CCDFE09-BCF8-4A48-99D6-A1740674C1D0",
-        "Root"
+        "Root",
+        "CubeGreen"
       ],
       {
         "isExpanded" : true,
@@ -137,8 +137,7 @@
     "objectMetadataList" : [
       [
         "A72E7856-797B-4E44-AAE6-A7A3C948CBC4",
-        "Root",
-        "StepDome"
+        "Root"
       ],
       {
         "isExpanded" : true,
@@ -146,7 +145,8 @@
       },
       [
         "A72E7856-797B-4E44-AAE6-A7A3C948CBC4",
-        "Root"
+        "Root",
+        "StepDome"
       ],
       {
         "isExpanded" : true,
