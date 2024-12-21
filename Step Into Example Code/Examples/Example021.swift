@@ -37,6 +37,9 @@ struct Example021: View {
 
                 if let subject = scene.findEntity(named: "StepSphereRed"), let leftHandSphere = scene.findEntity(named: "StepSphereBlue"), let rightHandSphere = scene.findEntity(named: "StepSphereGreen") {
 
+                    content.add(subject)
+
+
                     // Set up left index finger sphere
                     leftHandSphere.name = "leftIndex"
                     let leftIndexAnchor = AnchorEntity(.hand(.left, location: .indexFingerTip), trackingMode: .continuous)
@@ -48,7 +51,7 @@ struct Example021: View {
                     // Set up right index finger sphere
                     rightHandSphere.name = "rightIndex"
                     let rightIndexAnchor = AnchorEntity(.hand(.right, location: .indexFingerTip), trackingMode: .continuous)
-                    rightIndexAnchor.anchoring.physicsSimulation = .none
+                    rightIndexAnchor.anchoring.physicsSimulation = .none //
                     rightIndexAnchor.addChild(rightHandSphere.clone(recursive: true))
                     content.add(rightIndexAnchor)
 
@@ -58,12 +61,11 @@ struct Example021: View {
 
                     }
 
-//                    collisionBeganSubject = content
-//                        .subscribe(to: CollisionEvents.Began.self, on: subject)  { collisionEvent in
-//                            print("Collision Subject Bounce \(collisionEvent.entityA.name) and \(collisionEvent.entityB.name)")
-//                            // Do something to show the trigger
-//                            subject.components[ParticleEmitterComponent.self]?.burst()
-//                        }
+                    collisionBeganSubject = content
+                        .subscribe(to: CollisionEvents.Began.self, on: subject)  { collisionEvent in
+                            print("Collision Subject Bounce \(collisionEvent.entityA.name) and \(collisionEvent.entityB.name)")
+                            subject.components[ParticleEmitterComponent.self]?.burst()
+                        }
 
                 }
 
