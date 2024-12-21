@@ -4,7 +4,8 @@
     "GestureLabs.usda",
     "SpatialTapLab.usda",
     "HandTrackingLabs.usda",
-    "SpatialEventLab.usda"
+    "SpatialEventLab.usda",
+    "BuildingBlocks\/StepDome.usda"
   ],
   "recentIdentifiers" : {
     "4EA577E8-CF08-4F6B-8090-61CB20667042" : [
@@ -202,6 +203,30 @@
           0.005657196,
           1.8688024,
           1.7887782,
+          1
+        ]
+      }
+    ],
+    "8D6C6740-C961-4F60-8D1A-50E5627793EC" : [
+      {
+        "date" : 756489784.884936,
+        "title" : "Untitled",
+        "transform" : [
+          0.5855075,
+          2.6063607e-09,
+          -0.810667,
+          0,
+          -0.6302119,
+          0.6290076,
+          -0.4551731,
+          0,
+          0.5099156,
+          0.7773992,
+          0.36828867,
+          0,
+          1.3187948,
+          2.0105877,
+          0.9525049,
           1
         ]
       }
@@ -610,5 +635,5 @@
   "sceneViewportBackgroundColors" : {
 
   },
-  "selectedSceneRelativePath" : "HandTrackingLabs.usda"
+  "selectedSceneRelativePath" : "BuildingBlocks\/StepDome.usda"
 }

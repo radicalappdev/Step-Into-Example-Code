@@ -60,5 +60,25 @@ def Xform "Root"
             }
         }
     }
+
+    def Xform "DirectionalLight" (
+        customData = {
+            float3 rotationEulerHint = (-0.85071015, 0, 0)
+        }
+    )
+    {
+        quatf xformOp:orient = (0.91089225, -0.41264424, 0, 0)
+        float3 xformOp:translate = (0, 0.8230301, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def RealityKitComponent "DirectionalLight"
+        {
+            token info:id = "RealityKit.DirectionalLight"
+
+            def RealityKitStruct "Shadow"
+            {
+            }
+        }
+    }
 }
 
