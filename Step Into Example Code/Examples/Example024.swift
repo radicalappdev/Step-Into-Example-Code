@@ -14,7 +14,6 @@ import SwiftUI
 import RealityKit
 import RealityKitContent
 
-
 struct Example024: View {
     @State private var session: SpatialTrackingSession?
     @State var leftHandTransform: Transform?
@@ -58,17 +57,52 @@ struct Example024: View {
 
         } attachments: {
             Attachment(id: "AttachmentContent") {
-                VStack(alignment: .leading, spacing: 8) {
+                VStack(alignment: .leading, spacing: 12) {
                     if let transform = leftHandTransform {
-                        let transform3D = transform
-                        Text("Translation: \(transform3D.translation)")
-                        Text("Scale: \(transform3D.scale)")
-                        Text("Rotation: \(transform3D.rotation)")
+
+
+                        VStack(alignment: .leading) {
+                            Text("Translation")
+                                .fontWeight(.bold)
+                            HStack {
+                                Text("X: \(String(format: "%8.3f", transform.translation.x))")
+                                    .frame(width: 120, alignment: .leading)
+                                Text("Y: \(String(format: "%8.3f", transform.translation.y))")
+                                    .frame(width: 120, alignment: .leading)
+                                Text("Z: \(String(format: "%8.3f", transform.translation.z))")
+                                    .frame(width: 120, alignment: .leading)
+                            }
+                        }
+
+                        VStack(alignment: .leading) {
+                            Text("Scale")
+                                .fontWeight(.bold)
+                            HStack {
+                                Text("X: \(String(format: "%8.3f", transform.scale.x))")
+                                    .frame(width: 120, alignment: .leading)
+                                Text("Y: \(String(format: "%8.3f", transform.scale.y))")
+                                    .frame(width: 120, alignment: .leading)
+                                Text("Z: \(String(format: "%8.3f", transform.scale.z))")
+                                    .frame(width: 120, alignment: .leading)
+                            }
+                        }
+
+                        VStack(alignment: .leading) {
+                            Text("Rotation \(transform.rotation.angle)")
+                                .fontWeight(.bold)
+                            HStack {
+                            Text("X: \(String(format: "%8.3f", transform.rotation.axis.x))")
+                                    .frame(width: 120, alignment: .leading)
+                                Text("Y: \(String(format: "%8.3f", transform.rotation.axis.y))")
+                                    .frame(width: 120, alignment: .leading)
+                                Text("Z: \(String(format: "%8.3f", transform.rotation.axis.z))")
+                                    .frame(width: 120, alignment: .leading)
+                            }
+                        }
                     } else {
                         Text("Hand not tracked")
                     }
                 }
-                .frame(width: 300, height: 400)
                 .monospaced()
                 .padding()
                 .glassBackgroundEffect()
@@ -76,6 +110,7 @@ struct Example024: View {
         }
     }
 }
+
 #Preview {
     Example024()
 }
