@@ -14,14 +14,14 @@ import SwiftUI
 import RealityKit
 import RealityKitContent
 
+
 struct Example024: View {
     @State private var session: SpatialTrackingSession?
-    @State var leftHandTransform: float4x4?
+    @State var leftHandTransform: Transform?
     @State private var leftHandAnchor: AnchorEntity?
 
     var body: some View {
         RealityView { content, attachments in
-            // First set up the session
             let configuration = SpatialTrackingSession.Configuration(
                 tracking: [.hand]
             )
@@ -39,12 +39,10 @@ struct Example024: View {
                     content.add(leftHand)
                     self.leftHandAnchor = leftHand
 
-                    // Set up transform tracking
                     Task {
                         while true {
                             if let anchor = leftHandAnchor {
-                                // Get the world transform directly from the anchor
-                                leftHandTransform = anchor.transformMatrix(relativeTo: nil)
+                                leftHandTransform = Transform(matrix: anchor.transformMatrix(relativeTo: nil))
                             }
                             try? await Task.sleep(for: .seconds(1/30))
                         }
@@ -60,17 +58,24 @@ struct Example024: View {
 
         } attachments: {
             Attachment(id: "AttachmentContent") {
-                VStack {
-                    
-                    Text("Left Hand: \(String(describing: leftHandTransform))")
+                VStack(alignment: .leading, spacing: 8) {
+                    if let transform = leftHandTransform {
+                        let transform3D = transform
+                        Text("Translation: \(transform3D.translation)")
+                        Text("Scale: \(transform3D.scale)")
+                        Text("Rotation: \(transform3D.rotation)")
+                    } else {
+                        Text("Hand not tracked")
+                    }
                 }
+                .frame(width: 300, height: 400)
+                .monospaced()
                 .padding()
                 .glassBackgroundEffect()
             }
         }
     }
 }
-
 #Preview {
     Example024()
 }
