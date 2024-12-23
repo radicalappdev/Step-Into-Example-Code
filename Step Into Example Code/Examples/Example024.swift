@@ -16,22 +16,14 @@ import RealityKitContent
 
 struct Example024: View {
 
+    @State private var session: SpatialTrackingSession?
     @State var leftHandTransform: Transform?
-    @State private var trackingTask: Task<Void, Never>?
 
     var body: some View {
         RealityView { content, attachments in
 
-            if let scene = try? await Entity(named: "HandTrackingLabsPhysics", in: realityKitContentBundle) {
+            if let scene = try? await Entity(named: "HandTrackingLabsTransform", in: realityKitContentBundle) {
                 content.add(scene)
-
-                // 1. Set up a Spatial Tracking Session with hand tracking.
-                // This will add ARKit features to our Anchor Entities, enabling access to transforms, collisions, and physics.
-                let configuration = SpatialTrackingSession.Configuration(
-                    tracking: [.hand]
-                )
-                let session = SpatialTrackingSession()
-                await session.run(configuration)
 
                 if let leftHandSphere = scene.findEntity(named: "LeftHand") {
                     let leftHand = AnchorEntity(.hand(.left, location: .indexFingerTip))
@@ -42,26 +34,13 @@ struct Example024: View {
                     Task {
                         while true {
                             leftHandTransform = leftHand.transform
-                            print(leftHandTransform)
-                            try? await Task.sleep(for: .milliseconds(100))
+                            print(leftHandTransform as Any)
+                            try? await Task.sleep(for: .seconds(1/30))
 
                         }
                     }
                 }
 
-
-                if let rightHandSphere = scene.findEntity(named: "RightHand") {
-
-                    let rightHand = AnchorEntity(.hand(.right, location: .indexFingerTip),
-                                                 trackingMode: .continuous)
-                    rightHand.addChild(rightHandSphere.clone(recursive: true))
-                    rightHandSphere.position = .zero
-
-                    rightHand.anchoring.physicsSimulation = .none
-                    content.add(rightHand)
-                }
-
-                // add our attachment to the scene
                 if let panel = attachments.entity(for: "AttachmentContent") {
                     panel.position = [0, 1, -1]
                     content.add(panel)
@@ -74,13 +53,22 @@ struct Example024: View {
         } attachments: {
             Attachment(id: "AttachmentContent") {
                 VStack {
-                    Text("Left Hand: \(leftHandTransform)")
-
+                    Text("Left Hand: \(String(describing: leftHandTransform))")
                 }
                 .padding()
                 .glassBackgroundEffect()
 
             }
+        }
+        .task {
+            // 1. Set up a Spatial Tracking Session with hand tracking.
+            // This will add ARKit features to our Anchor Entities, enabling access to transforms, collisions, and physics.
+            let configuration = SpatialTrackingSession.Configuration(
+                tracking: [.hand]
+            )
+            let session = SpatialTrackingSession()
+            await session.run(configuration)
+            self.session = session
         }
     }
 }
