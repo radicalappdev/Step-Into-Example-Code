@@ -4,9 +4,7 @@
     "GestureLabs.usda",
     "SpatialTapLab.usda",
     "HandTrackingLabs.usda",
-    "BuildingBlocks\/StepSphereBlue.usda",
-    "BuildingBlocks\/StepSphereGreen.usda",
-    "BuildingBlocks\/StepSphereRed.usda"
+    "HandTrackingLabsPhysics.usda"
   ],
   "recentIdentifiers" : {
     "4EA577E8-CF08-4F6B-8090-61CB20667042" : [
@@ -22,6 +20,9 @@
 
     ],
     "CB436AE6-DE73-445D-83B2-F22373E6F73A" : [
+
+    ],
+    "DF287A2A-5B5F-4F10-85D9-721B72452257" : [
 
     ]
   },
@@ -636,5 +637,5 @@
   "sceneViewportBackgroundColors" : {
 
   },
-  "selectedSceneRelativePath" : "BuildingBlocks\/StepSphereRed.usda"
+  "selectedSceneRelativePath" : "HandTrackingLabsPhysics.usda"
 }

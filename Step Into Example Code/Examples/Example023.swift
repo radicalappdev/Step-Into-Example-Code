@@ -18,7 +18,7 @@ struct Example023: View {
     var body: some View {
         RealityView { content, attachments in
 
-            if let scene = try? await Entity(named: "HandTrackingLabs", in: realityKitContentBundle) {
+            if let scene = try? await Entity(named: "HandTrackingLabsPhysics", in: realityKitContentBundle) {
                 content.add(scene)
                 
                 // 1. Set up a Spatial Tracking Session with hand tracking.
@@ -29,17 +29,29 @@ struct Example023: View {
                 let session = SpatialTrackingSession()
                 await session.run(configuration)
 
-                if let leftHandSphere = scene.findEntity(named: "StepSphereBlue") {
+                if let leftHandSphere = scene.findEntity(named: "LeftHand") {
 
                     // 2. Create an anchor for the left index finger
-                    let leftThumbTip = AnchorEntity(.hand(.left, location: .joint(for: .thumbTip)),
+                    let leftHand = AnchorEntity(.hand(.left, location: .indexFingerTip),
                                                     trackingMode: .continuous)
-                    leftThumbTip.addChild(leftHandSphere.clone(recursive: true))
+                    leftHand.addChild(leftHandSphere.clone(recursive: true))
+                    leftHandSphere.position = .zero
 
                     // 3. Disable the default physics simulation on the anchor
-                    leftThumbTip.anchoring.physicsSimulation = .none
-                    content.add(leftThumbTip)
+                    leftHand.anchoring.physicsSimulation = .none
+                    content.add(leftHand)
 
+                }
+
+                if let rightHandSphere = scene.findEntity(named: "RightHand") {
+
+                    let rightHand = AnchorEntity(.hand(.right, location: .indexFingerTip),
+                                                 trackingMode: .continuous)
+                    rightHand.addChild(rightHandSphere.clone(recursive: true))
+                    rightHandSphere.position = .zero
+                    
+                    rightHand.anchoring.physicsSimulation = .none
+                    content.add(rightHand)
                 }
 
             }

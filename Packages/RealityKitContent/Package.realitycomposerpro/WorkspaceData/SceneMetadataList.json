@@ -210,5 +210,17 @@
         "isLocked" : false
       }
     ]
+  },
+  "DF287A2A-5B5F-4F10-85D9-721B72452257" : {
+    "objectMetadataList" : [
+      [
+        "DF287A2A-5B5F-4F10-85D9-721B72452257",
+        "Root"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      }
+    ]
   }
 }
