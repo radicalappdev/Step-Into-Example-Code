@@ -38,14 +38,14 @@ struct Example024: View {
                     content.add(leftHand)
                     self.leftHandAnchor = leftHand
 
-                    Task {
-                        while true {
-                            if let anchor = leftHandAnchor {
-                                leftHandTransform = Transform(matrix: anchor.transformMatrix(relativeTo: nil))
-                            }
-                            try? await Task.sleep(for: .seconds(1/30))
-                        }
-                    }
+//                    Task {
+//                        while true {
+//                            if let anchor = leftHandAnchor {
+//                                leftHandTransform = Transform(matrix: anchor.transformMatrix(relativeTo: nil))
+//                            }
+//                            try? await Task.sleep(for: .seconds(1/30))
+//                        }
+//                    }
                 }
 
                 if let redSphere = scene.findEntity(named: "StepSphereRed"), let panel = attachments.entity(for: "AttachmentContent") {
@@ -79,6 +79,16 @@ struct Example024: View {
             }
         }
         .modifier(DragGestureImproved())
+        .task {
+
+            while true {
+                if let anchor = leftHandAnchor {
+                    leftHandTransform = Transform(matrix: anchor.transformMatrix(relativeTo: nil))
+                }
+                try? await Task.sleep(for: .seconds(1/30))
+            }
+
+        }
     }
 }
 
