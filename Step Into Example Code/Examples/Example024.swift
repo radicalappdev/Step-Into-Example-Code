@@ -48,9 +48,12 @@ struct Example024: View {
                     }
                 }
 
-                if let panel = attachments.entity(for: "AttachmentContent") {
-                    panel.position = [0, 1, -1]
-                    content.add(panel)
+                if let redSphere = scene.findEntity(named: "StepSphereRed"), let panel = attachments.entity(for: "AttachmentContent") {
+
+                    redSphere.addChild(panel)
+                    panel.setPosition([0, 0.2 ,0], relativeTo: redSphere)
+                    panel.components[BillboardComponent.self] = .init()
+                    content.add(redSphere)
                 }
             }
         } update: { content, attachments in
@@ -59,45 +62,12 @@ struct Example024: View {
             Attachment(id: "AttachmentContent") {
                 VStack(alignment: .leading, spacing: 12) {
                     if let transform = leftHandTransform {
-
-
-                        VStack(alignment: .leading) {
-                            Text("Translation")
-                                .fontWeight(.bold)
-                            HStack {
-                                Text("X: \(String(format: "%8.3f", transform.translation.x))")
-                                    .frame(width: 120, alignment: .leading)
-                                Text("Y: \(String(format: "%8.3f", transform.translation.y))")
-                                    .frame(width: 120, alignment: .leading)
-                                Text("Z: \(String(format: "%8.3f", transform.translation.z))")
-                                    .frame(width: 120, alignment: .leading)
-                            }
-                        }
-
-                        VStack(alignment: .leading) {
-                            Text("Scale")
-                                .fontWeight(.bold)
-                            HStack {
-                                Text("X: \(String(format: "%8.3f", transform.scale.x))")
-                                    .frame(width: 120, alignment: .leading)
-                                Text("Y: \(String(format: "%8.3f", transform.scale.y))")
-                                    .frame(width: 120, alignment: .leading)
-                                Text("Z: \(String(format: "%8.3f", transform.scale.z))")
-                                    .frame(width: 120, alignment: .leading)
-                            }
-                        }
-
+                        VectorDisplay(title: "Translation", vector: transform.translation)
+                        VectorDisplay(title: "Scale", vector: transform.scale)
                         VStack(alignment: .leading) {
                             Text("Rotation \(transform.rotation.angle)")
                                 .fontWeight(.bold)
-                            HStack {
-                            Text("X: \(String(format: "%8.3f", transform.rotation.axis.x))")
-                                    .frame(width: 120, alignment: .leading)
-                                Text("Y: \(String(format: "%8.3f", transform.rotation.axis.y))")
-                                    .frame(width: 120, alignment: .leading)
-                                Text("Z: \(String(format: "%8.3f", transform.rotation.axis.z))")
-                                    .frame(width: 120, alignment: .leading)
-                            }
+                            VectorDisplay(title: "", vector: transform.rotation.axis)
                         }
                     } else {
                         Text("Hand not tracked")
@@ -106,6 +76,25 @@ struct Example024: View {
                 .monospaced()
                 .padding()
                 .glassBackgroundEffect()
+            }
+        }
+        .modifier(DragGestureImproved())
+    }
+}
+
+fileprivate struct VectorDisplay: View {
+    let title: String
+    let vector: SIMD3<Float>
+
+    var body: some View {
+        VStack(alignment: .leading) {
+            Text(title)
+                .fontWeight(.bold)
+            HStack {
+                ForEach(["X", "Y", "Z"], id: \.self) { axis in
+                    Text("\(axis): \(String(format: "%8.3f", axis == "X" ? vector.x : axis == "Y" ? vector.y : vector.z))")
+                        .frame(width: 120, alignment: .leading)
+                }
             }
         }
     }
