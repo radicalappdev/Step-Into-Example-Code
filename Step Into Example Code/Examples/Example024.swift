@@ -15,12 +15,19 @@ import RealityKit
 import RealityKitContent
 
 struct Example024: View {
-
     @State private var session: SpatialTrackingSession?
-    @State var leftHandTransform: Transform?
+    @State var leftHandTransform: float4x4?
+    @State private var leftHandAnchor: AnchorEntity?
 
     var body: some View {
         RealityView { content, attachments in
+            // First set up the session
+            let configuration = SpatialTrackingSession.Configuration(
+                tracking: [.hand]
+            )
+            let session = SpatialTrackingSession()
+            await session.run(configuration)
+            self.session = session
 
             if let scene = try? await Entity(named: "HandTrackingLabsTransform", in: realityKitContentBundle) {
                 content.add(scene)
@@ -30,13 +37,16 @@ struct Example024: View {
                     leftHand.addChild(leftHandSphere.clone(recursive: true))
                     leftHand.anchoring.physicsSimulation = .none
                     content.add(leftHand)
+                    self.leftHandAnchor = leftHand
 
+                    // Set up transform tracking
                     Task {
                         while true {
-                            leftHandTransform = leftHand.transform
-                            print(leftHandTransform as Any)
+                            if let anchor = leftHandAnchor {
+                                // Get the world transform directly from the anchor
+                                leftHandTransform = anchor.transformMatrix(relativeTo: nil)
+                            }
                             try? await Task.sleep(for: .seconds(1/30))
-
                         }
                     }
                 }
@@ -45,30 +55,18 @@ struct Example024: View {
                     panel.position = [0, 1, -1]
                     content.add(panel)
                 }
-
             }
-
         } update: { content, attachments in
 
         } attachments: {
             Attachment(id: "AttachmentContent") {
                 VStack {
+                    
                     Text("Left Hand: \(String(describing: leftHandTransform))")
                 }
                 .padding()
                 .glassBackgroundEffect()
-
             }
-        }
-        .task {
-            // 1. Set up a Spatial Tracking Session with hand tracking.
-            // This will add ARKit features to our Anchor Entities, enabling access to transforms, collisions, and physics.
-            let configuration = SpatialTrackingSession.Configuration(
-                tracking: [.hand]
-            )
-            let session = SpatialTrackingSession()
-            await session.run(configuration)
-            self.session = session
         }
     }
 }
