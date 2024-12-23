@@ -56,7 +56,8 @@ def Sphere "Sphere" (
         def RealityKitStruct "Shape"
         {
             float3 extent = (0.2, 0.2, 0.2)
-            token shapeType = "Box"
+            float radius = 0.1
+            token shapeType = "Sphere"
 
             def RealityKitStruct "pose"
             {

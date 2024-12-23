@@ -4,8 +4,9 @@
     "GestureLabs.usda",
     "SpatialTapLab.usda",
     "HandTrackingLabs.usda",
-    "SpatialEventLab.usda",
-    "BuildingBlocks\/StepDome.usda"
+    "BuildingBlocks\/StepSphereBlue.usda",
+    "BuildingBlocks\/StepSphereGreen.usda",
+    "BuildingBlocks\/StepSphereRed.usda"
   ],
   "recentIdentifiers" : {
     "4EA577E8-CF08-4F6B-8090-61CB20667042" : [
@@ -635,5 +636,5 @@
   "sceneViewportBackgroundColors" : {
 
   },
-  "selectedSceneRelativePath" : "BuildingBlocks\/StepDome.usda"
+  "selectedSceneRelativePath" : "BuildingBlocks\/StepSphereRed.usda"
 }
