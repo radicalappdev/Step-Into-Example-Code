@@ -229,8 +229,8 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  type: .SPACE,
                  date: Date("12/23/2024"),
                  isFeatured: true,
-                 subtitle: "Spatial Tracking Session with AnchorEntity for Hand Tracking",
-                 description: "We can add a Spatial Tracking Session if we need to access anchor transforms, fire collisions, or interact with our scene using physics.")
+                 subtitle: "Hand Anchored Physics Interactions",
+                 description: "We can add a Spatial Tracking Session if we need our hands to interact with physics bodies.")
 
     ]
 

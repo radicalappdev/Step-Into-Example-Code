@@ -2,11 +2,11 @@
 //
 //  Title: Example023
 //
-//  Subtitle:
+//  Subtitle: Hand Anchored Physics Interactions
 //
-//  Description:
+//  Description: We can add a Spatial Tracking Session if we need our hands to interact with physics bodies.
 //
-//  Type:
+//  Type: Space
 //
 //  Created by Joseph Simpson on 12/23/24.
 
@@ -16,7 +16,7 @@ import RealityKitContent
 
 struct Example023: View {
     var body: some View {
-        RealityView { content, attachments in
+        RealityView { content in
 
             if let scene = try? await Entity(named: "HandTrackingLabsPhysics", in: realityKitContentBundle) {
                 content.add(scene)
@@ -56,14 +56,8 @@ struct Example023: View {
 
             }
 
-
-        } update: { content, attachments in
-
-        } attachments: {
-            Attachment(id: "AttachmentContent") {
-                Text("")
-            }
         }
+        .modifier(DragGestureImproved())
     }
 }
 
