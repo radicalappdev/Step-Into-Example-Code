@@ -222,7 +222,7 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  type: .SPACE,
                  date: Date("12/23/2024"),
                  isFeatured: true,
-                 subtitle: "AnchorEntity Hand Tracking Mode",
+                 subtitle: "Set trackingMode on a hand AnchorEntity",
                  description: "The default tracking mode `.continuous` is very accurate but it can lag slightly behind. We can also use `.predicted`, which can feel much faster but it has a tendency to overshoot during very fast motions.")
 
     ]

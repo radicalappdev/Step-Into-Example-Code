@@ -2,7 +2,7 @@
 //
 //  Title: Example022
 //
-//  Subtitle: AnchorEntity Hand Tracking Mode
+//  Subtitle: Set trackingMode on a hand AnchorEntity
 //
 //  Description: The default tracking mode `.continuous` is very accurate but it can lag slightly behind. We can also use `.predicted`, which can feel much faster but it has a tendency to overshoot during very fast motions.
 //
@@ -17,11 +17,11 @@ import RealityKitContent
 struct Example022: View {
     var body: some View {
         RealityView { content in
-            let leftHandMode = AnchoringComponent.TrackingMode.continuous
-            let rightHandMode = AnchoringComponent.TrackingMode.predicted
 
             if let scene = try? await Entity(named: "HandTrackingLabs", in: realityKitContentBundle) {
                 content.add(scene)
+
+                let leftHandMode = AnchoringComponent.TrackingMode.continuous
 
                 if let leftHandSphere = scene.findEntity(named: "StepSphereBlue") {
 
@@ -54,6 +54,8 @@ struct Example022: View {
                 }
 
                 if let rightHandSphere = scene.findEntity(named: "StepSphereGreen") {
+
+                    let rightHandMode = AnchoringComponent.TrackingMode.predicted
 
                     let rightThumbTip = AnchorEntity(.hand(.right, location: .joint(for: .thumbTip)),
                                                      trackingMode: rightHandMode)
