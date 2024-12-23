@@ -232,6 +232,13 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  subtitle: "Hand Anchored Physics Interactions",
                  description: "We can add a Spatial Tracking Session if we need our hands to interact with physics bodies.")
 
+        ,Example(title: "Example 024",
+                 type: .SPACE,
+                 date: Date("12/23/2024"),
+                 isFeatured: true,
+                 subtitle: "Access Hand Anchor Transforms",
+                 description: "We can add a Spatial Tracking Session if we need to access the transforms of hand anchors.")
+
     ]
 
 }
