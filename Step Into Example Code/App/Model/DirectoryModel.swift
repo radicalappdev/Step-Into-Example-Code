@@ -218,6 +218,13 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  subtitle: "Hand Anchored Collision Triggers",
                  description: "We can add a Spatial Tracking Session if we need to track collision triggers in our scene.")
 
+        ,Example(title: "Example 022",
+                 type: .SPACE,
+                 date: Date("12/23/2024"),
+                 isFeatured: true,
+                 subtitle: "AnchorEntity Hand Tracking Mode",
+                 description: "The default tracking mode `.continuous` is very accurate but it can lag slightly behind. We can also use `.predicted`, which can feel much faster but it has a tendency to overshoot during very fast motions.")
+
     ]
 
 }
