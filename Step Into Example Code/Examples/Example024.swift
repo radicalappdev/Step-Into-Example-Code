@@ -16,12 +16,13 @@ import RealityKitContent
 
 struct Example024: View {
 
-    @State var leftHand = AnchorEntity(.hand(.left, location: .indexFingerTip))
+    @State var leftHandTransform: Transform?
+    @State private var trackingTask: Task<Void, Never>?
 
     var body: some View {
         RealityView { content, attachments in
 
-            if let scene = try? await Entity(named: "HandTrackingLabsTransform", in: realityKitContentBundle) {
+            if let scene = try? await Entity(named: "HandTrackingLabsPhysics", in: realityKitContentBundle) {
                 content.add(scene)
 
                 // 1. Set up a Spatial Tracking Session with hand tracking.
@@ -33,9 +34,21 @@ struct Example024: View {
                 await session.run(configuration)
 
                 if let leftHandSphere = scene.findEntity(named: "LeftHand") {
+                    let leftHand = AnchorEntity(.hand(.left, location: .indexFingerTip))
                     leftHand.addChild(leftHandSphere.clone(recursive: true))
+                    leftHand.anchoring.physicsSimulation = .none
                     content.add(leftHand)
+
+                    Task {
+                        while true {
+                            leftHandTransform = leftHand.transform
+                            print(leftHandTransform)
+                            try? await Task.sleep(for: .milliseconds(100))
+
+                        }
+                    }
                 }
+
 
                 if let rightHandSphere = scene.findEntity(named: "RightHand") {
 
@@ -61,7 +74,7 @@ struct Example024: View {
         } attachments: {
             Attachment(id: "AttachmentContent") {
                 VStack {
-                    Text("Left Hand: \(leftHand.transform)")
+                    Text("Left Hand: \(leftHandTransform)")
 
                 }
                 .padding()
