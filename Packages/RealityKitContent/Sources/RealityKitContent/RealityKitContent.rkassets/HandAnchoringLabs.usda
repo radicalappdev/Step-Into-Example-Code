@@ -10,7 +10,7 @@
 
 def Xform "Root"
 {
-    reorder nameChildren = ["StepDome", "RightHandPalm", "RightHandIndex", "RightHandThumb", "RightHandAbove"]
+    reorder nameChildren = ["StepDome", "LeftHandPalm", "LeftHandIndex", "LeftHandThumb", "RightHandAbove"]
     def "StepDome" (
         active = true
         references = @BuildingBlocks/StepDome.usda@
@@ -20,7 +20,7 @@ def Xform "Root"
         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
     }
 
-    def "RightHandPalm" (
+    def "LeftHandPalm" (
         active = true
         references = @BuildingBlocks/StepSphereRed.usda@
     )
@@ -36,7 +36,7 @@ def Xform "Root"
             def RealityKitStruct "descriptor"
             {
                 token location = "Palm"
-                token orientation = "Right"
+                token orientation = "Left"
                 token type = "Hand"
             }
         }
@@ -45,12 +45,12 @@ def Xform "Root"
         {
             over "Shape"
             {
-                float radius = 0.01
+                float radius = 0.02
             }
         }
     }
 
-    def "RightHandIndex" (
+    def "LeftHandIndex" (
         active = true
         references = @BuildingBlocks/StepSphereRed.usda@
     )
@@ -65,13 +65,13 @@ def Xform "Root"
             def RealityKitStruct "descriptor"
             {
                 token location = "IndexFingerTip"
-                token orientation = "Right"
+                token orientation = "Left"
                 token type = "Hand"
             }
         }
     }
 
-    def "RightHandThumb" (
+    def "LeftHandThumb" (
         active = true
         references = @BuildingBlocks/StepSphereRed.usda@
     )
@@ -88,7 +88,7 @@ def Xform "Root"
             def RealityKitStruct "descriptor"
             {
                 token location = "ThumbTip"
-                token orientation = "Right"
+                token orientation = "Left"
                 token type = "Hand"
             }
         }
@@ -96,10 +96,19 @@ def Xform "Root"
 
     def "StepSphereGreen" (
         active = true
-        prepend references = @BuildingBlocks/StepSphereGreen.usda@
+        references = @BuildingBlocks/StepSphereGreen.usda@
     )
     {
+        double radius = 0.01
         float3 xformOp:scale = (1, 1, 1)
+
+        over "Collider"
+        {
+            over "Shape"
+            {
+                float radius = 0.01
+            }
+        }
     }
 }
 

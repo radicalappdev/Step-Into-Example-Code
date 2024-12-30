@@ -243,8 +243,8 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  type: .SPACE,
                  date: Date("12/39/2024"),
                  isFeatured: true,
-                 subtitle: "Using Anchoring Component for Hand Tracking",
-                 description: "Creating entities with anchoring components attached.")
+                 subtitle: "Using Anchoring Component with Hand Tracking",
+                 description: "Creating entities with anchoring components attached instead of using AnchorEntity.")
 
 
     ]
