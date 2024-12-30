@@ -5,10 +5,14 @@
     "SpatialTapLab.usda",
     "HandTrackingLabs.usda",
     "HandTrackingLabsPhysics.usda",
-    "HandTrackingLabsTransform.usda"
+    "HandTrackingLabsTransform.usda",
+    "HandAnchoringLabs.usda"
   ],
   "recentIdentifiers" : {
     "04966C20-2723-4378-BCAD-327CAD4E36CF" : [
+
+    ],
+    "4629C9E9-26E2-4EAC-A682-1E379211B1A8" : [
 
     ],
     "4EA577E8-CF08-4F6B-8090-61CB20667042" : [
@@ -863,5 +867,5 @@
   "sceneViewportBackgroundColors" : {
 
   },
-  "selectedSceneRelativePath" : "HandTrackingLabsTransform.usda"
+  "selectedSceneRelativePath" : "HandAnchoringLabs.usda"
 }

@@ -18,6 +18,11 @@ struct Example025: View {
     var body: some View {
         RealityView { content, attachments in
 
+            if let scene = try? await Entity(named: "HandAnchoringLabs", in: realityKitContentBundle) {
+                content.add(scene)
+
+            }
+
         } update: { content, attachments in
 
         } attachments: {

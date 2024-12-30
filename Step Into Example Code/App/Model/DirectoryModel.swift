@@ -239,6 +239,14 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  subtitle: "Access Hand Anchor Transforms",
                  description: "We can add a Spatial Tracking Session if we need to access the transforms of hand anchors.")
 
+        ,Example(title: "Example 025",
+                 type: .SPACE,
+                 date: Date("12/39/2024"),
+                 isFeatured: true,
+                 subtitle: "Using Anchoring Component for Hand Tracking",
+                 description: "Creating entities with anchoring components attached.")
+
+
     ]
 
 }
