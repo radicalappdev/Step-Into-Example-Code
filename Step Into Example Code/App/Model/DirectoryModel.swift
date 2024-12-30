@@ -246,6 +246,12 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  subtitle: "Using Anchoring Component with Hand Tracking",
                  description: "Creating entities with anchoring components attached instead of using AnchorEntity.")
 
+        ,Example(title: "Example 026",
+                 type: .VOLUME,
+                 date: Date("12/30/2024"),
+                 isFeatured: false,
+                 subtitle: "Multiple Taps with Tap Gesture",
+                 description: "Using `TapGesture(count:)` to create a double tap.")
 
     ]
 
