@@ -253,6 +253,14 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  subtitle: "Multiple Taps with Tap Gesture",
                  description: "Using `TapGesture(count:)` to create a double tap.")
 
+        ,Example(title: "Example 027",
+                type: .WINDOW,
+                date: Date("12/30/2024"),
+                isFeatured: true,
+                subtitle: "Using SwiftUI Shadows to convey depth",
+                description: "")
+
+
     ]
 
 }
