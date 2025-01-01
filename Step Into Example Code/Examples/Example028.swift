@@ -28,14 +28,14 @@ struct Example028: View {
             if let scene = try? await Entity(named: "HandAnchoringLabs", in: realityKitContentBundle) {
                 content.add(scene)
 
-                // Set up a Spatial Tracking Session with hand tracking.
+                // 1. Set up a Spatial Tracking Session with hand tracking.
                 // This will add ARKit features to our Anchor Entities, enabling collisions, physics, and transform access.
                 let configuration = SpatialTrackingSession.Configuration(
                     tracking: [.hand])
                 let session = SpatialTrackingSession()
                 await session.run(configuration)
 
-                // Left Hand: An entity in Reality Composer Pro with an Anchoring Component.
+                // 2. Trigger Collision Example using left hand index finger
                 if let subject = scene.findEntity(named: "CollisionSubject"), let leftHandIndex = scene.findEntity(named: "LeftHandIndex"), let panel = attachments.entity(for: "AttachmentContent") {
 
                     // Replace the component because we need to disable the default physicsSimulation
@@ -45,6 +45,8 @@ struct Example028: View {
                     // Disable the default physics simulation on the anchor to use collisions and physics
                     leftHandIndexAnchor.physicsSimulation = .none
                     leftHandIndex.components.set(leftHandIndexAnchor)
+
+                    // 4.1 Stash this in state to track the index finger transform over time
                     leftHandIndexEntity = leftHandIndex
 
                     // Create a collision event for the subject (red sphere)
@@ -60,7 +62,7 @@ struct Example028: View {
                     panel.components[BillboardComponent.self] = .init()
                 }
 
-                // Right Hand: Create an entity for each joint
+                // 3. Physics Interactions using right hand anchors
                 if let rightHandSphere = scene.findEntity(named: "StepSphereGreen") {
                     let joints: [AnchoringComponent.Target.HandLocation.HandJoint] = [
                         .thumbTip,
@@ -87,6 +89,7 @@ struct Example028: View {
         } update: { content, attachments in
 
         } attachments: {
+            // 4.2 This attachment will show the tracking data for the left hand index finger
             Attachment(id: "AttachmentContent") {
                 VStack(alignment: .leading, spacing: 12) {
                     if let transform = leftHandTransform {
@@ -109,6 +112,7 @@ struct Example028: View {
         }
         .persistentSystemOverlays(.hidden)
         .upperLimbVisibility(.hidden)
+        // 4.3 Track transform for the left hand index finger
         .task {
             while true {
                 // Periodically check the anchor transform and stash it in SwiftUi state.
