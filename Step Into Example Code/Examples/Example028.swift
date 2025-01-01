@@ -21,44 +21,44 @@ struct Example028: View {
             if let scene = try? await Entity(named: "HandAnchoringLabs", in: realityKitContentBundle) {
                 content.add(scene)
 
-                // Left Hand: Three small spheres were created in Reality Composer Pro. Each one has an Anchoring Component.
+                // 1. Set up a Spatial Tracking Session with hand tracking.
+                // This will add ARKit features to our Anchor Entities, enabling collisions.
+                let configuration = SpatialTrackingSession.Configuration(
+                    tracking: [.hand])
+                let session = SpatialTrackingSession()
+                await session.run(configuration)
+
+                // Left Hand: An entity in Reality Composer Pro with an Anchoring Component.
+                if let subject = scene.findEntity(named: "CollisionSubject"), let leftHandIndex = scene.findEntity(named: "LeftHandIndex") {
+
+                    var leftHandIndexAnchor = AnchoringComponent(
+                        .hand(.left, location: .indexFingerTip)
+                    )
+                    leftHandIndexAnchor.physicsSimulation = .none
+                    leftHandIndex.components.set(leftHandIndexAnchor)
+
+                    _ = content.subscribe(to: CollisionEvents.Began.self, on: subject)  { collisionEvent in
+                        print("Collision subject \(collisionEvent.entityA.name) and \(collisionEvent.entityB.name)")
+                        collisionEvent.entityA.components[ParticleEmitterComponent.self]?.burst()
+                    }
+
+                }
+
 
                 // Right Hand: Create an entity for each joint
                 if let rightHandSphere = scene.findEntity(named: "StepSphereGreen") {
                     // Create an array of all joints to iterate over.
                     let joints: [AnchoringComponent.Target.HandLocation.HandJoint] = [
-                        .thumbIntermediateBase,
-                        .thumbIntermediateTip,
-                        .thumbKnuckle,
-                        .thumbTip,
-                        .indexFingerIntermediateBase,
-                        .indexFingerIntermediateTip,
-                        .indexFingerKnuckle,
-                        .indexFingerMetacarpal,
                         .indexFingerTip,
-                        .middleFingerIntermediateBase,
-                        .middleFingerIntermediateTip,
-                        .middleFingerKnuckle,
-                        .middleFingerMetacarpal,
-                        .middleFingerTip,
-                        .ringFingerIntermediateBase,
-                        .ringFingerIntermediateTip,
-                        .ringFingerKnuckle,
-                        .ringFingerMetacarpal,
-                        .ringFingerTip,
-                        .littleFingerIntermediateBase,
-                        .littleFingerIntermediateTip,
-                        .littleFingerKnuckle,
-                        .littleFingerMetacarpal,
-                        .littleFingerTip,
                     ]
 
                     for joint in joints {
                         let entity = rightHandSphere.clone(recursive: true)
-                        let anchor = AnchoringComponent(
+                        var anchor = AnchoringComponent(
                             .hand(.right, location: .joint(for: joint)),
                             trackingMode: .continuous
                         )
+                        anchor.physicsSimulation = .none
                         entity.components.set(anchor)
                         content.add(entity)
                     }
