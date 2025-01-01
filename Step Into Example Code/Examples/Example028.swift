@@ -20,14 +20,16 @@ struct Example028: View {
     @State var leftHandTransform: Transform?
     @State var leftHandIndexEntity: Entity?
 
+    @State var showPanel = true
+
     var body: some View {
         RealityView { content, attachments in
 
             if let scene = try? await Entity(named: "HandAnchoringLabs", in: realityKitContentBundle) {
                 content.add(scene)
 
-                // 1. Set up a Spatial Tracking Session with hand tracking.
-                // This will add ARKit features to our Anchor Entities, enabling collisions.
+                // Set up a Spatial Tracking Session with hand tracking.
+                // This will add ARKit features to our Anchor Entities, enabling collisions, physics, and transform access.
                 let configuration = SpatialTrackingSession.Configuration(
                     tracking: [.hand])
                 let session = SpatialTrackingSession()
@@ -36,6 +38,7 @@ struct Example028: View {
                 // Left Hand: An entity in Reality Composer Pro with an Anchoring Component.
                 if let subject = scene.findEntity(named: "CollisionSubject"), let leftHandIndex = scene.findEntity(named: "LeftHandIndex"), let panel = attachments.entity(for: "AttachmentContent") {
 
+                    // Replace the component because we need to disable the default physicsSimulation
                     var leftHandIndexAnchor = AnchoringComponent(
                         .hand(.left, location: .indexFingerTip)
                     )
@@ -44,23 +47,21 @@ struct Example028: View {
                     leftHandIndex.components.set(leftHandIndexAnchor)
                     leftHandIndexEntity = leftHandIndex
 
+                    // Create a collision event for the subject (red sphere)
                     _ = content.subscribe(to: CollisionEvents.Began.self, on: subject)  { collisionEvent in
                         print("Collision subject \(collisionEvent.entityA.name) and \(collisionEvent.entityB.name)")
                         collisionEvent.entityA.components[ParticleEmitterComponent.self]?.burst()
+                        showPanel.toggle()
                     }
 
                     // Also anchor the panel to the subject
                     subject.addChild(panel)
                     panel.setPosition([0, 0.2 ,0], relativeTo: subject)
                     panel.components[BillboardComponent.self] = .init()
-                    
-
                 }
-
 
                 // Right Hand: Create an entity for each joint
                 if let rightHandSphere = scene.findEntity(named: "StepSphereGreen") {
-                    // Create an array of all joints to iterate over.
                     let joints: [AnchoringComponent.Target.HandLocation.HandJoint] = [
                         .thumbTip,
                         .indexFingerTip,
@@ -68,7 +69,6 @@ struct Example028: View {
                         .ringFingerTip,
                         .littleFingerTip
                     ]
-
                     for joint in joints {
                         let entity = rightHandSphere.clone(recursive: true)
                         var anchor = AnchoringComponent(
@@ -104,19 +104,16 @@ struct Example028: View {
                 .monospaced()
                 .padding()
                 .glassBackgroundEffect()
+                .opacity(showPanel ? 1 : 0)
             }
         }
-
         .persistentSystemOverlays(.hidden)
         .upperLimbVisibility(.hidden)
         .task {
             while true {
-                // 3. Periodically check the anchor transform and stash it in SwiftUi state.
-                // This will update our attachment
+                // Periodically check the anchor transform and stash it in SwiftUi state.
                 if let anchor = leftHandIndexEntity {
-                    // anchor.transform does not work. This seems to be the anchored entity's transform relative to the anchor itself, which we are never changing.
-                    // leftHandTransform = anchor.transform
-                    // Instead we can access the anchors global transform
+                    // We can access the anchors global transform
                     leftHandTransform = Transform(matrix: anchor.transformMatrix(relativeTo: nil))
                 }
                 try? await Task.sleep(for: .seconds(1/30))
