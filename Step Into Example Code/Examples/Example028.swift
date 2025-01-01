@@ -34,6 +34,7 @@ struct Example028: View {
                     var leftHandIndexAnchor = AnchoringComponent(
                         .hand(.left, location: .indexFingerTip)
                     )
+                    // Disable the default physics simulation on the anchor to use collisions and physics
                     leftHandIndexAnchor.physicsSimulation = .none
                     leftHandIndex.components.set(leftHandIndexAnchor)
 
@@ -49,7 +50,11 @@ struct Example028: View {
                 if let rightHandSphere = scene.findEntity(named: "StepSphereGreen") {
                     // Create an array of all joints to iterate over.
                     let joints: [AnchoringComponent.Target.HandLocation.HandJoint] = [
+                        .thumbTip,
                         .indexFingerTip,
+                        .middleFingerTip,
+                        .ringFingerTip,
+                        .littleFingerTip
                     ]
 
                     for joint in joints {
@@ -58,6 +63,7 @@ struct Example028: View {
                             .hand(.right, location: .joint(for: joint)),
                             trackingMode: .continuous
                         )
+                        // Disable the default physics simulation on the anchor to use collisions and physics
                         anchor.physicsSimulation = .none
                         entity.components.set(anchor)
                         content.add(entity)

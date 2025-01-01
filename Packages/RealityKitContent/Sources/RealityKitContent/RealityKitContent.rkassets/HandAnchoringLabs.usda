@@ -105,6 +105,14 @@ def Xform "Root"
             {
             }
         }
+
+        over "Collider"
+        {
+            over "Shape"
+            {
+                float radius = 0.01
+            }
+        }
     }
 
     def "LeftHandThumb" (
@@ -144,6 +152,14 @@ def Xform "Root"
 
             def RealityKitStruct "material"
             {
+            }
+        }
+
+        over "Collider"
+        {
+            over "Shape"
+            {
+                float radius = 0.01
             }
         }
     }
@@ -190,6 +206,7 @@ def Xform "Root"
     {
         float2 ui:nodegraph:node:pos = (20, 20)
         int ui:nodegraph:node:stackingOrder = 1
+        quatf xformOp:orient = (1, 0, 0, 0)
         float3 xformOp:scale = (1, 1, 1)
         float3 xformOp:translate = (-0.31545204, 1, -0.3)
 
