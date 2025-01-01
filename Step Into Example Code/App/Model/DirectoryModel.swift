@@ -200,50 +200,50 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
         ,Example(title: "Example 019",
                  type: .SPACE,
                  date: Date("12/15/2024"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "AnchorEntity Hands",
                  description: "Using AnchorEntity in RealityKit without ARKit.")
 
         ,Example(title: "Example 020",
                  type: .SPACE,
                  date: Date("12/18/2024"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "AnchorEntity Locations and Joints for Hands",
                  description: "Unpacking all the locations and joints that we can track with AnchorEntity in RealityKit.")
 
         ,Example(title: "Example 021",
                  type: .SPACE,
                  date: Date("12/21/2024"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Hand Anchored Collision Triggers",
                  description: "We can add a Spatial Tracking Session if we need to track collision triggers in our scene.")
 
         ,Example(title: "Example 022",
                  type: .SPACE,
                  date: Date("12/23/2024"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Set trackingMode on a hand AnchorEntity",
                  description: "The default tracking mode `.continuous` is very accurate but it can lag slightly behind. We can also use `.predicted`, which can feel much faster but it has a tendency to overshoot during very fast motions.")
 
         ,Example(title: "Example 023",
                  type: .SPACE,
                  date: Date("12/23/2024"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Hand Anchored Physics Interactions",
                  description: "We can add a Spatial Tracking Session if we need our hands to interact with physics bodies.")
 
         ,Example(title: "Example 024",
                  type: .SPACE,
                  date: Date("12/23/2024"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Access Hand Anchor Transforms",
                  description: "We can add a Spatial Tracking Session if we need to access the transforms of hand anchors.")
 
         ,Example(title: "Example 025",
                  type: .SPACE,
-                 date: Date("12/39/2024"),
+                 date: Date("12/30/2024"),
                  isFeatured: true,
-                 subtitle: "Using Anchoring Component with Hand Tracking",
+                 subtitle: "How to use Anchoring Component with hands",
                  description: "Creating entities with anchoring components attached instead of using AnchorEntity.")
 
         ,Example(title: "Example 026",
@@ -259,6 +259,13 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                 isFeatured: true,
                 subtitle: "Using SwiftUI Shadows to convey depth",
                 description: "")
+
+        ,Example(title: "Example 028",
+                 type: .SPACE,
+                 date: Date("1/1/2025"),
+                 isFeatured: true,
+                 subtitle: "Using Anchoring Component with Spatial Tracking Session",
+                 description: "We can add a Spatial Tracking Session if we need to use hand tracking features such as physics, collisions, and accessing transforms.")
 
 
     ]

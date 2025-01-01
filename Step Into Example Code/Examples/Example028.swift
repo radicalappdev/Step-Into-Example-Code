@@ -1,20 +1,20 @@
 //  Step Into Vision - Example Code
 //
-//  Title: Example025
+//  Title: Example028
 //
-//  Subtitle: How to use Anchoring Component with Hands
+//  Subtitle: Using Anchoring Component with Spatial Tracking Session
 //
-//  Description: Creating entities with anchoring components attached instead of using AnchorEntity.
+//  Description: We can add a Spatial Tracking Session if we need to use hand tracking features such as physics, collisions, and accessing transforms.
 //
-//  Type: Space
+//  Type: Volume
 //
-//  Created by Joseph Simpson on 12/30/24.
+//  Created by Joseph Simpson on 1/1/25.
 
 import SwiftUI
 import RealityKit
 import RealityKitContent
 
-struct Example025: View {
+struct Example028: View {
     var body: some View {
         RealityView { content in
 
@@ -73,5 +73,5 @@ struct Example025: View {
 }
 
 #Preview {
-    Example025()
+    Example028()
 }
