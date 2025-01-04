@@ -267,6 +267,20 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  subtitle: "Using Anchoring Component with Spatial Tracking Session",
                  description: "We can add a Spatial Tracking Session if we need to use hand tracking features such as physics, collisions, and accessing transforms.")
 
+        ,Example(title: "Example 029",
+                 type: .WINDOW,
+                 date: Date("1/3/2025"),
+                 isFeatured: true,
+                 subtitle: "How to show and hide the window bar",
+                 description: "We can use `persistentSystemOverlays(_:)` to control the visibility of the window drag bar.")
+
+        ,Example(title: "Example 030",
+                 type: .WINDOW,
+                 date: Date("1/4/2025"),
+                 isFeatured: true,
+                 subtitle: "Spatial SwiftUI: offset",
+                 description: "Using z axis offset to lift our views out of their window.")
+
 
     ]
 
