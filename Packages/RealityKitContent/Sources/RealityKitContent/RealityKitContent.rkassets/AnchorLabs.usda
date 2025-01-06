@@ -1,0 +1,114 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "Reality Composer Pro Version 2.0 (448.60.4)"
+    }
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "Root"
+{
+    reorder nameChildren = ["CubeRed", "CubeGreen", "EmphasizeMe", "LoopMe"]
+    def Cube "CubeRed" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        rel material:binding = </Root/CubeRed/DefaultMaterial>
+        double size = 0.2
+        float3 xformOp:translate = (1, 1.4, -1)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def Material "DefaultMaterial"
+        {
+            token outputs:mtlx:surface
+            token outputs:realitykit:vertex
+            token outputs:surface.connect = </Root/CubeRed/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+            def Shader "DefaultSurfaceShader"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.41960785, 0.003921569, 0.17254902) (
+                    colorSpace = "srgb_texture"
+                )
+                color3f inputs:emissiveColor = (0.41960785, 0.003921569, 0.17254902) (
+                    colorSpace = "srgb_texture"
+                )
+                float inputs:opacity = 1
+                float inputs:roughness = 0.75
+                token outputs:surface
+            }
+        }
+
+        def RealityKitComponent "RCP_BehaviorsContainer"
+        {
+            rel behaviors = </Root/CubeRed/OnAddedToScene>
+            uniform token info:id = "RCP.BehaviorsContainer"
+        }
+
+        def Preliminary_Behavior "OnAddedToScene"
+        {
+            rel actions = </Root/CubeRed/OnAddedToScene/Action>
+            uniform bool exclusive
+            rel triggers = </Root/CubeRed/OnAddedToScene/Trigger>
+
+            def Preliminary_Trigger "Trigger"
+            {
+                rel affectedObjects = </Root/CubeRed>
+                token info:id = "SceneTransition"
+            }
+
+            def Preliminary_Action "Action"
+            {
+                rel affectedObjects = </Root>
+                rel animationLibraryKey = </Root/LoopMe>
+                rel animationLibraryKeyOverrideKey = </Root/CubeRed/OnAddedToScene/Trigger>
+                token info:id = "PlayTimeline"
+                int loops = 0
+                int performCount = 1
+                token type = "serial"
+            }
+        }
+    }
+
+    def RealityKitTimeline "EmphasizeMe"
+    {
+        def RealityKitTrack "Track"
+        {
+            def RealityKitAction "Spin"
+            {
+                string actionKind = "spin"
+                int blendLayer = 400
+                double duration = 5
+                uniform token info:id = "1D16A401-17D2-4D3E-B200-D6611FA35466"
+                double startTime = 0
+                rel target = </Root/CubeRed>
+
+                def RealityKitStruct "timingFunction"
+                {
+                    token type = "linear"
+                }
+            }
+        }
+    }
+
+    def RealityKitTimeline "LoopMe"
+    {
+        def RealityKitTrack "Track"
+        {
+            def RealityKitAction "Play_Timeline"
+            {
+                string actionKind = "timeline"
+                int blendLayer = 500
+                double duration = 5
+                uniform token info:id = "3A5924A8-62C7-4244-8F13-17ACC28D5D91"
+                double loopCount = 0
+                double startTime = 0
+                rel timeline = </Root/EmphasizeMe>
+            }
+        }
+    }
+}
+

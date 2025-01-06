@@ -1,12 +1,7 @@
 {
-  "advancedEditorSelectedIdentifier" : "ProjectBrowser",
+  "advancedEditorSelectedIdentifier" : "BehaviorsPluginID",
   "openSceneRelativePaths" : [
-    "GestureLabs.usda",
-    "SpatialTapLab.usda",
-    "HandTrackingLabs.usda",
-    "HandTrackingLabsPhysics.usda",
-    "HandTrackingLabsTransform.usda",
-    "HandAnchoringLabs.usda"
+    "AnchorLabs.usda"
   ],
   "recentIdentifiers" : {
     "04966C20-2723-4378-BCAD-327CAD4E36CF" : [
@@ -25,6 +20,9 @@
 
     ],
     "A72E7856-797B-4E44-AAE6-A7A3C948CBC4" : [
+
+    ],
+    "AE94BE0E-4164-40A7-B2A3-B2F32F073A3A" : [
 
     ],
     "CB436AE6-DE73-445D-83B2-F22373E6F73A" : [
@@ -641,6 +639,52 @@
         ]
       }
     ],
+    "AE94BE0E-4164-40A7-B2A3-B2F32F073A3A" : [
+      {
+        "date" : 757801925.142131,
+        "title" : "Untitled",
+        "transform" : [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0.7071069,
+          -0.7071067,
+          0,
+          0,
+          0.7071067,
+          0.7071069,
+          0,
+          1,
+          1.5926821,
+          -0.8073178,
+          1
+        ]
+      },
+      {
+        "date" : 757801148.476946,
+        "title" : "Untitled",
+        "transform" : [
+          1,
+          0,
+          -0,
+          0,
+          -0,
+          0.7071069,
+          -0.7071067,
+          0,
+          0,
+          0.7071067,
+          0.7071069,
+          0,
+          -1.1920929e-07,
+          0.19948018,
+          0.19948018,
+          1
+        ]
+      }
+    ],
     "CB436AE6-DE73-445D-83B2-F22373E6F73A" : [
       {
         "date" : 750717728.462959,
@@ -1089,5 +1133,5 @@
   "sceneViewportBackgroundColors" : {
 
   },
-  "selectedSceneRelativePath" : "HandTrackingLabsPhysics.usda"
+  "selectedSceneRelativePath" : "AnchorLabs.usda"
 }

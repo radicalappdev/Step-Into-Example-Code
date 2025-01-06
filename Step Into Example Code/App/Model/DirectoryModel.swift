@@ -281,6 +281,12 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  subtitle: "Spatial SwiftUI: offset",
                  description: "Using z axis offset to lift our views out of their window.")
 
+        ,Example(title: "Example 031",
+                 type: .SPACE,
+                 date: Date("1/5/2025"),
+                 isFeatured: true,
+                 subtitle: "How to use Anchor Entity without Spatial Tracking Session",
+                 description: "")
 
     ]
 
