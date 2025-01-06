@@ -2,11 +2,11 @@
 //
 //  Title: Example032
 //
-//  Subtitle:
+//  Subtitle: Spatial SwiftUI: rotation3DEffect
 //
-//  Description:
+//  Description: Using rotation3DEffect to rotate views in a window.
 //
-//  Type:
+//  Type: Window
 //
 //  Created by Joseph Simpson on 1/6/25.
 
@@ -16,13 +16,15 @@ import RealityKitContent
 
 struct Example032: View {
 
-    @State var isActive = false
+    @State private var isActive = false
+    @State private var showWindow = true
 
     var body: some View {
         VStack(spacing: 24) {
-
-            Toggle("Toggle Offset", isOn: $isActive.animation())
-                .toggleStyle(.button)
+            Button(action: handleButtonPress) {
+                Image(systemName: isActive ? "square.stack.3d.down.right.fill" : "square.fill")
+                Text("Toggle Layout")
+            }
 
             HStack(spacing: 24) {
 
@@ -37,7 +39,7 @@ struct Example032: View {
 
                 RoundedRectangle(cornerRadius: 12.0)
                     .foregroundStyle(.stepBlue)
-                    .offset(z: isActive ? 20 : 1)
+                    .offset(z: isActive ? 40 : 1)
 
                 RoundedRectangle(cornerRadius: 12.0)
                     .foregroundStyle(.stepGreen)
@@ -47,15 +49,37 @@ struct Example032: View {
                         Angle(degrees: isActive ? -25 : 0),
                         axis: (x: 0, y: 1, z: 0)
                     )
-
             }
             .padding(12)
         }
         .padding(12)
-        .glassBackgroundEffect(displayMode: isActive ? .never : .always)
+        .glassBackgroundEffect(displayMode: showWindow ? .always : .never)
+        .persistentSystemOverlays(showWindow ? .visible : .hidden)
+    }
 
+    private func handleButtonPress() {
+        Task {
+            if isActive {
+                // If we are showing the rotated layout, animate it back to flat, then show the window
+                withAnimation {
+                    isActive.toggle()
+                }
+                try? await Task.sleep(nanoseconds: 500_000_000)
+                    showWindow = true
+            } else {
+                // If we are showing the flat layout, hide the window then animate to the rotated layout
+                    showWindow = false
+
+                try? await Task.sleep(nanoseconds: 200_000_000)
+                withAnimation {
+                    isActive.toggle()
+                }
+            }
+        }
     }
 }
+
+
 
 #Preview {
     Example032()
