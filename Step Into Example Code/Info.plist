@@ -4,6 +4,8 @@
 <dict>
 	<key>NSHandsTrackingUsageDescription</key>
 	<string>Hand tracking access is needed to explore the Hand tracking example code</string>
+	<key>NSWorldSensingUsageDescription</key>
+	<string>Wow this too</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationPreferredDefaultSceneSessionRole</key>
