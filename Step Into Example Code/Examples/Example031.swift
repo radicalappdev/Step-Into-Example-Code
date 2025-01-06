@@ -26,6 +26,7 @@ struct Example031: View {
 
                 if let subject = scene.findEntity(named: "CubeRed") {
 
+
                 }
             }
 
@@ -37,8 +38,7 @@ struct Example031: View {
 
     func runTrackingSession() async {
 
-        let configuration = SpatialTrackingSession.Configuration(tracking: [.plane])
-
+        let configuration = SpatialTrackingSession.Configuration(tracking: [.image])
 
         let _ = await trackingSession.run(configuration)
     }

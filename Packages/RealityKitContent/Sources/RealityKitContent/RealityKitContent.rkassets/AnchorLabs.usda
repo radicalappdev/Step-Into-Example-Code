@@ -70,6 +70,16 @@ def Xform "Root"
                 token type = "serial"
             }
         }
+
+        def RealityKitComponent "Anchoring"
+        {
+            uniform token info:id = "RealityKit.Anchoring"
+
+            def RealityKitStruct "descriptor"
+            {
+                token type = "Object"
+            }
+        }
     }
 
     def RealityKitTimeline "EmphasizeMe"
