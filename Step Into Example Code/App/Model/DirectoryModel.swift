@@ -288,6 +288,13 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  subtitle: "How to use Anchor Entity without Spatial Tracking Session",
                  description: "")
 
+        ,Example(title: "Example 032",
+                 type: .WINDOW_ALT,
+                 date: Date("1/6/2025"),
+                 isFeatured: true,
+                 subtitle: "Spatial SwiftUI: transform3DEffect",
+                 description: "Exploring the uses of transform3DEffect")
+
     ]
 
 }
