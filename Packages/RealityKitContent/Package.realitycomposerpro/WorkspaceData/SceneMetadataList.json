@@ -123,7 +123,8 @@
     "objectMetadataList" : [
       [
         "7CCDFE09-BCF8-4A48-99D6-A1740674C1D0",
-        "Root"
+        "Root",
+        "CubeGreen"
       ],
       {
         "isExpanded" : true,
@@ -131,8 +132,7 @@
       },
       [
         "7CCDFE09-BCF8-4A48-99D6-A1740674C1D0",
-        "Root",
-        "CubeGreen"
+        "Root"
       ],
       {
         "isExpanded" : true,
@@ -185,8 +185,7 @@
     "objectMetadataList" : [
       [
         "AE94BE0E-4164-40A7-B2A3-B2F32F073A3A",
-        "Root",
-        "EmphasizeMe"
+        "Root"
       ],
       {
         "isExpanded" : true,
@@ -195,7 +194,7 @@
       [
         "AE94BE0E-4164-40A7-B2A3-B2F32F073A3A",
         "Root",
-        "LoopMe"
+        "EmphasizeMe"
       ],
       {
         "isExpanded" : true,
@@ -214,24 +213,7 @@
       [
         "AE94BE0E-4164-40A7-B2A3-B2F32F073A3A",
         "Root",
-        "CubeRed"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "AE94BE0E-4164-40A7-B2A3-B2F32F073A3A",
-        "Root"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "AE94BE0E-4164-40A7-B2A3-B2F32F073A3A",
-        "Root",
-        "EmphasizeMe",
+        "LoopMe",
         "Track"
       ],
       {
@@ -241,7 +223,25 @@
       [
         "AE94BE0E-4164-40A7-B2A3-B2F32F073A3A",
         "Root",
-        "LoopMe",
+        "CubeRed"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "AE94BE0E-4164-40A7-B2A3-B2F32F073A3A",
+        "Root",
+        "LoopMe"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "AE94BE0E-4164-40A7-B2A3-B2F32F073A3A",
+        "Root",
+        "EmphasizeMe",
         "Track"
       ],
       {
@@ -266,7 +266,8 @@
     "objectMetadataList" : [
       [
         "CB436AE6-DE73-445D-83B2-F22373E6F73A",
-        "Root"
+        "Root",
+        "Base"
       ],
       {
         "isExpanded" : true,
@@ -274,8 +275,7 @@
       },
       [
         "CB436AE6-DE73-445D-83B2-F22373E6F73A",
-        "Root",
-        "Base"
+        "Root"
       ],
       {
         "isExpanded" : true,

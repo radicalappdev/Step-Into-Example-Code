@@ -12,7 +12,7 @@ def Xform "Root"
 {
     reorder nameChildren = ["CubeRed", "CubeGreen", "EmphasizeMe", "LoopMe"]
     def Cube "CubeRed" (
-        active = true
+        active = false
         prepend apiSchemas = ["MaterialBindingAPI"]
     )
     {
@@ -109,6 +109,15 @@ def Xform "Root"
                 rel timeline = </Root/EmphasizeMe>
             }
         }
+    }
+
+    def "ToyRocket" (
+        active = true
+        prepend references = @ToyRocket.usdz@
+    )
+    {
+        float3 xformOp:scale = (1, 1, 1)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
     }
 }
 
