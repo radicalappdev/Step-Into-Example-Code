@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>NSHandsTrackingUsageDescription</key>
-	<string>Hand tracking access is needed to explore the Hand tracking example code</string>
+	<string>Hand tracking access is needed to explore the hand tracking example code</string>
 	<key>NSWorldSensingUsageDescription</key>
-	<string>Wow this too</string>
+	<string>World and plane detection access is needed to explore the ARKit example code</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationPreferredDefaultSceneSessionRole</key>
