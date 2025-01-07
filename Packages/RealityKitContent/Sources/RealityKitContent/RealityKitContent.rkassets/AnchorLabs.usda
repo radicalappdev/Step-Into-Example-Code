@@ -10,83 +10,7 @@
 
 def Xform "Root"
 {
-    reorder nameChildren = ["FloorBox", "CubeGreen"]
-    def Cube "FloorBox" (
-        prepend apiSchemas = ["MaterialBindingAPI"]
-    )
-    {
-        rel material:binding = </Root/FloorBox/DefaultMaterial>
-        double size = 1
-        float3 xformOp:scale = (5, 0.01, 5)
-        float3 xformOp:translate = (0, 0, 0)
-        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
-
-        def Material "DefaultMaterial"
-        {
-            token outputs:mtlx:surface
-            token outputs:realitykit:vertex
-            token outputs:surface.connect = </Root/FloorBox/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
-
-            def Shader "DefaultSurfaceShader"
-            {
-                uniform token info:id = "UsdPreviewSurface"
-                color3f inputs:diffuseColor = (0.003921569, 0.38039216, 0.41960785) (
-                    colorSpace = "srgb_texture"
-                )
-                float inputs:opacity = 0.2
-                float inputs:roughness = 0.75
-                token outputs:surface
-            }
-        }
-
-        def RealityKitComponent "Anchoring"
-        {
-            uniform token info:id = "RealityKit.Anchoring"
-
-            def RealityKitStruct "descriptor"
-            {
-                token classification = "Floor"
-                token type = "Plane"
-            }
-        }
-
-        def RealityKitComponent "Collider"
-        {
-            uint group = 1
-            uniform token info:id = "RealityKit.Collider"
-            uint mask = 4294967295
-            token type = "Default"
-
-            def RealityKitStruct "Shape"
-            {
-                float3 extent = (1, 1, 1)
-                token shapeType = "Box"
-
-                def RealityKitStruct "pose"
-                {
-                }
-            }
-        }
-
-        def RealityKitComponent "RigidBody"
-        {
-            bool gravityEnabled = 0
-            uniform token info:id = "RealityKit.RigidBody"
-            token motionType = "Kinematic"
-
-            def RealityKitStruct "massFrame"
-            {
-                def RealityKitStruct "m_pose"
-                {
-                }
-            }
-
-            def RealityKitStruct "material"
-            {
-            }
-        }
-    }
-
+    reorder nameChildren = ["FloorBox", "StepSphereRed", "LeftHand", "FloorEntity"]
     def "StepSphereRed" (
         active = true
         references = @BuildingBlocks/StepSphereRed.usda@
@@ -158,6 +82,161 @@ def Xform "Root"
 
             def RealityKitStruct "material"
             {
+            }
+        }
+    }
+
+    def Xform "FloorEntity" (
+        active = true
+    )
+    {
+        reorder nameChildren = ["FloorBox1", "FloorBox2"]
+        def Cube "FloorBox1" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Root/FloorEntity/FloorBox1/DefaultMaterial>
+            double size = 1
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (1, 0.01, 1)
+            float3 xformOp:translate = (0, 0, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Material "DefaultMaterial"
+            {
+                token outputs:mtlx:surface
+                token outputs:realitykit:vertex
+                token outputs:surface.connect = </Root/FloorEntity/FloorBox1/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+                def Shader "DefaultSurfaceShader"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (0.003921569, 0.38039216, 0.41960785) (
+                        colorSpace = "srgb_texture"
+                    )
+                    float inputs:opacity = 0.2
+                    float inputs:roughness = 0.75
+                    token outputs:surface
+                }
+            }
+
+            def RealityKitComponent "Collider"
+            {
+                uint group = 1
+                uniform token info:id = "RealityKit.Collider"
+                uint mask = 4294967295
+                token type = "Default"
+
+                def RealityKitStruct "Shape"
+                {
+                    float3 extent = (1, 1, 1)
+                    token shapeType = "Box"
+
+                    def RealityKitStruct "pose"
+                    {
+                    }
+                }
+            }
+
+            def RealityKitComponent "RigidBody"
+            {
+                bool gravityEnabled = 0
+                uniform token info:id = "RealityKit.RigidBody"
+                token motionType = "Kinematic"
+
+                def RealityKitStruct "massFrame"
+                {
+                    def RealityKitStruct "m_pose"
+                    {
+                    }
+                }
+
+                def RealityKitStruct "material"
+                {
+                }
+            }
+        }
+
+        def Cube "FloorBox2" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+            customData = {
+                float3 rotationEulerHint = (1.5707964, -0.0009995388, -0.00086345605)
+            }
+        )
+        {
+            rel material:binding = </Root/FloorEntity/FloorBox2/DefaultMaterial>
+            double size = 1
+            float2 ui:nodegraph:node:pos = (20, 20)
+            int ui:nodegraph:node:stackingOrder = 1
+            quatf xformOp:orient = (0.70710677, 0.7071065, -0.00065866805, 0.000048112583)
+            float3 xformOp:scale = (1, 0.01, 1)
+            float3 xformOp:translate = (-0.0001522135, 0.49545833, -0.50502974)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Material "DefaultMaterial"
+            {
+                token outputs:mtlx:surface
+                token outputs:realitykit:vertex
+                token outputs:surface.connect = </Root/FloorEntity/FloorBox2/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+                def Shader "DefaultSurfaceShader"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (0.003921569, 0.38039216, 0.41960785) (
+                        colorSpace = "srgb_texture"
+                    )
+                    float inputs:opacity = 0.2
+                    float inputs:roughness = 0.75
+                    token outputs:surface
+                }
+            }
+
+            def RealityKitComponent "Collider"
+            {
+                uint group = 1
+                uniform token info:id = "RealityKit.Collider"
+                uint mask = 4294967295
+                token type = "Default"
+
+                def RealityKitStruct "Shape"
+                {
+                    float3 extent = (1, 1, 1)
+                    token shapeType = "Box"
+
+                    def RealityKitStruct "pose"
+                    {
+                    }
+                }
+            }
+
+            def RealityKitComponent "RigidBody"
+            {
+                bool gravityEnabled = 0
+                uniform token info:id = "RealityKit.RigidBody"
+                token motionType = "Kinematic"
+
+                def RealityKitStruct "massFrame"
+                {
+                    def RealityKitStruct "m_pose"
+                    {
+                    }
+                }
+
+                def RealityKitStruct "material"
+                {
+                }
+            }
+        }
+
+        def RealityKitComponent "Anchoring"
+        {
+            uniform token info:id = "RealityKit.Anchoring"
+
+            def RealityKitStruct "descriptor"
+            {
+                float2 bounds = (0.1, 0.1)
+                token classification = "Floor"
+                token type = "Plane"
             }
         }
     }

@@ -25,7 +25,7 @@ struct Example031: View {
                 content.add(scene)
 
 
-                if let floorEntity = scene.findEntity(named: "FloorBox") {
+                if let floorEntity = scene.findEntity(named: "FloorEntity") {
                     if var anchor = floorEntity.components[AnchoringComponent.self] {
                         anchor.physicsSimulation = .none
                         floorEntity.components.set(anchor)

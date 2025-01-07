@@ -205,7 +205,8 @@
       },
       [
         "AE94BE0E-4164-40A7-B2A3-B2F32F073A3A",
-        "Root"
+        "Root",
+        "FloorEntity"
       ],
       {
         "isExpanded" : true,
@@ -213,8 +214,7 @@
       },
       [
         "AE94BE0E-4164-40A7-B2A3-B2F32F073A3A",
-        "Root",
-        "FloorBox"
+        "Root"
       ],
       {
         "isExpanded" : true,

@@ -283,10 +283,10 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
 
         ,Example(title: "Example 031",
                  type: .SPACE,
-                 date: Date("1/5/2025"),
+                 date: Date("1/7/2025"),
                  isFeatured: true,
-                 subtitle: "How to use Anchor Entity without Spatial Tracking Session",
-                 description: "")
+                 subtitle: "How to set up Spatial Tracking Session",
+                 description: "We'll use Spatial Tracking Session with hand and plane tracking.")
 
         ,Example(title: "Example 032",
                  type: .WINDOW_ALT,
