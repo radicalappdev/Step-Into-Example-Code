@@ -28,7 +28,7 @@
       [
         "1D572CEB-057A-41C3-B575-04C37501A3C0",
         "Root",
-        "Sphere_Right"
+        "Sphere_Left"
       ],
       {
         "isExpanded" : true,
@@ -37,7 +37,7 @@
       [
         "1D572CEB-057A-41C3-B575-04C37501A3C0",
         "Root",
-        "Sphere_Left"
+        "Sphere_Right"
       ],
       {
         "isExpanded" : true,
@@ -69,7 +69,8 @@
     "objectMetadataList" : [
       [
         "4EA577E8-CF08-4F6B-8090-61CB20667042",
-        "Root"
+        "Root",
+        "Place1"
       ],
       {
         "isExpanded" : true,
@@ -77,8 +78,7 @@
       },
       [
         "4EA577E8-CF08-4F6B-8090-61CB20667042",
-        "Root",
-        "Place1"
+        "Root"
       ],
       {
         "isExpanded" : true,
@@ -90,8 +90,7 @@
     "objectMetadataList" : [
       [
         "61A7FA42-C29D-4B9E-9A5C-7E857895FAA7",
-        "Root",
-        "Cube"
+        "Root"
       ],
       {
         "isExpanded" : true,
@@ -99,7 +98,8 @@
       },
       [
         "61A7FA42-C29D-4B9E-9A5C-7E857895FAA7",
-        "Root"
+        "Root",
+        "Cube"
       ],
       {
         "isExpanded" : true,
@@ -123,8 +123,7 @@
     "objectMetadataList" : [
       [
         "7CCDFE09-BCF8-4A48-99D6-A1740674C1D0",
-        "Root",
-        "CubeGreen"
+        "Root"
       ],
       {
         "isExpanded" : true,
@@ -132,7 +131,8 @@
       },
       [
         "7CCDFE09-BCF8-4A48-99D6-A1740674C1D0",
-        "Root"
+        "Root",
+        "CubeGreen"
       ],
       {
         "isExpanded" : true,
@@ -185,16 +185,9 @@
     "objectMetadataList" : [
       [
         "AE94BE0E-4164-40A7-B2A3-B2F32F073A3A",
-        "Root"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "AE94BE0E-4164-40A7-B2A3-B2F32F073A3A",
         "Root",
-        "EmphasizeMe"
+        "LoopMe",
+        "Track"
       ],
       {
         "isExpanded" : true,
@@ -212,9 +205,7 @@
       },
       [
         "AE94BE0E-4164-40A7-B2A3-B2F32F073A3A",
-        "Root",
-        "LoopMe",
-        "Track"
+        "Root"
       ],
       {
         "isExpanded" : true,
@@ -223,16 +214,7 @@
       [
         "AE94BE0E-4164-40A7-B2A3-B2F32F073A3A",
         "Root",
-        "CubeRed"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "AE94BE0E-4164-40A7-B2A3-B2F32F073A3A",
-        "Root",
-        "LoopMe"
+        "FloorBox"
       ],
       {
         "isExpanded" : true,

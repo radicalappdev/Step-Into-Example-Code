@@ -1,7 +1,8 @@
 {
-  "advancedEditorSelectedIdentifier" : "ProjectBrowser",
+  "advancedEditorSelectedIdentifier" : "BehaviorsPluginID",
   "openSceneRelativePaths" : [
-    "AnchorLabs.usda"
+    "AnchorLabs.usda",
+    "HandTrackingLabsPhysics.usda"
   ],
   "recentIdentifiers" : {
     "04966C20-2723-4378-BCAD-327CAD4E36CF" : [
@@ -640,6 +641,72 @@
       }
     ],
     "AE94BE0E-4164-40A7-B2A3-B2F32F073A3A" : [
+      {
+        "date" : 757940265.501072,
+        "title" : "Untitled",
+        "transform" : [
+          0.9955018,
+          1.3951823e-10,
+          0.09474217,
+          0,
+          0.07196351,
+          0.6504231,
+          -0.75615543,
+          0,
+          -0.061622497,
+          0.7595721,
+          0.6474974,
+          0,
+          0.8336903,
+          2.3232343,
+          0.07958388,
+          1
+        ]
+      },
+      {
+        "date" : 757939493.029575,
+        "title" : "Untitled",
+        "transform" : [
+          0.9955018,
+          1.3951823e-10,
+          0.09474217,
+          0,
+          0.07196351,
+          0.6504231,
+          -0.75615543,
+          0,
+          -0.061622497,
+          0.7595721,
+          0.6474974,
+          0,
+          0.91307914,
+          2.4714065,
+          -0.08667964,
+          1
+        ]
+      },
+      {
+        "date" : 757939486.290547,
+        "title" : "Untitled",
+        "transform" : [
+          1,
+          0,
+          -0,
+          0,
+          -0,
+          0.7071069,
+          -0.7071067,
+          0,
+          0,
+          0.7071067,
+          0.7071069,
+          0,
+          1,
+          2.3974018,
+          -0.0025981069,
+          1
+        ]
+      },
       {
         "date" : 757801925.142131,
         "title" : "Untitled",
