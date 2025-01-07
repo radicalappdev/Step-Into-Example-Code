@@ -24,6 +24,10 @@ struct Example031: View {
             if let scene = try? await Entity(named: "AnchorLabs", in: realityKitContentBundle) {
                 content.add(scene)
 
+                _ = content.subscribe(to: SceneEvents.AnchoredStateChanged.self)  { event in
+                    print("**anchor changed** \(event)")
+                }
+
                 if let floorEntity = scene.findEntity(named: "FloorBox") {
                     if var anchor = floorEntity.components[AnchoringComponent.self] {
                         anchor.physicsSimulation = .none
@@ -37,6 +41,7 @@ struct Example031: View {
 
                     let leftHand = AnchorEntity(.hand(.left, location: .indexFingerTip),
                                                 trackingMode: .continuous)
+                    leftHand.name = "LeftHandAnchor"
                     leftHand.addChild(leftHandSphere.clone(recursive: true))
                     leftHandSphere.position = .zero
 

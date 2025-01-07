@@ -17,7 +17,7 @@ def Xform "Root"
     {
         rel material:binding = </Root/FloorBox/DefaultMaterial>
         double size = 1
-        float3 xformOp:scale = (1, 0.01, 1)
+        float3 xformOp:scale = (5, 0.01, 5)
         float3 xformOp:translate = (0, 0, 0)
         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
 
@@ -33,10 +33,7 @@ def Xform "Root"
                 color3f inputs:diffuseColor = (0.003921569, 0.38039216, 0.41960785) (
                     colorSpace = "srgb_texture"
                 )
-                color3f inputs:emissiveColor = (0.003921569, 0.38039216, 0.41960785) (
-                    colorSpace = "srgb_texture"
-                )
-                float inputs:opacity = 1
+                float inputs:opacity = 0.2
                 float inputs:roughness = 0.75
                 token outputs:surface
             }
