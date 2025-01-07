@@ -24,16 +24,12 @@ struct Example031: View {
             if let scene = try? await Entity(named: "AnchorLabs", in: realityKitContentBundle) {
                 content.add(scene)
 
-                _ = content.subscribe(to: SceneEvents.AnchoredStateChanged.self)  { event in
-                    print("**anchor changed** \(event)")
-                }
 
                 if let floorEntity = scene.findEntity(named: "FloorBox") {
                     if var anchor = floorEntity.components[AnchoringComponent.self] {
                         anchor.physicsSimulation = .none
                         floorEntity.components.set(anchor)
                     }
-                    content.add(floorEntity)
                 }
 
 
@@ -50,6 +46,9 @@ struct Example031: View {
 
                 }
 
+                _ = content.subscribe(to: SceneEvents.AnchoredStateChanged.self)  { event in
+                    print("**anchor changed** \(event)")
+                }
             }
 
         }
@@ -59,10 +58,9 @@ struct Example031: View {
     }
 
     func runTrackingSession() async {
-
         let configuration = SpatialTrackingSession.Configuration(tracking: [.hand, .plane])
 
-        let _ = await trackingSession.run(configuration)
+        await trackingSession.run(configuration)
     }
 
 
