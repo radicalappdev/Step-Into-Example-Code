@@ -286,7 +286,7 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  date: Date("1/7/2025"),
                  isFeatured: true,
                  subtitle: "How to set up Spatial Tracking Session",
-                 description: "We'll use Spatial Tracking Session with hand and plane tracking.")
+                 description: "Configure and run a Spatial Tracking Session in RealityKit.")
 
         ,Example(title: "Example 032",
                  type: .WINDOW_ALT,
