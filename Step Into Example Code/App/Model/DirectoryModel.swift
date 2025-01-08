@@ -300,7 +300,7 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  date: Date("1/8/2025"),
                  isFeatured: true,
                  subtitle: "Spatial SwiftUI: transform3DEffect",
-                 description: "Exploring uses of transform3DEffect.")
+                 description: "Exploring some uses of transform3DEffect.")
 
     ]
 

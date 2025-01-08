@@ -2,11 +2,11 @@
 //
 //  Title: Example033
 //
-//  Subtitle:
+//  Subtitle: Spatial SwiftUI: transform3DEffect
 //
-//  Description:
+//  Description: Exploring some uses of transform3DEffect.
 //
-//  Type:
+//  Type: Window
 //
 //  Created by Joseph Simpson on 1/8/25.
 
@@ -53,8 +53,6 @@ fileprivate enum TransformType: String, CaseIterable {
     case rotate = "Rotate"
     case scale = "Scale"
     case combine = "Scale+Rotate+Translate"
-    case pose3D = "Pose 3D"
-    case pose3DScaled = "Scaled Pose 3D"
 }
 
 fileprivate struct ExploringTransform3DEffect: ViewModifier {
@@ -81,19 +79,6 @@ fileprivate struct ExploringTransform3DEffect: ViewModifier {
                     translation: Vector3D(x: 25, y: 25, z: 50)
                 ))
 
-
-        case .pose3D:
-            content
-                .transform3DEffect(AffineTransform3D(pose: Pose3D(
-                    position: Point3D(x: 25, y: 25, z: 50),
-                    rotation: Rotation3D(angle: Angle2D(degrees: 20), axis: .x)
-                )))
-        case .pose3DScaled:
-            content
-                .transform3DEffect(AffineTransform3D(scaledPose: ScaledPose3D(
-                    position: Point3D(x: 25, y: 25, z: 50),
-                    rotation: Rotation3D(angle: Angle2D(degrees: 20), axis: .x),
-                    scale: 0.5)))
         }
     }
 }
