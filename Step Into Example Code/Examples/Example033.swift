@@ -16,39 +16,47 @@ import RealityKitContent
 
 struct Example033: View {
 
-
-
-    @State fileprivate var transformMode: TransformType = .translate
+    @State fileprivate var transformMode: TransformType = .none
 
     var body: some View {
-        VStack(spacing: 24) {
-
-
-            HStack(spacing: 24) {
+        HStack(spacing: 12) {
                 List {
+                    Section(header: Text("Transform Mode"), content: {
+
+                        ForEach(TransformType.allCases, id: \.self) { transformType in
+                            Button(transformType.rawValue) {
+                                self.transformMode = transformType
+                            }
+                        }
+                    })
+                }
+
+                .frame(width: 300)
+
+                ZStack {
+                    RoundedRectangle(cornerRadius: 12.0)
+                        .foregroundStyle(.thickMaterial)
+                        .frame(width: 200, height: 200)
+
+                    RoundedRectangle(cornerRadius: 12.0)
+                        .foregroundStyle(.stepRed)
+                        .frame(width: 200, height: 200)
+                        .modifier(ExploringTransform3DEffect(mode: $transformMode))
 
                 }
 
-                RoundedRectangle(cornerRadius: 12.0)
-                    .foregroundStyle(.stepRed)
-                    .modifier(ExploringTransform3DEffect(mode: $transformMode))
-
-
-
             }
-            .padding(12)
-        }
-        .padding(12)
+            .padding(EdgeInsets(top: 24, leading: 12, bottom: 12, trailing: 12))
 
     }
 
 }
 
-fileprivate enum TransformType {
-    case none
-    case translate
-    case rotate
-    case scale
+fileprivate enum TransformType: String, CaseIterable {
+    case none = "None"
+    case translate = "Translate"
+    case rotate = "Rotate"
+    case scale = "Scale"
 }
 
 fileprivate struct ExploringTransform3DEffect: ViewModifier {

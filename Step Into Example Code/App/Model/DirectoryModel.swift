@@ -296,7 +296,7 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  description: "Using rotation3DEffect to rotate views in a window.")
 
         ,Example(title: "Example 033",
-                 type: .WINDOW_ALT,
+                 type: .WINDOW,
                  date: Date("1/8/2025"),
                  isFeatured: true,
                  subtitle: "Spatial SwiftUI: transform3DEffect",
