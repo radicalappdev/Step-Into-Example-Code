@@ -15,41 +15,36 @@ import RealityKit
 import RealityKitContent
 
 struct Example033: View {
-
     @State fileprivate var transformMode: TransformType = .none
 
     var body: some View {
-        HStack(spacing: 12) {
-                List {
-                    Section(header: Text("Transform Mode"), content: {
-
-                        ForEach(TransformType.allCases, id: \.self) { transformType in
-                            Button(transformType.rawValue) {
-                                self.transformMode = transformType
-                            }
+        HStack() {
+            List {
+                Section("Transform Mode") {
+                    ForEach(TransformType.allCases, id: \.self) { transformType in
+                        Button(transformType.rawValue) {
+                            self.transformMode = transformType
                         }
-                    })
+                    }
                 }
-
-                .frame(width: 300)
-
-                ZStack {
-                    RoundedRectangle(cornerRadius: 12.0)
-                        .foregroundStyle(.thickMaterial)
-                        .frame(width: 200, height: 200)
-
-                    RoundedRectangle(cornerRadius: 12.0)
-                        .foregroundStyle(.stepRed)
-                        .frame(width: 200, height: 200)
-                        .modifier(ExploringTransform3DEffect(mode: $transformMode))
-
-                }
-
             }
-            .padding(EdgeInsets(top: 24, leading: 12, bottom: 12, trailing: 12))
+            .frame(maxWidth: .infinity)
 
+
+            ZStack {
+                RoundedRectangle(cornerRadius: 12.0)
+                    .foregroundStyle(.thickMaterial)
+                    .frame(width: 200, height: 200)
+
+                RoundedRectangle(cornerRadius: 12.0)
+                    .foregroundStyle(.stepRed)
+                    .frame(width: 200, height: 200)
+                    .modifier(ExploringTransform3DEffect(mode: $transformMode))
+            }
+            .frame(maxWidth: .infinity)
+        }
+        .padding(EdgeInsets(top: 24, leading: 12, bottom: 12, trailing: 12))
     }
-
 }
 
 fileprivate enum TransformType: String, CaseIterable {
@@ -57,6 +52,9 @@ fileprivate enum TransformType: String, CaseIterable {
     case translate = "Translate"
     case rotate = "Rotate"
     case scale = "Scale"
+    case combine = "Scale+Rotate+Translate"
+    case pose3D = "Pose 3D"
+    case pose3DScaled = "Scaled Pose 3D"
 }
 
 fileprivate struct ExploringTransform3DEffect: ViewModifier {
@@ -75,6 +73,27 @@ fileprivate struct ExploringTransform3DEffect: ViewModifier {
         case .scale:
             content
                 .transform3DEffect(AffineTransform3D(scale: Size3D(vector: [0.5, 0.5, 0.5])))
+        case .combine:
+            content
+                .transform3DEffect(AffineTransform3D(
+                    scale: Size3D(vector: [0.5, 0.5, 0.5]),
+                    rotation: Rotation3D(angle: Angle2D(degrees: 20), axis: .x),
+                    translation: Vector3D(x: 25, y: 25, z: 50)
+                ))
+
+
+        case .pose3D:
+            content
+                .transform3DEffect(AffineTransform3D(pose: Pose3D(
+                    position: Point3D(x: 25, y: 25, z: 50),
+                    rotation: Rotation3D(angle: Angle2D(degrees: 20), axis: .x)
+                )))
+        case .pose3DScaled:
+            content
+                .transform3DEffect(AffineTransform3D(scaledPose: ScaledPose3D(
+                    position: Point3D(x: 25, y: 25, z: 50),
+                    rotation: Rotation3D(angle: Angle2D(degrees: 20), axis: .x),
+                    scale: 0.5)))
         }
     }
 }
