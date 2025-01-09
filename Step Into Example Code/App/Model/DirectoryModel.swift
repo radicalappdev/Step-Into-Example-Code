@@ -302,6 +302,13 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  subtitle: "Spatial SwiftUI: transform3DEffect",
                  description: "Exploring some uses of transform3DEffect.")
 
+        ,Example(title: "Example 034",
+                 type: .SPACE,
+                 date: Date("1/9/2025"),
+                 isFeatured: true,
+                 subtitle: "Detecting a floor with Anchor Entity and Spatial Tracking Session",
+                 description: "")
+
     ]
 
 }

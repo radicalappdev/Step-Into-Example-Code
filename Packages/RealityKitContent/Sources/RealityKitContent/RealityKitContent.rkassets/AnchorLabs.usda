@@ -35,6 +35,7 @@ def Xform "Root"
 
             def RealityKitStruct "material"
             {
+                double restitution = 0
             }
         }
     }

@@ -1,8 +1,9 @@
 {
-  "advancedEditorSelectedIdentifier" : "ProjectBrowser",
+  "advancedEditorSelectedIdentifier" : "BehaviorsPluginID",
   "openSceneRelativePaths" : [
     "AnchorLabs.usda",
-    "HandTrackingLabsPhysics.usda"
+    "HandTrackingLabsPhysics.usda",
+    "AnchorLabsFloor.usda"
   ],
   "recentIdentifiers" : {
     "04966C20-2723-4378-BCAD-327CAD4E36CF" : [
@@ -642,6 +643,28 @@
     ],
     "AE94BE0E-4164-40A7-B2A3-B2F32F073A3A" : [
       {
+        "date" : 758112954.845036,
+        "title" : "Untitled",
+        "transform" : [
+          0.27556163,
+          -3.1483324e-08,
+          0.96128345,
+          0,
+          0.36018747,
+          0.92714834,
+          -0.10325134,
+          0,
+          -0.8912524,
+          0.37469435,
+          0.25548643,
+          0,
+          -1.2529252,
+          1.0272884,
+          0.4403791,
+          1
+        ]
+      },
+      {
         "date" : 757947805.041154,
         "title" : "Untitled",
         "transform" : [
@@ -836,28 +859,6 @@
           -0.0474028,
           0.55683184,
           0.7070014,
-          1
-        ]
-      },
-      {
-        "date" : 757940265.501072,
-        "title" : "Untitled",
-        "transform" : [
-          0.9955018,
-          1.3951823e-10,
-          0.09474217,
-          0,
-          0.07196351,
-          0.6504231,
-          -0.75615543,
-          0,
-          -0.061622497,
-          0.7595721,
-          0.6474974,
-          0,
-          0.8336903,
-          2.3232343,
-          0.07958388,
           1
         ]
       }
@@ -1310,5 +1311,5 @@
   "sceneViewportBackgroundColors" : {
 
   },
-  "selectedSceneRelativePath" : "AnchorLabs.usda"
+  "selectedSceneRelativePath" : "AnchorLabsFloor.usda"
 }
