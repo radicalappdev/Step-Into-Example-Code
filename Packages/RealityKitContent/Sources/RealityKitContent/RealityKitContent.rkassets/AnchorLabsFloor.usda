@@ -18,11 +18,11 @@ def Xform "Root"
         float2 ui:nodegraph:node:pos = (40, 40)
         int ui:nodegraph:node:stackingOrder = 2
         float3 xformOp:scale = (1, 1, 1)
-        float3 xformOp:translate = (-0.2, 1, -1)
+        float3 xformOp:translate = (-0.5, 1, -1.5)
 
         def RealityKitComponent "RigidBody"
         {
-            bool gravityEnabled = 0
+            bool gravityEnabled = 1
             uniform token info:id = "RealityKit.RigidBody"
 
             def RealityKitStruct "massFrame"

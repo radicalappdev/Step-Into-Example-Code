@@ -21,30 +21,37 @@ struct Example034: View {
 
     @State var subject: Entity?
 
-    @State var floor: Entity = {
-        let entity = AnchorEntity(.plane(.horizontal, classification: .floor, minimumBounds: SIMD2(x: 0.1, y: 0.1)))
-        entity.name = "FloorAnchorEntity"
-        entity.components.set(InputTargetComponent())
-        return entity
-    }()
+    @State var floor: AnchorEntity?
 
     var body: some View {
         RealityView { content, attachments in
 
+            // Based on the setup in *RealityKitDrawingApp*
+            let session = SpatialTrackingSession()
+            let configuration = SpatialTrackingSession.Configuration(tracking: [.plane])
+            _ = await session.run(configuration)
+            self.trackingSession = session
+
+            let floorAnchor = AnchorEntity(.plane(.horizontal, classification: .floor, minimumBounds: SIMD2(x: 0.1, y: 0.1)))
+            floorAnchor.anchoring.physicsSimulation = .none
+            floorAnchor.name = "FloorAnchorEntity"
+            floorAnchor.components.set(InputTargetComponent())
+            floorAnchor.components.set(CollisionComponent(shapes: .init()))
+            content.add(floorAnchor)
+            self.floor = floorAnchor
+
             if let scene = try? await Entity(named: "AnchorLabsFloor", in: realityKitContentBundle) {
                 content.add(scene)
-                content.add(floor)
 
                 if let subject = scene.findEntity(named: "StepSphereRed") {
-                    subject.isEnabled = false
-
                     self.subject = subject
-
                 }
 
 
                 // We can listen for anchor state changes
                 _ = content.subscribe(to: SceneEvents.AnchoredStateChanged.self)  { event in
+                    event.anchor.parent?.generateCollisionShapes(recursive: true)
+                    event.anchor.generateCollisionShapes(recursive: true)
                     print("**anchor changed** \(event)")
                     print("**anchor changed** \(event.anchor.name)")
                     print("**anchor changed** \(event.anchor)")
@@ -53,6 +60,7 @@ struct Example034: View {
                 // place the panel
                 if let panel = attachments.entity(for: "Panel") {
                     panel.position = [0, 1, -0.5]
+                    content.add(panel)
                 }
             }
 
@@ -61,27 +69,29 @@ struct Example034: View {
         } attachments: {
             Attachment(id: "Panel", {
                 Button(action: {
-                    if let newSubject = subject?.clone(recursive: true) {
-                        newSubject.position = [-1, 2, -1]
-                        newSubject.isEnabled = true
+                    print("**button pressed**")
+                    if let subject = self.subject {
+                        subject.position = [-0.5, 1.5, -1.5]
+                        // Remove the physics body and assign a new one - hack to remove momentum
+                        if let physics = subject.components[PhysicsBodyComponent.self] {
+                            subject.components.remove(PhysicsBodyComponent.self)
+                            subject.components.set(physics)
+                        }
+
+
                     }
                 }, label: {
                     Text("Spawn Sphere")
                 })
             })
         }
-        .modifier(DragGestureImproved()) // just here to let me grap the sphere if it gets too far away
-        .task {
-            await runTrackingSession()
+        .onDisappear {
+            Task {
+                await trackingSession.stop()
+            }
         }
-    }
+        .modifier(DragGestureImproved()) // just here to let me grap the sphere if it gets too far away
 
-    // 2. Configure and run the session
-    func runTrackingSession() async {
-        // We are using hand and plane anchors
-        let configuration = SpatialTrackingSession.Configuration(tracking: [.plane])
-
-        await trackingSession.run(configuration)
     }
 
 }
