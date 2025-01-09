@@ -16,17 +16,13 @@ import RealityKitContent
 
 struct Example034: View {
 
-    // 1. Create a session
     @State var trackingSession: SpatialTrackingSession = SpatialTrackingSession()
-
     @State var subject: Entity?
-
     @State var floor: AnchorEntity?
 
     var body: some View {
         RealityView { content, attachments in
 
-            // Based on the setup in *RealityKitDrawingApp*
             let session = SpatialTrackingSession()
             let configuration = SpatialTrackingSession.Configuration(tracking: [.plane])
             _ = await session.run(configuration)
@@ -40,6 +36,12 @@ struct Example034: View {
             content.add(floorAnchor)
             self.floor = floorAnchor
 
+            // This is just here to let me see where visinoOS decided to "place" the floor anchor.
+            let floorPlaced = ModelEntity(
+                mesh: .generateSphere(radius: 0.1),
+                materials: [SimpleMaterial(color: .black, isMetallic: false)])
+            floorAnchor.addChild(floorPlaced)
+
             if let scene = try? await Entity(named: "AnchorLabsFloor", in: realityKitContentBundle) {
                 content.add(scene)
 
@@ -47,17 +49,14 @@ struct Example034: View {
                     self.subject = subject
                 }
 
-
-                // We can listen for anchor state changes
+                // I can see when the anchor is added
                 _ = content.subscribe(to: SceneEvents.AnchoredStateChanged.self)  { event in
-                    event.anchor.parent?.generateCollisionShapes(recursive: true)
-                    event.anchor.generateCollisionShapes(recursive: true)
+                    event.anchor.generateCollisionShapes(recursive: true) //  this doesn't seem to work
                     print("**anchor changed** \(event)")
-                    print("**anchor changed** \(event.anchor.name)")
-                    print("**anchor changed** \(event.anchor)")
+                    print("**anchor** \(event.anchor)")
                 }
 
-                // place the panel
+                // place the reset button near the user
                 if let panel = attachments.entity(for: "Panel") {
                     panel.position = [0, 1, -0.5]
                     content.add(panel)
@@ -77,23 +76,13 @@ struct Example034: View {
                             subject.components.remove(PhysicsBodyComponent.self)
                             subject.components.set(physics)
                         }
-
-
                     }
                 }, label: {
-                    Text("Spawn Sphere")
+                    Text("Reset Sphere")
                 })
             })
         }
-        .onDisappear {
-            Task {
-                await trackingSession.stop()
-            }
-        }
-        .modifier(DragGestureImproved()) // just here to let me grap the sphere if it gets too far away
-
     }
-
 }
 
 #Preview {
