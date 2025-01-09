@@ -172,7 +172,7 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
         ,Example(title: "Example 015",
                  type: .SPACE,
                  date: Date("12/11/2024"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Exploring SpatialEventGesture",
                  description: "What can we do with SpatialEventGesture?")
 
@@ -242,7 +242,7 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
         ,Example(title: "Example 025",
                  type: .SPACE,
                  date: Date("12/30/2024"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "How to use Anchoring Component with hands",
                  description: "Creating entities with anchoring components attached instead of using AnchorEntity.")
 
@@ -255,36 +255,36 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
 
         ,Example(title: "Example 027",
                 type: .WINDOW,
-                date: Date("12/30/2024"),
+                date: Date("1/9/2024"),
                 isFeatured: true,
-                subtitle: "Using SwiftUI Shadows to convey depth",
-                description: "")
+                subtitle: "Spatial SwiftUI: shadow modifier",
+                description: "Using shadows on 2D views to convey depth.")
 
         ,Example(title: "Example 028",
                  type: .SPACE,
                  date: Date("1/1/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Using Anchoring Component with Spatial Tracking Session",
                  description: "We can add a Spatial Tracking Session if we need to use hand tracking features such as physics, collisions, and accessing transforms.")
 
         ,Example(title: "Example 029",
                  type: .WINDOW,
                  date: Date("1/3/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "How to show and hide the window bar",
                  description: "We can use `persistentSystemOverlays(_:)` to control the visibility of the window drag bar.")
 
         ,Example(title: "Example 030",
                  type: .WINDOW,
                  date: Date("1/4/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Spatial SwiftUI: offset",
                  description: "Using z axis offset to lift our views out of their window.")
 
         ,Example(title: "Example 031",
                  type: .SPACE,
                  date: Date("1/7/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "How to set up Spatial Tracking Session",
                  description: "Configure and run a Spatial Tracking Session in RealityKit.")
 
@@ -298,7 +298,7 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
         ,Example(title: "Example 033",
                  type: .WINDOW,
                  date: Date("1/8/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Spatial SwiftUI: transform3DEffect",
                  description: "Exploring some uses of transform3DEffect.")
 

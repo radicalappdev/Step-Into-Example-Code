@@ -2,11 +2,11 @@
 //
 //  Title: Example027
 //
-//  Subtitle: Using SwiftUI Shadows to convey depth
+//  Subtitle: Spatial SwiftUI: shadow modifier
 //
-//  Description:
+//  Description: Using shadows on 2D views to convey depth.
 //
-//  Type:
+//  Type: Window
 //
 //  Created by Joseph Simpson on 12/30/24.
 
@@ -16,45 +16,40 @@ import RealityKitContent
 
 struct Example027: View {
 
-    @State private var redActive = false
-    @State private var greenActive = false
-    @State private var blueActive = false
+    @State var shadowRadius: CGFloat = 6.0
 
     var body: some View {
-        ZStack {
-            Rectangle()
-                .foregroundStyle(.stepBackgroundSecondary)
-            HStack(spacing: 10) {
-                Rectangle()
-                    .foregroundStyle(.stepRed)
-                    .cornerRadius(24)
-                    .shadow(radius: redActive ? 12 : 0)
-                    .offset(z: redActive ? 24 : 0)
-                    .onTapGesture {
-                        redActive.toggle()
-                    }
+        VStack(spacing: 24) {
+            Slider(value: $shadowRadius,
+                   in: 0...12,
+                   minimumValueLabel: Image(systemName: "square.fill"),
+                   maximumValueLabel: Image(systemName: "square.fill.on.square.fill"),
+                   label: {
+                Text("Shadow")
+            })
+            .frame(width: 300)
 
-                Rectangle()
-                    .foregroundStyle(.stepGreen)
-                    .cornerRadius(24)
-                    .shadow(radius: greenActive ? 12 : 0)
-                    .offset(z: greenActive ? 24 : 0)
-                    .onTapGesture {
-                        greenActive.toggle()
-                    }
+            HStack(spacing: 24) {
 
-                Rectangle()
-                    .foregroundStyle(.stepBlue)
-                    .cornerRadius(24)
-                    .shadow(radius: blueActive ? 12 : 0)
-                    .offset(z: blueActive ? 24 : 0)
-                    .onTapGesture {
-                        blueActive.toggle()
-                    }
+                RoundedRectangle(cornerRadius: 12.0)
+                    .foregroundStyle(.white)
+                    .shadow(radius: shadowRadius)
+
+                RoundedRectangle(cornerRadius: 12.0)
+                    .foregroundStyle(.white)
+                    .offset(z: 50)
+                    .shadow(radius: shadowRadius)
+
+                RoundedRectangle(cornerRadius: 12.0)
+                    .foregroundStyle(.white)
+                    .offset(z: 100)
+                    .shadow(radius: shadowRadius)
 
             }
-            .padding(60)
+            .padding(12)
         }
+        .padding(12)
+
     }
 }
 
