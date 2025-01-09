@@ -17,33 +17,45 @@ import RealityKitContent
 struct Example027: View {
 
     @State var shadowRadius: CGFloat = 6.0
+    @State var direction: CGFloat = 0.0
 
     var body: some View {
         VStack(spacing: 24) {
-            Slider(value: $shadowRadius,
-                   in: 0...12,
-                   minimumValueLabel: Image(systemName: "square.fill"),
-                   maximumValueLabel: Image(systemName: "square.fill.on.square.fill"),
-                   label: {
-                Text("Shadow")
-            })
-            .frame(width: 300)
+            HStack {
+                Slider(value: $shadowRadius,
+                       in: 0...12,
+                       minimumValueLabel: Image(systemName: "square.fill"),
+                       maximumValueLabel: Image(systemName: "square.fill.on.square.fill"),
+                       label: {
+                    Text("Shadow")
+                })
+
+                Slider(value: $direction,
+                       in: 0...100,
+                       minimumValueLabel: Image(systemName: "square.fill"),
+                       maximumValueLabel: Image(systemName: "square.fill.on.square.fill"),
+                       label: {
+                    Text("Direction")
+                })
+
+
+            }
 
             HStack(spacing: 24) {
 
                 RoundedRectangle(cornerRadius: 12.0)
                     .foregroundStyle(.white)
-                    .shadow(radius: shadowRadius)
+                    .shadow(radius: shadowRadius, x: direction, y: direction)
 
                 RoundedRectangle(cornerRadius: 12.0)
                     .foregroundStyle(.white)
                     .offset(z: 50)
-                    .shadow(radius: shadowRadius)
+                    .shadow(radius: shadowRadius, x: direction, y: direction)
 
                 RoundedRectangle(cornerRadius: 12.0)
                     .foregroundStyle(.white)
                     .offset(z: 100)
-                    .shadow(radius: shadowRadius)
+                    .shadow(radius: shadowRadius, x: direction, y: direction)
 
             }
             .padding(12)
