@@ -19,75 +19,82 @@ struct Example035: View {
     @State var enableHoverEffect: Bool = false
 
     var body: some View {
-        VStack() {
-
+        VStack(spacing: 12) {
             Toggle("Hover Effect", isOn: $enableHoverEffect)
                 .toggleStyle(.button)
+            
+            Grid(alignment: .center, horizontalSpacing: 24, verticalSpacing: 12) {
+                GridRow {
+                    Text("System Hover Effects")
+                        .font(.headline)
+                        .gridCellColumns(3)
+                }
+                
+                GridRow {
+                    Capsule()
+                        .foregroundStyle(.regularMaterial)
+                        .overlay(Text("automatic"))
+                        .hoverEffect(.automatic, isEnabled: enableHoverEffect)
+                    
+                    Capsule()
+                        .foregroundStyle(.regularMaterial)
+                        .overlay(Text("highlight"))
+                        .hoverEffect(.highlight, isEnabled: enableHoverEffect)
+                    
+                    Capsule()
+                        .foregroundStyle(.regularMaterial)
+                        .overlay(Text("lift"))
+                        .hoverEffect(.lift, isEnabled: enableHoverEffect)
+                }
 
-            HStack(spacing: 24) {
-
-                Capsule()
-                    .foregroundStyle(.regularMaterial)
-                    .overlay(Text("automatic"))
-                    .hoverEffect(.automatic, isEnabled: enableHoverEffect)
-
-                Capsule()
-                    .foregroundStyle(.regularMaterial)
-                    .overlay(Text("highlight"))
-                    .hoverEffect(.highlight, isEnabled: enableHoverEffect)
-
-                Capsule()
-                    .foregroundStyle(.regularMaterial)
-                    .overlay(Text("lift"))
-                    .hoverEffect(.lift, isEnabled: enableHoverEffect)
+                GridRow {
+                    Text("Custom Hover Effects")
+                        .font(.headline)
+                        .gridCellColumns(3)
+                }
+                
+                GridRow {
+                    Capsule()
+                        .foregroundStyle(.regularMaterial)
+                        .overlay(Text("Custom: fade"))
+                        .hoverEffect(FadeHoverEffect(), isEnabled: enableHoverEffect)
+                    
+                    Capsule()
+                        .foregroundStyle(.regularMaterial)
+                        .overlay(Text("Custom: scale"))
+                        .hoverEffect(ScaleHoverEffect(), isEnabled: enableHoverEffect)
+                    
+                    Capsule()
+                        .foregroundStyle(.regularMaterial)
+                        .overlay(Text("Custom: tilt"))
+                        .hoverEffect(TiltHoverEffect(), isEnabled: enableHoverEffect)
+                }
+                
+                GridRow {
+                    Text("Default set on parent using defaultHoverEffect()")
+                        .font(.headline)
+                        .gridCellColumns(3)
+                }
+                
+                GridRow {
+                    Capsule()
+                        .foregroundStyle(.regularMaterial)
+                        .overlay(Text("Custom: mashup"))
+                        .hoverEffect(isEnabled: enableHoverEffect)
+                    
+                    Capsule()
+                        .foregroundStyle(.regularMaterial)
+                        .overlay(Text("Custom: mashup"))
+                        .hoverEffect(isEnabled: enableHoverEffect)
+                    
+                    Capsule()
+                        .foregroundStyle(.regularMaterial)
+                        .overlay(Text("Custom: mashup"))
+                        .hoverEffect(isEnabled: enableHoverEffect)
+                }
+                .defaultHoverEffect(CustomMashupHoverEffect())
             }
-            .frame(height: 60)
-            Text("system hover effects")
-                .font(.caption2)
-
-            HStack(spacing: 24) {
-
-                Capsule()
-                    .foregroundStyle(.regularMaterial)
-                    .overlay(Text("Custom: fade"))
-                    .hoverEffect(FadeHoverEffect(), isEnabled: enableHoverEffect)
-
-                Capsule()
-                    .foregroundStyle(.regularMaterial)
-                    .overlay(Text("Custom: scale"))
-                    .hoverEffect(ScaleHoverEffect(), isEnabled: enableHoverEffect)
-
-                Capsule()
-                    .foregroundStyle(.regularMaterial)
-                    .overlay(Text("Custom: tilt"))
-                    .hoverEffect(TiltHoverEffect(), isEnabled: enableHoverEffect)
-            }
-            .frame(height: 60)
-
-            Text("custom hover effects")
-                .font(.caption2)
-
-            HStack(spacing: 24) {
-                Capsule()
-                    .foregroundStyle(.regularMaterial)
-                    .overlay(Text("Custom: mashup"))
-                    .hoverEffect(isEnabled: enableHoverEffect)
-
-                Capsule()
-                    .foregroundStyle(.regularMaterial)
-                    .overlay(Text("Custom: mashup"))
-                    .hoverEffect(isEnabled: enableHoverEffect)
-
-                Capsule()
-                    .foregroundStyle(.regularMaterial)
-                    .overlay(Text("Custom: mashup"))
-                    .hoverEffect(isEnabled: enableHoverEffect)
-            }
-            .frame(height: 60)
-            .defaultHoverEffect(CustomMashupHoverEffect())
-            Text("from parent using defaultHoverEffect")
-                .font(.caption2)
-
+            .frame(maxHeight: 300)
         }
         .padding()
     }
