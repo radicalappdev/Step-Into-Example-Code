@@ -26,39 +26,40 @@ struct Example035: View {
 
             HStack(spacing: 24) {
 
-                Text("automatic")
-                    .contentShape(.capsule)
-//                    .foregroundStyle(.regularMaterial)
+                Capsule()
+                    .foregroundStyle(.regularMaterial)
+                    .overlay(Text("automatic"))
                     .hoverEffect(.automatic, isEnabled: enableHoverEffect)
 
-                Circle()
+                Capsule()
                     .foregroundStyle(.regularMaterial)
+                    .overlay(Text("highlight"))
                     .hoverEffect(.highlight, isEnabled: enableHoverEffect)
 
-                Circle()
+                Capsule()
                     .foregroundStyle(.regularMaterial)
+                    .overlay(Text("lift"))
                     .hoverEffect(.lift, isEnabled: enableHoverEffect)
             }
-
             .frame(height: 100)
 
             HStack(spacing: 24) {
-
-                Circle()
+                Capsule()
                     .foregroundStyle(.regularMaterial)
+                    .overlay(Text("automatic"))
                     .hoverEffect(isEnabled: enableHoverEffect)
 
-
-                Circle()
+                Capsule()
                     .foregroundStyle(.regularMaterial)
+                    .overlay(Text("highlight"))
                     .hoverEffect(isEnabled: enableHoverEffect)
 
-                Circle()
+                Capsule()
                     .foregroundStyle(.regularMaterial)
+                    .overlay(Text("lift"))
                     .hoverEffect(isEnabled: enableHoverEffect)
-
             }
-            .defaultHoverEffect(.highlight) // Set the default hover effect for any child views
+            .defaultHoverEffect(.highlight)
 
             .frame(height: 100)
         }
