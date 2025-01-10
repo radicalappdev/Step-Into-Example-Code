@@ -41,27 +41,26 @@ struct Example035: View {
                     .overlay(Text("lift"))
                     .hoverEffect(.lift, isEnabled: enableHoverEffect)
             }
-            .frame(height: 100)
+            .frame(height: 80)
 
             HStack(spacing: 24) {
 
                 Capsule()
                     .foregroundStyle(.regularMaterial)
                     .overlay(Text("Custom: fade"))
-                    .hoverEffect(FadeHoverEffect())
+                    .hoverEffect(FadeHoverEffect(), isEnabled: enableHoverEffect)
 
                 Capsule()
                     .foregroundStyle(.regularMaterial)
                     .overlay(Text("Custom: scale"))
-                    .hoverEffect(.highlight, isEnabled: enableHoverEffect)
-                    .hoverEffect(ScaleHoverEffect())
+                    .hoverEffect(ScaleHoverEffect(), isEnabled: enableHoverEffect)
 
                 Capsule()
                     .foregroundStyle(.regularMaterial)
-                    .overlay(Text("lift"))
-                    .hoverEffect(.lift, isEnabled: enableHoverEffect)
+                    .overlay(Text("Custom: tilt"))
+                    .hoverEffect(TiltHoverEffect(), isEnabled: enableHoverEffect)
             }
-            .frame(height: 100)
+            .frame(height: 80)
 
             HStack(spacing: 24) {
                 Capsule()
@@ -79,7 +78,7 @@ struct Example035: View {
                     .overlay(Text("lift"))
                     .hoverEffect(isEnabled: enableHoverEffect)
             }
-            .frame(height: 100)
+            .frame(height: 80)
             .defaultHoverEffect(.highlight)
 
         }
@@ -109,6 +108,18 @@ struct ScaleHoverEffect: CustomHoverEffect {
         }
     }
 }
+
+struct TiltHoverEffect: CustomHoverEffect {
+    func body(content: Content) -> some CustomHoverEffect {
+        content.hoverEffect { effect, isActive, proxy in
+            effect.animation(.easeOut) {
+                $0.rotationEffect(.degrees(isActive ? 15 : 0), anchor: .bottomTrailing)
+            }
+        }
+    }
+}
+
+
 
 
 #Preview {
