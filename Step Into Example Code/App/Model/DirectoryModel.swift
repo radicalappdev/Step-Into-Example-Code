@@ -309,6 +309,13 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  subtitle: "Detecting a floor with Anchor Entity and Spatial Tracking Session",
                  description: "")
 
+        ,Example(title: "Example 035",
+                 type: .WINDOW,
+                 date: Date("1/10/2025"),
+                 isFeatured: true,
+                 subtitle: "Spatial SwiftUI: hoverEffect modifier",
+                 description: "Taking a look (😜) at hoverEffect modifier.")
+
     ]
 
 }
