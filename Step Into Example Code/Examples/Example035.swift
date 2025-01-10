@@ -4,7 +4,7 @@
 //
 //  Subtitle: Spatial SwiftUI: hoverEffect modifier
 //
-//  Description: Taking a look (😜) at hoverEffect modifier.
+//  Description: Taking a look (😜) at the hoverEffect modifier.
 //
 //  Type: Window
 //
@@ -34,8 +34,8 @@ struct Example035: View {
                     Capsule()
                         .foregroundStyle(.regularMaterial)
                         .overlay(Text("automatic"))
-                        .hoverEffect(.automatic, isEnabled: enableHoverEffect)
-                    
+                        .hoverEffect(.automatic, isEnabled: enableHoverEffect) // automatic seems to use highlight
+
                     Capsule()
                         .foregroundStyle(.regularMaterial)
                         .overlay(Text("highlight"))
@@ -44,7 +44,7 @@ struct Example035: View {
                     Capsule()
                         .foregroundStyle(.regularMaterial)
                         .overlay(Text("lift"))
-                        .hoverEffect(.lift, isEnabled: enableHoverEffect)
+                        .hoverEffect(.lift, isEnabled: enableHoverEffect) // I can't see a difference between highlight and lift 🤷🏻‍♂️
                 }
 
                 GridRow {
@@ -133,13 +133,12 @@ struct TiltHoverEffect: CustomHoverEffect {
     }
 }
 
-// add a versin to combine these three examples
 struct CustomMashupHoverEffect: CustomHoverEffect {
     func body(content: Content) -> some CustomHoverEffect {
         content.hoverEffect { effect, isActive, proxy in
             effect.animation(.easeOut) {
                 $0.opacity(isActive ? 1 : 0.5)
-                    .rotationEffect(.degrees(isActive ? 10 : 0), anchor: .bottomTrailing)
+                    .rotationEffect(.degrees(isActive ? 10 : 0), anchor: .center)
                     .scaleEffect(
                         isActive ? CGSize(width: 1.1, height: 1.1) : CGSize(width: 1, height: 1),
                         anchor: .center
@@ -154,3 +153,6 @@ struct CustomMashupHoverEffect: CustomHoverEffect {
 #Preview {
     Example035()
 }
+
+
+
