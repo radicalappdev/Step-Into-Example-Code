@@ -19,7 +19,7 @@ struct Example035: View {
     @State var enableHoverEffect: Bool = false
 
     var body: some View {
-        VStack(spacing: 24) {
+        VStack() {
 
             Toggle("Hover Effect", isOn: $enableHoverEffect)
                 .toggleStyle(.button)
@@ -41,7 +41,9 @@ struct Example035: View {
                     .overlay(Text("lift"))
                     .hoverEffect(.lift, isEnabled: enableHoverEffect)
             }
-            .frame(height: 80)
+            .frame(height: 60)
+            Text("system hover effects")
+                .font(.caption2)
 
             HStack(spacing: 24) {
 
@@ -60,26 +62,31 @@ struct Example035: View {
                     .overlay(Text("Custom: tilt"))
                     .hoverEffect(TiltHoverEffect(), isEnabled: enableHoverEffect)
             }
-            .frame(height: 80)
+            .frame(height: 60)
+
+            Text("custom hover effects")
+                .font(.caption2)
 
             HStack(spacing: 24) {
                 Capsule()
                     .foregroundStyle(.regularMaterial)
-                    .overlay(Text("automatic"))
+                    .overlay(Text("Custom: mashup"))
                     .hoverEffect(isEnabled: enableHoverEffect)
 
                 Capsule()
                     .foregroundStyle(.regularMaterial)
-                    .overlay(Text("highlight"))
+                    .overlay(Text("Custom: mashup"))
                     .hoverEffect(isEnabled: enableHoverEffect)
 
                 Capsule()
                     .foregroundStyle(.regularMaterial)
-                    .overlay(Text("lift"))
+                    .overlay(Text("Custom: mashup"))
                     .hoverEffect(isEnabled: enableHoverEffect)
             }
-            .frame(height: 80)
-            .defaultHoverEffect(.highlight)
+            .frame(height: 60)
+            .defaultHoverEffect(CustomMashupHoverEffect())
+            Text("from parent using defaultHoverEffect")
+                .font(.caption2)
 
         }
         .padding()
@@ -119,6 +126,21 @@ struct TiltHoverEffect: CustomHoverEffect {
     }
 }
 
+// add a versin to combine these three examples
+struct CustomMashupHoverEffect: CustomHoverEffect {
+    func body(content: Content) -> some CustomHoverEffect {
+        content.hoverEffect { effect, isActive, proxy in
+            effect.animation(.easeOut) {
+                $0.opacity(isActive ? 1 : 0.5)
+                    .rotationEffect(.degrees(isActive ? 10 : 0), anchor: .bottomTrailing)
+                    .scaleEffect(
+                        isActive ? CGSize(width: 1.1, height: 1.1) : CGSize(width: 1, height: 1),
+                        anchor: .center
+                    )
+            }
+        }
+    }
+}
 
 
 
