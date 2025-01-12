@@ -320,8 +320,8 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  type: .WINDOW,
                  date: Date("1/12/2025"),
                  isFeatured: true,
-                 subtitle: "Spatial SwiftUI: ZStack",
-                 description: "")
+                 subtitle: "Spatial SwiftUI: ZStack and frame(depth:)",
+                 description: "Three simple methods to stack and space views.")
 
     ]
 
