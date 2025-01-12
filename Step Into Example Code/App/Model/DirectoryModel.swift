@@ -316,6 +316,13 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  subtitle: "Spatial SwiftUI: hoverEffect modifier",
                  description: "Taking a look (😜) at the hoverEffect modifier.")
 
+        ,Example(title: "Example 036",
+                 type: .WINDOW,
+                 date: Date("1/12/2025"),
+                 isFeatured: true,
+                 subtitle: "Spatial SwiftUI: ZStack",
+                 description: "")
+
     ]
 
 }
