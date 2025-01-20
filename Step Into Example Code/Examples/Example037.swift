@@ -19,83 +19,165 @@ struct Example037: View {
     @State var ornamentAnchor: UnitPoint = .top
     @State var ornamentAlignment: Alignment = .center
 
-
+    // convenience functions so I don't have to repeat "withAnimation" in every button
     func setAnchor(_ newAnchor: UnitPoint) {
         withAnimation {
             ornamentAnchor = newAnchor
-            // set the ornamentAlighment to mirrow the ornamentAnchor
-
         }
     }
+
+    func setAlignment(_ newAlignment: Alignment) {
+        withAnimation {
+            ornamentAlignment = newAlignment
+        }
+    }
+
     var body: some View {
         ZStack {
-            VStack(spacing: 100) {
-                HStack(alignment: .center) {
-                    Button{
-                        setAnchor(.topLeading)
-                    } label: {
-                        Image(systemName: "arrow.up.left")
+            VStack(spacing: 20) {
+                Button{
+                    withAnimation {
+                        ornamentVisibility = ornamentVisibility == .visible ? .hidden : .visible
                     }
-                    Spacer()
-                    Button{
-                        setAnchor(.top)
-                    } label: {
-                        Image(systemName: "arrow.up")
-                    }
-                    Spacer()
-                    Button{
-                        setAnchor(.topTrailing)
-                    } label: {
-                        Image(systemName: "arrow.up.right")
-                    }
+                } label: {
+                    Text("Toggle Ornament")
                 }
 
-                HStack(alignment: .center) {
-                    Button{
-                        setAnchor(.leading)
-                    } label: {
-                        Image(systemName: "arrow.left")
-                    }
-                    Spacer()
+                Spacer()
 
+                HStack(spacing: 40) {
+
+                    // Anchor buttons
                     VStack {
-                        Button{
-                            withAnimation {
-                                ornamentVisibility = ornamentVisibility == .visible ? .hidden : .visible
+                        Text("Anchor")
+                        HStack(alignment: .center) {
+                            Button{
+                                setAnchor(.topLeading)
+                            } label: {
+                                Image(systemName: "arrow.up.left")
                             }
-                        } label: {
-                            Text("Toggle Ornament")
+
+                            Button{
+                                setAnchor(.top)
+                            } label: {
+                                Image(systemName: "arrow.up")
+                            }
+
+                            Button{
+                                setAnchor(.topTrailing)
+                            } label: {
+                                Image(systemName: "arrow.up.right")
+                            }
                         }
-                        Text("\(ornamentAnchor)")
-                            .font(.title)
+
+                        HStack(alignment: .center) {
+                            Button{
+                                setAnchor(.leading)
+                            } label: {
+                                Image(systemName: "arrow.left")
+                            }
+
+
+                            Button{
+                                setAnchor(.center)
+                            } label: {
+                                Image(systemName: "square")
+                            }
+
+                            Button{
+                                setAnchor(.trailing)
+                            } label: {
+                                Image(systemName: "arrow.right")
+                            }
+                        }
+
+                        HStack(alignment: .center) {
+                            Button{
+                                setAnchor(.bottomLeading)
+                            } label: {
+                                Image(systemName: "arrow.down.left")
+                            }
+
+                            Button{
+                                setAnchor(.bottom)
+                            } label: {
+                                Image(systemName: "arrow.down")
+                            }
+
+                            Button{
+                                setAnchor(.bottomTrailing)
+                            } label: {
+                                Image(systemName: "arrow.down.right")
+                            }
+                        }
                     }
-                    Spacer()
-                    Button{
-                        setAnchor(.trailing)
-                    } label: {
-                        Image(systemName: "arrow.right")
+                    // Alignment buttons
+                    VStack {
+                        Text("Alignment")
+                        HStack(alignment: .center) {
+                            Button{
+                                setAlignment(.topLeading)
+                            } label: {
+                                Image(systemName: "arrow.up.left")
+                            }
+
+                            Button{
+                                setAlignment(.top)
+                            } label: {
+                                Image(systemName: "arrow.up")
+                            }
+
+                            Button{
+                                setAlignment(.topTrailing)
+                            } label: {
+                                Image(systemName: "arrow.up.right")
+                            }
+                        }
+
+                        HStack(alignment: .center) {
+                            Button{
+                                setAlignment(.leading)
+                            } label: {
+                                Image(systemName: "arrow.left")
+                            }
+
+
+                            Button{
+                                setAlignment(.center)
+                            } label: {
+                                Image(systemName: "square")
+                            }
+
+
+                            Button{
+                                setAlignment(.trailing)
+                            } label: {
+                                Image(systemName: "arrow.right")
+                            }
+                        }
+
+                        HStack(alignment: .center) {
+                            Button{
+                                setAlignment(.bottomLeading)
+                            } label: {
+                                Image(systemName: "arrow.down.left")
+                            }
+
+                            Button{
+                                setAlignment(.bottom)
+                            } label: {
+                                Image(systemName: "arrow.down")
+                            }
+
+                            Button{
+                                setAlignment(.bottomTrailing)
+                            } label: {
+                                Image(systemName: "arrow.down.right")
+                            }
+                        }
                     }
                 }
 
-                HStack(alignment: .center) {
-                    Button{
-                        setAnchor(.bottomLeading)
-                    } label: {
-                        Image(systemName: "arrow.down.left")
-                    }
-                    Spacer()
-                    Button{
-                        setAnchor(.bottom)
-                    } label: {
-                        Image(systemName: "arrow.down")
-                    }
-                    Spacer()
-                    Button{
-                        setAnchor(.bottomTrailing)
-                    } label: {
-                        Image(systemName: "arrow.down.right")
-                    }
-                }
             }
             .padding(100)
             .ornament(
