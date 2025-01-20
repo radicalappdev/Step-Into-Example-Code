@@ -323,6 +323,13 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  subtitle: "Spatial SwiftUI: ZStack and frame(depth:)",
                  description: "Three simple methods to stack and space views.")
 
+        ,Example(title: "Example 037",
+                 type: .WINDOW,
+                 date: Date("1/20/2025"),
+                 isFeatured: true,
+                 subtitle: "Spatial SwiftUI: Window Ornaments.",
+                 description: "Explore some of the anchors we can use for ornaments.")
+
     ]
 
 }
