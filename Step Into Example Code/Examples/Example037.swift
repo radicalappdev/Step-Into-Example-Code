@@ -17,11 +17,14 @@ import RealityKitContent
 struct Example037: View {
     @State var ornamentVisibility: Visibility = .hidden
     @State var ornamentAnchor: UnitPoint = .top
+    @State var ornamentAlignment: Alignment = .center
 
 
     func setAnchor(_ newAnchor: UnitPoint) {
         withAnimation {
             ornamentAnchor = newAnchor
+            // set the ornamentAlighment to mirrow the ornamentAnchor
+
         }
     }
     var body: some View {
@@ -95,7 +98,11 @@ struct Example037: View {
                 }
             }
             .padding(100)
-            .ornament(visibility: ornamentVisibility, attachmentAnchor: .scene(ornamentAnchor)) {
+            .ornament(
+                visibility: ornamentVisibility,
+                attachmentAnchor: .scene(ornamentAnchor),
+                contentAlignment: ornamentAlignment
+            ) {
                 Text("Ornament")
                     .padding(20)
                     .background(.stepBlue)
