@@ -2,11 +2,11 @@
 //
 //  Title: Example037
 //
-//  Subtitle:
+//  Subtitle: Spatial SwiftUI: Window Ornaments
 //
-//  Description:
+//  Description: Ornaments allow us to decorate our windows with information and controls that may not fit in the main window region.
 //
-//  Type:
+//  Type: Window
 //
 //  Created by Joseph Simpson on 1/20/25.
 
@@ -77,7 +77,6 @@ struct Example037: View {
                                 Image(systemName: "arrow.left")
                             }
 
-
                             Button{
                                 setAnchor(.center)
                             } label: {
@@ -109,6 +108,7 @@ struct Example037: View {
                             } label: {
                                 Image(systemName: "arrow.down.right")
                             }
+
                         }
                     }
                     // Alignment buttons
@@ -194,8 +194,12 @@ struct Example037: View {
 
         }
 
-    }}
+    }
+}
 
 #Preview {
     Example037()
 }
+
+
+

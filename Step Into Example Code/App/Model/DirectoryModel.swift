@@ -327,8 +327,8 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  type: .WINDOW,
                  date: Date("1/20/2025"),
                  isFeatured: true,
-                 subtitle: "Spatial SwiftUI: Window Ornaments.",
-                 description: "Explore some of the anchors we can use for ornaments.")
+                 subtitle: "Spatial SwiftUI: Window Ornaments",
+                 description: "Ornaments allow us to decorate our windows with information and controls that may not fit in the main window region.")
 
     ]
 
