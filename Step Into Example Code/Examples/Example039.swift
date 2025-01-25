@@ -2,11 +2,11 @@
 //
 //  Title: Example039
 //
-//  Subtitle:
+//  Subtitle: RealityKit Basics: Entities and Components
 //
-//  Description:
+//  Description: Taking a deeper look at creating entities with multiple components.
 //
-//  Type:
+//  Type: Volume
 //
 //  Created by Joseph Simpson on 1/25/25.
 
@@ -79,3 +79,4 @@ struct Example039: View {
 #Preview {
     Example039()
 }
+

@@ -6,7 +6,7 @@
 //
 //  Description: Creating primitive shapes in code.
 //
-//  Type: Space
+//  Type: Volume
 //
 //  Created by Joseph Simpson on 1/24/25.
 
