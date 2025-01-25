@@ -341,8 +341,8 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  type: .VOLUME,
                  date: Date("1/24/2025"),
                  isFeatured: true,
-                 subtitle: "RealityKit Basics: RealityView",
-                 description: "Explore RealityView in SwiftUI and RealityKit")
+                 subtitle: "RealityKit Basics: Entities and Components",
+                 description: "Taking a deeper look at creating entities with multiple components.")
 
 
     ]
