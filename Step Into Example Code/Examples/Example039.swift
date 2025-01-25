@@ -63,6 +63,16 @@ struct Example039: View {
 
             // * Note about the material hack above. Once a component is added to an entity, changes to it in code are not reflected on that entity. In the code above, we created a red material and added it to the subject. Then we changed the color to blue and it did not change the color of the subject. This pattern holds true for all components in RealityKit.
         }
+        // You can learn a lot more about system gestures from our series on Input
+        .gesture(TapGesture()
+            .targetedToAnyEntity()
+            .onEnded { value in
+                let currentTransform = value.entity.transform
+                let rotationDelta = simd_quatf(angle: .pi/12, axis: [0, 1, 0])
+                let newOrientation = currentTransform.rotation * rotationDelta
+                value.entity.setOrientation(newOrientation, relativeTo: nil)
+            }
+        )
     }
 }
 
