@@ -330,6 +330,21 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  subtitle: "Spatial SwiftUI: Window Ornaments",
                  description: "Ornaments allow us to decorate our windows with information and controls that may not fit in the main window region.")
 
+        ,Example(title: "Example 038",
+                 type: .VOLUME,
+                 date: Date("1/24/2025"),
+                 isFeatured: true,
+                 subtitle: "RealityKit Basics: Create Shapes",
+                 description: "Creating primitive shapes in code.")
+
+        ,Example(title: "Example 039",
+                 type: .VOLUME,
+                 date: Date("1/24/2025"),
+                 isFeatured: true,
+                 subtitle: "RealityKit Basics: RealityView",
+                 description: "Explore RealityView in SwiftUI and RealityKit")
+
+
     ]
 
 }
