@@ -344,6 +344,13 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  subtitle: "RealityKit Basics: Entities and Components",
                  description: "Taking a deeper look at creating entities with multiple components.")
 
+        ,Example(title: "Example 040",
+                 type: .VOLUME,
+                 date: Date("1/25/2025"),
+                 isFeatured: true,
+                 subtitle: "RealityKit Basics: RealityView",
+                 description: "Exploring a SwiftUI view that contains RealtiyKit content.")
+
 
     ]
 
