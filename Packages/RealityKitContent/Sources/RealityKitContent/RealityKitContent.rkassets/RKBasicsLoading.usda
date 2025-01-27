@@ -1,0 +1,60 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "Reality Composer Pro Version 2.0 (448.60.4)"
+    }
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "Root"
+{
+    def Cube "Base" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        rel material:binding = </Root/MaplePlywood> (
+            bindMaterialAs = "weakerThanDescendants"
+        )
+        double size = 0.8
+        float2 ui:nodegraph:node:pos = (20, 20)
+        int ui:nodegraph:node:stackingOrder = 1
+        quatf xformOp:orient = (1, 0, 0, 0)
+        float3 xformOp:scale = (1, 0.05, 1)
+        float3 xformOp:translate = (0, -0.025, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def "MaplePlywood" (
+        active = true
+        references = @MaplePlywood.usdz@
+    )
+    {
+        token outputs:mtlx:surface.connect = </Root/MaplePlywood/PreviewSurface.outputs:out>
+        float2 ui:nodegraph:node:pos = (20, 20)
+        int ui:nodegraph:node:stackingOrder = 1
+    }
+
+    def "Earth" (
+        active = true
+        prepend references = @Earth.usdz@
+    )
+    {
+        float3 xformOp:scale = (2, 2, 2)
+        float3 xformOp:translate = (0, 0.3, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def "Moon" (
+        active = true
+        prepend references = @Moon.usdz@
+    )
+    {
+        float3 xformOp:scale = (0.5, 0.5, 0.5)
+        float3 xformOp:translate = (-0.3, 0.6, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+}
+

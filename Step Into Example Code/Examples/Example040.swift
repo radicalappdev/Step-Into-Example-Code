@@ -51,7 +51,9 @@ struct Example040: View {
             // Once loaded we can add attachments to the content or add them as children to other entities
             if let subjectPanel = attachments.entity(for: "subjectPanel") {
                 subjectPanel.setPosition([0, 0.3, 0], relativeTo: subjectEntity)
-                content.add(subjectPanel)
+                // Pick one of these options: 
+                content.add(subjectPanel) // add to the root content
+                subjectEntity.addChild(subjectPanel) // or add it as a child of another entoty
             }
 
         } update: { content, attachments in

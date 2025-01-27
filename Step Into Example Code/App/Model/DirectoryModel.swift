@@ -305,28 +305,28 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
         ,Example(title: "Example 034",
                  type: .SPACE,
                  date: Date("1/9/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Detecting a floor with Anchor Entity and Spatial Tracking Session",
                  description: "")
 
         ,Example(title: "Example 035",
                  type: .WINDOW,
                  date: Date("1/10/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Spatial SwiftUI: hoverEffect modifier",
                  description: "Taking a look (😜) at the hoverEffect modifier.")
 
         ,Example(title: "Example 036",
                  type: .WINDOW,
                  date: Date("1/12/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Spatial SwiftUI: ZStack and frame(depth:)",
                  description: "Three simple methods to stack and space views.")
 
         ,Example(title: "Example 037",
                  type: .WINDOW,
                  date: Date("1/20/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Spatial SwiftUI: Window Ornaments",
                  description: "Ornaments allow us to decorate our windows with information and controls that may not fit in the main window region.")
 
@@ -350,6 +350,13 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  isFeatured: true,
                  subtitle: "RealityKit Basics: RealityView",
                  description: "Exploring a SwiftUI view that contains RealtiyKit content.")
+
+        ,Example(title: "Example 041",
+                 type: .VOLUME,
+                 date: Date("1/26/2025"),
+                 isFeatured: true,
+                 subtitle: "RealityKit Basics: Loading content from Reality Composer Pro",
+                 description: "Loading scenes and assets RealityView.")
 
 
     ]
