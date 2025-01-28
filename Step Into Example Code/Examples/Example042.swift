@@ -1,20 +1,20 @@
 //  Step Into Vision - Example Code
 //
-//  Title: Example041
+//  Title: Example042
 //
-//  Subtitle: RealityKit Basics: Loading content from Reality Composer Pro
+//  Subtitle:
 //
-//  Description: Loading scenes and assets RealityView.
+//  Description:
 //
-//  Type: Volume
+//  Type:
 //
-//  Created by Joseph Simpson on 1/27/25.
+//  Created by Joseph Simpson on 1/28/25.
 
 import SwiftUI
 import RealityKit
 import RealityKitContent
 
-struct Example041: View {
+struct Example042: View {
     var body: some View {
         RealityView { content in
 
@@ -37,6 +37,6 @@ struct Example041: View {
     }
 }
 
-#Preview("Volume", windowStyle: .volumetric) {
-    Example041()
+#Preview {
+    Example042()
 }

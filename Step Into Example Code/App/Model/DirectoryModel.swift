@@ -358,6 +358,13 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  subtitle: "RealityKit Basics: Loading content from Reality Composer Pro",
                  description: "Loading scenes and assets RealityView.")
 
+        ,Example(title: "Example 042",
+                 type: .VOLUME,
+                 date: Date("1/27/2025"),
+                 isFeatured: true,
+                 subtitle: "RealityKit Basics: Interaction",
+                 description: "Using system gestures to interact with an entity.")
+
 
     ]
 
