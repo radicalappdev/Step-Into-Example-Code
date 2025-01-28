@@ -2,11 +2,11 @@
 //
 //  Title: Example043
 //
-//  Subtitle:
+//  Subtitle: Spatial SwiftUI: Volume Ornaments
 //
-//  Description:
+//  Description: Ornaments on Volumes work much like Ornaments on Windows. Volumes have more anchors and a feature to reorient them when them when a user moves around the volume.
 //
-//  Type:
+//  Type: Volume
 //
 //  Created by Joseph Simpson on 1/28/25.
 
