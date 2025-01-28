@@ -365,6 +365,13 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  subtitle: "RealityKit Basics: Interaction",
                  description: "Using system gestures to interact with an entity.")
 
+        ,Example(title: "Example 043",
+                 type: .VOLUME,
+                 date: Date("1/28/2025"),
+                 isFeatured: true,
+                 subtitle: "Spatial SwiftUI: Volume Ornaments",
+                 description: "Ornaments on Volumes work much like Ornaments on Windows. Volumes have more anchors and a feature to reorient them when them when a user moves around the volume.")
+
 
     ]
 
