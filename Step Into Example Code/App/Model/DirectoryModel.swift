@@ -372,6 +372,13 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  subtitle: "Spatial SwiftUI: Volume Ornaments",
                  description: "Ornaments on Volumes work much like Ornaments on Windows. Volumes have more anchors and a feature to reorient them when them when a user moves around the volume.")
 
+        ,Example(title: "Example 044",
+                 type: .WINDOW_ALT,
+                 date: Date("2/3/2025"),
+                 isFeatured: true,
+                 subtitle: "Spatial SwiftUI: Window Toolbars",
+                 description: "SwiftUI Toolbars are presented as Ornaments at the bottom of the window.")
+
 
     ]
 
