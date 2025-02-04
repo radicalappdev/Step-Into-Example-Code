@@ -256,7 +256,7 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
         ,Example(title: "Example 027",
                 type: .WINDOW,
                 date: Date("1/9/2024"),
-                isFeatured: true,
+                isFeatured: false,
                 subtitle: "Spatial SwiftUI: shadow modifier",
                 description: "Using shadows on 2D views to convey depth.")
 
@@ -291,7 +291,7 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
         ,Example(title: "Example 032",
                  type: .WINDOW_ALT,
                  date: Date("1/6/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Spatial SwiftUI: rotation3DEffect",
                  description: "Using rotation3DEffect to rotate views in a window.")
 
@@ -333,28 +333,28 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
         ,Example(title: "Example 038",
                  type: .VOLUME,
                  date: Date("1/24/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "RealityKit Basics: Create Shapes",
                  description: "Creating primitive shapes in code.")
 
         ,Example(title: "Example 039",
                  type: .VOLUME,
                  date: Date("1/24/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "RealityKit Basics: Entities and Components",
                  description: "Taking a deeper look at creating entities with multiple components.")
 
         ,Example(title: "Example 040",
                  type: .VOLUME,
                  date: Date("1/25/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "RealityKit Basics: RealityView",
                  description: "Exploring a SwiftUI view that contains RealtiyKit content.")
 
         ,Example(title: "Example 041",
                  type: .VOLUME,
                  date: Date("1/26/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "RealityKit Basics: Loading content from Reality Composer Pro",
                  description: "Loading scenes and assets RealityView.")
 
@@ -378,6 +378,13 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  isFeatured: true,
                  subtitle: "Spatial SwiftUI: Window Toolbars",
                  description: "SwiftUI Toolbars are presented as Ornaments at the bottom of the window.")
+
+        ,Example(title: "Example 045",
+                 type: .WINDOW,
+                 date: Date("2/3/2025"),
+                 isFeatured: true,
+                 subtitle: "Spatial SwiftUI: Window TabViews",
+                 description: "SwiftUI TabViews are presented as Ornaments at the left side of the window.")
 
 
     ]
