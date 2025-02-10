@@ -386,6 +386,13 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  subtitle: "Spatial SwiftUI: Window TabViews",
                  description: "SwiftUI TabViews are presented as Ornaments at the left side of the window.")
 
+        ,Example(title: "Example 046",
+                 type: .SPACE,
+                 date: Date("2/10/2025"),
+                 isFeatured: true,
+                 subtitle: "Drag Gesture with pivot",
+                 description: "")
+
 
     ]
 
