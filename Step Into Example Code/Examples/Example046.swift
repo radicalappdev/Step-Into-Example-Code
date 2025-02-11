@@ -35,6 +35,7 @@ fileprivate struct DragGestureWithPivot046: ViewModifier {
 
     @State var isDragging: Bool = false
     @State var initialPosition: SIMD3<Float> = .zero
+    @State var initialOrientation: simd_quatf?
     @State var pivotEntity: Entity = Entity()
 
     // TODO: cache the entities original parent so we can restore it when the gesture ends
@@ -69,6 +70,10 @@ fileprivate struct DragGestureWithPivot046: ViewModifier {
 
                         } else {
                             pivotEntity.move(to: pivotTransform, relativeTo: nil, duration: 0.2)
+                        }
+
+                        if let initialOrientation = initialOrientation {
+                            pivotEntity.setOrientation(initialOrientation, relativeTo: nil)
                         }
 
 
