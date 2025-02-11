@@ -49,12 +49,22 @@ fileprivate struct DragGestureWithPivot046: ViewModifier {
                             initialPosition = value.entity.position
                         }
 
-                        // Calculate vector by which to move the entity
+                        // Calculate raw movement vector
                         let movement = value.convert(value.gestureValue.translation3D, from: .local, to: .scene)
                         
-
-                        // Add the initial position and the movement to get the new position
-                        value.entity.position = initialPosition + movement
+                        // Convert to polar coordinates (angle and magnitude)
+                        let magnitude = sqrt(movement.x * movement.x + movement.z * movement.z)
+                        let angle = atan2(movement.z, movement.x)
+                        
+                        // Create smooth circular movement
+                        let smoothedMovement = SIMD3<Float>(
+                            magnitude * cos(angle),
+                            movement.y,
+                            magnitude * sin(angle)
+                        )
+                        
+                        // Apply the smoothed movement
+                        value.entity.position = initialPosition + smoothedMovement
 
                     }
                     .onEnded { value in
