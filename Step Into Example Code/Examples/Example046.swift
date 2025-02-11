@@ -35,10 +35,6 @@ fileprivate struct DragGestureWithPivot046: ViewModifier {
 
     @State var isDragging: Bool = false
     @State var initialPosition: SIMD3<Float> = .zero
-    @State var initialOrientation: simd_quatf?
-    @State var pivotEntity: Entity = Entity()
-
-    // TODO: cache the entities original parent so we can restore it when the gesture ends
 
     func body(content: Content) -> some View {
         content
@@ -47,41 +43,24 @@ fileprivate struct DragGestureWithPivot046: ViewModifier {
                     .targetedToAnyEntity()
                     .onChanged { value in
 
-                        var pivotTransform = Transform()
-
-                        if let inputDevicePose = value.inputDevicePose3D {
-
-                            pivotTransform.scale = .one
-                            pivotTransform.translation = value.convert(inputDevicePose.position, from: .local, to: .scene)
-                            pivotTransform.rotation = value.convert(AffineTransform3D(rotation: inputDevicePose.rotation), from: .local, to: .scene).rotation
-
-                        } else {
-
-                            pivotTransform.translation = value.convert(value.location3D, from: .local, to: .scene)
-                        }
-
+                        // We we start the gesture, cache the entity position
                         if !isDragging {
                             isDragging = true
                             initialPosition = value.entity.position
-                            value.entity.parent?.addChild(pivotEntity)
-
-                            pivotEntity.move(to: pivotTransform, relativeTo: nil)
-                            pivotEntity.addChild(value.entity, preservingWorldTransform: true)
-
-                        } else {
-                            pivotEntity.move(to: pivotTransform, relativeTo: nil, duration: 0.2)
                         }
 
-                        if let initialOrientation = initialOrientation {
-                            pivotEntity.setOrientation(initialOrientation, relativeTo: nil)
-                        }
+                        // Calculate vector by which to move the entity
+                        let movement = value.convert(value.gestureValue.translation3D, from: .local, to: .scene)
+                        
 
+                        // Add the initial position and the movement to get the new position
+                        value.entity.position = initialPosition + movement
 
                     }
                     .onEnded { value in
+                        // Clean up when the gesture has ended
                         isDragging = false
-                        pivotEntity = Entity()
-                        // TODO: remove the value.entity from the pivotEntity and place it back where it started in the hierarchy
+                        initialPosition = .zero
                     }
             )
 
