@@ -1,5 +1,5 @@
 {
-  "advancedEditorSelectedIdentifier" : "ProjectBrowser",
+  "advancedEditorSelectedIdentifier" : "BehaviorsPluginID",
   "openSceneRelativePaths" : [
     "AnchorLabs.usda",
     "HandTrackingLabsPhysics.usda",
@@ -1628,5 +1628,5 @@
   "sceneViewportBackgroundColors" : {
 
   },
-  "selectedSceneRelativePath" : "GestureLabs.usda"
+  "selectedSceneRelativePath" : "RKBasicsLoading.usda"
 }

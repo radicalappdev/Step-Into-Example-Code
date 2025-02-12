@@ -15,6 +15,12 @@ import RealityKit
 import RealityKitContent
 
 struct Example042: View {
+
+    @State var earth: Entity = Entity()
+    @State var earthTransform: Transform = Transform()
+    @State var moon: Entity = Entity()
+    @State var moonTransform: Transform = Transform()
+
     var body: some View {
         RealityView { content in
 
@@ -29,11 +35,27 @@ struct Example042: View {
 
                 // search the scene for an entity with a name
                 if let earth = scene.findEntity(named: "Earth") {
-                    print("Earth entity found \(earth)")
+                    self.earth = earth
+                    self.earthTransform = earth.transform
+                }
+
+                if let moon = scene.findEntity(named: "Moon") {
+                    self.moon = moon
+                    self.moonTransform = moon.transform
                 }
             }
 
         }
+        .gesture(TapGesture(count: 2).targetedToEntity(earth)
+            .onEnded({ value in
+                value.entity.move(to: earthTransform, relativeTo: earth, duration: 0.3)
+            })
+        )
+        .gesture(TapGesture().targetedToEntity(moon)
+            .onEnded({ value in
+                _ = value.entity.applyTapForBehaviors()
+            })
+        )
     }
 }
 

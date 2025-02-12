@@ -10,7 +10,7 @@
 
 def Xform "Root"
 {
-    reorder nameChildren = ["EarthSpin", "SceneLoop", "MoonOrbit", "MoonSpin"]
+    reorder nameChildren = ["Base", "MaplePlywood", "Moon", "Earth", "MoonTimelineExample"]
     def Cube "Base" (
         active = true
         prepend apiSchemas = ["MaterialBindingAPI"]
@@ -76,151 +76,85 @@ def Xform "Root"
                 }
             }
         }
-
-        def RealityKitComponent "RCP_BehaviorsContainer"
-        {
-            rel behaviors = </Root/Earth/OnTap>
-            uniform token info:id = "RCP.BehaviorsContainer"
-        }
-
-        def Preliminary_Behavior "OnTap"
-        {
-            rel actions = </Root/Earth/OnTap/Action>
-            uniform bool exclusive
-            rel triggers = </Root/Earth/OnTap/Trigger>
-
-            def Preliminary_Trigger "Trigger"
-            {
-                rel affectedObjects = </Root/Earth>
-                token info:id = "TapGesture"
-            }
-
-            def Preliminary_Action "Action"
-            {
-                rel affectedObjects = </Root>
-                rel animationLibraryKey = </Root/EarthSpin>
-                rel animationLibraryKeyOverrideKey = </Root/Earth/OnTap/Trigger>
-                token info:id = "PlayTimeline"
-                int loops = 0
-                int performCount = 1
-                token type = "serial"
-            }
-        }
-
-        def "Moon" (
-            active = true
-            references = @Moon.usdz@
-        )
-        {
-            quatf xformOp:orient = (0.97922283, 0.20278716, 0, 0)
-            float3 xformOp:scale = (0.25, 0.24999997, 0.24999997)
-            float3 xformOp:translate = (0.192, 0, -0.05957214)
-            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
-        }
     }
 
-    def RealityKitTimeline "EarthSpin"
+    def RealityKitTimeline "MoonTimelineExample"
     {
-        reorder nameChildren = ["Track2", "Track"]
-        def RealityKitTrack "Track2"
-        {
-            def RealityKitAction "Spin"
-            {
-                string actionKind = "spin"
-                int blendLayer = 400
-                double duration = 24
-                uniform token info:id = "8DB0B3DB-5552-4E6D-B2CC-AC0136960CFF"
-                double startTime = 0
-                rel target = </Root/Earth>
-
-                def RealityKitStruct "timingFunction"
-                {
-                    token type = "linear"
-                }
-            }
-        }
-    }
-
-    def RealityKitTimeline "SceneLoop"
-    {
-        reorder nameChildren = ["Track", "Track2", "Track3"]
-        def RealityKitTrack "Track"
-        {
-            def RealityKitAction "Play_Timeline"
-            {
-                string actionKind = "timeline"
-                int blendLayer = 500
-                double duration = 24
-                uniform token info:id = "DD8831F2-7AD8-4DC9-A010-32BBCF621514"
-                double loopCount = 0
-                double startTime = 0
-                rel timeline = </Root/EarthSpin>
-            }
-        }
-
-        def RealityKitTrack "Track2"
-        {
-            def RealityKitAction "Play_Timeline"
-            {
-                string actionKind = "timeline"
-                int blendLayer = 500
-                double duration = 27.3
-                uniform token info:id = "A6B5A5B9-BD7E-46BC-B65A-3AE391DFF999"
-                double loopCount = 0
-                double startTime = 0
-                rel timeline = </Root/MoonOrbit>
-            }
-        }
-
-        def RealityKitTrack "Track3"
-        {
-            def RealityKitAction "Play_Timeline"
-            {
-                string actionKind = "timeline"
-                int blendLayer = 500
-                double duration = 27.3
-                uniform token info:id = "DCBD95D6-CC5A-4434-8414-1B91188CBE8A"
-                double loopCount = 0
-                double startTime = 0
-                rel timeline = </Root/MoonSpin>
-            }
-        }
-    }
-
-    def RealityKitTimeline "MoonOrbit"
-    {
+        reorder nameChildren = ["Track", "Track2", "Track3", "Track", "Track4"]
         def RealityKitTrack "Track"
         {
             def RealityKitAction "Orbit"
             {
                 string actionKind = "orbit"
                 int blendLayer = 300
-                double duration = 27.3
+                double duration = 3
                 uniform token info:id = "A893AA50-BBCF-4985-B777-7ADFB1F5248A"
                 rel pivotEntity = </Root/Earth>
                 double startTime = 0
-                rel target = </Root/Earth/Moon>
+                rel target = </Root/Moon>
+                float2 ui:nodegraph:node:pos = (20, 20)
+                int ui:nodegraph:node:stackingOrder = 1
             }
         }
-    }
 
-    def RealityKitTimeline "MoonSpin"
-    {
-        def RealityKitTrack "Track"
+        def RealityKitTrack "Track4"
         {
             def RealityKitAction "Spin"
             {
                 string actionKind = "spin"
                 int blendLayer = 400
-                double duration = 27.3
+                double duration = 3
                 uniform token info:id = "70442AE0-E90A-49A1-905D-C517661E9D60"
                 double startTime = 0
-                rel target = </Root/Earth>
+                rel target = </Root/Moon>
+                float2 ui:nodegraph:node:pos = (20, 20)
+                int ui:nodegraph:node:stackingOrder = 1
 
                 def RealityKitStruct "timingFunction"
                 {
                     token type = "linear"
                 }
+            }
+        }
+    }
+
+    def "Moon" (
+        active = true
+        references = @Moon.usdz@
+    )
+    {
+        quatf xformOp:orient = (1, -6.433717e-10, 0, 0)
+        float3 xformOp:scale = (0.5, 0.49999997, 0.49999997)
+        float3 xformOp:translate = (0.384, 0.25268215, -0.109345235)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def RealityKitComponent "RCP_BehaviorsContainer"
+        {
+            rel behaviors = </Root/Moon/OnTap>
+            uniform token info:id = "RCP.BehaviorsContainer"
+        }
+
+        def Preliminary_Behavior "OnTap"
+        {
+            rel actions = </Root/Moon/OnTap/Action>
+            uniform bool exclusive
+            rel triggers = </Root/Moon/OnTap/Trigger>
+
+            def Preliminary_Trigger "Trigger"
+            {
+                rel affectedObjects = </Root/Moon>
+                token info:id = "TapGesture"
+            }
+
+            def Preliminary_Action "Action"
+            {
+                rel affectedObjects = </Root>
+                rel animationLibraryKey = </Root/MoonTimelineExample>
+                rel animationLibraryKeyOverrideKey = </Root/Moon/OnTap/Trigger>
+                token info:id = "PlayTimeline"
+                int loops = 0
+                int performCount = 1
+                token type = "serial"
             }
         }
     }
