@@ -363,7 +363,7 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  date: Date("1/27/2025"),
                  isFeatured: true,
                  subtitle: "RealityKit Basics: Interaction",
-                 description: "Using system gestures to interact with an entity.")
+                 description: "Using system gestures to interact with entities in RealityKit.")
 
         ,Example(title: "Example 043",
                  type: .VOLUME,
