@@ -393,6 +393,13 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  subtitle: "Drag Gesture with pivot",
                  description: "")
 
+        ,Example(title: "Example 047",
+                 type: .WINDOW_ALT,
+                 date: Date("2/13/2025"),
+                 isFeatured: true,
+                 subtitle: "Spatial SwiftUI: Volume Toolbars",
+                 description: "SwiftUI Toolbars are presented as Ornaments at the bottom of the volume.")
+
 
     ]
 
