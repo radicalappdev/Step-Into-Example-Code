@@ -17,6 +17,8 @@ import RealityKitContent
 struct Example047: View {
 
     @State private var transformMode: IndirectTransformMode = .none
+    @State var earth: Entity = Entity()
+    @State var earthTransform: Transform = Transform()
 
     var body: some View {
         RealityView { content in
@@ -27,12 +29,30 @@ struct Example047: View {
                 // Lower the entire scene to the bottom of the volume
                 scene.position.y = -0.4
 
+                // search the scene for an entity named "Earth"
+                if let earth = scene.findEntity(named: "Earth") {
+                    self.earth = earth // capture the entity in state, used to target gestures
+                    self.earthTransform = earth.transform // capture transform, used to reset
+                }
+
             }
         }
         .modifier(IndirectTransformGesture(mode: $transformMode))
         .toolbar {
             // .bottomOrnament seems to be the only placement that works
             ToolbarItemGroup(placement: .bottomOrnament) {
+
+                Button {
+                    earth.move(to: earthTransform, relativeTo: earth.parent!, duration: 0.3)
+                } label: {
+                    Image(systemName: "arrow.clockwise")
+
+                }
+        
+
+                Spacer()
+                Divider()
+                Spacer()
 
                 Button {
                     transformMode = .none
@@ -43,11 +63,6 @@ struct Example047: View {
                 .background(transformMode == .none ? .stepRed : Color.clear)
                 .clipShape(.capsule)
 
-                Spacer()
-                Divider()
-                Spacer()
-
-
                 Button {
                     transformMode = .move
                 } label: {
@@ -55,6 +70,7 @@ struct Example047: View {
                 }
                 .background(transformMode == .move ? .stepRed : Color.clear)
                 .clipShape(.capsule)
+
                 Button {
                     transformMode = .rotate
                 } label: {
@@ -62,6 +78,7 @@ struct Example047: View {
                 }
                 .background(transformMode == .rotate ? .stepRed : Color.clear)
                 .clipShape(.capsule)
+
                 Button {
                     transformMode = .scale
                 } label: {
