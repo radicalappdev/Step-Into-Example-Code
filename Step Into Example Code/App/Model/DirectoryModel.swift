@@ -394,7 +394,7 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  description: "")
 
         ,Example(title: "Example 047",
-                 type: .WINDOW_ALT,
+                 type: .VOLUME,
                  date: Date("2/13/2025"),
                  isFeatured: true,
                  subtitle: "Spatial SwiftUI: Volume Toolbars",
