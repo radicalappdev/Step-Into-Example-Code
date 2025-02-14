@@ -400,6 +400,13 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  subtitle: "Spatial SwiftUI: Volume Toolbars",
                  description: "SwiftUI Toolbars are presented as Ornaments at the bottom of the volume.")
 
+        ,Example(title: "Example 048",
+                 type: .VOLUME,
+                 date: Date("2/14/2025"),
+                 isFeatured: true,
+                 subtitle: "Spatial SwiftUI: Volume TabViews",
+                 description: "SwiftUI TabViews are presented as Ornaments at the front leading anchor of the volume.")
+
 
     ]
 
