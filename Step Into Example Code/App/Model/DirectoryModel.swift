@@ -407,6 +407,13 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  subtitle: "Spatial SwiftUI: Volume TabViews",
                  description: "SwiftUI TabViews are presented as Ornaments at the front leading anchor of the volume.")
 
+        ,Example(title: "Example 049",
+                 type: .VOLUME,
+                 date: Date("2/17/2025"),
+                 isFeatured: true,
+                 subtitle: "RealityKit Basics: update closure",
+                 description: "We can reference State in the update closure to perform changes in our RealityView.")
+
 
     ]
 
