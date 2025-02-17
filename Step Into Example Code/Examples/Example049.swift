@@ -2,11 +2,11 @@
 //
 //  Title: Example049
 //
-//  Subtitle:
+//  Subtitle: RealityKit Basics: update closure
 //
-//  Description:
+//  Description: The update closure will run when any referenced state changes. We can reach into our RealityView content to modify entities or components.
 //
-//  Type:
+//  Type: Volume
 //
 //  Created by Joseph Simpson on 2/17/25.
 
@@ -26,14 +26,15 @@ struct Example049: View {
                 scene.position.y = -0.4
             }
         } update: { content in
+
+            // 3. Find the Earth and Moon entities and update their visibility based on our state
             if let earth = content.entities.first?.findEntity(named: "Earth"), let moon = content.entities.first?.findEntity(named: "Moon") {
 
                 earth.isEnabled = showEarth
                 moon.isEnabled = showMoon
-
             }
         }
-        // SwiftUI toolbar and toggles to modify our state
+        // 2. SwiftUI toolbar and toggles to modify our state
         .toolbar {
             ToolbarItem(placement: .bottomOrnament, content: {
                 HStack {
@@ -50,3 +51,6 @@ struct Example049: View {
 #Preview {
     Example049()
 }
+
+
+

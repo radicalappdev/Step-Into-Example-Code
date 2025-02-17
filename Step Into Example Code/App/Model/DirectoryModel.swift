@@ -412,7 +412,7 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  date: Date("2/17/2025"),
                  isFeatured: true,
                  subtitle: "RealityKit Basics: update closure",
-                 description: "We can reference State in the update closure to perform changes in our RealityView.")
+                 description: "The update closure will run when any referenced state changes. We can reach into our RealityView content to modify entities or components.")
 
 
     ]
