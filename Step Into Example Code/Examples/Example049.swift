@@ -16,29 +16,39 @@ import RealityKitContent
 
 struct Example049: View {
 
+    @State var showMoon = true
+    @State var showEarth = true
+
 
     var body: some View {
-        RealityView { content, attachments in
+        RealityView { content in
 
             if let scene = try? await Entity(named: "RKBasicsLoading", in: realityKitContentBundle) {
                 content.add(scene)
                 scene.position.y = -0.4
+            }
 
+        } update: { content in
 
+            if let earth = content.entities.first?.findEntity(named: "Earth"), let moon = content.entities.first?.findEntity(named: "Moon") {
+
+                earth.isEnabled = showEarth
+                moon.isEnabled = showMoon
 
             }
 
-        } update: { content, attachments in
 
-            if let earth = content.entities.first?.findEntity(named: "Earth") {
-
-            }
-
-
-        } attachments: {
-            Attachment(id: "AttachmentContent") {
-                Text("")
-            }
+        }
+        // SwiftUI toolbar and toggles to modify our state
+        .toolbar {
+            ToolbarItem(placement: .bottomOrnament, content: {
+                HStack {
+                    Toggle("Show Earth", isOn: $showEarth)
+                        .toggleStyle(.button)
+                    Toggle("Show Moon", isOn: $showMoon)
+                        .toggleStyle(.button)
+                }
+            })
         }
     }
 }
