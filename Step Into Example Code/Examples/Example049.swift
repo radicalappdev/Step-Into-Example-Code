@@ -19,25 +19,19 @@ struct Example049: View {
     @State var showMoon = true
     @State var showEarth = true
 
-
     var body: some View {
         RealityView { content in
-
             if let scene = try? await Entity(named: "RKBasicsLoading", in: realityKitContentBundle) {
                 content.add(scene)
                 scene.position.y = -0.4
             }
-
         } update: { content in
-
             if let earth = content.entities.first?.findEntity(named: "Earth"), let moon = content.entities.first?.findEntity(named: "Moon") {
 
                 earth.isEnabled = showEarth
                 moon.isEnabled = showMoon
 
             }
-
-
         }
         // SwiftUI toolbar and toggles to modify our state
         .toolbar {
