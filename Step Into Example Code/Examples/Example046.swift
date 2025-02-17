@@ -42,30 +42,24 @@ fileprivate struct DragGestureWithPivot046: ViewModifier {
                 DragGesture()
                     .targetedToAnyEntity()
                     .onChanged { value in
-
-                        // We we start the gesture, cache the entity position
                         if !isDragging {
                             isDragging = true
                             initialPosition = value.entity.position
                         }
-
-                        // Calculate raw movement vector
-                        let movement = value.convert(value.gestureValue.translation3D, from: .local, to: .scene)
                         
-                        // Convert to polar coordinates (angle and magnitude)
-                        let magnitude = sqrt(movement.x * movement.x + movement.z * movement.z)
-                        let angle = atan2(movement.z, movement.x)
+                        // Get the current location in global space
+                        let currentLocation = value.location3D
+                        let startLocation = value.startLocation3D
                         
-                        // Create smooth circular movement
-                        let smoothedMovement = SIMD3<Float>(
-                            magnitude * cos(angle),
-                            movement.y,
-                            magnitude * sin(angle)
-                        )
+                        // Convert both points to scene space
+                        let currentInScene = value.convert(currentLocation, from: .global, to: .scene)
+                        let startInScene = value.convert(startLocation, from: .global, to: .scene)
                         
-                        // Apply the smoothed movement
-                        value.entity.position = initialPosition + smoothedMovement
-
+                        // Calculate movement in scene space
+                        let movement = currentInScene - startInScene
+                        
+                        // Apply movement
+                        value.entity.position = initialPosition + movement
                     }
                     .onEnded { value in
                         // Clean up when the gesture has ended
