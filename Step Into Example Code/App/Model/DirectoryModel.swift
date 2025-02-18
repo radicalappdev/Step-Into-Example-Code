@@ -414,6 +414,14 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  subtitle: "RealityKit Basics: update closure",
                  description: "The update closure will run when any referenced state changes. We can reach into our RealityView content to modify entities or components.")
 
+        ,Example(title: "Example 050",
+                 type: .VOLUME,
+                 date: Date("2/18/2025"),
+                 isFeatured: true,
+                 subtitle: "RealityKit Basics: attachments",
+                 description: "We can create 2D SwiftUI attachments and add them to out 3D scenes as entities.")
+
+
 
     ]
 
