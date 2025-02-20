@@ -42,24 +42,26 @@ fileprivate struct DragGestureWithPivot046: ViewModifier {
                 DragGesture()
                     .targetedToAnyEntity()
                     .onChanged { value in
+                        // We we start the gesture, cache the entity position
                         if !isDragging {
                             isDragging = true
                             initialPosition = value.entity.position
                         }
-                        
-                        // Get the current location in global space
-                        let currentLocation = value.location3D
-                        let startLocation = value.startLocation3D
-                        
-                        // Convert both points to scene space
-                        let currentInScene = value.convert(currentLocation, from: .global, to: .scene)
-                        let startInScene = value.convert(startLocation, from: .global, to: .scene)
-                        
-                        // Calculate movement in scene space
-                        let movement = currentInScene - startInScene
-                        
-                        // Apply movement
-                        value.entity.position = initialPosition + movement
+
+                        guard let entityParent = value.entity.parent else { return }
+
+                        let gesturePosition = value.convert(value.location3D, from: .global, to: entityParent)
+                        let deltaPosition = gesturePosition - value.convert(value.startLocation3D, from: .global, to: entityParent)
+                        let newPos = initialPosition + deltaPosition
+
+                        let newTransform = Transform(
+                            scale: value.entity.scale,
+                            rotation: value.entity.orientation,
+                            translation: newPos
+                        )
+
+                        value.entity.move(to: newTransform, relativeTo: entityParent, duration: 0.1)
+
                     }
                     .onEnded { value in
                         // Clean up when the gesture has ended
