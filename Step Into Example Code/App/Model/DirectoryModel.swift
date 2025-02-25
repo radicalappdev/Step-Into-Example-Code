@@ -425,8 +425,8 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  type: .WINDOW,
                  date: Date("2/25/2025"),
                  isFeatured: true,
-                 subtitle: "RealityKit Basics: Model3D",
-                 description: "")
+                 subtitle: "Spatial SwiftUI: Model3D",
+                 description: "Model3D is a simple view that can load a USD or `.reality` file and display it in your SwiftUI view.")
 
 
 

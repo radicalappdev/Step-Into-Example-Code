@@ -2,11 +2,11 @@
 //
 //  Title: Example051
 //
-//  Subtitle:
+//  Subtitle: Spatial SwiftUI: Model3D
 //
-//  Description:
+//  Description: Model3D is a simple view that can load a USD or `.reality` file and display it in your SwiftUI view.
 //
-//  Type:
+//  Type: Window
 //
 //  Created by Joseph Simpson on 2/25/25.
 
@@ -35,7 +35,6 @@ struct Example051: View {
                         withAnimation {
                             isActive.toggle()
                         }
-
                     }
                 ModelView(name: "Moon")
                     .frame(width: 40, height: 40)
@@ -69,10 +68,11 @@ fileprivate struct ModelView: View {
                 ProgressView()
             }
         }
-
     }
 }
 
 #Preview {
     Example051()
 }
+
+
