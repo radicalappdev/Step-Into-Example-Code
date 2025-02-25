@@ -390,8 +390,8 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  type: .SPACE,
                  date: Date("2/10/2025"),
                  isFeatured: true,
-                 subtitle: "Drag Gesture with pivot",
-                 description: "")
+                 subtitle: "Drag Gesture with Pivot",
+                 description: "We can use the location3D values of the gesture to improve dragging when the user turns to face another direction.")
 
         ,Example(title: "Example 047",
                  type: .VOLUME,
@@ -420,6 +420,13 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  isFeatured: true,
                  subtitle: "RealityKit Basics: attachments",
                  description: "We can create 2D SwiftUI attachments and add them to out 3D scenes as entities.")
+
+        ,Example(title: "Example 051",
+                 type: .WINDOW,
+                 date: Date("2/25/2025"),
+                 isFeatured: true,
+                 subtitle: "RealityKit Basics: Model3D",
+                 description: "")
 
 
 

@@ -2,11 +2,11 @@
 //
 //  Title: Example046
 //
-//  Subtitle:
+//  Subtitle: Drag Gesture with Pivot
 //
-//  Description:
+//  Description: We can use the location3D values of the gesture to improve dragging when the user turns to face another direction.
 //
-//  Type:
+//  Type: Space
 //
 //  Created by Joseph Simpson on 2/10/25.
 
@@ -50,10 +50,16 @@ fileprivate struct DragGestureWithPivot046: ViewModifier {
 
                         guard let entityParent = value.entity.parent else { return }
 
+                        // The current location: where we are in the gesture
                         let gesturePosition = value.convert(value.location3D, from: .global, to: entityParent)
+
+                        // Minus the start location of the gesture
                         let deltaPosition = gesturePosition - value.convert(value.startLocation3D, from: .global, to: entityParent)
+
+                        // Plus the initial position of the entity
                         let newPos = initialPosition + deltaPosition
 
+                        // Optional: using move(to:) to smooth out the movement
                         let newTransform = Transform(
                             scale: value.entity.scale,
                             rotation: value.entity.orientation,
@@ -62,6 +68,8 @@ fileprivate struct DragGestureWithPivot046: ViewModifier {
 
                         value.entity.move(to: newTransform, relativeTo: entityParent, duration: 0.1)
 
+                        // Or set the position directly
+                        // value.entity.position = newPos
                     }
                     .onEnded { value in
                         // Clean up when the gesture has ended
