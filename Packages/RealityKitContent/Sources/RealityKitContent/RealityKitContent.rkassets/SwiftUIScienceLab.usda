@@ -1,0 +1,87 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "Reality Composer Pro Version 2.0 (448.60.4)"
+    }
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "Root"
+{
+    def Cube "Base" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        rel material:binding = </Root/MaplePlywood> (
+            bindMaterialAs = "weakerThanDescendants"
+        )
+        double size = 0.8
+        float2 ui:nodegraph:node:pos = (40, 40)
+        int ui:nodegraph:node:stackingOrder = 2
+        quatf xformOp:orient = (1, 0, 0, 0)
+        float3 xformOp:scale = (1, 0.05, 1)
+        float3 xformOp:translate = (0, -0.025, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def "MaplePlywood" (
+        active = true
+        references = @MaplePlywood.usdz@
+    )
+    {
+        token outputs:mtlx:surface.connect = </Root/MaplePlywood/PreviewSurface.outputs:out>
+        float2 ui:nodegraph:node:pos = (40, 40)
+        int ui:nodegraph:node:stackingOrder = 2
+    }
+
+    def "Beaker" (
+        active = true
+        references = @Beaker.usdz@
+    )
+    {
+        reorder nameChildren = ["geom", "Earth"]
+        quatf xformOp:orient = (1, 0, 0, 0)
+        float3 xformOp:scale = (2, 2, 2)
+        float3 xformOp:translate = (-0.15365876, -2.9802322e-8, 0.027758062)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def "Earth" (
+            active = true
+            references = @Earth.usdz@
+        )
+        {
+            quatf xformOp:orient = (0.99999994, 0, 0, 0)
+            float3 xformOp:scale = (0.39999995, 0.39999995, 0.39999995)
+            float3 xformOp:translate = (0.00533472, 0.044925272, 0.0014227033)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+        }
+    }
+
+    def "Stirplate" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (0, -0.31999862, 0)
+        }
+        references = @Stirplate.usdz@
+    )
+    {
+        quatf xformOp:orient = (0.9872274, 0, -0.15931751, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (0.18721904, 0, 0.07830721)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def "Moon" (
+        active = true
+        references = @Moon.usdz@
+    )
+    {
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (0.19769177, 0.2077262, 0.04151866)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+}
+

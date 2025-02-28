@@ -361,28 +361,28 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
         ,Example(title: "Example 042",
                  type: .VOLUME,
                  date: Date("1/27/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "RealityKit Basics: Interaction",
                  description: "Using system gestures to interact with entities in RealityKit.")
 
         ,Example(title: "Example 043",
                  type: .VOLUME,
                  date: Date("1/28/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Spatial SwiftUI: Volume Ornaments",
                  description: "Ornaments on Volumes work much like Ornaments on Windows. Volumes have more anchors and a feature to reorient them when them when a user moves around the volume.")
 
         ,Example(title: "Example 044",
                  type: .WINDOW_ALT,
                  date: Date("2/3/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Spatial SwiftUI: Window Toolbars",
                  description: "SwiftUI Toolbars are presented as Ornaments at the bottom of the window.")
 
         ,Example(title: "Example 045",
                  type: .WINDOW,
                  date: Date("2/3/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Spatial SwiftUI: Window TabViews",
                  description: "SwiftUI TabViews are presented as Ornaments at the left side of the window.")
 
@@ -396,28 +396,28 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
         ,Example(title: "Example 047",
                  type: .VOLUME,
                  date: Date("2/13/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Spatial SwiftUI: Volume Toolbars",
                  description: "SwiftUI Toolbars are presented as Ornaments at the bottom of the volume.")
 
         ,Example(title: "Example 048",
                  type: .VOLUME,
                  date: Date("2/14/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Spatial SwiftUI: Volume TabViews",
                  description: "SwiftUI TabViews are presented as Ornaments at the front leading anchor of the volume.")
 
         ,Example(title: "Example 049",
                  type: .VOLUME,
                  date: Date("2/17/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "RealityKit Basics: update closure",
                  description: "The update closure will run when any referenced state changes. We can reach into our RealityView content to modify entities or components.")
 
         ,Example(title: "Example 050",
                  type: .VOLUME,
                  date: Date("2/18/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "RealityKit Basics: attachments",
                  description: "We can create 2D SwiftUI attachments and add them to out 3D scenes as entities.")
 
@@ -427,6 +427,13 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  isFeatured: true,
                  subtitle: "Spatial SwiftUI: Model3D",
                  description: "Model3D is a simple view that can load a USD or `.reality` file and display it in your SwiftUI view.")
+
+        ,Example(title: "Example 052",
+                 type: .VOLUME,
+                 date: Date("2/28/2025"),
+                 isFeatured: true,
+                 subtitle: "Spatial SwiftUI: Back Anchors for Volume Ornaments",
+                 description: "")
 
 
 
