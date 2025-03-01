@@ -432,8 +432,8 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  type: .VOLUME,
                  date: Date("2/28/2025"),
                  isFeatured: true,
-                 subtitle: "Spatial SwiftUI: Back Anchors for Volume Ornaments",
-                 description: "")
+                 subtitle: "Spatial SwiftUI: Background UI for Volumes",
+                 description: "We can use the back anchors for ornaments to to display user interfaces and data related to our content.")
 
 
 

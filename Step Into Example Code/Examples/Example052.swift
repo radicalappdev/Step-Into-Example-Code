@@ -15,6 +15,10 @@ import RealityKit
 import RealityKitContent
 
 struct Example052: View {
+
+    let exampleTitle = "A title string goes here"
+    let exampleDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Gerendus est mos, modo recte sentiat. A mene tu? Scisse enim te quis coarguere possit? Utilitatis causa amicitia est quaesita. Nunc agendum est subtilius. Duo Reges: constructio interrete. Nam Pyrrho, Aristo, Erillus iam diu abiecti. Cave putes quicquam esse verius. Nos commodius agimus. At eum nihili facit; Aliter homines, aliter philosophos loqui putas oportere? Quantum Aristoxeni ingenium consumptum videmus in musicis? Quid enim de amicitia statueris utilitatis causa expetenda vides. Quod iam a me expectare noli."
+
     var body: some View {
         RealityView { content in
 
@@ -27,19 +31,16 @@ struct Example052: View {
         }
         .ornament(attachmentAnchor: .scene(.back), ornament: {
             VStack() {
-                Text("A title string goes here")
+                Text(exampleTitle)
                     .font(.extraLargeTitle2)
-                    .redacted(reason: .placeholder)
-                Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Gerendus est mos, modo recte sentiat. A mene tu? Scisse enim te quis coarguere possit? Utilitatis causa amicitia est quaesita. Nunc agendum est subtilius. Duo Reges: constructio interrete. Nam Pyrrho, Aristo, Erillus iam diu abiecti. Cave putes quicquam esse verius. Nos commodius agimus. At eum nihili facit; Aliter homines, aliter philosophos loqui putas oportere? Quantum Aristoxeni ingenium consumptum videmus in musicis? Quid enim de amicitia statueris utilitatis causa expetenda vides. Quod iam a me expectare noli.")
-                    .font(.caption)
                     .redacted(reason: .placeholder)
                 HStack {
                     Image(systemName: "chart.bar.xaxis")
                     Image(systemName: "chart.xyaxis.line")
-
                 }
                 .padding()
-                .font(.extraLargeTitle2)
+                .font(.system(size: 144))
+                .foregroundStyle(.secondary)
                 Spacer()
             }
             .padding()
@@ -50,9 +51,9 @@ struct Example052: View {
 
         .ornament(attachmentAnchor: .scene(.leadingBack), ornament: {
             VStack() {
-                Text("A title string goes here")
+                Text(exampleTitle)
                     .font(.largeTitle)
-                Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Gerendus est mos, modo recte sentiat. A mene tu? Scisse enim te quis coarguere possit? Utilitatis causa amicitia est quaesita. Nunc agendum est subtilius. Duo Reges: constructio interrete. Nam Pyrrho, Aristo, Erillus iam diu abiecti. Cave putes quicquam esse verius. Nos commodius agimus. At eum nihili facit; Aliter homines, aliter philosophos loqui putas oportere? Quantum Aristoxeni ingenium consumptum videmus in musicis? Quid enim de amicitia statueris utilitatis causa expetenda vides. Quod iam a me expectare noli.")
+                Text(exampleDescription)
                     .font(.caption)
                 Spacer()
             }
@@ -70,9 +71,9 @@ struct Example052: View {
 
         .ornament(attachmentAnchor: .scene(.trailingBack), ornament: {
             VStack() {
-                Text("A title string goes here")
+                Text(exampleTitle)
                     .font(.largeTitle)
-                Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Gerendus est mos, modo recte sentiat. A mene tu? Scisse enim te quis coarguere possit? Utilitatis causa amicitia est quaesita. Nunc agendum est subtilius. Duo Reges: constructio interrete. Nam Pyrrho, Aristo, Erillus iam diu abiecti. Cave putes quicquam esse verius. Nos commodius agimus. At eum nihili facit; Aliter homines, aliter philosophos loqui putas oportere? Quantum Aristoxeni ingenium consumptum videmus in musicis? Quid enim de amicitia statueris utilitatis causa expetenda vides. Quod iam a me expectare noli.")
+                Text(exampleDescription)
                     .font(.caption)
                 Spacer()
             }
