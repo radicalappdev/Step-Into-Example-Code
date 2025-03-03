@@ -15,6 +15,10 @@ import RealityKit
 import RealityKitContent
 
 struct Example053: View {
+
+    @State private var showingSheet: Bool = false
+    @State private var someDate = Date()
+
     var body: some View {
         RealityView { content, attachments in
 
@@ -29,26 +33,31 @@ struct Example053: View {
             }
 
 
-
         } update: { content, attachments in
 
         } attachments: {
             Attachment(id: "AttachmentContent") {
                 VStack() {
-                    Text("Attachment")
+
+                    Text("This will crash when used in an attachment")
                         .font(.extraLargeTitle2)
 
-                    HStack {
-                        Image(systemName: "chart.bar.xaxis")
-                        Image(systemName: "chart.xyaxis.line")
-                    }
-                    .padding()
-                    .font(.system(size: 144))
-                    .foregroundStyle(.secondary)
+                    Button("Show Sheet", action: {
+                        showingSheet = true
+                    })
+
+                    DatePicker("Date",
+                               selection: $someDate,
+                               displayedComponents: .date
+                    )
+
+
                     Spacer()
                 }
+                .sheet(isPresented: $showingSheet) {
+                    Text("some view")
+                }
                 .padding()
-
                 .frame(width: 460, height: 500)
                 .glassBackgroundEffect()
             }
