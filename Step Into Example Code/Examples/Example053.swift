@@ -17,7 +17,18 @@ import RealityKitContent
 struct Example053: View {
 
     @State private var showingSheet: Bool = false
-    @State private var someDate = Date()
+
+    let transformMain = Transform(
+        scale: SIMD3<Float>(repeating: 1),
+        rotation: simd_quatf(angle: 0, axis: SIMD3<Float>(0, 1, 0)),
+        translation: SIMD3<Float>(0, 0, 0)
+    )
+
+    let transformAlertShowing = Transform(
+        scale: SIMD3<Float>(repeating: 1),
+        rotation: simd_quatf(angle: 0, axis: SIMD3<Float>(0, 1, 0)),
+        translation: SIMD3<Float>(0, 0, -0.02)
+    )
 
     var body: some View {
         RealityView { content, attachments in
@@ -27,40 +38,62 @@ struct Example053: View {
             scene.position.y = -0.4
 
             if let panel = attachments.entity(for: "AttachmentContent") {
-
-                panel.position.y = 0.1
+                panel.move(to: transformMain, relativeTo: scene)
                 content.add(panel)
+            }
+
+            if let alert = attachments.entity(for: "AlertContent") {
+                alert.move(to: transformMain, relativeTo: scene)
+                alert.isEnabled = showingSheet
+                content.add(alert)
             }
 
 
         } update: { content, attachments in
 
+            if let panel = attachments.entity(for: "AttachmentContent") {
+                panel.move(to: showingSheet ? transformAlertShowing : transformMain, relativeTo: panel.parent, duration: 0.5)
+            }
+
+            if let alert = attachments.entity(for: "AlertContent") {
+                alert.isEnabled = showingSheet
+            }
+
         } attachments: {
             Attachment(id: "AttachmentContent") {
                 VStack() {
 
-                    Text("This will crash when used in an attachment")
-                        .font(.extraLargeTitle2)
+                    Text("Click the button to show an alert")
+                        .font(.largeTitle)
 
                     Button("Show Sheet", action: {
-                        showingSheet = true
+                        showingSheet.toggle()
                     })
 
-                    DatePicker("Date",
-                               selection: $someDate,
-                               displayedComponents: .date
-                    )
-
-
                     Spacer()
-                }
-                .sheet(isPresented: $showingSheet) {
-                    Text("some view")
                 }
                 .padding()
                 .frame(width: 460, height: 500)
                 .glassBackgroundEffect()
             }
+
+            Attachment(id: "AlertContent") {
+                VStack() {
+
+                    Text("Wow, it works")
+                        .font(.extraLargeTitle2)
+
+                    Button("Close", action: {
+                        showingSheet = false
+                    })
+
+                    Spacer()
+                }
+                .padding()
+                .frame(width: 360, height: 200)
+                .glassBackgroundEffect()
+            }
+
         }
     }
 }
