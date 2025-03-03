@@ -439,7 +439,7 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  type: .VOLUME,
                  date: Date("3/03/2025"),
                  isFeatured: true,
-                 subtitle: "Spatial SwiftUI: Opening pickers in RealityView attachments",
+                 subtitle: "Spatial SwiftUI: Faking presentation with attachments",
                  description: "As of visionOS 2, we can not use the SwiftUI presentations API with RealityView attachments.")
 
 

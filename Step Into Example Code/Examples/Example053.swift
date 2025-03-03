@@ -2,11 +2,11 @@
 //
 //  Title: Example053
 //
-//  Subtitle:
+//  Subtitle: Spatial SwiftUI: Faking presentation with attachments
 //
-//  Description:
+//  Description: As of visionOS 2, we can not use the SwiftUI presentations API with RealityView attachments.
 //
-//  Type:
+//  Type: Volume
 //
 //  Created by Joseph Simpson on 3/3/25.
 
@@ -21,13 +21,19 @@ struct Example053: View {
     let transformMain = Transform(
         scale: SIMD3<Float>(repeating: 1),
         rotation: simd_quatf(angle: 0, axis: SIMD3<Float>(0, 1, 0)),
-        translation: SIMD3<Float>(0, 0, 0)
+        translation: SIMD3<Float>(0, 0, -0.1)
     )
 
-    let transformAlertShowing = Transform(
+    let transformMainAlertShowing = Transform(
         scale: SIMD3<Float>(repeating: 1),
         rotation: simd_quatf(angle: 0, axis: SIMD3<Float>(0, 1, 0)),
-        translation: SIMD3<Float>(0, 0, -0.02)
+        translation: SIMD3<Float>(0, 0, -0.12)
+    )
+
+    let transformAlert = Transform(
+        scale: SIMD3<Float>(repeating: 1),
+        rotation: simd_quatf(angle: 0, axis: SIMD3<Float>(0, 1, 0)),
+        translation: SIMD3<Float>(0, 0.4, -0.1)
     )
 
     var body: some View {
@@ -43,7 +49,7 @@ struct Example053: View {
             }
 
             if let alert = attachments.entity(for: "AlertContent") {
-                alert.move(to: transformMain, relativeTo: scene)
+                alert.move(to: transformAlert, relativeTo: scene)
                 alert.isEnabled = showingSheet
                 content.add(alert)
             }
@@ -52,7 +58,13 @@ struct Example053: View {
         } update: { content, attachments in
 
             if let panel = attachments.entity(for: "AttachmentContent") {
-                panel.move(to: showingSheet ? transformAlertShowing : transformMain, relativeTo: panel.parent, duration: 0.5)
+                panel
+                    .move(
+                        to: showingSheet ? transformMainAlertShowing : transformMain,
+                        relativeTo: panel.parent,
+                        duration: 0.25,
+                        timingFunction: .easeOut
+                    )
             }
 
             if let alert = attachments.entity(for: "AlertContent") {
@@ -63,15 +75,20 @@ struct Example053: View {
             Attachment(id: "AttachmentContent") {
                 VStack() {
 
-                    Text("Click the button to show an alert")
-                        .font(.largeTitle)
+                    Text("Faking an alert")
+                        .font(.extraLargeTitle2)
+
+                    Text("Click the button to show a fake alert. We'll use another attachment for the alert content. We will also move this attachment back a bit on the z axis when the alert is shown.")
 
                     Button("Show Sheet", action: {
-                        showingSheet.toggle()
+                        withAnimation {
+                            showingSheet.toggle()
+                        }
                     })
 
                     Spacer()
                 }
+                .opacity(showingSheet ? 0 : 1)
                 .padding()
                 .frame(width: 460, height: 500)
                 .glassBackgroundEffect()
@@ -84,7 +101,9 @@ struct Example053: View {
                         .font(.extraLargeTitle2)
 
                     Button("Close", action: {
-                        showingSheet = false
+                        withAnimation {
+                            showingSheet = false
+                        }
                     })
 
                     Spacer()
@@ -92,6 +111,7 @@ struct Example053: View {
                 .padding()
                 .frame(width: 360, height: 200)
                 .glassBackgroundEffect()
+                .opacity(showingSheet ? 1 : 0)
             }
 
         }
@@ -101,3 +121,5 @@ struct Example053: View {
 #Preview {
     Example053()
 }
+
+
