@@ -435,6 +435,13 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  subtitle: "Spatial SwiftUI: Background UI for Volumes",
                  description: "We can use the back anchors for ornaments to to display user interfaces and data related to our content.")
 
+        ,Example(title: "Example 053",
+                 type: .VOLUME,
+                 date: Date("3/03/2025"),
+                 isFeatured: true,
+                 subtitle: "Spatial SwiftUI: Alternative to Presentation API with Attacments ",
+                 description: "As of visionOS 2, we can not use the SwiftUI presentations API with RealityView attachments.")
+
 
 
     ]
