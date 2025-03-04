@@ -1,22 +1,29 @@
 //  Step Into Vision - Example Code
 //
-//  Title: Example053
+//  Title: Example054
 //
-//  Subtitle: Spatial SwiftUI: Volumetric presentation with attachments
+//  Subtitle:
 //
-//  Description: As of visionOS 2, we can not use the SwiftUI presentations API with RealityView attachments.
+//  Description:
 //
-//  Type: Volume
+//  Type:
 //
-//  Created by Joseph Simpson on 3/3/25.
+//  Created by Joseph Simpson on 3/4/25.
 
 import SwiftUI
 import RealityKit
 import RealityKitContent
 
-struct Example053: View {
+struct Example054: View {
 
-    @State private var showingSheet: Bool = false
+    @State private var showPicker: Bool = false
+    @State private var date = Date()
+    
+    private let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        return formatter
+    }()
 
     let transformMain = Transform(
         scale: SIMD3<Float>(repeating: 1),
@@ -48,9 +55,9 @@ struct Example053: View {
                 content.add(panel)
             }
 
-            if let alert = attachments.entity(for: "AlertContent") {
+            if let alert = attachments.entity(for: "PickerContent") {
                 alert.move(to: transformAlert, relativeTo: scene)
-                alert.isEnabled = showingSheet
+                alert.isEnabled = showPicker
                 content.add(alert)
             }
 
@@ -60,58 +67,51 @@ struct Example053: View {
             if let panel = attachments.entity(for: "AttachmentContent") {
                 panel
                     .move(
-                        to: showingSheet ? transformMainAlertShowing : transformMain,
+                        to: showPicker ? transformMainAlertShowing : transformMain,
                         relativeTo: panel.parent,
                         duration: 0.25,
                         timingFunction: .easeOut
                     )
             }
 
-            if let alert = attachments.entity(for: "AlertContent") {
-                alert.isEnabled = showingSheet
+            if let alert = attachments.entity(for: "PickerContent") {
+                alert.isEnabled = showPicker
             }
 
         } attachments: {
             Attachment(id: "AttachmentContent") {
                 VStack() {
 
-                    Text("Faking an alert")
+                    Text("Volumetric Date Picker")
                         .font(.extraLargeTitle2)
 
-                    Text("Click the button to show a fake alert. We'll use another attachment for the alert content. We will also move this attachment back a bit on the z axis when the alert is shown.")
+                    Text("Click the button to show a volumetric picker. We'll use another attachment to show the date picker with the `.graphical` style. We will also move this attachment back a bit on the z axis when the picker is shown.")
 
-                    Button("Show Sheet", action: {
+                    Button(dateFormatter.string(from: date), action: {
                         withAnimation {
-                            showingSheet.toggle()
+                            showPicker.toggle()
                         }
                     })
 
                     Spacer()
                 }
-                .opacity(showingSheet ? 0 : 1)
+                .opacity(showPicker ? 0 : 1)
                 .padding()
                 .frame(width: 460, height: 500)
                 .glassBackgroundEffect()
             }
 
-            Attachment(id: "AlertContent") {
-                VStack() {
+            Attachment(id: "PickerContent") {
+                DatePicker("Select a date", selection: $date, displayedComponents: .date)
+                    .datePickerStyle(.graphical)
+                    .padding()
+                    .frame(width: 460, height: 500)
+                    .glassBackgroundEffect()
+                    .opacity(showPicker ? 1 : 0)
+                    .onChange(of: date) {
+                        showPicker = false
+                    }
 
-                    Text("Wow, it works")
-                        .font(.extraLargeTitle2)
-
-                    Button("Close", action: {
-                        withAnimation {
-                            showingSheet = false
-                        }
-                    })
-
-                    Spacer()
-                }
-                .padding()
-                .frame(width: 360, height: 200)
-                .glassBackgroundEffect()
-                .opacity(showingSheet ? 1 : 0)
             }
 
         }
@@ -119,7 +119,6 @@ struct Example053: View {
 }
 
 #Preview {
-    Example053()
+    Example054()
 }
-
 
