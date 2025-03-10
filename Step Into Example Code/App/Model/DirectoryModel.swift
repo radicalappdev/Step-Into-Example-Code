@@ -449,6 +449,12 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  subtitle: "Spatial SwiftUI: Volumetric pickers with attachments",
                  description: "As of visionOS 2, we can not use the SwiftUI presentations API with RealityView attachments.")
 
+        ,Example(title: "Example 055",
+                 type: .VOLUME,
+                 date: Date("3/10/2025"),
+                 isFeatured: true,
+                 subtitle: "Collisions & Physics: Getting started with Collision Component",
+                 description: "This component is vital to user input, collision detection, and physics.")
 
 
     ]
