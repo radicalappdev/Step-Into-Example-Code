@@ -37,12 +37,25 @@ struct Example056: View {
                 }
             }
 
+            if let label02 = attachments.entity(for: "Example02") {
+                label02.setPosition([0,0.12,0], relativeTo: nil)
+                label02.components.set(BillboardComponent())
+                content.add(label02)
+            }
+
 
         } update: { content, attachments in
 
         } attachments: {
             Attachment(id: "Example01") {
                 Text("Collision + Input")
+                    .font(.title)
+                    .padding()
+                    .glassBackgroundEffect()
+            }
+
+            Attachment(id: "Example02") {
+                Text("Collision triggers an action")
                     .font(.title)
                     .padding()
                     .glassBackgroundEffect()
@@ -58,11 +71,12 @@ struct Example056: View {
                 // Fire a behavior from the scene in Reality Composer Pro
                 _ = value.entity.applyTapForBehaviors()
 
+                // Then fire a notification to move the trigger sphere to the switch
                 NotificationCenter.default.post(
                     name: NSNotification.Name("RealityKit.NotificationTrigger"),
                     object: nil,
                     userInfo: [
-                        "RealityKit.NotificationTrigger.Scene": scene,
+                        "RealityKit.NotificationTrigger.Scene": scene as Any,
                         "RealityKit.NotificationTrigger.Identifier": "MoveTriggerToSwitch"
                     ]
                 )

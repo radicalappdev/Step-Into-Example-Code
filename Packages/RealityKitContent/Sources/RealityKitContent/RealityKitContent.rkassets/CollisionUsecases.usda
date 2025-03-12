@@ -169,7 +169,7 @@ def Xform "Root"
                 int blendLayer = 300
                 double duration = 0.25
                 uniform token info:id = "3CDFAD54-16DC-41D4-A12A-29D36F334EC0"
-                float3 position = (-0.25, 0.1, 0.2)
+                float3 position = (-0.25, 0.1, 0)
                 quatf rotation = (1, 0, 0, 0)
                 float3 scale = (1, 1, 1)
                 double startTime = 0.25000000010000006
