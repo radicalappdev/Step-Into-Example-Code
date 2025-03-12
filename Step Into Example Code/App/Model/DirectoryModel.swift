@@ -456,6 +456,13 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  subtitle: "Collisions & Physics: Getting started with Collision Component",
                  description: "This component is vital to user input, collision detection, and physics.")
 
+        ,Example(title: "Example 056",
+                 type: .VOLUME,
+                 date: Date("3/10/2025"),
+                 isFeatured: true,
+                 subtitle: "Collisions & Physics: Collision Component Usecases",
+                 description: "")
+
 
     ]
 
