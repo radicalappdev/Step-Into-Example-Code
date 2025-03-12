@@ -18,6 +18,7 @@ struct Example056: View {
     @Environment(\.realityKitScene) var scene
 
     @State var exampleInput = Entity()
+    @State var collisionExampleEvent: EventSubscription?
 
     var body: some View {
         RealityView { content, attachments in
@@ -41,6 +42,17 @@ struct Example056: View {
                 label02.setPosition([0,0.12,0], relativeTo: nil)
                 label02.components.set(BillboardComponent())
                 content.add(label02)
+            }
+
+            if let triggerSwitch = scene.findEntity(named: "ExampleTriggerSwitch"), let examplePhysics = scene.findEntity(named: "ExamplePhysics") {
+
+
+                collisionExampleEvent = content
+                    .subscribe(to: CollisionEvents.Began.self, on: triggerSwitch)  { collisionEvent in
+                        print("Collision Subject Bounce \(collisionEvent.entityA.name) and \(collisionEvent.entityB.name)")
+
+                        examplePhysics.setPosition([0.25, 1, 0], relativeTo: nil)
+                    }
             }
 
 

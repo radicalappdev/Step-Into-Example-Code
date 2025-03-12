@@ -72,15 +72,6 @@
       [
         "04CE6D61-872A-4ADA-A754-31532C1C7C6B",
         "Root",
-        "ExampleTrigger"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "04CE6D61-872A-4ADA-A754-31532C1C7C6B",
-        "Root",
         "InputEmphasize"
       ],
       {
@@ -90,7 +81,8 @@
       [
         "04CE6D61-872A-4ADA-A754-31532C1C7C6B",
         "Root",
-        "ExampleTriggerSwitch"
+        "PhysicsForce",
+        "Track"
       ],
       {
         "isExpanded" : true,
