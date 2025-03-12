@@ -16,6 +16,44 @@
       [
         "04CE6D61-872A-4ADA-A754-31532C1C7C6B",
         "Root",
+        "MoveTriggerToSwitch",
+        "Track"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "04CE6D61-872A-4ADA-A754-31532C1C7C6B",
+        "Root",
+        "TriggerReached"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "04CE6D61-872A-4ADA-A754-31532C1C7C6B",
+        "Root",
+        "MoveTriggerToSwitch"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "04CE6D61-872A-4ADA-A754-31532C1C7C6B",
+        "Root",
+        "TriggerReached",
+        "Track"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "04CE6D61-872A-4ADA-A754-31532C1C7C6B",
+        "Root",
         "InputEmphasize",
         "Track2"
       ],
@@ -34,7 +72,25 @@
       [
         "04CE6D61-872A-4ADA-A754-31532C1C7C6B",
         "Root",
+        "ExampleTrigger"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "04CE6D61-872A-4ADA-A754-31532C1C7C6B",
+        "Root",
         "InputEmphasize"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "04CE6D61-872A-4ADA-A754-31532C1C7C6B",
+        "Root",
+        "ExampleTriggerSwitch"
       ],
       {
         "isExpanded" : true,

@@ -15,6 +15,7 @@ import RealityKit
 import RealityKitContent
 
 struct Example056: View {
+    @Environment(\.realityKitScene) var scene
 
     @State var exampleInput = Entity()
 
@@ -56,6 +57,15 @@ struct Example056: View {
 
                 // Fire a behavior from the scene in Reality Composer Pro
                 _ = value.entity.applyTapForBehaviors()
+
+                NotificationCenter.default.post(
+                    name: NSNotification.Name("RealityKit.NotificationTrigger"),
+                    object: nil,
+                    userInfo: [
+                        "RealityKit.NotificationTrigger.Scene": scene,
+                        "RealityKit.NotificationTrigger.Identifier": "MoveTriggerToSwitch"
+                    ]
+                )
             })
     }
 }

@@ -10,7 +10,7 @@
 
 def Xform "Root"
 {
-    reorder nameChildren = ["Base", "MaplePlywood", "ExampleInput", "InputEmphasize"]
+    reorder nameChildren = ["Base", "MaplePlywood", "ExampleInput", "InputEmphasize", "ExampleTrigger", "ExampleTriggerSwitch", "TriggerReached", "MoveTriggerToSwitch"]
     def Cube "Base" (
         active = true
         prepend apiSchemas = ["MaterialBindingAPI"]
@@ -67,7 +67,7 @@ def Xform "Root"
         int ui:nodegraph:node:stackingOrder = 2
         quatf xformOp:orient = (1, 0, 0, 0)
         float3 xformOp:scale = (1, 1, 1)
-        float3 xformOp:translate = (-0.25, 0.1, 0.2)
+        float3 xformOp:translate = (-0.25, 0.1, 0)
         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
 
         def Material "DefaultMaterial"
@@ -184,6 +184,241 @@ def Xform "Root"
                 def RealityKitStruct "timingFunction"
                 {
                     token type = "easeOut"
+                }
+            }
+        }
+    }
+
+    def Sphere "ExampleTrigger" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        rel material:binding = </Root/ExampleTrigger/DefaultMaterial>
+        double radius = 0.06
+        float2 ui:nodegraph:node:pos = (72.36331, 511.47977)
+        int ui:nodegraph:node:stackingOrder = 3
+        quatf xformOp:orient = (1, 0, 0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (0, 0.1, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def Material "DefaultMaterial"
+        {
+            token outputs:mtlx:surface
+            token outputs:realitykit:vertex
+            token outputs:surface.connect = </Root/ExampleTrigger/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+            def Shader "DefaultSurfaceShader"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.003921569, 0.38039216, 0.41960785) (
+                    colorSpace = "srgb_texture"
+                )
+                float inputs:roughness = 0.75
+                token outputs:surface
+            }
+        }
+
+        def RealityKitComponent "InputTarget"
+        {
+            uniform token info:id = "RealityKit.InputTarget"
+        }
+
+        def RealityKitComponent "Collider"
+        {
+            uint group = 1
+            uniform token info:id = "RealityKit.Collider"
+            uint mask = 4294967295
+            token type = "Trigger"
+
+            def RealityKitStruct "Shape"
+            {
+                float3 extent = (0.2, 0.2, 0.2)
+                float radius = 0.06
+                token shapeType = "Sphere"
+
+                def RealityKitStruct "pose"
+                {
+                }
+            }
+        }
+
+        def RealityKitComponent "RCP_BehaviorsContainer"
+        {
+            rel behaviors = </Root/ExampleTrigger/OnCollision>
+            uniform token info:id = "RCP.BehaviorsContainer"
+        }
+
+        def Preliminary_Behavior "OnCollision"
+        {
+            rel actions = </Root/ExampleTrigger/OnCollision/Action>
+            uniform bool exclusive
+            rel triggers = </Root/ExampleTrigger/OnCollision/Trigger>
+
+            def Preliminary_Trigger "Trigger"
+            {
+                rel affectedObjects = </Root/ExampleTrigger>
+                rel colliders = </Root/ExampleTrigger>
+                token info:id = "Collide"
+            }
+
+            def Preliminary_Action "Action"
+            {
+                rel affectedObjects = </Root>
+                rel animationLibraryKey = </Root/TriggerReached>
+                rel animationLibraryKeyOverrideKey = </Root/ExampleTrigger/OnCollision/Trigger>
+                token info:id = "PlayTimeline"
+                int loops = 0
+                int performCount = 1
+                token type = "serial"
+            }
+        }
+    }
+
+    def Cylinder "ExampleTriggerSwitch" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        uniform token axis = "Y"
+        double height = 0.025
+        rel material:binding = </Root/ExampleTriggerSwitch/DefaultMaterial>
+        double radius = 0.05
+        float3 xformOp:translate = (0.00022263429, 0.4, 1.23449055e-8)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def Material "DefaultMaterial"
+        {
+            token outputs:surface.connect = </Root/ExampleTriggerSwitch/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+            def Shader "DefaultSurfaceShader"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (1, 1, 1)
+                float inputs:roughness = 0.75
+                token outputs:surface
+            }
+        }
+
+        def RealityKitComponent "Collider"
+        {
+            uint group = 1
+            uniform token info:id = "RealityKit.Collider"
+            uint mask = 4294967295
+            token type = "Trigger"
+
+            def RealityKitStruct "Shape"
+            {
+                float3 extent = (0.1, 0.025, 0.1)
+                float height = 0.025
+                float radius = 0.05
+                token shapeType = "Box"
+
+                def RealityKitStruct "pose"
+                {
+                }
+            }
+        }
+
+        def RealityKitComponent "RCP_BehaviorsContainer"
+        {
+            rel behaviors = </Root/ExampleTriggerSwitch/OnNotification>
+            uniform token info:id = "RCP.BehaviorsContainer"
+        }
+
+        def Preliminary_Behavior "OnNotification"
+        {
+            rel actions = </Root/ExampleTriggerSwitch/OnNotification/Action>
+            uniform bool exclusive
+            rel triggers = </Root/ExampleTriggerSwitch/OnNotification/Trigger>
+
+            def Preliminary_Trigger "Trigger"
+            {
+                rel affectedObjects = </Root/ExampleTriggerSwitch>
+                string identifier = "MoveTriggerToSwitch"
+                token info:id = "Notification"
+            }
+
+            def Preliminary_Action "Action"
+            {
+                rel affectedObjects = </Root>
+                rel animationLibraryKey = </Root/MoveTriggerToSwitch>
+                rel animationLibraryKeyOverrideKey = </Root/ExampleTriggerSwitch/OnNotification/Trigger>
+                token info:id = "PlayTimeline"
+                int loops = 0
+                int performCount = 1
+                token type = "serial"
+            }
+        }
+    }
+
+    def RealityKitTimeline "TriggerReached"
+    {
+        def RealityKitTrack "Track"
+        {
+            def RealityKitAction "Emphasize"
+            {
+                string actionKind = "emphasize"
+                int blendLayer = 300
+                double duration = 1
+                uniform token info:id = "6BECAB37-8F50-49BA-B71E-5F8C3AB5EBB4"
+                double startTime = 0
+                rel target = </Root/ExampleTriggerSwitch>
+            }
+        }
+    }
+
+    def RealityKitTimeline "MoveTriggerToSwitch"
+    {
+        reorder nameChildren = ["Track", "Track2"]
+        def RealityKitTrack "Track"
+        {
+            def RealityKitAction "Transform_To"
+            {
+                string actionKind = "moveTo"
+                int blendLayer = 300
+                double duration = 0.8
+                uniform token info:id = "29CF4F88-69C3-4B86-B07C-D113E9B5A771"
+                float3 position = (0, 0.33, 0)
+                quatf rotation = (1, 0, 0, 0)
+                float3 scale = (1, 1, 1)
+                double startTime = 0
+                rel target = </Root/ExampleTrigger>
+
+                def RealityKitStruct "transformMode"
+                {
+                    rel referenceEntity = </Root>
+                    token type = "parent"
+                }
+
+                def RealityKitStruct "timingFunction"
+                {
+                }
+            }
+
+            def RealityKitAction "Transform_To2"
+            {
+                string actionKind = "moveTo"
+                int blendLayer = 300
+                double duration = 0.8
+                uniform token info:id = "29CF4F88-69C3-4B86-B07C-D113E9B5A771"
+                float3 position = (0, 0.1, 0)
+                quatf rotation = (1, 0, 0, 0)
+                float3 scale = (1, 1, 1)
+                double startTime = 1.0000000001
+                rel target = </Root/ExampleTrigger>
+                float2 ui:nodegraph:node:pos = (32.36331, 471.47977)
+                int ui:nodegraph:node:stackingOrder = 1
+
+                def RealityKitStruct "transformMode"
+                {
+                    rel referenceEntity = </Root>
+                    token type = "parent"
+                }
+
+                def RealityKitStruct "timingFunction"
+                {
                 }
             }
         }
