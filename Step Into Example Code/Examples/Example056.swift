@@ -2,7 +2,7 @@
 //
 //  Title: Example056
 //
-//  Subtitle: Collisions & Physics: Collision Usecases
+//  Subtitle: Collisions & Physics: Collision Use Cases
 //
 //  Description: The Collision Component is used input, collision detection, and physics.
 //
