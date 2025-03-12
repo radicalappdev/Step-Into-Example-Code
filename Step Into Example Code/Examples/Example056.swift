@@ -31,6 +31,7 @@ struct Example056: View {
 
                 if let label01 = attachments.entity(for: "Example01") {
                     label01.setPosition([0,0.2,0], relativeTo: input)
+                    label01.components.set(BillboardComponent())
                     content.add(label01)
                 }
             }
@@ -41,7 +42,7 @@ struct Example056: View {
         } attachments: {
             Attachment(id: "Example01") {
                 Text("Collision + Input")
-                    .font(.title)   
+                    .font(.title)
                     .padding()
                     .glassBackgroundEffect()
             }
@@ -52,9 +53,9 @@ struct Example056: View {
     var inputTapExample: some Gesture {
         TapGesture().targetedToEntity(exampleInput)
             .onEnded({ value in
-                print("tapped \(value.entity)")
-                let behavior = value.entity.applyTapForBehaviors()
-                print(behavior)
+
+                // Fire a behavior from the scene in Reality Composer Pro
+                _ = value.entity.applyTapForBehaviors()
             })
     }
 }
