@@ -460,8 +460,8 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  type: .VOLUME,
                  date: Date("3/10/2025"),
                  isFeatured: true,
-                 subtitle: "Collisions & Physics: Collision Component Usecases",
-                 description: "")
+                 subtitle: "Collisions & Physics: Collision Usecases",
+                 description: "The Collision Component is used input, collision detection, and physics.")
 
 
     ]
