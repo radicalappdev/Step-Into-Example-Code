@@ -10,7 +10,7 @@
 
 def Xform "Root"
 {
-    reorder nameChildren = ["Base", "MaplePlywood", "bowl", "pin", "sheet"]
+    reorder nameChildren = ["Base", "BallMat", "MaplePlywood", "bowl", "bowl_2", "pin", "sheet", "ExamplePhysics", "ExamplePhysics_1", "ExamplePhysics_2"]
     def Cube "Base" (
         active = true
         prepend apiSchemas = ["MaterialBindingAPI"]
@@ -80,7 +80,60 @@ def Xform "Root"
     )
     {
         float3 xformOp:scale = (1.5, 1.5, 1.5)
-        float3 xformOp:translate = (0.1720854, 0.04008305, 0.048511505)
+        float3 xformOp:translate = (0.1720854, 0, 0.15826109)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Geom"
+        {
+            over "bowl_01"
+            {
+            }
+        }
+
+        def RealityKitComponent "RigidBody"
+        {
+            uniform token info:id = "RealityKit.RigidBody"
+
+            def RealityKitStruct "massFrame"
+            {
+                def RealityKitStruct "m_pose"
+                {
+                }
+            }
+
+            def RealityKitStruct "material"
+            {
+            }
+        }
+
+        over "Materials"
+        {
+            over "defaultMaterial"
+            {
+                token outputs:mtlx:surface
+                token outputs:realitykit:vertex
+
+                over "surfaceShader"
+                {
+                    color3f inputs:diffuseColor = (0.83137256, 0.73333335, 0.73333335) (
+                        colorSpace = "srgb_displayp3"
+                    )
+                }
+            }
+        }
+    }
+
+    def "pin" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (0, 0, 0)
+        }
+        references = @Meshes/bowling_pin.usdz@
+    )
+    {
+        quatf xformOp:orient = (1, 0, 0, 0)
+        float3 xformOp:scale = (0.9999998, 0.9999999, 0.99999994)
+        float3 xformOp:translate = (-0.21370992, 0.1, -0.20538478)
         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
 
         def RealityKitComponent "RigidBody"
@@ -98,30 +151,20 @@ def Xform "Root"
             {
             }
         }
-    }
 
-    def "pin" (
-        active = true
-        references = @Meshes/bowling_pin.usdz@
-    )
-    {
-        float3 xformOp:scale = (1, 1, 1)
-        float3 xformOp:translate = (-0.11035991, 0.04008305, -0.17406297)
-        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
-
-        def RealityKitComponent "RigidBody"
+        over "Materials"
         {
-            uniform token info:id = "RealityKit.RigidBody"
-
-            def RealityKitStruct "massFrame"
+            over "defaultMaterial"
             {
-                def RealityKitStruct "m_pose"
+                token outputs:mtlx:surface
+                token outputs:realitykit:vertex
+
+                over "surfaceShader"
                 {
+                    color3f inputs:diffuseColor = (0.999996, 1, 1) (
+                        colorSpace = "srgb_texture"
+                    )
                 }
-            }
-
-            def RealityKitStruct "material"
-            {
             }
         }
     }
@@ -129,15 +172,202 @@ def Xform "Root"
     def "sheet" (
         active = true
         customData = {
-            float3 rotationEulerHint = (0, 0, -2.2189996)
+            float3 rotationEulerHint = (-0.0012838918, 0.2182386, -3.1475222)
         }
         references = @Meshes/corrugated_curved_sheet.usdz@
     )
     {
-        quatf xformOp:orient = (-0.4451095, 0, 0, 0.8954761)
-        float3 xformOp:scale = (0.19999996, 0.19999996, 0.19999996)
-        float3 xformOp:translate = (-0.19371682, 0.19486204, 0.17934632)
+        quatf xformOp:orient = (0.0028773847, -0.10890427, -0.00031523575, 0.994048)
+        float3 xformOp:scale = (0.19999994, 0.19999993, 0.19999993)
+        float3 xformOp:translate = (-0.19371681, 0.19486204, 0.17934632)
         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def RealityKitComponent "RigidBody"
+        {
+            bool gravityEnabled = 0
+            uniform token info:id = "RealityKit.RigidBody"
+            token motionType = "Static"
+
+            def RealityKitStruct "massFrame"
+            {
+                def RealityKitStruct "m_pose"
+                {
+                }
+            }
+
+            def RealityKitStruct "material"
+            {
+            }
+        }
+
+        over "Materials"
+        {
+            over "defaultMaterial"
+            {
+                token outputs:mtlx:surface
+                token outputs:realitykit:vertex
+
+                over "surfaceShader"
+                {
+                    color3f inputs:diffuseColor = (0.57414854, 0.5741624, 0.574155) (
+                        colorSpace = "srgb_texture"
+                    )
+                }
+            }
+        }
+    }
+
+    def Sphere "ExamplePhysics" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        rel material:binding = </Root/BallMat>
+        double radius = 0.1
+        float2 ui:nodegraph:node:pos = (112.36331, 551.47974)
+        int ui:nodegraph:node:stackingOrder = 5
+        quatf xformOp:orient = (1, 0, 0, 0)
+        float3 xformOp:scale = (0.3, 0.3, 0.3)
+        float3 xformOp:translate = (-0.11783728, 0.40742102, 0.25983632)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def RealityKitComponent "InputTarget"
+        {
+            uniform token info:id = "RealityKit.InputTarget"
+        }
+
+        def RealityKitComponent "Collider"
+        {
+            uint group = 1
+            uniform token info:id = "RealityKit.Collider"
+            uint mask = 4294967295
+            token type = "Default"
+
+            def RealityKitStruct "Shape"
+            {
+                float3 extent = (0.2, 0.2, 0.2)
+                float radius = 0.1
+                token shapeType = "Sphere"
+
+                def RealityKitStruct "pose"
+                {
+                }
+            }
+        }
+
+        def RealityKitComponent "RigidBody"
+        {
+            uniform token info:id = "RealityKit.RigidBody"
+
+            def RealityKitStruct "massFrame"
+            {
+                def RealityKitStruct "m_pose"
+                {
+                }
+            }
+
+            def RealityKitStruct "material"
+            {
+                double restitution = 1
+            }
+        }
+
+        def RealityKitComponent "MotionState"
+        {
+            uniform token info:id = "RealityKit.MotionState"
+        }
+
+        def RealityKitComponent "RCP_BehaviorsContainer"
+        {
+            uniform token info:id = "RCP.BehaviorsContainer"
+        }
+    }
+
+    def Sphere "ExamplePhysics_1" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        rel material:binding = </Root/BallMat> (
+            bindMaterialAs = "weakerThanDescendants"
+        )
+        double radius = 0.1
+        float2 ui:nodegraph:node:pos = (132.36331, 571.47974)
+        int ui:nodegraph:node:stackingOrder = 6
+        quatf xformOp:orient = (1, 0, 0, 0)
+        float3 xformOp:scale = (0.3, 0.3, 0.3)
+        float3 xformOp:translate = (0.10828537, 0.46006742, 0.19887415)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def RealityKitComponent "InputTarget"
+        {
+            uniform token info:id = "RealityKit.InputTarget"
+        }
+
+        def RealityKitComponent "Collider"
+        {
+            uint group = 1
+            uniform token info:id = "RealityKit.Collider"
+            uint mask = 4294967295
+            token type = "Default"
+
+            def RealityKitStruct "Shape"
+            {
+                float3 extent = (0.2, 0.2, 0.2)
+                float radius = 0.1
+                token shapeType = "Sphere"
+
+                def RealityKitStruct "pose"
+                {
+                }
+            }
+        }
+
+        def RealityKitComponent "RigidBody"
+        {
+            uniform token info:id = "RealityKit.RigidBody"
+
+            def RealityKitStruct "massFrame"
+            {
+                def RealityKitStruct "m_pose"
+                {
+                }
+            }
+
+            def RealityKitStruct "material"
+            {
+                double restitution = 1
+            }
+        }
+
+        def RealityKitComponent "MotionState"
+        {
+            uniform token info:id = "RealityKit.MotionState"
+        }
+
+        def RealityKitComponent "RCP_BehaviorsContainer"
+        {
+            uniform token info:id = "RCP.BehaviorsContainer"
+        }
+    }
+
+    def "bowl_2" (
+        active = true
+        references = @Meshes/bowl_01.usdz@
+    )
+    {
+        float2 ui:nodegraph:node:pos = (20, 20)
+        int ui:nodegraph:node:stackingOrder = 1
+        float3 xformOp:scale = (1.5, 1.5, 1.5)
+        float3 xformOp:translate = (0.1720854, 0, -0.16792068)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Geom"
+        {
+            over "bowl_01"
+            {
+            }
+        }
 
         def RealityKitComponent "RigidBody"
         {
@@ -153,6 +383,107 @@ def Xform "Root"
             def RealityKitStruct "material"
             {
             }
+        }
+
+        over "Materials"
+        {
+            over "defaultMaterial"
+            {
+                token outputs:mtlx:surface
+                token outputs:realitykit:vertex
+
+                over "surfaceShader"
+                {
+                    color3f inputs:diffuseColor = (0.41960785, 0.003921569, 0.17254902) (
+                        colorSpace = "srgb_texture"
+                    )
+                }
+            }
+        }
+    }
+
+    def Sphere "ExamplePhysics_2" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        rel material:binding = </Root/BallMat> (
+            bindMaterialAs = "weakerThanDescendants"
+        )
+        double radius = 0.1
+        float2 ui:nodegraph:node:pos = (152.36331, 591.47974)
+        int ui:nodegraph:node:stackingOrder = 7
+        quatf xformOp:orient = (1, 0, 0, 0)
+        float3 xformOp:scale = (0.3, 0.3, 0.3)
+        float3 xformOp:translate = (0.10828537, 0.46006742, -0.12730762)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def RealityKitComponent "InputTarget"
+        {
+            uniform token info:id = "RealityKit.InputTarget"
+        }
+
+        def RealityKitComponent "Collider"
+        {
+            uint group = 1
+            uniform token info:id = "RealityKit.Collider"
+            uint mask = 4294967295
+            token type = "Default"
+
+            def RealityKitStruct "Shape"
+            {
+                float3 extent = (0.2, 0.2, 0.2)
+                float radius = 0.1
+                token shapeType = "Sphere"
+
+                def RealityKitStruct "pose"
+                {
+                }
+            }
+        }
+
+        def RealityKitComponent "RigidBody"
+        {
+            uniform token info:id = "RealityKit.RigidBody"
+
+            def RealityKitStruct "massFrame"
+            {
+                def RealityKitStruct "m_pose"
+                {
+                }
+            }
+
+            def RealityKitStruct "material"
+            {
+                double restitution = 1
+            }
+        }
+
+        def RealityKitComponent "MotionState"
+        {
+            uniform token info:id = "RealityKit.MotionState"
+        }
+
+        def RealityKitComponent "RCP_BehaviorsContainer"
+        {
+            uniform token info:id = "RCP.BehaviorsContainer"
+        }
+    }
+
+    def Material "BallMat"
+    {
+        token outputs:mtlx:surface
+        token outputs:realitykit:vertex
+        token outputs:surface.connect = </Root/BallMat/DefaultSurfaceShader.outputs:surface>
+
+        def Shader "DefaultSurfaceShader"
+        {
+            uniform token info:id = "UsdPreviewSurface"
+            color3f inputs:diffuseColor = (0.003921569, 0.38039216, 0.41960785) (
+                colorSpace = "srgb_texture"
+            )
+            float inputs:roughness = 0.75
+            token outputs:surface
         }
     }
 }
