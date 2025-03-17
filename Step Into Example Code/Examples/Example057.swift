@@ -26,10 +26,16 @@ struct Example057: View {
                let pin = scene.findEntity(named: "pin"),
                let sheet = scene.findEntity(named: "sheet")  {
 
-                // Get the bowl
-                // Get the mesh or model
-                // Use it to generate a collision shape
+                print(bowl.children)
 
+                // Get the bowl's mesh using ModelComponent
+                if let modelComponent = bowl.children.first?.components[ModelComponent.self] {
+                    // The mesh is available in modelComponent.mesh
+                    let mesh = modelComponent.mesh
+
+                    print("mesh: \(mesh)")
+
+                }
             }
 
         } update: { content, attachments in

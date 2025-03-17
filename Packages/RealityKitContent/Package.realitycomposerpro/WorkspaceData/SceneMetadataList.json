@@ -232,7 +232,26 @@
     "objectMetadataList" : [
       [
         "696DFAAD-0C25-4B8C-AF62-DF9E974496AF",
+        "Root",
+        "bowl",
+        "Geom"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "696DFAAD-0C25-4B8C-AF62-DF9E974496AF",
         "Root"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "696DFAAD-0C25-4B8C-AF62-DF9E974496AF",
+        "Root",
+        "bowl"
       ],
       {
         "isExpanded" : true,
