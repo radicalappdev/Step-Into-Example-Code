@@ -468,7 +468,7 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  date: Date("3/17/2025"),
                  isFeatured: true,
                  subtitle: "Collisions & Physics: Generating Collision Meshes",
-                 description: "")
+                 description: "RealityKit provides a few methods to generate complex collision shapes, with one notable omission.")
 
 
     ]

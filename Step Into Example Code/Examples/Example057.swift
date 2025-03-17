@@ -2,11 +2,11 @@
 //
 //  Title: Example057
 //
-//  Subtitle:
+//  Subtitle: Collisions & Physics: Generating Collision Meshes
 //
-//  Description:
+//  Description: RealityKit provides a few methods to generate complex collision shapes, with one notable omission.
 //
-//  Type:
+//  Type: Volume
 //
 //  Created by Joseph Simpson on 3/17/25.
 
@@ -28,7 +28,7 @@ struct Example057: View {
             scene.position.y = -0.4
             self.sceneContent = scene
 
-
+            // Example 1: bowling pin with convex collision shape
             if let pin = scene.findEntity(named: "pin") {
                 if let modelComponent = pin.children.first?.components[ModelComponent.self] {
                     let mesh = modelComponent.mesh
@@ -43,6 +43,7 @@ struct Example057: View {
                 }
             }
 
+            // Example 2: sheet with concave static collision shape
             if let sheet = scene.findEntity(named: "sheet")  {
                 if let modelComponent = sheet.children.first?.components[ModelComponent.self] {
                     let mesh = modelComponent.mesh
@@ -57,7 +58,7 @@ struct Example057: View {
                 }
             }
 
-            // Bowl with static concave collision
+            // Example 3: bowl with concave static collision shape
             if let bowl = scene.findEntity(named: "bowl") {
                 if let modelComponent = bowl.children.first?.components[ModelComponent.self] {
                     let mesh = modelComponent.mesh
@@ -72,7 +73,7 @@ struct Example057: View {
                 }
             }
 
-            // Bowl with convex collision
+            // Example 4: bowl with convex static collision shape
             if let bowl2 = scene.findEntity(named: "bowl_2") {
                 if let modelComponent = bowl2.children.first?.components[ModelComponent.self] {
                     let mesh = modelComponent.mesh
@@ -123,3 +124,5 @@ struct Example057: View {
 #Preview {
     Example057()
 }
+
+
