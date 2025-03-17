@@ -10,7 +10,7 @@
 
 def Xform "Root"
 {
-    reorder nameChildren = ["Base", "BallMat", "MaplePlywood", "bowl", "bowl_2", "pin", "sheet", "ExamplePhysics", "ExamplePhysics_1", "ExamplePhysics_2"]
+    reorder nameChildren = ["Base", "BallMat", "MaplePlywood", "bowl", "bowl_2", "pin", "sheet", "ExamplePhysics_1", "ExamplePhysics_2", "ExamplePhysics_3"]
     def Cube "Base" (
         active = true
         prepend apiSchemas = ["MaterialBindingAPI"]
@@ -232,7 +232,7 @@ def Xform "Root"
         }
     }
 
-    def Sphere "ExamplePhysics" (
+    def Sphere "ExamplePhysics_1" (
         active = true
         prepend apiSchemas = ["MaterialBindingAPI"]
     )
@@ -273,6 +273,7 @@ def Xform "Root"
         def RealityKitComponent "RigidBody"
         {
             uniform token info:id = "RealityKit.RigidBody"
+            token motionType = "Dynamic"
 
             def RealityKitStruct "massFrame"
             {
@@ -283,7 +284,7 @@ def Xform "Root"
 
             def RealityKitStruct "material"
             {
-                double restitution = 1
+                double restitution = 0.1
             }
         }
 
@@ -298,7 +299,7 @@ def Xform "Root"
         }
     }
 
-    def Sphere "ExamplePhysics_1" (
+    def Sphere "ExamplePhysics_2" (
         active = true
         prepend apiSchemas = ["MaterialBindingAPI"]
     )
@@ -341,6 +342,7 @@ def Xform "Root"
         def RealityKitComponent "RigidBody"
         {
             uniform token info:id = "RealityKit.RigidBody"
+            token motionType = "Dynamic"
 
             def RealityKitStruct "massFrame"
             {
@@ -351,7 +353,7 @@ def Xform "Root"
 
             def RealityKitStruct "material"
             {
-                double restitution = 1
+                double restitution = 0.1
             }
         }
 
@@ -422,7 +424,7 @@ def Xform "Root"
         }
     }
 
-    def Sphere "ExamplePhysics_2" (
+    def Sphere "ExamplePhysics_3" (
         active = true
         prepend apiSchemas = ["MaterialBindingAPI"]
     )
@@ -465,6 +467,7 @@ def Xform "Root"
         def RealityKitComponent "RigidBody"
         {
             uniform token info:id = "RealityKit.RigidBody"
+            token motionType = "Dynamic"
 
             def RealityKitStruct "massFrame"
             {
@@ -475,7 +478,7 @@ def Xform "Root"
 
             def RealityKitStruct "material"
             {
-                double restitution = 1
+                double restitution = 0.1
             }
         }
 
