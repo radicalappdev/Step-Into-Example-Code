@@ -28,62 +28,29 @@ struct Example057: View {
             scene.position.y = -0.4
             self.sceneContent = scene
 
-            // Example 1: bowling pin with convex collision shape
-            if let pin = scene.findEntity(named: "pin") {
-                if let modelComponent = pin.children.first?.components[ModelComponent.self] {
-                    let mesh = modelComponent.mesh
-                    Task {
-                        do {
-                            let collision = try await CollisionComponent(shapes: [.generateConvex(from: mesh)])
-                            pin.components[CollisionComponent.self] = collision
-                        } catch {
-                            print("Error generating collision mesh: \(error)")
-                        }
-                    }
-                }
-            }
+            for (entityName, generateShape) in [
+                // Example 1: bowling pin with convex collision shape
+                ("pin", ShapeResource.generateConvex as @MainActor (_) async throws -> _),
 
-            // Example 2: sheet with concave static collision shape
-            if let sheet = scene.findEntity(named: "sheet")  {
-                if let modelComponent = sheet.children.first?.components[ModelComponent.self] {
-                    let mesh = modelComponent.mesh
-                    Task {
-                        do {
-                            let collision = try await CollisionComponent(shapes: [.generateStaticMesh(from: mesh)])
-                            sheet.components[CollisionComponent.self] = collision
-                        } catch {
-                            print("Error generating collision mesh: \(error)")
-                        }
-                    }
-                }
-            }
+                // Example 2: sheet with concave static collision shape
+                ("sheet", ShapeResource.generateStaticMesh),
 
-            // Example 3: bowl with concave static collision shape
-            if let bowl = scene.findEntity(named: "bowl") {
-                if let modelComponent = bowl.children.first?.components[ModelComponent.self] {
-                    let mesh = modelComponent.mesh
-                    Task {
-                        do {
-                            let collision = try await CollisionComponent(shapes: [.generateStaticMesh(from: mesh)])
-                            bowl.components[CollisionComponent.self] = collision
-                        } catch {
-                            print("Error generating collision mesh: \(error)")
-                        }
-                    }
-                }
-            }
+                // Example 3: bowl with concave static collision shape
+                ("bowl", ShapeResource.generateStaticMesh),
 
-            // Example 4: bowl with convex static collision shape
-            if let bowl2 = scene.findEntity(named: "bowl_2") {
-                if let modelComponent = bowl2.children.first?.components[ModelComponent.self] {
-                    let mesh = modelComponent.mesh
-                    Task {
-                        do {
-                            let collision = try await CollisionComponent(shapes: [.generateConvex(from: mesh)])
-                            bowl2.components[CollisionComponent.self] = collision
-                        } catch {
-                            print("Error generating collision mesh: \(error)")
-                        }
+                // Example 4: bowl with convex static collision shape
+                ("bowl_2", ShapeResource.generateConvex)
+            ] {
+                guard let entity = scene.findEntity(named: entityName),
+                      let mesh = entity.children.first?.components[ModelComponent.self]?.mesh
+                else { continue }
+
+                Task {
+                    do {
+                        let collision = CollisionComponent(shapes: [try await generateShape(mesh)])
+                        entity.components.set(collision)
+                    } catch {
+                        print("Error generating collision mesh: \(error)")
                     }
                 }
             }
