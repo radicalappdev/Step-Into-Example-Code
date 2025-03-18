@@ -41,15 +41,16 @@ struct Example057: View {
                 // Example 4: bowl with convex static collision shape
                 ("bowl_2", ShapeResource.generateConvex)
             ] {
-                if let components = scene.findEntity(named: entityName)?.children.first?.components,
-                   let mesh = components[ModelComponent.self]?.mesh {
-                    Task {
-                        do {
-                            let collision = CollisionComponent(shapes: [try await generateShape(mesh)])
-                            components.set(collision)
-                        } catch {
-                            print("Error generating collision mesh: \(error)")
-                        }
+                guard let components = scene.findEntity(named: entityName)?.children.first?.components,
+                      let mesh = components[ModelComponent.self]?.mesh
+                else { continue }
+
+                Task {
+                    do {
+                        let collision = CollisionComponent(shapes: [try await generateShape(mesh)])
+                        components.set(collision)
+                    } catch {
+                        print("Error generating collision mesh: \(error)")
                     }
                 }
             }
