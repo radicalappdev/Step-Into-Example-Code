@@ -389,7 +389,7 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
         ,Example(title: "Example 046",
                  type: .SPACE,
                  date: Date("2/10/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Drag Gesture with Pivot",
                  description: "We can use the location3D values of the gesture to improve dragging when the user turns to face another direction.")
 
@@ -431,14 +431,14 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
         ,Example(title: "Example 052",
                  type: .VOLUME,
                  date: Date("2/28/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Spatial SwiftUI: Background UI for Volumes",
                  description: "We can use the back anchors for ornaments to to display user interfaces and data related to our content.")
 
         ,Example(title: "Example 053",
                  type: .VOLUME,
                  date: Date("3/03/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Spatial SwiftUI: Volumetric presentation with attachments",
                  description: "As of visionOS 2, we can not use the SwiftUI presentations API with RealityView attachments.")
 
@@ -446,7 +446,7 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  type: .VOLUME,
                  date: Date("3/04/2025"),
                  isFeatured: true,
-                 subtitle: "Spatial SwiftUI: Volumetric pickers with attachments",
+                 subtitle: "Spatfalseial SwiftUI: Volumetric pickers with attachments",
                  description: "As of visionOS 2, we can not use the SwiftUI presentations API with RealityView attachments.")
 
         ,Example(title: "Example 055",
@@ -469,6 +469,14 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  isFeatured: true,
                  subtitle: "Collisions & Physics: Generating Collision Meshes",
                  description: "RealityKit provides a few methods to generate complex collision shapes, with one notable omission.")
+
+
+        ,Example(title: "Example 058",
+                 type: .VOLUME,
+                 date: Date("3/24/2025"),
+                 isFeatured: true,
+                 subtitle: "Collisions & Physics: Collision Modes",
+                 description: "Exploring Triggers and Rigid Bodies in RealityKit")
 
 
     ]
