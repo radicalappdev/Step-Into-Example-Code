@@ -2,11 +2,11 @@
 //
 //  Title: Example058
 //
-//  Subtitle:
+//  Subtitle: Collisions & Physics: Collision Modes
 //
-//  Description:
+//  Description: Exploring Triggers and Rigid Bodies in RealityKit
 //
-//  Type:
+//  Type: Volume
 //
 //  Created by Joseph Simpson on 3/24/25.
 

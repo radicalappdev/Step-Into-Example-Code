@@ -324,11 +324,6 @@ def Xform "Root"
             }
         }
 
-        def RealityKitComponent "InputTarget"
-        {
-            uniform token info:id = "RealityKit.InputTarget"
-        }
-
         def RealityKitComponent "Collider"
         {
             uint group = 1
@@ -364,16 +359,6 @@ def Xform "Root"
                 double restitution = 0
             }
         }
-
-        def RealityKitComponent "MotionState"
-        {
-            uniform token info:id = "RealityKit.MotionState"
-        }
-
-        def RealityKitComponent "RCP_BehaviorsContainer"
-        {
-            uniform token info:id = "RCP.BehaviorsContainer"
-        }
     }
 
     def Sphere "Green_Trigger" (
@@ -407,17 +392,12 @@ def Xform "Root"
             }
         }
 
-        def RealityKitComponent "InputTarget"
-        {
-            uniform token info:id = "RealityKit.InputTarget"
-        }
-
         def RealityKitComponent "Collider"
         {
             uint group = 1
             uniform token info:id = "RealityKit.Collider"
             uint mask = 4294967295
-            token type = "Trigger"
+            token type = "Default"
 
             def RealityKitStruct "Shape"
             {
@@ -433,33 +413,7 @@ def Xform "Root"
 
         def RealityKitComponent "RCP_BehaviorsContainer"
         {
-            rel behaviors = </Root/Green_Trigger/OnCollision>
             uniform token info:id = "RCP.BehaviorsContainer"
-        }
-
-        def Preliminary_Behavior "OnCollision"
-        {
-            rel actions = </Root/Green_Trigger/OnCollision/Action>
-            uniform bool exclusive
-            rel triggers = </Root/Green_Trigger/OnCollision/Trigger>
-
-            def Preliminary_Trigger "Trigger"
-            {
-                rel affectedObjects = </Root/Green_Trigger>
-                rel colliders = </Root/Green_Trigger>
-                token info:id = "Collide"
-            }
-
-            def Preliminary_Action "Action"
-            {
-                rel affectedObjects = </Root>
-                rel animationLibraryKey = </Root/TriggerReached>
-                rel animationLibraryKeyOverrideKey = </Root/Green_Trigger/OnCollision/Trigger>
-                token info:id = "PlayTimeline"
-                int loops = 0
-                int performCount = 1
-                token type = "serial"
-            }
         }
     }
 
