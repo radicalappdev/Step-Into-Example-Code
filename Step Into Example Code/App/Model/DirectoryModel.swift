@@ -470,13 +470,19 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  subtitle: "Collisions & Physics: Generating Collision Meshes",
                  description: "RealityKit provides a few methods to generate complex collision shapes, with one notable omission.")
 
-
         ,Example(title: "Example 058",
                  type: .VOLUME,
                  date: Date("3/24/2025"),
                  isFeatured: true,
                  subtitle: "Collisions & Physics: Collision Modes",
                  description: "Exploring Triggers and Rigid Bodies in RealityKit")
+
+        ,Example(title: "Example 059",
+                 type: .VOLUME,
+                 date: Date("3/25/2025"),
+                 isFeatured: true,
+                 subtitle: "Collisions & Physics: Adding Physics Body Components",
+                 description: "")
 
 
     ]
