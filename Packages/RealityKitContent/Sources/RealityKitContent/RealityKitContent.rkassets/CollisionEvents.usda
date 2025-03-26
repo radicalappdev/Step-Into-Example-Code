@@ -10,7 +10,7 @@
 
 def Xform "Root"
 {
-    reorder nameChildren = ["Base", "Subject", "StepSphereGreen", "StepSphereRed", "MoveSubject", "StepSphereBlue", "LoopSubject"]
+    reorder nameChildren = ["Base", "Subject", "StepSphereGreen", "StepSphereRed", "MoveSubject", "StepSphereBlue", "LoopSubject", "JiggleSubject"]
     def Cube "Base" (
         active = true
         prepend apiSchemas = ["MaterialBindingAPI"]
@@ -653,6 +653,23 @@ def Xform "Root"
                 double loopCount = 0
                 double startTime = 0
                 rel timeline = </Root/MoveSubject>
+            }
+        }
+    }
+
+    def RealityKitTimeline "JiggleSubject"
+    {
+        def RealityKitTrack "Track"
+        {
+            def RealityKitAction "Emphasize"
+            {
+                string actionKind = "emphasize"
+                int blendLayer = 300
+                double duration = 0.5
+                uniform token info:id = "2E6441C1-E972-4A77-8AC9-3F724761CE53"
+                token motionType = "pulse"
+                double startTime = 0
+                rel target = </Root/Subject>
             }
         }
     }

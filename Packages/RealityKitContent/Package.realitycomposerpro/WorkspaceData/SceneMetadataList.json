@@ -606,6 +606,15 @@
       [
         "D1A81AFB-C759-4B04-83BE-88EDFE530847",
         "Root",
+        "JiggleSubject"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "D1A81AFB-C759-4B04-83BE-88EDFE530847",
+        "Root",
         "LoopSubject",
         "Track"
       ],
@@ -645,6 +654,16 @@
       [
         "D1A81AFB-C759-4B04-83BE-88EDFE530847",
         "Root"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "D1A81AFB-C759-4B04-83BE-88EDFE530847",
+        "Root",
+        "JiggleSubject",
+        "Track"
       ],
       {
         "isExpanded" : true,
