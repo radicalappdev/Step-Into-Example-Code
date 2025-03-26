@@ -429,60 +429,10 @@ def Xform "Root"
 
     def RealityKitTimeline "MoveSubject"
     {
-        reorder nameChildren = ["Track", "Track2"]
+        reorder nameChildren = ["Track", "Track3", "Track2"]
         def RealityKitTrack "Track"
         {
             reorder nameChildren = ["Transform_To_Red", "Transform_To_Base", "Transform_To_Green", "Transform_To_12"]
-            def RealityKitAction "Transform_To_Base"
-            {
-                string actionKind = "moveTo"
-                int blendLayer = 300
-                double duration = 1
-                uniform token info:id = "31920076-570A-44C9-9FCD-12160B4A5155"
-                float3 position = (0, 0.04, 0)
-                quatf rotation = (1, 0, 0, 0)
-                float3 scale = (0.5, 0.5, 0.5)
-                double startTime = 2
-                rel target = </Root/Subject>
-                float2 ui:nodegraph:node:pos = (20, 20)
-                int ui:nodegraph:node:stackingOrder = 1
-
-                def RealityKitStruct "transformMode"
-                {
-                    rel referenceEntity = </Root>
-                    token type = "parent"
-                }
-
-                def RealityKitStruct "timingFunction"
-                {
-                }
-            }
-
-            def RealityKitAction "Transform_To_Green"
-            {
-                string actionKind = "moveTo"
-                int blendLayer = 300
-                double duration = 1
-                uniform token info:id = "31920076-570A-44C9-9FCD-12160B4A5155"
-                float3 position = (0.13, 0.2, 0)
-                quatf rotation = (1, 0, 0, 0)
-                float3 scale = (0.5, 0.5, 0.5)
-                double startTime = 3
-                rel target = </Root/Subject>
-                float2 ui:nodegraph:node:pos = (20, 20)
-                int ui:nodegraph:node:stackingOrder = 1
-
-                def RealityKitStruct "transformMode"
-                {
-                    rel referenceEntity = </Root>
-                    token type = "parent"
-                }
-
-                def RealityKitStruct "timingFunction"
-                {
-                }
-            }
-
             def RealityKitAction "Transform_To_Home"
             {
                 string actionKind = "moveTo"
@@ -492,7 +442,7 @@ def Xform "Root"
                 float3 position = (0, 0.4, 0)
                 quatf rotation = (1, 0, 0, 0)
                 float3 scale = (0.5, 0.5, 0.5)
-                double startTime = 4
+                double startTime = 4.6
                 rel target = </Root/Subject>
                 float2 ui:nodegraph:node:pos = (40, 40)
                 int ui:nodegraph:node:stackingOrder = 2
@@ -519,6 +469,62 @@ def Xform "Root"
                 float3 scale = (0.5, 0.5, 0.5)
                 double startTime = 1
                 rel target = </Root/Subject>
+
+                def RealityKitStruct "transformMode"
+                {
+                    rel referenceEntity = </Root>
+                    token type = "parent"
+                }
+
+                def RealityKitStruct "timingFunction"
+                {
+                }
+            }
+        }
+
+        def RealityKitTrack "Track2"
+        {
+            def RealityKitAction "Transform_To_Base"
+            {
+                string actionKind = "moveTo"
+                int blendLayer = 300
+                double duration = 1
+                uniform token info:id = "31920076-570A-44C9-9FCD-12160B4A5155"
+                float3 position = (0, 0.04, 0)
+                quatf rotation = (1, 0, 0, 0)
+                float3 scale = (0.5, 0.5, 0.5)
+                double startTime = 2.2
+                rel target = </Root/Subject>
+                float2 ui:nodegraph:node:pos = (20, 20)
+                int ui:nodegraph:node:stackingOrder = 1
+
+                def RealityKitStruct "transformMode"
+                {
+                    rel referenceEntity = </Root>
+                    token type = "parent"
+                }
+
+                def RealityKitStruct "timingFunction"
+                {
+                }
+            }
+        }
+
+        def RealityKitTrack "Track3"
+        {
+            def RealityKitAction "Transform_To_Green"
+            {
+                string actionKind = "moveTo"
+                int blendLayer = 300
+                double duration = 1
+                uniform token info:id = "31920076-570A-44C9-9FCD-12160B4A5155"
+                float3 position = (0.13, 0.2, 0)
+                quatf rotation = (1, 0, 0, 0)
+                float3 scale = (0.5, 0.5, 0.5)
+                double startTime = 3.4
+                rel target = </Root/Subject>
+                float2 ui:nodegraph:node:pos = (20, 20)
+                int ui:nodegraph:node:stackingOrder = 1
 
                 def RealityKitStruct "transformMode"
                 {
@@ -648,7 +654,7 @@ def Xform "Root"
             {
                 string actionKind = "timeline"
                 int blendLayer = 500
-                double duration = 5
+                double duration = 5.6
                 uniform token info:id = "F0AAEF3A-02F3-4E50-8384-B023DE438EFD"
                 double loopCount = 0
                 double startTime = 0
