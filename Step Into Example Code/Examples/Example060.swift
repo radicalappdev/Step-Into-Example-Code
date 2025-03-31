@@ -2,11 +2,11 @@
 //
 //  Title: Example060
 //
-//  Subtitle:
+//  Subtitle: Collisions & Physics: Getting Started with Physics Body Component
 //
-//  Description:
+//  Description: Adding the component in code and in Reality Composer Pro.
 //
-//  Type:
+//  Type: Volume
 //
 //  Created by Joseph Simpson on 3/31/25.
 
@@ -16,7 +16,7 @@ import RealityKitContent
 
 struct Example060: View {
     var body: some View {
-        RealityView { content, attachments in
+        RealityView { content  in
 
             // Load the scene and position it in the volume
             guard let scene = try? await Entity(named: "PhysicsBodyBasics", in: realityKitContentBundle) else { return }
@@ -50,18 +50,10 @@ struct Example060: View {
                 mesh: .generateBox(size: 0.1),
                 materials: [SimpleMaterial(color: .stepBlue, isMetallic: false)])
             blueBox.setPosition([0.15, 0.2, 0.2], relativeTo: scene)
-            let bluePhysics = PhysicsBodyComponent(massProperties: .default, material: .default, mode: .dynamic)
+            let bluePhysics = PhysicsBodyComponent(mode: .dynamic)
             blueBox.components.set([collision, input, bluePhysics])
             content.add(blueBox)
 
-
-
-        } update: { content, attachments in
-
-        } attachments: {
-            Attachment(id: "AttachmentContent") {
-                Text("")
-            }
         }
         .modifier(DragGestureImproved())
     }
@@ -70,3 +62,4 @@ struct Example060: View {
 #Preview {
     Example060()
 }
+

@@ -81,6 +81,11 @@ def Xform "Root"
         {
             uniform token info:id = "RealityKit.InputTarget"
         }
+
+        def RealityKitComponent "MotionState"
+        {
+            uniform token info:id = "RealityKit.MotionState"
+        }
     }
 
     def Sphere "Red_Kinematic" (
@@ -136,11 +141,6 @@ def Xform "Root"
                 {
                 }
             }
-        }
-
-        def RealityKitComponent "RCP_BehaviorsContainer"
-        {
-            uniform token info:id = "RCP.BehaviorsContainer"
         }
 
         def RealityKitComponent "RigidBody"

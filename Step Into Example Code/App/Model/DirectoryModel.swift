@@ -489,7 +489,7 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  date: Date("3/31/2025"),
                  isFeatured: true,
                  subtitle: "Collisions & Physics: Getting Started with Physics Body Component",
-                 description: "")
+                 description: "Adding the component in code and in Reality Composer Pro.")
 
 
     ]
