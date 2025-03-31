@@ -484,6 +484,13 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  subtitle: "Collisions & Physics: Collision Events",
                  description: "A few examples of how to respond to collisions in RealityKit.")
 
+        ,Example(title: "Example 060",
+                 type: .VOLUME,
+                 date: Date("3/31/2025"),
+                 isFeatured: true,
+                 subtitle: "Collisions & Physics: Getting Started with Physics Body Component",
+                 description: "")
+
 
     ]
 
