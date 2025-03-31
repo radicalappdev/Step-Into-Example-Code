@@ -24,11 +24,37 @@ struct Example060: View {
             scene.setScale(.init(repeating: 0.8), relativeTo: nil)
             scene.position.y = -0.4
 
-            guard let stepSphereRed = scene.findEntity(named: "Red_Kinematic"),
-                  let stepSphereGreen = scene.findEntity(named: "Green_Trigger"),
-                  let stepSphereBlue = scene.findEntity(named: "Blue_Dynamic")
-            else { return }
-            
+            let collision = CollisionComponent(shapes: [.generateBox(size: .init(x: 0.1, y: 0.1, z: 0.1))])
+            let input = InputTargetComponent()
+
+            // kinematic example
+            let redBox = ModelEntity(
+                mesh: .generateBox(size: 0.1),
+                materials: [SimpleMaterial(color: .stepRed, isMetallic: false)])
+            redBox.setPosition([-0.15, 0.2, 0.2], relativeTo: scene)
+            let redPhysics = PhysicsBodyComponent(massProperties: .default, material: .default, mode: .kinematic)
+            redBox.components.set([collision, input, redPhysics])
+            content.add(redBox)
+
+            // static example
+            let greenBox = ModelEntity(
+                mesh: .generateBox(size: 0.1),
+                materials: [SimpleMaterial(color: .stepGreen, isMetallic: false)])
+            greenBox.setPosition([-0, 0.1, 0.2], relativeTo: scene)
+            let greenPhysics = PhysicsBodyComponent(massProperties: .default, material: .default, mode: .static)
+            greenBox.components.set([collision, greenPhysics])
+            content.add(greenBox)
+
+            // dynamic example
+            let blueBox = ModelEntity(
+                mesh: .generateBox(size: 0.1),
+                materials: [SimpleMaterial(color: .stepBlue, isMetallic: false)])
+            blueBox.setPosition([0.15, 0.2, 0.2], relativeTo: scene)
+            let bluePhysics = PhysicsBodyComponent(massProperties: .default, material: .default, mode: .dynamic)
+            blueBox.components.set([collision, input, bluePhysics])
+            content.add(blueBox)
+
+
 
         } update: { content, attachments in
 

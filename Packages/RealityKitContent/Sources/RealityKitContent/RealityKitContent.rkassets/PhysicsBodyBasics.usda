@@ -10,7 +10,7 @@
 
 def Xform "Root"
 {
-    reorder nameChildren = ["Base", "Blue_Dynamic", "Red_Kinematic", "Green_Trigger"]
+    reorder nameChildren = ["Base", "Blue_Dynamic", "Red_Kinematic", "Green_Static"]
     def Sphere "Blue_Dynamic" (
         active = true
         prepend apiSchemas = ["MaterialBindingAPI"]
@@ -22,7 +22,7 @@ def Xform "Root"
         int ui:nodegraph:node:stackingOrder = 6
         quatf xformOp:orient = (1, 0, 0, 0)
         float3 xformOp:scale = (1, 1, 1)
-        float3 xformOp:translate = (0.25, 0.3, 0)
+        float3 xformOp:translate = (0.25, 0.3, -0.2)
         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
 
         def Material "DefaultMaterial"
@@ -76,6 +76,11 @@ def Xform "Root"
             {
             }
         }
+
+        def RealityKitComponent "InputTarget"
+        {
+            uniform token info:id = "RealityKit.InputTarget"
+        }
     }
 
     def Sphere "Red_Kinematic" (
@@ -89,7 +94,7 @@ def Xform "Root"
         int ui:nodegraph:node:stackingOrder = 4
         quatf xformOp:orient = (1, 0, 0, 0)
         float3 xformOp:scale = (1, 1, 1)
-        float3 xformOp:translate = (-0.25, 0.3, 0)
+        float3 xformOp:translate = (-0.25, 0.3, -0.2)
         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
 
         def Material "DefaultMaterial"
@@ -156,25 +161,25 @@ def Xform "Root"
         }
     }
 
-    def Sphere "Green_Trigger" (
+    def Sphere "Green_Static" (
         active = true
         prepend apiSchemas = ["MaterialBindingAPI"]
     )
     {
-        rel material:binding = </Root/Green_Trigger/DefaultMaterial>
+        rel material:binding = </Root/Green_Static/DefaultMaterial>
         double radius = 0.08
         float2 ui:nodegraph:node:pos = (112.36331, 551.47974)
         int ui:nodegraph:node:stackingOrder = 5
         quatf xformOp:orient = (1, 0, 0, 0)
         float3 xformOp:scale = (1, 1, 1)
-        float3 xformOp:translate = (0, 0.05, 0)
+        float3 xformOp:translate = (0, 0.05, -0.2)
         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
 
         def Material "DefaultMaterial"
         {
             token outputs:mtlx:surface
             token outputs:realitykit:vertex
-            token outputs:surface.connect = </Root/Green_Trigger/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+            token outputs:surface.connect = </Root/Green_Static/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
 
             def Shader "DefaultSurfaceShader"
             {
