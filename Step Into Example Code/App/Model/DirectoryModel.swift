@@ -491,6 +491,13 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  subtitle: "Collisions & Physics: Getting Started with Physics Body Component",
                  description: "Adding the component in code and in Reality Composer Pro.")
 
+        ,Example(title: "Example 061",
+                 type: .SPACE,
+                 date: Date("4/012025"),
+                 isFeatured: true,
+                 subtitle: "Spatial SwiftUI: Placing attachments in a scene",
+                 description: "Three options for how to place place attachments in a scene.")
+
 
     ]
 

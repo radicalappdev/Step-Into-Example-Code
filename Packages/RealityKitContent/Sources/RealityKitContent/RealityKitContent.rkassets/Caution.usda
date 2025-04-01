@@ -1,0 +1,126 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "Reality Composer Pro Version 2.0 (448.60.4)"
+    }
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "Root"
+{
+    def "wet_floor_sign" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (0, -0.4188791, 0)
+        }
+        prepend references = @Meshes/wet_floor_sign.usdz@
+    )
+    {
+        quatf xformOp:orient = (0.97814757, 0, -0.20791171, 0)
+        float3 xformOp:scale = (0.01, 0.01, 0.01)
+        float3 xformOp:translate = (0.7526669, 0, -2)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "DefaultMaterial"
+            {
+                token outputs:mtlx:surface
+                token outputs:realitykit:vertex
+
+                over "DefaultMaterialPreviewSurface"
+                {
+                    float inputs:clearcoat = 0.01
+                    color3f inputs:diffuseColor = (0.9764706, 0.8745098, 0.32941177) (
+                        colorSpace = "srgb_displayp3"
+                    )
+                    float inputs:roughness = 0.6
+                }
+            }
+        }
+
+        def RealityKitComponent "InputTarget"
+        {
+            uniform token info:id = "RealityKit.InputTarget"
+        }
+
+        def RealityKitComponent "Collider"
+        {
+            uint group = 1
+            uniform token info:id = "RealityKit.Collider"
+            uint mask = 4294967295
+            token type = "Default"
+
+            def RealityKitStruct "Shape"
+            {
+                float3 extent = (29.392426, 60.038296, 23.203703)
+                token shapeType = "Box"
+
+                def RealityKitStruct "pose"
+                {
+                    float3 position = (-0.0000014305115, 30.026022, -0.07456589)
+                }
+            }
+        }
+    }
+
+    def "traffic_cone_02" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (0, -0.42404097, 0)
+        }
+        prepend references = @Meshes/traffic_cone_02.usdz@
+    )
+    {
+        quatf xformOp:orient = (0.9776077, 0, -0.21043557, 0)
+        float3 xformOp:scale = (0.01, 0.01, 0.01)
+        float3 xformOp:translate = (1.352667, 0, -1.9999999)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Materials"
+        {
+            over "DefaultMaterial"
+            {
+                token outputs:mtlx:surface
+                token outputs:realitykit:vertex
+
+                over "DefaultMaterialPreviewSurface"
+                {
+                    float inputs:clearcoat = 0.1
+                    color3f inputs:diffuseColor = (0.9254902, 0.4039216, 0.2627451) (
+                        colorSpace = "srgb_displayp3"
+                    )
+                    float inputs:metallic = 0
+                    float inputs:roughness = 0.5
+                }
+            }
+        }
+
+        def RealityKitComponent "InputTarget"
+        {
+            uniform token info:id = "RealityKit.InputTarget"
+        }
+
+        def RealityKitComponent "Collider"
+        {
+            uint group = 1
+            uniform token info:id = "RealityKit.Collider"
+            uint mask = 4294967295
+            token type = "Default"
+
+            def RealityKitStruct "Shape"
+            {
+                float3 extent = (30.019566, 45, 30.019567)
+                token shapeType = "Box"
+
+                def RealityKitStruct "pose"
+                {
+                    float3 position = (0.0000014305115, 22.499996, 9.536743e-7)
+                }
+            }
+        }
+    }
+}
+
