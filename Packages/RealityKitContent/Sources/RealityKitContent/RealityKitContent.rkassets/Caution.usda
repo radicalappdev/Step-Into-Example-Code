@@ -89,7 +89,7 @@ def Xform "Root"
                 over "DefaultMaterialPreviewSurface"
                 {
                     float inputs:clearcoat = 0.1
-                    color3f inputs:diffuseColor = (0.9254902, 0.4039216, 0.2627451) (
+                    color3f inputs:diffuseColor = (0.9254902, 0.40392157, 0.2627451) (
                         colorSpace = "srgb_displayp3"
                     )
                     float inputs:metallic = 0

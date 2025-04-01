@@ -136,6 +136,25 @@
     "objectMetadataList" : [
       [
         "203250E2-7CBB-436D-81B1-6D8CD72CFABF",
+        "Root",
+        "traffic_cone_02"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "203250E2-7CBB-436D-81B1-6D8CD72CFABF",
+        "Root",
+        "traffic_cone_02",
+        "Materials"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "203250E2-7CBB-436D-81B1-6D8CD72CFABF",
         "Root"
       ],
       {
