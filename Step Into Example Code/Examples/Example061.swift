@@ -21,11 +21,15 @@ struct Example061: View {
             content.add(scene)
 
             if let wetFloorSign = scene.findEntity(named: "wet_floor_sign"), let front = attachments.entity(for: "wet_floor_front") {
+                // The wet_floor_sign asset was converted from another format. It was scaled to 0.01 on all axes to fit in this scene.
+                // We'll have to scale the attachment to compensate for the scale of the entity
 
+                // Ad the front attachment as a child of the wet floor sign
                 wetFloorSign.addChild(front)
-                front.setScale([200, 200, 200], relativeTo: wetFloorSign)
-                front.transform.rotation = simd_quatf(Rotation3D(angle: Angle2D(degrees: 11), axis: RotationAxis3D(x: -1, y: 0, z: 0)))
-                front.setPosition([0, 30, 6.7], relativeTo: wetFloorSign)
+
+                // Adjust the transform to position it just in front of the sign
+                let frontTransform = Transform(scale: .init(repeating: 200), rotation: simd_quatf(Rotation3D(angle: Angle2D(degrees: 11), axis: RotationAxis3D(x: -1, y: 0, z: 0))), translation: [0, 30, 6.7])
+                front.transform = frontTransform
 
             }
 
