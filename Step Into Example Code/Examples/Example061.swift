@@ -40,13 +40,18 @@ struct Example061: View {
                 VStack(spacing: 24) {
                     Text("CAUTION")
                         .font(.largeTitle)
-                    Image(systemName: "triangle")
-                        .font(.extraLargeTitle2)
+                    ZStack {
+                        Image(systemName: "triangle")
+                            .font(.system(size: 96, weight: .semibold))
+                        Image(systemName: "figure.fall")
+                            .font(.system(size: 42, weight: .heavy))
+                            .offset(y:12)
+                    }
                     Text("Wet Floor")
                         .font(.title)
                 }
-                .padding()
                 .foregroundStyle(.black)
+                .padding()
             }
         }
         .modifier(DragGestureImproved())
