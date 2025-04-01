@@ -16,9 +16,7 @@ import RealityKitContent
 
 struct Example061: View {
     var body: some View {
-        RealityView {
- content,
- attachments in
+        RealityView { content, attachments in
             guard let scene = try? await Entity(named: "Caution", in: realityKitContentBundle) else { return }
             content.add(scene)
 
@@ -39,7 +37,10 @@ struct Example061: View {
             if let trafficCone = scene.findEntity(named: "traffic_cone_02"),
                let traffiConeAttachment = attachments.entity(for: "traffic_cone_attachment") {
 
-                // Adjust the transform to position it just in front of the sign
+                // For this example, we'll add the attachment directly to the scenc content
+                content.add(traffiConeAttachment)
+
+                // Then we'll use the data from the traffic cone entity to determine the transform for the attachment
                 let transform = Transform(
                     scale: .init(repeating: 1.0),
                     rotation: simd_quatf(
@@ -49,7 +50,6 @@ struct Example061: View {
                 )
 
                 traffiConeAttachment.transform = transform
-                content.add(traffiConeAttachment)
 
             }
 
