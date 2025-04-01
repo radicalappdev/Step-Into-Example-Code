@@ -2,7 +2,7 @@
 //
 //  Title: Example061
 //
-//  Subtitle: Spatial SwiftUI: Placing attachments in a scene
+//  Subtitle: RealityKit Basics: Placing attachments in a scene
 //
 //  Description: Three options for how to place place attachments in a scene.
 //

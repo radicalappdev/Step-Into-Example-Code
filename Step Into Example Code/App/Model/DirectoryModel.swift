@@ -495,7 +495,7 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  type: .SPACE,
                  date: Date("4/012025"),
                  isFeatured: true,
-                 subtitle: "Spatial SwiftUI: Placing attachments in a scene",
+                 subtitle: "RealityKit Basics: Placing attachments in a scene",
                  description: "Three options for how to place place attachments in a scene.")
 
 
