@@ -493,10 +493,17 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
 
         ,Example(title: "Example 061",
                  type: .SPACE,
-                 date: Date("4/012025"),
-                 isFeatured: true,
+                 date: Date("4/01/2025"),
+                 isFeatured: false,
                  subtitle: "RealityKit Basics: Placing attachments in a scene",
                  description: "Three options for how to place place attachments in a scene.")
+
+        ,Example(title: "Example 062",
+                 type: .VOLUME,
+                 date: Date("4/02/2025"),
+                 isFeatured: true,
+                 subtitle: "Collisions & Physics: Physics Simulation Component",
+                 description: "We can override the default physics by using this component.")
 
 
     ]
