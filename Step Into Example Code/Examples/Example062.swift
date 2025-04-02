@@ -18,7 +18,6 @@ struct Example062: View {
 
     @State var gravity: SIMD3<Float> = [0, 9.8, 0]
 
-    @State var rootEntity: Entity?
 
     var body: some View {
         RealityView { content in
@@ -29,10 +28,10 @@ struct Example062: View {
             scene.position.y = -0.4
 
             if let root = scene.findEntity(named: "Root") {
-                rootEntity = root
                 var simulation = PhysicsSimulationComponent()
-                simulation.gravity = [0, 9.8, 0]
+                simulation.gravity = gravity
                 root.components.set(simulation)
+
             }
 
 
@@ -40,31 +39,36 @@ struct Example062: View {
             // Update the simulation gravity when the value changes
             var simulation = PhysicsSimulationComponent()
             simulation.gravity = gravity
-            rootEntity?.components.set(simulation)
+            content.entities.first?.findEntity(named: "Root")?.components.set(simulation)
+
 
         }
         .ornament(attachmentAnchor: .scene(.trailingFront), ornament: {
             VStack {
                 Button(action:  {
-                    gravity = [0, 9.8, 0]
+                    gravity = [0, 9.81, 0]
                 }, label: {
-                    Label("Up Full", systemImage: "arrow.up")
+                    Label("Up Full", systemImage: "chevron.up.2")
+                        .frame(maxWidth: .infinity)
                 })
                 Button(action:  {
                     gravity = [0, 1, 0]
                 }, label: {
-                    Label("Up Weak", systemImage: "arrow.up")
+                    Label("Up Weak", systemImage: "chevron.up")
+                        .frame(maxWidth: .infinity)
                 })
                 Button(action:  {
                     gravity = [0, -1, 0]
                 }, label: {
-                    Label("Down Weak", systemImage: "arrow.down")
+                    Label("Down Weak", systemImage: "chevron.down")
+                        .frame(maxWidth: .infinity)
                 })
 
                 Button(action:  {
-                    gravity = [0, -9.8, 0]
+                    gravity = [0, -9.81, 0]
                 }, label: {
-                    Label("Down Full", systemImage: "arrow.down")
+                    Label("Down Full", systemImage: "chevron.down.2")
+                        .frame(maxWidth: .infinity)
                 })
             }
             .padding()
