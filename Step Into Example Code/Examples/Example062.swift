@@ -16,7 +16,7 @@ import RealityKitContent
 
 struct Example062: View {
 
-    @State var gravity: Float = 9.8
+    @State var gravity: SIMD3<Float> = [0, 9.8, 0]
 
     @State var rootEntity: Entity?
 
@@ -37,33 +37,32 @@ struct Example062: View {
 
 
         } update: { content in
-
-
+            // Update the simulation gravity when the value changes
             var simulation = PhysicsSimulationComponent()
-            simulation.gravity = [0, gravity, 0]
+            simulation.gravity = gravity
             rootEntity?.components.set(simulation)
 
         }
         .ornament(attachmentAnchor: .scene(.trailingFront), ornament: {
             VStack {
                 Button(action:  {
-                    gravity = 9.8
+                    gravity = [0, 9.8, 0]
                 }, label: {
                     Label("Up Full", systemImage: "arrow.up")
                 })
                 Button(action:  {
-                    gravity = 1.0
+                    gravity = [0, 1, 0]
                 }, label: {
                     Label("Up Weak", systemImage: "arrow.up")
                 })
                 Button(action:  {
-                    gravity = -1.0
+                    gravity = [0, -1, 0]
                 }, label: {
                     Label("Down Weak", systemImage: "arrow.down")
                 })
 
                 Button(action:  {
-                    gravity = -9.8
+                    gravity = [0, -9.8, 0]
                 }, label: {
                     Label("Down Full", systemImage: "arrow.down")
                 })
