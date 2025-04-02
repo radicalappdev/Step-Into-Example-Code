@@ -2,11 +2,11 @@
 //
 //  Title: Example062
 //
-//  Subtitle:
+//  Subtitle: Collisions & Physics: Physics Simulation Component
 //
-//  Description:
+//  Description: We can override the default physics by using this component.
 //
-//  Type:
+//  Type: Volume
 //
 //  Created by Joseph Simpson on 4/2/25.
 
@@ -18,10 +18,8 @@ struct Example062: View {
 
     @State var gravity: SIMD3<Float> = [0, 9.8, 0]
 
-
     var body: some View {
         RealityView { content in
-
             guard let scene = try? await Entity(named: "PhysicsSimulationBasics", in: realityKitContentBundle) else { return }
 
             content.add(scene)
@@ -31,17 +29,12 @@ struct Example062: View {
                 var simulation = PhysicsSimulationComponent()
                 simulation.gravity = gravity
                 root.components.set(simulation)
-
             }
-
-
         } update: { content in
             // Update the simulation gravity when the value changes
             var simulation = PhysicsSimulationComponent()
             simulation.gravity = gravity
             content.entities.first?.findEntity(named: "Root")?.components.set(simulation)
-
-
         }
         .ornament(attachmentAnchor: .scene(.trailingFront), ornament: {
             VStack {
