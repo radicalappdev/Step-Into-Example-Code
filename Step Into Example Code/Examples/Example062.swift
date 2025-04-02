@@ -48,27 +48,27 @@ struct Example062: View {
                 Button(action:  {
                     gravity = [0, 9.81, 0]
                 }, label: {
-                    Label("Up Full", systemImage: "chevron.up.2")
-                        .frame(maxWidth: .infinity)
+                    Label("Up Strong", systemImage: "chevron.up.2")
+                        .frame(maxWidth: .infinity, alignment: .leading)
                 })
                 Button(action:  {
                     gravity = [0, 1, 0]
                 }, label: {
                     Label("Up Weak", systemImage: "chevron.up")
-                        .frame(maxWidth: .infinity)
+                        .frame(maxWidth: .infinity, alignment: .leading)
                 })
                 Button(action:  {
                     gravity = [0, -1, 0]
                 }, label: {
                     Label("Down Weak", systemImage: "chevron.down")
-                        .frame(maxWidth: .infinity)
+                        .frame(maxWidth: .infinity, alignment: .leading)
                 })
 
                 Button(action:  {
                     gravity = [0, -9.81, 0]
                 }, label: {
-                    Label("Down Full", systemImage: "chevron.down.2")
-                        .frame(maxWidth: .infinity)
+                    Label("Down Strong", systemImage: "chevron.down.2")
+                        .frame(maxWidth: .infinity, alignment: .leading)
                 })
             }
             .padding()
