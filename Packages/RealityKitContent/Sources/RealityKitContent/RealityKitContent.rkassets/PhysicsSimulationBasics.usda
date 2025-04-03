@@ -10,7 +10,7 @@
 
 def Xform "Root"
 {
-    reorder nameChildren = ["Base", "Base_1", "Subject"]
+    reorder nameChildren = ["Top", "Subject", "Base"]
     def Cube "Base" (
         active = true
         prepend apiSchemas = ["MaterialBindingAPI"]
@@ -76,13 +76,13 @@ def Xform "Root"
         }
     }
 
-    def Cube "Base_1" (
+    def Cube "Top" (
         active = true
         prepend apiSchemas = ["MaterialBindingAPI"]
     )
     {
-        reorder nameChildren = ["MaplePlywood", "Collider", "RigidBody", "Base_1", "Base_2", "Base_3", "Base_4"]
-        rel material:binding = </Root/Base_1/MaplePlywood> (
+        reorder nameChildren = ["MaplePlywood", "Collider", "RigidBody"]
+        rel material:binding = </Root/Top/MaplePlywood> (
             bindMaterialAs = "weakerThanDescendants"
         )
         double size = 0.8
@@ -135,7 +135,7 @@ def Xform "Root"
             references = @MaplePlywood.usdz@
         )
         {
-            token outputs:mtlx:surface.connect = </Root/Base_1/MaplePlywood/PreviewSurface.outputs:out>
+            token outputs:mtlx:surface.connect = </Root/Top/MaplePlywood/PreviewSurface.outputs:out>
             float2 ui:nodegraph:node:pos = (100, 100)
             int ui:nodegraph:node:stackingOrder = 5
         }

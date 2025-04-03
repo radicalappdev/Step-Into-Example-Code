@@ -424,7 +424,7 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
         ,Example(title: "Example 051",
                  type: .WINDOW,
                  date: Date("2/25/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Spatial SwiftUI: Model3D",
                  description: "Model3D is a simple view that can load a USD or `.reality` file and display it in your SwiftUI view.")
 
@@ -445,42 +445,42 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
         ,Example(title: "Example 054",
                  type: .VOLUME,
                  date: Date("3/04/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Spatfalseial SwiftUI: Volumetric pickers with attachments",
                  description: "As of visionOS 2, we can not use the SwiftUI presentations API with RealityView attachments.")
 
         ,Example(title: "Example 055",
                  type: .VOLUME,
                  date: Date("3/10/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Collisions & Physics: Getting started with Collision Component",
                  description: "This component is vital to user input, collision detection, and physics.")
 
         ,Example(title: "Example 056",
                  type: .VOLUME,
                  date: Date("3/10/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Collisions & Physics: Collision Use Cases",
                  description: "The Collision Component is used input, collision detection, and physics.")
 
         ,Example(title: "Example 057",
                  type: .VOLUME,
                  date: Date("3/17/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Collisions & Physics: Generating Collision Meshes",
                  description: "RealityKit provides a few methods to generate complex collision shapes, with one notable omission.")
 
         ,Example(title: "Example 058",
                  type: .VOLUME,
                  date: Date("3/24/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Collisions & Physics: Collision Modes",
                  description: "Exploring Triggers and Rigid Bodies in RealityKit")
 
         ,Example(title: "Example 059",
                  type: .VOLUME,
                  date: Date("3/25/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Collisions & Physics: Collision Events",
                  description: "A few examples of how to respond to collisions in RealityKit.")
 
@@ -502,8 +502,15 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  type: .VOLUME,
                  date: Date("4/02/2025"),
                  isFeatured: true,
-                 subtitle: "Collisions & Physics: Physics Simulation Component",
+                 subtitle: "Collisions & Physics: Hello Physics Simulation Component",
                  description: "We can override the default physics by using this component.")
+
+        ,Example(title: "Example 063",
+                 type: .VOLUME,
+                 date: Date("4/03/2025"),
+                 isFeatured: true,
+                 subtitle: "Collisions & Physics: Hello Physics Motion Component",
+                 description: "We can use this component to read or write angular and linear velocity.")
 
 
     ]

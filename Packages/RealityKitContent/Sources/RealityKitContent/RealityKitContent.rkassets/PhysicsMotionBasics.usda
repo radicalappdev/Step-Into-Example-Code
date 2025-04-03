@@ -1,0 +1,903 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "Reality Composer Pro Version 2.0 (448.60.4)"
+    }
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "Root"
+{
+    def Xform "Chamber" (
+        active = true
+    )
+    {
+        reorder nameChildren = ["Structure", "Rails", "ChamberMat", "Wall_1", "Wall_2", "Wall_3", "Wall_4", "Floor", "Ceiling", "RestartPoint", "Box", "Ball"]
+        float2 ui:nodegraph:node:pos = (20, 20)
+        int ui:nodegraph:node:stackingOrder = 1
+        quatf xformOp:orient = (1, 0, 0, 0)
+        float3 xformOp:scale = (0.3, 0.3, 0.3)
+        float3 xformOp:translate = (0, -0.1, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def Cube "Box" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Root/Chamber/Box/BoxMaterial>
+            double size = 0.2
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (0.25, 0.5, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Material "BoxMaterial"
+            {
+                token outputs:mtlx:surface
+                token outputs:realitykit:vertex
+                token outputs:surface.connect = </Root/Chamber/Box/BoxMaterial/DefaultSurfaceShader.outputs:surface>
+
+                def Shader "DefaultSurfaceShader"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (0.003921569, 0.38039216, 0.41960785) (
+                        colorSpace = "srgb_texture"
+                    )
+                    color3f inputs:emissiveColor = (0.003921569, 0.38039216, 0.41960785) (
+                        colorSpace = "srgb_texture"
+                    )
+                    float inputs:opacity = 1
+                    float inputs:roughness = 0.75
+                    token outputs:surface
+                }
+            }
+
+            def RealityKitComponent "Collider"
+            {
+                uint group = 1
+                uniform token info:id = "RealityKit.Collider"
+                uint mask = 4294967295
+                token type = "Trigger"
+
+                def RealityKitStruct "Shape"
+                {
+                    float3 extent = (0.2, 0.2, 0.2)
+                    token shapeType = "Box"
+
+                    def RealityKitStruct "pose"
+                    {
+                    }
+                }
+            }
+        }
+
+        def Sphere "Ball" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            reorder nameChildren = ["Collider", "RigidBody", "BallMaterial"]
+            rel material:binding = </Root/Chamber/Ball/BallMaterial>
+            double radius = 0.1
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (-0.25, 0.5, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def RealityKitComponent "Collider"
+            {
+                uint group = 1
+                uniform token info:id = "RealityKit.Collider"
+                uint mask = 4294967295
+                token type = "Default"
+
+                def RealityKitStruct "Shape"
+                {
+                    float3 extent = (0.2, 0.2, 0.2)
+                    float radius = 0.1
+                    token shapeType = "Sphere"
+
+                    def RealityKitStruct "pose"
+                    {
+                    }
+                }
+            }
+
+            def RealityKitComponent "RigidBody"
+            {
+                float angularDamping = 0
+                bool gravityEnabled = 0
+                uniform token info:id = "RealityKit.RigidBody"
+                bool isCCDEnabled = 0
+                float linearDamping = 0
+
+                def RealityKitStruct "massFrame"
+                {
+                    float m_mass = 0.1
+
+                    def RealityKitStruct "m_pose"
+                    {
+                    }
+                }
+
+                def RealityKitStruct "material"
+                {
+                    double restitution = 1
+                }
+            }
+
+            def Material "BallMaterial"
+            {
+                token outputs:mtlx:surface
+                token outputs:realitykit:vertex
+                token outputs:surface.connect = </Root/Chamber/Ball/BallMaterial/DefaultSurfaceShader.outputs:surface>
+
+                def Shader "DefaultSurfaceShader"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    float inputs:clearcoat = 0
+                    color3f inputs:diffuseColor = (0.41960785, 0.003921569, 0.17254902) (
+                        colorSpace = "srgb_texture"
+                    )
+                    color3f inputs:emissiveColor = (0.41960785, 0.003921569, 0.17254902) (
+                        colorSpace = "srgb_texture"
+                    )
+                    float inputs:roughness = 0.75
+                    token outputs:surface
+                }
+            }
+
+            def RealityKitComponent "MotionState"
+            {
+                uniform token info:id = "RealityKit.MotionState"
+            }
+        }
+
+        def Xform "Rails" (
+            active = true
+        )
+        {
+            reorder nameChildren = ["RailMaterial", "Rail_1", "Rail_2", "Rail_3", "Rail_4", "Rail_5", "Rail_6", "Rail_7", "Rail_8", "Rail_9", "Rail_10", "Rail_11", "Rail_12"]
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (0, 0, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Material "RailMaterial"
+            {
+                token outputs:mtlx:surface
+                token outputs:realitykit:vertex
+                token outputs:surface.connect = </Root/Chamber/Rails/RailMaterial/DefaultSurfaceShader.outputs:surface>
+
+                def Shader "DefaultSurfaceShader"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (0.26051742, 0.2605244, 0.26052064) (
+                        colorSpace = "srgb_texture"
+                    )
+                    float inputs:roughness = 0.75
+                    token outputs:surface
+                }
+            }
+
+            def Cube "Rail_1" (
+                active = true
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                rel material:binding = </Root/Chamber/Rails/RailMaterial>
+                double size = 2
+                quatf xformOp:orient = (1, 0, 0, 0)
+                float3 xformOp:scale = (1, 0.05, 0.05)
+                float3 xformOp:translate = (0, 1, 1)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+            }
+
+            def Cube "Rail_2" (
+                active = true
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                rel material:binding = </Root/Chamber/Rails/RailMaterial>
+                double size = 2
+                float2 ui:nodegraph:node:pos = (20, 20)
+                int ui:nodegraph:node:stackingOrder = 1
+                quatf xformOp:orient = (1, 0, 0, 0)
+                float3 xformOp:scale = (1, 0.05, 0.05)
+                float3 xformOp:translate = (8.009374e-8, 0.99999744, -1)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+            }
+
+            def Cube "Rail_3" (
+                active = true
+                prepend apiSchemas = ["MaterialBindingAPI"]
+                customData = {
+                    float3 rotationEulerHint = (0, 1.5707963, 0)
+                }
+            )
+            {
+                rel material:binding = </Root/Chamber/Rails/RailMaterial>
+                double size = 2.1
+                float2 ui:nodegraph:node:pos = (20, 20)
+                int ui:nodegraph:node:stackingOrder = 1
+                quatf xformOp:orient = (0.7071067, 0, 0.70710677, 0)
+                float3 xformOp:scale = (0.99999994, 0.049999997, 0.049999997)
+                float3 xformOp:translate = (-1, 1, 0)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+            }
+
+            def Cube "Rail_4" (
+                active = true
+                prepend apiSchemas = ["MaterialBindingAPI"]
+                customData = {
+                    float3 rotationEulerHint = (0, 1.5707963, 0)
+                }
+            )
+            {
+                rel material:binding = </Root/Chamber/Rails/RailMaterial>
+                double size = 2.1
+                float2 ui:nodegraph:node:pos = (40, 40)
+                int ui:nodegraph:node:stackingOrder = 2
+                quatf xformOp:orient = (0.7071067, 0, 0.70710677, 0)
+                float3 xformOp:scale = (0.99999994, 0.049999997, 0.049999997)
+                float3 xformOp:translate = (1, 0.99999744, 0)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+            }
+
+            def Cube "Rail_5" (
+                active = true
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                rel material:binding = </Root/Chamber/Rails/RailMaterial>
+                double size = 2
+                float2 ui:nodegraph:node:pos = (20, 20)
+                int ui:nodegraph:node:stackingOrder = 1
+                quatf xformOp:orient = (1, 0, 0, 0)
+                float3 xformOp:scale = (1, 0.05, 0.05)
+                float3 xformOp:translate = (0, -1, 1)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+            }
+
+            def Cube "Rail_6" (
+                active = true
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                rel material:binding = </Root/Chamber/Rails/RailMaterial>
+                double size = 2
+                float2 ui:nodegraph:node:pos = (40, 40)
+                int ui:nodegraph:node:stackingOrder = 2
+                quatf xformOp:orient = (1, 0, 0, 0)
+                float3 xformOp:scale = (1, 0.05, 0.05)
+                float3 xformOp:translate = (8.009374e-8, -1, -1)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+            }
+
+            def Cube "Rail_7" (
+                active = true
+                prepend apiSchemas = ["MaterialBindingAPI"]
+                customData = {
+                    float3 rotationEulerHint = (0, 1.5707963, 0)
+                }
+            )
+            {
+                rel material:binding = </Root/Chamber/Rails/RailMaterial>
+                double size = 2.1
+                float2 ui:nodegraph:node:pos = (40, 40)
+                int ui:nodegraph:node:stackingOrder = 2
+                quatf xformOp:orient = (0.70710677, 0, 0.70710677, 0)
+                float3 xformOp:scale = (0.99999976, 0.049999986, 0.049999986)
+                float3 xformOp:translate = (-1, -1, 0)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+            }
+
+            def Cube "Rail_8" (
+                active = true
+                prepend apiSchemas = ["MaterialBindingAPI"]
+                customData = {
+                    float3 rotationEulerHint = (0, 1.5707963, 0)
+                }
+            )
+            {
+                rel material:binding = </Root/Chamber/Rails/RailMaterial>
+                double size = 2.1
+                float2 ui:nodegraph:node:pos = (60, 60)
+                int ui:nodegraph:node:stackingOrder = 3
+                quatf xformOp:orient = (0.70710677, 0, 0.70710677, 0)
+                float3 xformOp:scale = (0.99999976, 0.049999986, 0.049999986)
+                float3 xformOp:translate = (1, -1, 0)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+            }
+
+            def Cube "Rail_9" (
+                active = true
+                prepend apiSchemas = ["MaterialBindingAPI"]
+                customData = {
+                    float3 rotationEulerHint = (0, 0, 1.5707964)
+                }
+            )
+            {
+                rel material:binding = </Root/Chamber/Rails/RailMaterial>
+                double size = 2
+                float2 ui:nodegraph:node:pos = (20, 20)
+                int ui:nodegraph:node:stackingOrder = 1
+                quatf xformOp:orient = (0.70710677, 0, 0, 0.7071067)
+                float3 xformOp:scale = (0.99999994, 0.049999997, 0.049999997)
+                float3 xformOp:translate = (1, 0, 1)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+            }
+
+            def Cube "Rail_10" (
+                active = true
+                prepend apiSchemas = ["MaterialBindingAPI"]
+                customData = {
+                    float3 rotationEulerHint = (0, 0, 1.5707964)
+                }
+            )
+            {
+                rel material:binding = </Root/Chamber/Rails/RailMaterial>
+                double size = 2
+                float2 ui:nodegraph:node:pos = (40, 40)
+                int ui:nodegraph:node:stackingOrder = 2
+                quatf xformOp:orient = (0.70710677, 0, 0, 0.70710677)
+                float3 xformOp:scale = (0.99999976, 0.049999986, 0.049999986)
+                float3 xformOp:translate = (-1, 0, 1)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+            }
+
+            def Cube "Rail_11" (
+                active = true
+                prepend apiSchemas = ["MaterialBindingAPI"]
+                customData = {
+                    float3 rotationEulerHint = (0, 0, 1.5707964)
+                }
+            )
+            {
+                rel material:binding = </Root/Chamber/Rails/RailMaterial>
+                double size = 2
+                float2 ui:nodegraph:node:pos = (40, 40)
+                int ui:nodegraph:node:stackingOrder = 2
+                quatf xformOp:orient = (0.70710677, 0, 0, 0.70710677)
+                float3 xformOp:scale = (0.99999976, 0.049999986, 0.049999986)
+                float3 xformOp:translate = (1, 0, -1)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+            }
+
+            def Cube "Rail_12" (
+                active = true
+                prepend apiSchemas = ["MaterialBindingAPI"]
+                customData = {
+                    float3 rotationEulerHint = (0, 0, 1.5707964)
+                }
+            )
+            {
+                rel material:binding = </Root/Chamber/Rails/RailMaterial>
+                double size = 2
+                float2 ui:nodegraph:node:pos = (60, 60)
+                int ui:nodegraph:node:stackingOrder = 3
+                quatf xformOp:orient = (0.70710677, 0, 0, 0.70710677)
+                float3 xformOp:scale = (0.99999964, 0.04999998, 0.04999998)
+                float3 xformOp:translate = (-1, 0, -1)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+            }
+        }
+
+        def Xform "Structure" (
+            active = true
+        )
+        {
+            reorder nameChildren = ["WallMaterial", "Wall_1", "Wall_2", "Wall_3", "Wall_4", "Floor", "Ceiling"]
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (0, 0, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Material "WallMaterial"
+            {
+                reorder nameChildren = ["DefaultSurfaceShader", "PreviewSurface", "DefaultMaterial"]
+                token cullMode = "front" (
+                    allowedTokens = ["unspecified", "none", "front", "back"]
+                )
+                token outputs:mtlx:surface.connect = None
+                token outputs:realitykit:vertex
+                token outputs:surface.connect = </Root/Chamber/Structure/WallMaterial/DefaultSurfaceShader.outputs:surface>
+                float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (0, 110.5)
+
+                def Shader "DefaultSurfaceShader" (
+                    active = true
+                )
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    float inputs:clearcoat = 1
+                    color3f inputs:diffuseColor = (0.83137256, 0.73333335, 0.73333335) (
+                        colorSpace = "srgb_displayp3"
+                    )
+                    float inputs:opacity = 0.2
+                    float inputs:roughness = 0.75
+                    token outputs:surface
+                }
+
+                def Shader "PreviewSurface" (
+                    active = false
+                )
+                {
+                    uniform token info:id = "ND_UsdPreviewSurface_surfaceshader"
+                    color3f inputs:diffuseColor
+                    float3 inputs:normal = (0, 0, -1)
+                    float inputs:opacity = 0
+                    float inputs:roughness = 1
+                    token outputs:out
+                    float2 ui:nodegraph:node:pos = (-357.21484, 137.21484)
+                    int ui:nodegraph:node:stackingOrder = 21
+                }
+            }
+
+            def Cube "Wall_1" (
+                active = true
+                prepend apiSchemas = ["MaterialBindingAPI"]
+                customData = {
+                    float3 rotationEulerHint = (1.5707964, 0, 0)
+                }
+            )
+            {
+                reorder nameChildren = ["Ceiling", "DefaultMaterial", "Collider", "RigidBody"]
+                rel material:binding = </Root/Chamber/Structure/WallMaterial>
+                double size = 2
+                float2 ui:nodegraph:node:pos = (-126.125, 109)
+                int ui:nodegraph:node:stackingOrder = 1
+                quatf xformOp:orient = (0.70710677, 0.70710677, 0, 0)
+                float3 xformOp:scale = (0.99999994, 0.009999999, 0.99999994)
+                float3 xformOp:translate = (0, 0, 1)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                def RealityKitComponent "Collider"
+                {
+                    uint group = 1
+                    uniform token info:id = "RealityKit.Collider"
+                    uint mask = 4294967295
+                    token type = "Trigger"
+
+                    def RealityKitStruct "Shape"
+                    {
+                        float3 extent = (2, 2, 2)
+                        token shapeType = "Box"
+
+                        def RealityKitStruct "pose"
+                        {
+                        }
+                    }
+                }
+
+                def RealityKitComponent "RigidBody"
+                {
+                    bool gravityEnabled = 0
+                    uniform token info:id = "RealityKit.RigidBody"
+                    token motionType = "Static"
+
+                    def RealityKitStruct "massFrame"
+                    {
+                        def RealityKitStruct "m_pose"
+                        {
+                        }
+                    }
+
+                    def RealityKitStruct "material"
+                    {
+                        double restitution = 1
+                    }
+                }
+            }
+
+            def Cube "Wall_2" (
+                active = true
+                prepend apiSchemas = ["MaterialBindingAPI"]
+                customData = {
+                    float3 rotationEulerHint = (1.5707964, 0, 0)
+                }
+            )
+            {
+                reorder nameChildren = ["Ceiling", "DefaultMaterial", "Collider", "RigidBody"]
+                rel material:binding = </Root/Chamber/Structure/WallMaterial>
+                double size = 2
+                float2 ui:nodegraph:node:pos = (-106.125, 129)
+                int ui:nodegraph:node:stackingOrder = 2
+                quatf xformOp:orient = (0.7071067, 0.7071068, 0, 0)
+                float3 xformOp:scale = (0.9999998, 0.009999997, 0.9999998)
+                float3 xformOp:translate = (0, 0, -1)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                def RealityKitComponent "Collider"
+                {
+                    uint group = 1
+                    uniform token info:id = "RealityKit.Collider"
+                    uint mask = 4294967295
+                    token type = "Trigger"
+
+                    def RealityKitStruct "Shape"
+                    {
+                        float3 extent = (2, 2, 2)
+                        token shapeType = "Box"
+
+                        def RealityKitStruct "pose"
+                        {
+                        }
+                    }
+                }
+
+                def RealityKitComponent "RigidBody"
+                {
+                    bool gravityEnabled = 0
+                    uniform token info:id = "RealityKit.RigidBody"
+                    token motionType = "Static"
+
+                    def RealityKitStruct "massFrame"
+                    {
+                        def RealityKitStruct "m_pose"
+                        {
+                        }
+                    }
+
+                    def RealityKitStruct "material"
+                    {
+                        double restitution = 1
+                    }
+                }
+            }
+
+            def Cube "Wall_3" (
+                active = true
+                prepend apiSchemas = ["MaterialBindingAPI"]
+                customData = {
+                    float3 rotationEulerHint = (0, 0, 1.5707964)
+                }
+            )
+            {
+                reorder nameChildren = ["Ceiling", "DefaultMaterial", "Collider", "RigidBody"]
+                rel material:binding = </Root/Chamber/Structure/WallMaterial>
+                double size = 2
+                float2 ui:nodegraph:node:pos = (-86.125, 149)
+                int ui:nodegraph:node:stackingOrder = 3
+                quatf xformOp:orient = (0.70710677, 0, 0, 0.70710677)
+                float3 xformOp:scale = (0.9999997, 0.009999995, 0.9999997)
+                float3 xformOp:translate = (1, 0, 0)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                def RealityKitComponent "Collider"
+                {
+                    uint group = 1
+                    uniform token info:id = "RealityKit.Collider"
+                    uint mask = 4294967295
+                    token type = "Trigger"
+
+                    def RealityKitStruct "Shape"
+                    {
+                        float3 extent = (2, 2, 2)
+                        token shapeType = "Box"
+
+                        def RealityKitStruct "pose"
+                        {
+                        }
+                    }
+                }
+
+                def RealityKitComponent "RigidBody"
+                {
+                    bool gravityEnabled = 0
+                    uniform token info:id = "RealityKit.RigidBody"
+                    token motionType = "Static"
+
+                    def RealityKitStruct "massFrame"
+                    {
+                        def RealityKitStruct "m_pose"
+                        {
+                        }
+                    }
+
+                    def RealityKitStruct "material"
+                    {
+                        double restitution = 1
+                    }
+                }
+            }
+
+            def Cube "Wall_4" (
+                active = true
+                prepend apiSchemas = ["MaterialBindingAPI"]
+                customData = {
+                    float3 rotationEulerHint = (0, 0, 1.5707964)
+                }
+            )
+            {
+                reorder nameChildren = ["Ceiling", "DefaultMaterial", "Collider", "RigidBody"]
+                rel material:binding = </Root/Chamber/Structure/WallMaterial>
+                double size = 2
+                float2 ui:nodegraph:node:pos = (-66.125, 169)
+                int ui:nodegraph:node:stackingOrder = 4
+                quatf xformOp:orient = (0.70710677, 0, 0, 0.70710677)
+                float3 xformOp:scale = (0.9999996, 0.009999993, 0.9999996)
+                float3 xformOp:translate = (-1, 0, 0)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                def RealityKitComponent "Collider"
+                {
+                    uint group = 1
+                    uniform token info:id = "RealityKit.Collider"
+                    uint mask = 4294967295
+                    token type = "Trigger"
+
+                    def RealityKitStruct "Shape"
+                    {
+                        float3 extent = (2, 2, 2)
+                        token shapeType = "Box"
+
+                        def RealityKitStruct "pose"
+                        {
+                        }
+                    }
+                }
+
+                def RealityKitComponent "RigidBody"
+                {
+                    bool gravityEnabled = 0
+                    uniform token info:id = "RealityKit.RigidBody"
+                    token motionType = "Static"
+
+                    def RealityKitStruct "massFrame"
+                    {
+                        def RealityKitStruct "m_pose"
+                        {
+                        }
+                    }
+
+                    def RealityKitStruct "material"
+                    {
+                        double restitution = 1
+                    }
+                }
+            }
+
+            def Cube "Floor" (
+                active = true
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                reorder nameChildren = ["Ceiling", "DefaultMaterial", "Collider", "RigidBody"]
+                rel material:binding = </Root/Chamber/Structure/WallMaterial>
+                double size = 2
+                quatf xformOp:orient = (1, 0, 0, 0)
+                float3 xformOp:scale = (1, 0.01, 1)
+                float3 xformOp:translate = (0, -1, 0)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                def RealityKitComponent "Collider"
+                {
+                    uint group = 1
+                    uniform token info:id = "RealityKit.Collider"
+                    uint mask = 4294967295
+                    token type = "Trigger"
+
+                    def RealityKitStruct "Shape"
+                    {
+                        float3 extent = (2, 2, 2)
+                        token shapeType = "Box"
+
+                        def RealityKitStruct "pose"
+                        {
+                        }
+                    }
+                }
+
+                def RealityKitComponent "RigidBody"
+                {
+                    bool gravityEnabled = 0
+                    uniform token info:id = "RealityKit.RigidBody"
+                    token motionType = "Static"
+
+                    def RealityKitStruct "massFrame"
+                    {
+                        def RealityKitStruct "m_pose"
+                        {
+                        }
+                    }
+
+                    def RealityKitStruct "material"
+                    {
+                        double restitution = 1
+                    }
+                }
+            }
+
+            def Cube "Ceiling" (
+                active = true
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                reorder nameChildren = ["Floor", "DefaultMaterial", "Collider", "RigidBody"]
+                rel material:binding = </Root/Chamber/Structure/WallMaterial> (
+                    bindMaterialAs = "weakerThanDescendants"
+                )
+                double size = 2
+                float2 ui:nodegraph:node:pos = (20, 20)
+                int ui:nodegraph:node:stackingOrder = 1
+                quatf xformOp:orient = (1, 0, 0, 0)
+                float3 xformOp:scale = (1, 0.01, 1)
+                float3 xformOp:translate = (0, 1, 0)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                def RealityKitComponent "Collider"
+                {
+                    uint group = 1
+                    uniform token info:id = "RealityKit.Collider"
+                    uint mask = 4294967295
+                    token type = "Trigger"
+
+                    def RealityKitStruct "Shape"
+                    {
+                        float3 extent = (2, 2, 2)
+                        token shapeType = "Box"
+
+                        def RealityKitStruct "pose"
+                        {
+                        }
+                    }
+                }
+
+                def RealityKitComponent "RigidBody"
+                {
+                    bool gravityEnabled = 0
+                    uniform token info:id = "RealityKit.RigidBody"
+                    token motionType = "Static"
+
+                    def RealityKitStruct "massFrame"
+                    {
+                        def RealityKitStruct "m_pose"
+                        {
+                        }
+                    }
+
+                    def RealityKitStruct "material"
+                    {
+                        double restitution = 1
+                    }
+                }
+            }
+        }
+
+        def RealityKitComponent "VFXEmitter"
+        {
+            uniform token info:id = "RealityKit.VFXEmitter"
+
+            def RealityKitStruct "currentState"
+            {
+                token birthDirection = "Normal"
+                token birthLocation = "Surface"
+                float3 emissionDirection = (0, 1, 0)
+                double emissionDuration = 1
+                double emissionDurationVariation = 0
+                token emitterShape = "Box"
+                double idleDuration = 0
+                double idleDurationVariation = 0
+                bool isEmitting = 0
+                bool isLocal = 0
+                bool isSpawningEnabled = 1
+                bool loops = 0
+                float particleSpeed = 1.4
+                float particleSpeedVariation = 0.1
+                float3 shapeSize = (0.5, 0.5, 0.5)
+                bool spawnInheritParentColor = 1
+                token spawnOccasion = "OnDeath"
+                float spawnSpreadFactor = 0.2
+                float spawnSpreadFactorVariation = 0.1
+                float spawnVelocityFactor = 0.1
+                double warmupDuration = 0
+
+                def RealityKitStruct "mainEmitter"
+                {
+                    float3 acceleration = (0, -0.1, 0)
+                    token animationRepeatMode = "Looping"
+                    token billboardMode = "Billboard"
+                    float birthRate = 1.2
+                    float birthRateVariation = 1
+                    token blendMode = "Additive"
+                    float colorEvolutionPower = 1
+                    int64 columnCount = 2
+                    float dampingFactor = 3.2
+                    float4 endColorA = (0.0013309671, 0.03458923, 1, 1)
+                    float4 endColorB = (0.11386989, 0.0064959256, 0.10626237, 1)
+                    float frameRate = 0
+                    float frameRateVariation = 0
+                    int64 initialFrame = 0
+                    int64 initialFrameVariation = 3
+                    bool isAnimated = 1
+                    bool isLightingEnabled = 0
+                    float noiseAnimationSpeed = 0
+                    float noiseScale = 1
+                    float noiseStrength = 0
+                    token opacityOverLife = "Constant"
+                    float particleAngle = 0
+                    float particleAngleVariation = 0
+                    float particleAngularVelocity = 0
+                    float particleAngularVelocityVariation = 0
+                    asset particleImage = @ParticleEmitterPresetTextures/flaresheet.exr@
+                    double particleLifeSpan = 0.52
+                    double particleLifeSpanVariation = 0
+                    float particleMass = 1
+                    float particleMassVariation = 0
+                    float particleSize = 0.004
+                    float particleSizeVariation = 0
+                    float3 radialGravityCenter = (0, 12, 0)
+                    float radialGravityStrength = -1
+                    int64 rowCount = 2
+                    float sizeMultiplierAtEndOfLifespan = 1
+                    float sizeMultiplierAtEndOfLifespanPower = 1
+                    token sortOrder = "IncreasingDepth"
+                    float spreadingAngle = 0.1
+                    float4 startColorA = (1, 0.051991113, 1, 1)
+                    float4 startColorB = (0, 0.98059916, 1, 1)
+                    float stretchFactor = 0
+                    bool useEndColor = 0
+                    bool useEndColorRange = 0
+                    bool useStartColorRange = 1
+                    float3 vortexDirection = (0, 1, 0)
+                    float vortexStrength = 0
+                }
+
+                def RealityKitStruct "spawnedEmitter"
+                {
+                    float3 acceleration = (0, -0.15, 0)
+                    token animationRepeatMode = "Looping"
+                    token billboardMode = "Billboard"
+                    float birthRate = 39000
+                    float birthRateVariation = 8000
+                    token blendMode = "Additive"
+                    float colorEvolutionPower = 1
+                    int64 columnCount = 2
+                    float dampingFactor = 4
+                    float4 endColorA = (0.0013309671, 0.03458923, 1, 1)
+                    float4 endColorB = (0.11386989, 0.0064959256, 0.10626237, 1)
+                    float frameRate = 12
+                    float frameRateVariation = 3
+                    int64 initialFrame = 0
+                    int64 initialFrameVariation = 3
+                    bool isAnimated = 1
+                    bool isLightingEnabled = 0
+                    float noiseAnimationSpeed = 0.2
+                    float noiseScale = 3
+                    float noiseStrength = 0.02
+                    token opacityOverLife = "LinearFadeOut"
+                    float particleAngle = 0
+                    float particleAngleVariation = 2
+                    float particleAngularVelocity = 0
+                    float particleAngularVelocityVariation = 0
+                    asset particleImage = @ParticleEmitterPresetTextures/flaresheet.exr@
+                    double particleLifeSpan = 1.8
+                    double particleLifeSpanVariation = 0.5
+                    float particleMass = 0.75
+                    float particleMassVariation = 0.5
+                    float particleSize = 0.03
+                    float particleSizeVariation = 0.01
+                    float3 radialGravityCenter = (0, -3, -3)
+                    float radialGravityStrength = 0
+                    int64 rowCount = 2
+                    float sizeMultiplierAtEndOfLifespan = 0.01
+                    float sizeMultiplierAtEndOfLifespanPower = 0.03
+                    token sortOrder = "IncreasingID"
+                    float spreadingAngle = 3
+                    float4 startColorA = (1, 1, 1, 1)
+                    float4 startColorB = (1, 1, 1, 1)
+                    float stretchFactor = 0
+                    bool useEndColor = 0
+                    bool useEndColorRange = 0
+                    bool useStartColorRange = 0
+                    float3 vortexDirection = (0, 1, 0)
+                    float vortexStrength = 0
+                }
+            }
+        }
+    }
+}
+
