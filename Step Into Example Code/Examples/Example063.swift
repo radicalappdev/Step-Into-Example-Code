@@ -28,14 +28,10 @@ struct Example063: View {
             if let subject = scene.findEntity(named: "Subject") {
                 subjectEntity = subject
             }
-
-
-        } update: { content in
-
         }
-
         .ornament(attachmentAnchor: .scene(.trailingFront), ornament: {
             VStack {
+
                 Button(action:  {
                     if var motion = subjectEntity.components[PhysicsMotionComponent.self] {
                         let angularVelocity: SIMD3<Float> = SIMD3.random(in: 1...5)
@@ -46,6 +42,7 @@ struct Example063: View {
                     Label("Add angular velocity", systemImage: "rotate.3d")
                         .frame(maxWidth: .infinity, alignment: .leading)
                 })
+
                 Button(action:  {
                     if var motion = subjectEntity.components[PhysicsMotionComponent.self] {
                         let linearVelocity: SIMD3<Float> = SIMD3.random(in: 0.5...2.5)
@@ -56,27 +53,19 @@ struct Example063: View {
                     Label("Add linear velocity", systemImage: "move.3d")
                         .frame(maxWidth: .infinity, alignment: .leading)
                 })
+
                 Button(action:  {
-                    if var motion = subjectEntity.components[PhysicsMotionComponent.self] {
-                        // Reset the transform
-                        var transformReset = Transform()
-                        transformReset.translation = [0, 0.1, 0]
-                        subjectEntity.transform = transformReset
+                    // Reset the transform
+                    var transformReset = Transform()
+                    transformReset.translation = [0, 0.1, 0]
+                    subjectEntity.transform = transformReset
 
-                        // Remove any velocity 
-                        motion.angularVelocity = .zero
-                        motion.linearVelocity = .zero
-                        subjectEntity.components.set(motion)
-
-
-                    }
+                    // Remove any velocity by assigning a new instance of the component
+                    subjectEntity.components.set(PhysicsMotionComponent())
                 }, label: {
                     Label("Reset all velocity", systemImage: "arrow.trianglehead.counterclockwise")
                         .frame(maxWidth: .infinity, alignment: .leading)
                 })
-
-
-
             }
             .padding()
             .glassBackgroundEffect()
