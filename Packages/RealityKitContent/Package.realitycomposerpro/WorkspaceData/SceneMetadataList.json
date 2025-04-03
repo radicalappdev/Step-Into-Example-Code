@@ -172,6 +172,34 @@
       {
         "isExpanded" : true,
         "isLocked" : false
+      },
+      [
+        "2FB5E55D-1FD0-442E-BA3C-C9212530BE69",
+        "Root",
+        "Chamber"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "2FB5E55D-1FD0-442E-BA3C-C9212530BE69",
+        "Root",
+        "Subject"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "2FB5E55D-1FD0-442E-BA3C-C9212530BE69",
+        "Root",
+        "Chamber",
+        "Structure"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
       }
     ]
   },
