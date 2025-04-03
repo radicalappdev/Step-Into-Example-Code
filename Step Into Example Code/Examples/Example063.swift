@@ -39,12 +39,12 @@ struct Example063: View {
                     print(motion.angularVelocity)
 
                     if (testAngularVelocity) {
-                        let angularVelocity = SIMD3<Float>(0.1, 0.2, 0.3)
+                        let angularVelocity: SIMD3<Float> = SIMD3.random(in: 1...5)
                         motion.angularVelocity += angularVelocity
                     }
 
                     if (testLinearVelocity) {
-                        let linearVelocity = SIMD3<Float>(0.1, 0.2, 0.3)
+                        let linearVelocity: SIMD3<Float> = SIMD3.random(in: -0.5...0.5)
                         motion.linearVelocity += linearVelocity
                     }
 
@@ -60,13 +60,13 @@ struct Example063: View {
                 Button(action:  {
                     testAngularVelocity.toggle()
                 }, label: {
-                    Label("Add angular velocity", systemImage: "chevron.up.2")
+                    Label("Add angular velocity", systemImage: "rotate.3d")
                         .frame(maxWidth: .infinity, alignment: .leading)
                 })
                 Button(action:  {
                     testLinearVelocity.toggle()
                 }, label: {
-                    Label("Add linear velocity", systemImage: "chevron.up")
+                    Label("Add linear velocity", systemImage: "move.3d")
                         .frame(maxWidth: .infinity, alignment: .leading)
                 })
 
