@@ -16,11 +16,7 @@ import RealityKitContent
 
 struct Example063: View {
 
-//    @State var angularVelocity: SIMD3<Float> = [0, 0, 0]
-//    @State var linearVelocity: SIMD3<Float> = [0, 0, 0]
-
-    @State var testAngularVelocity = false
-    @State var testLinearVelocity = false
+    @State var subjectEntity = Entity()
 
     var body: some View {
         RealityView { content in
@@ -29,46 +25,57 @@ struct Example063: View {
 
             content.add(scene)
 
+            if let subject = scene.findEntity(named: "Subject") {
+                subjectEntity = subject
+            }
+
 
         } update: { content in
-
-            if let subject = content.entities.first?.findEntity(named: "Subject") {
-
-                if var motion = subject.components[PhysicsMotionComponent.self] {
-
-                    print(motion.angularVelocity)
-
-                    if (testAngularVelocity) {
-                        let angularVelocity: SIMD3<Float> = SIMD3.random(in: 1...5)
-                        motion.angularVelocity += angularVelocity
-                    }
-
-                    if (testLinearVelocity) {
-                        let linearVelocity: SIMD3<Float> = SIMD3.random(in: -0.5...0.5)
-                        motion.linearVelocity += linearVelocity
-                    }
-
-                    subject.components.set(motion)
-                }
-
-            }
 
         }
 
         .ornament(attachmentAnchor: .scene(.trailingFront), ornament: {
             VStack {
                 Button(action:  {
-                    testAngularVelocity.toggle()
+                    if var motion = subjectEntity.components[PhysicsMotionComponent.self] {
+                        let angularVelocity: SIMD3<Float> = SIMD3.random(in: 1...5)
+                        motion.angularVelocity += angularVelocity
+                        subjectEntity.components.set(motion)
+                    }
                 }, label: {
                     Label("Add angular velocity", systemImage: "rotate.3d")
                         .frame(maxWidth: .infinity, alignment: .leading)
                 })
                 Button(action:  {
-                    testLinearVelocity.toggle()
+                    if var motion = subjectEntity.components[PhysicsMotionComponent.self] {
+                        let linearVelocity: SIMD3<Float> = SIMD3.random(in: 0.5...2.5)
+                        motion.linearVelocity += linearVelocity
+                        subjectEntity.components.set(motion)
+                    }
                 }, label: {
                     Label("Add linear velocity", systemImage: "move.3d")
                         .frame(maxWidth: .infinity, alignment: .leading)
                 })
+                Button(action:  {
+                    if var motion = subjectEntity.components[PhysicsMotionComponent.self] {
+                        // Reset the transform
+                        var transformReset = Transform()
+                        transformReset.translation = [0, 0.1, 0]
+                        subjectEntity.transform = transformReset
+
+                        // Remove any velocity 
+                        motion.angularVelocity = .zero
+                        motion.linearVelocity = .zero
+                        subjectEntity.components.set(motion)
+
+
+                    }
+                }, label: {
+                    Label("Reset all velocity", systemImage: "arrow.trianglehead.counterclockwise")
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                })
+
+
 
             }
             .padding()
