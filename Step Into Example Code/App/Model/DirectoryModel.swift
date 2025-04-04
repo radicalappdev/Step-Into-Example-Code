@@ -512,6 +512,13 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  subtitle: "Collisions & Physics: Hello Physics Motion Component",
                  description: "We can use this component to read or write angular and linear velocity.")
 
+        ,Example(title: "Example 064",
+                 type: .VOLUME,
+                 date: Date("4/04/2025"),
+                 isFeatured: true,
+                 subtitle: "Collisions & Physics: Hello Physics Joints Component",
+                 description: "")
+
 
     ]
 
