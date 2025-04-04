@@ -18,43 +18,22 @@ struct Example064: View {
     var body: some View {
         RealityView { content in
 
+            // Set up a top level entity for the simulation and the joints component
             let jointsSimulation = Entity()
             jointsSimulation.components.set([PhysicsSimulationComponent(), PhysicsJointsComponent()])
             content.add(jointsSimulation)
 
-            let collision = CollisionComponent(shapes: [.generateBox(size: .init(repeating: 0.1))])
-            var physicsBody = PhysicsBodyComponent()
-            physicsBody.isAffectedByGravity = false
-            let inputTarget = InputTargetComponent()
-
-
-
-
-            let boxA = ModelEntity(
-                mesh: .generateBox(size: 0.1),
-                materials: [SimpleMaterial(color: .stepRed, isMetallic: false)])
-            boxA.setPosition([-0.15, -0.2, 0], relativeTo: nil)
-            boxA.components
-                .set([collision, inputTarget, physicsBody])
+            // Create some shapes and add them to the simulation
+            let boxA = makeSampleBox(color: .stepRed)
             jointsSimulation.addChild(boxA)
 
-            let boxB = ModelEntity(
-                mesh: .generateBox(size: 0.1),
-                materials: [SimpleMaterial(color: .stepGreen, isMetallic: false)])
-            boxB.setPosition([0, -0.2, 0], relativeTo: nil)
-            boxB.components
-                .set([collision, inputTarget, physicsBody])
-            jointsSimulation.addChild(boxB)
+            let boxB = makeSampleBox(color: .stepGreen)
 
-            let boxC = ModelEntity(
-                mesh: .generateBox(size: 0.1),
-                materials: [SimpleMaterial(color: .stepBlue, isMetallic: false)])
-            boxC.setPosition([0.15, -0.2, 0], relativeTo: nil)
-            boxC.components
-                .set([collision, inputTarget, physicsBody])
+            let boxC = makeSampleBox(color: .stepBlue)
             jointsSimulation.addChild(boxC)
 
 
+            // Create a basic hinge
             let hingeOrientation = simd_quatf(from: [1, 0, 0], to: [0, 0, 1])
 
             // Create a pin for each ball
@@ -79,6 +58,20 @@ struct Example064: View {
 
         }
         .modifier(DragGestureImproved())
+    }
+
+    func makeSampleBox(color: UIColor) -> ModelEntity {
+        let collision = CollisionComponent(shapes: [.generateBox(size: .init(repeating: 0.1))])
+        let inputTarget = InputTargetComponent()
+        var physicsBody = PhysicsBodyComponent()
+        physicsBody.isAffectedByGravity = false
+
+        let box = ModelEntity(
+            mesh: .generateBox(size: 0.1),
+            materials: [SimpleMaterial(color: color, isMetallic: false)])
+        box.components.set([collision, inputTarget, physicsBody])
+
+        return box
     }
 }
 
