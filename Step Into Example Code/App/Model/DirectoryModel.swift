@@ -517,7 +517,7 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  date: Date("4/04/2025"),
                  isFeatured: true,
                  subtitle: "Collisions & Physics: Hello Physics Joints Component",
-                 description: "")
+                 description: "We can create collections of entities that are linked together.")
 
 
     ]

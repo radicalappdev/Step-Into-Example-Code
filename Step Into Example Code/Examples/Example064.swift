@@ -2,11 +2,11 @@
 //
 //  Title: Example064
 //
-//  Subtitle:
+//  Subtitle: Collisions & Physics: Hello Physics Joints Component
 //
-//  Description:
+//  Description: We can create collections of entities that are linked together.
 //
-//  Type:
+//  Type: Volume
 //
 //  Created by Joseph Simpson on 4/4/25.
 
@@ -25,18 +25,17 @@ struct Example064: View {
 
             // Create some shapes and add them to the simulation
             let boxA = makeSampleBox(color: .stepRed)
+            boxA.position.x = -0.1
             jointsSimulation.addChild(boxA)
 
             let boxB = makeSampleBox(color: .stepGreen)
-
-            let boxC = makeSampleBox(color: .stepBlue)
-            jointsSimulation.addChild(boxC)
-
+            boxB.position.x = 0.1
+            jointsSimulation.addChild(boxB)
 
             // Create a basic hinge
             let hingeOrientation = simd_quatf(from: [1, 0, 0], to: [0, 0, 1])
 
-            // Create a pin for each ball
+            // Create a pin for each box
             let pin1 = boxA.pins.set(
                 named: "boxA_to_boxB_hinge",
                 position: .zero,
@@ -48,12 +47,12 @@ struct Example064: View {
                 orientation: hingeOrientation
             )
 
-            // Join the pins together
-            let simpleJoint = PhysicsRevoluteJoint(pin0: pin1, pin1: pin2)
+            // Join the pins together as a joint
+            let simpleJoint1 = PhysicsRevoluteJoint(pin0: pin1, pin1: pin2)
 
             // Add the join to the simulation
             Task {
-                try simpleJoint.addToSimulation()
+                try simpleJoint1.addToSimulation()
             }
 
         }
