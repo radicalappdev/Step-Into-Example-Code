@@ -50,7 +50,7 @@ struct Example064: View {
             // Join the pins together as a joint
             let simpleJoint1 = PhysicsRevoluteJoint(pin0: pin1, pin1: pin2)
 
-            // Add the join to the simulation
+            // Add the joint to the simulation
             Task {
                 try simpleJoint1.addToSimulation()
             }
