@@ -519,6 +519,13 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  subtitle: "Collisions & Physics: Hello Physics Joints Component",
                  description: "We can create collections of entities that are linked together.")
 
+        ,Example(title: "Example 065",
+                 type: .VOLUME,
+                 date: Date("4/07/2025"),
+                 isFeatured: true,
+                 subtitle: "Collisions & Physics: Physics Mass Properties",
+                 description: "We can adjust mass, inertia, and center of mass for Physics Bodies.")
+
 
     ]
 
