@@ -526,9 +526,9 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  subtitle: "Collisions & Physics: Physics Mass Properties",
                  description: "We can adjust mass, inertia, and center of mass for Physics Bodies.")
 
-        ,Example(title: "Example 065",
+        ,Example(title: "Example 066",
                  type: .VOLUME,
-                 date: Date("4/07/2025"),
+                 date: Date("4/08/2025"),
                  isFeatured: true,
                  subtitle: "Collisions & Physics: Physics Material",
                  description: "We can adjust friction and restitution.")

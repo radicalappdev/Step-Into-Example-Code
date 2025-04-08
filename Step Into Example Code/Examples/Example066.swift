@@ -15,18 +15,51 @@ import RealityKit
 import RealityKitContent
 
 struct Example066: View {
+
+    @State var subject = Entity()
     var body: some View {
-        RealityView { content, attachments in
+        RealityView { content in
 
             guard let scene = try? await Entity(named: "PhysicsMaterialResource", in: realityKitContentBundle) else { return }
+            guard let blueSpere = scene.findEntity(named: "Blue") else { return }
+            subject = blueSpere
 
-        } update: { content, attachments in
-
-        } attachments: {
-            Attachment(id: "AttachmentContent") {
-                Text("")
-            }
+            scene.position.y = -0.4
+            scene.addChild(subject)
+            content.add(scene)
         }
+        .toolbar {
+            ToolbarItem(placement: .bottomOrnament, content: {
+                HStack {
+                    Text("Restitution:")
+                    Button(action: {
+                        updatePhysics(restitution: 0.0)
+                    }, label: {
+                        Text("0.0")
+                    })
+                    Button(action: {
+                        updatePhysics(restitution: 0.3)
+                    }, label: {
+                        Text("0.3")
+                    })
+                    Button(action: {
+                        updatePhysics(restitution: 0.7)
+                    }, label: {
+                        Text("0.7")
+                    })
+                }
+            })
+        }
+    }
+    func updatePhysics(restitution: Float) {
+        let physicsBody = PhysicsBodyComponent(
+            massProperties: .default,
+            material: .generate(staticFriction: 0.0, dynamicFriction: 0.0, restitution: restitution),
+            mode: .dynamic
+        )
+        let physicsMotion = PhysicsMotionComponent() // used to reset any velocity
+        subject.components.set([physicsBody, physicsMotion])
+        subject.position.y = 0.8
     }
 }
 
