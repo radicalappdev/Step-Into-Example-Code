@@ -1,0 +1,298 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "Reality Composer Pro Version 2.0 (448.100.13)"
+    }
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "Root"
+{
+    def Cube "Base" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+        customData = {
+            float3 rotationEulerHint = (0, 0, -0.17453292)
+        }
+    )
+    {
+        reorder nameChildren = ["MaplePlywood", "Collider", "RigidBody", "Base_1", "Base_2", "Base_3", "Base_4"]
+        rel material:binding = </Root/Base/MaplePlywood> (
+            bindMaterialAs = "weakerThanDescendants"
+        )
+        double size = 0.8
+        float2 ui:nodegraph:node:pos = (140, 140)
+        int ui:nodegraph:node:stackingOrder = 7
+        quatf xformOp:orient = (0.9961947, 0, 0, -0.087155744)
+        float3 xformOp:scale = (1, 0.05, 1)
+        float3 xformOp:translate = (0, -0.025, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def RealityKitComponent "Collider"
+        {
+            uint group = 1
+            uniform token info:id = "RealityKit.Collider"
+            uint mask = 4294967295
+            token type = "Default"
+
+            def RealityKitStruct "Shape"
+            {
+                float3 extent = (0.8, 0.8, 0.8)
+                token shapeType = "Box"
+
+                def RealityKitStruct "pose"
+                {
+                }
+            }
+        }
+
+        def RealityKitComponent "RigidBody"
+        {
+            bool gravityEnabled = 0
+            uniform token info:id = "RealityKit.RigidBody"
+            token motionType = "Static"
+
+            def RealityKitStruct "massFrame"
+            {
+                def RealityKitStruct "m_pose"
+                {
+                }
+            }
+
+            def RealityKitStruct "material"
+            {
+            }
+        }
+
+        def Cube "Base_1" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Root/Base/MaplePlywood> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+            double size = 0.8
+            float2 ui:nodegraph:node:pos = (120, 120)
+            int ui:nodegraph:node:stackingOrder = 6
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (0.04, 4, 1)
+            float3 xformOp:translate = (-0.38, 1.3, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def RealityKitComponent "Collider"
+            {
+                uint group = 1
+                uniform token info:id = "RealityKit.Collider"
+                uint mask = 4294967295
+                token type = "Default"
+
+                def RealityKitStruct "Shape"
+                {
+                    float3 extent = (0.8, 0.8, 0.8)
+                    token shapeType = "Box"
+
+                    def RealityKitStruct "pose"
+                    {
+                    }
+                }
+            }
+
+            def RealityKitComponent "RigidBody"
+            {
+                bool gravityEnabled = 0
+                uniform token info:id = "RealityKit.RigidBody"
+                token motionType = "Static"
+
+                def RealityKitStruct "massFrame"
+                {
+                    def RealityKitStruct "m_pose"
+                    {
+                    }
+                }
+
+                def RealityKitStruct "material"
+                {
+                }
+            }
+        }
+
+        def Cube "Base_2" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Root/Base/MaplePlywood> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+            double size = 0.8
+            float2 ui:nodegraph:node:pos = (140, 140)
+            int ui:nodegraph:node:stackingOrder = 7
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (0.04, 4, 1)
+            float3 xformOp:translate = (0.38, 1.3, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def RealityKitComponent "Collider"
+            {
+                uint group = 1
+                uniform token info:id = "RealityKit.Collider"
+                uint mask = 4294967295
+                token type = "Default"
+
+                def RealityKitStruct "Shape"
+                {
+                    float3 extent = (0.8, 0.8, 0.8)
+                    token shapeType = "Box"
+
+                    def RealityKitStruct "pose"
+                    {
+                    }
+                }
+            }
+
+            def RealityKitComponent "RigidBody"
+            {
+                bool gravityEnabled = 0
+                uniform token info:id = "RealityKit.RigidBody"
+                token motionType = "Static"
+
+                def RealityKitStruct "massFrame"
+                {
+                    def RealityKitStruct "m_pose"
+                    {
+                    }
+                }
+
+                def RealityKitStruct "material"
+                {
+                }
+            }
+        }
+
+        def Cube "Base_3" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+            customData = {
+                float3 rotationEulerHint = (0, 1.5707963, 0)
+            }
+        )
+        {
+            rel material:binding = </Root/Base/MaplePlywood> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+            double size = 0.8
+            float2 ui:nodegraph:node:pos = (160, 160)
+            int ui:nodegraph:node:stackingOrder = 8
+            quatf xformOp:orient = (0.70710677, 0, 0.7071067, 0)
+            float3 xformOp:scale = (0.036, 2, 0.92)
+            float3 xformOp:translate = (0, 1.3, -0.3868917)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def RealityKitComponent "Collider"
+            {
+                uint group = 1
+                uniform token info:id = "RealityKit.Collider"
+                uint mask = 4294967295
+                token type = "Default"
+
+                def RealityKitStruct "Shape"
+                {
+                    float3 extent = (0.8, 0.8, 0.8)
+                    token shapeType = "Box"
+
+                    def RealityKitStruct "pose"
+                    {
+                    }
+                }
+            }
+
+            def RealityKitComponent "RigidBody"
+            {
+                bool gravityEnabled = 0
+                uniform token info:id = "RealityKit.RigidBody"
+                token motionType = "Static"
+
+                def RealityKitStruct "massFrame"
+                {
+                    def RealityKitStruct "m_pose"
+                    {
+                    }
+                }
+
+                def RealityKitStruct "material"
+                {
+                }
+            }
+        }
+
+        def Cube "Base_4" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+            customData = {
+                float3 rotationEulerHint = (0, 1.5707963, 0)
+            }
+        )
+        {
+            rel material:binding = </Root/Base/MaplePlywood> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+            double size = 0.8
+            float2 ui:nodegraph:node:pos = (180, 180)
+            int ui:nodegraph:node:stackingOrder = 9
+            quatf xformOp:orient = (0.70710677, 0, 0.70710677, 0)
+            float3 xformOp:scale = (0.03599999, 1.9999995, 0.92)
+            float3 xformOp:translate = (0, 1.1405311, 0.387)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def RealityKitComponent "Collider"
+            {
+                uint group = 1
+                uniform token info:id = "RealityKit.Collider"
+                uint mask = 4294967295
+                token type = "Default"
+
+                def RealityKitStruct "Shape"
+                {
+                    float3 extent = (0.8, 0.8, 0.8)
+                    token shapeType = "Box"
+
+                    def RealityKitStruct "pose"
+                    {
+                    }
+                }
+            }
+
+            def RealityKitComponent "RigidBody"
+            {
+                bool gravityEnabled = 0
+                uniform token info:id = "RealityKit.RigidBody"
+                token motionType = "Static"
+
+                def RealityKitStruct "massFrame"
+                {
+                    def RealityKitStruct "m_pose"
+                    {
+                    }
+                }
+
+                def RealityKitStruct "material"
+                {
+                }
+            }
+        }
+
+        def "MaplePlywood" (
+            active = true
+            references = @MaplePlywood.usdz@
+        )
+        {
+            token outputs:mtlx:surface.connect = </Root/Base/MaplePlywood/PreviewSurface.outputs:out>
+            float2 ui:nodegraph:node:pos = (100, 100)
+            int ui:nodegraph:node:stackingOrder = 5
+        }
+    }
+}
+

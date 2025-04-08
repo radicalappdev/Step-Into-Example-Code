@@ -4,7 +4,8 @@
     "PhysicsSimulationBasics.usda",
     "PhysicsMotionBasics.usda",
     "PhysicsBodyBasics.usda",
-    "PhysicsMassProperties.usda"
+    "PhysicsMassProperties.usda",
+    "PhysicsMaterialResource.usda"
   ],
   "recentIdentifiers" : {
     "04966C20-2723-4378-BCAD-327CAD4E36CF" : [
@@ -1221,6 +1222,30 @@
           -0.0020438372,
           1.2791811,
           0.6251675,
+          1
+        ]
+      }
+    ],
+    "5E2830F7-F616-4CD9-83D8-47601C67856C" : [
+      {
+        "date" : 765823766.52881,
+        "title" : "Untitled",
+        "transform" : [
+          0.9995772,
+          1.1288452e-09,
+          0.029075762,
+          0,
+          0.008314685,
+          0.95823973,
+          -0.28584528,
+          0,
+          -0.027861552,
+          0.28596625,
+          0.9578346,
+          0,
+          -0.07240387,
+          0.7365891,
+          2.489127,
           1
         ]
       }
@@ -3901,5 +3926,5 @@
   "sceneViewportBackgroundColors" : {
 
   },
-  "selectedSceneRelativePath" : "PhysicsMassProperties.usda"
+  "selectedSceneRelativePath" : "PhysicsMaterialResource.usda"
 }
