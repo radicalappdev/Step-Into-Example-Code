@@ -2,11 +2,11 @@
 //
 //  Title: Example067
 //
-//  Subtitle:
+//  Subtitle: RealityKit Basics: Modify Component Values
 //
-//  Description:
+//  Description: How do we change the values of our components?
 //
-//  Type:
+//  Type: Volume
 //
 //  Created by Joseph Simpson on 4/10/25.
 
@@ -24,10 +24,8 @@ struct Example067: View {
 
     @State var subjectEntity = Entity()
 
-
     var body: some View {
         RealityView { content in
-
 
             var material = PhysicallyBasedMaterial()
             material.baseColor.tint = .stepRed
@@ -41,8 +39,6 @@ struct Example067: View {
             subjectEntity.components.set(model)
             subjectEntity.name = "Subject"
             content.add(subjectEntity)
-
-        } update: { content in
 
         }
         .toolbar {
@@ -118,6 +114,7 @@ fileprivate struct ColorButton: View {
         .buttonStyle(.plain)
     }
 }
+
 
 fileprivate struct BreathComponent: Component, Codable {
 
