@@ -11,10 +11,16 @@
 //  Created by Joseph Simpson on 4/10/25.
 
 import SwiftUI
+import Foundation
 import RealityKit
 import RealityKitContent
 
 struct Example067: View {
+
+    init() {
+        BreathComponent.registerComponent()
+        BreathSystem.registerSystem()
+    }
 
     @State var subjectEntity = Entity()
 
@@ -47,8 +53,7 @@ struct Example067: View {
                     ColorButton(color: .stepBlue, subjectEntity: $subjectEntity)
 
                     Divider()
-
-
+                        .padding(.horizontal, 12)
 
                     Button(action: {
                         subjectEntity.components.set(OpacityComponent(opacity: 0.25))
@@ -62,6 +67,30 @@ struct Example067: View {
                         Image(systemName: "circle.fill")
                     })
 
+                    Divider()
+                        .padding(.horizontal, 12)
+
+                    Button(action: {
+                        subjectEntity.components.remove(BreathComponent.self)
+                    }, label: {
+                        Image(systemName: "stop.circle")
+                    })
+
+                    Button(action: {
+                        var breath = BreathComponent()
+                        breath.duration = 2.0
+                        subjectEntity.components.set(breath)
+                    }, label: {
+                        Image(systemName: "2.circle.fill")
+                    })
+
+                    Button(action: {
+                        var breath = BreathComponent()
+                        breath.duration = 4.0
+                        subjectEntity.components.set(breath)
+                    }, label: {
+                        Image(systemName: "4.circle.fill")
+                    })
                 }
             })
         }
@@ -88,6 +117,66 @@ fileprivate struct ColorButton: View {
         })
         .buttonStyle(.plain)
     }
+}
+
+fileprivate struct BreathComponent: Component, Codable {
+
+    /// The time it will take for a full cycle of the breath animation
+    public var duration: Float = 4.0
+
+    /// Store accumation time used for the breath animation
+    public var accumulatedTime: Float = 0
+
+    public init() {
+
+    }
+}
+
+
+// This was used by Lab 010 to learn my way around components and systems
+fileprivate class BreathSystem: System {
+
+    // Define a query to return all entities with a BreathComponent.
+    private static let query = EntityQuery(where: .has(BreathComponent.self))
+
+    // init is required even when not used
+    required public init(scene: RealityFoundation.Scene) {
+        // Perform required initialization or setup.
+    }
+
+    public func update(context: SceneUpdateContext) {
+        for entity in context.entities(
+            matching: Self.query,
+            updatingSystemWhen: .rendering
+        ) {
+
+            // Get the component
+            guard var breath = entity.components[BreathComponent.self] else { continue }
+
+            let duration = breath.duration
+
+            // Accumulate time for this entity and set the new value on the component
+            breath.accumulatedTime += Float(context.deltaTime)
+
+            // Calculate the phase of the sine wave (0 to 2π), wrapping by duration
+            let phase = (breath.accumulatedTime / duration) * 2.0 * .pi
+
+            // Compute the scale
+            let scale = 1 + 0.5 * sin(phase)
+
+            // Apply the scale to the entity
+            entity.transform.scale = .init(repeating: scale)
+
+            // Reset accumulated time if a full cycle has passed
+            if breath.accumulatedTime >= duration {
+                breath.accumulatedTime = 0.0
+            }
+
+            entity.components[BreathComponent.self] = breath
+
+        }
+    }
+
 }
 
 #Preview {
