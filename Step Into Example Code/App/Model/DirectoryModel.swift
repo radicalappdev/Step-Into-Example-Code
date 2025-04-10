@@ -533,6 +533,13 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  subtitle: "Collisions & Physics: Physics Material",
                  description: "We can adjust friction and restitution.")
 
+        ,Example(title: "Example 067",
+                 type: .VOLUME,
+                 date: Date("4/10/2025"),
+                 isFeatured: true,
+                 subtitle: "RealityKit Basics: Modify Component Values",
+                 description: "")
+
 
     ]
 
