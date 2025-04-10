@@ -18,6 +18,7 @@ struct Example067: View {
 
     @State var subjectEntity = Entity()
 
+
     var body: some View {
         RealityView { content in
 
@@ -45,11 +46,28 @@ struct Example067: View {
                     ColorButton(color: .stepGreen, subjectEntity: $subjectEntity)
                     ColorButton(color: .stepBlue, subjectEntity: $subjectEntity)
 
+                    Divider()
+
+
+
+                    Button(action: {
+                        subjectEntity.components.set(OpacityComponent(opacity: 0.25))
+                    }, label: {
+                        Image(systemName: "circle.dotted")
+                    })
+
+                    Button(action: {
+                        subjectEntity.components.remove(OpacityComponent.self)
+                    }, label: {
+                        Image(systemName: "circle.fill")
+                    })
+
                 }
             })
         }
     }
 }
+
 
 fileprivate struct ColorButton: View {
 
