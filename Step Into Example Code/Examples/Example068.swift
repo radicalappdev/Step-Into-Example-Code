@@ -18,12 +18,12 @@ import ARKit
 struct Example068: View {
     @State var session = ARKitSession()
     @State private var planeAnchors: [UUID: Entity] = [:]
+    @State private var planeColors: [UUID: Color] = [:]
 
     var body: some View {
         RealityView { content in
 
         } update: { content in
-
             for (_, entity) in planeAnchors {
                 if !content.entities.contains(entity) {
                     content.add(entity)
@@ -36,7 +36,7 @@ struct Example068: View {
     }
 
     func setupAndRunPlaneDetection() async throws {
-        let planeData = PlaneDetectionProvider(alignments: [.horizontal, .vertical])
+        let planeData = PlaneDetectionProvider(alignments: [.horizontal, .vertical, .slanted])
         if PlaneDetectionProvider.isSupported {
             do {
                 try await session.run([planeData])
@@ -44,11 +44,15 @@ struct Example068: View {
                     switch update.event {
                     case .added, .updated:
                         let anchor = update.anchor
-                        let planeEntity = createPlaneEntity(for: anchor)
+                        if planeColors[anchor.id] == nil {
+                            planeColors[anchor.id] = generatePastelColor()
+                        }
+                        let planeEntity = createPlaneEntity(for: anchor, color: planeColors[anchor.id]!)
                         planeAnchors[anchor.id] = planeEntity
                     case .removed:
                         let anchor = update.anchor
                         planeAnchors.removeValue(forKey: anchor.id)
+                        planeColors.removeValue(forKey: anchor.id)
                     }
                 }
             } catch {
@@ -57,15 +61,22 @@ struct Example068: View {
         }
     }
     
-    private func createPlaneEntity(for anchor: PlaneAnchor) -> Entity {
+    private func generatePastelColor() -> Color {
+        let hue = Double.random(in: 0...1)
+        let saturation = Double.random(in: 0.2...0.4) // Lower saturation for pastel
+        let brightness = Double.random(in: 0.8...1.0) // Higher brightness for pastel
+        return Color(hue: hue, saturation: saturation, brightness: brightness)
+    }
+    
+    private func createPlaneEntity(for anchor: PlaneAnchor, color: Color) -> Entity {
         let mesh = MeshResource.generatePlane(
             width: anchor.geometry.extent.width,
             depth: anchor.geometry.extent.height
         )
         
         var material = PhysicallyBasedMaterial()
-        material.baseColor.tint = .stepBackgroundSecondary
-
+        material.baseColor.tint = UIColor(color)
+        
         let entity = ModelEntity(mesh: mesh, materials: [material])
         entity.transform = Transform(matrix: anchor.originFromAnchorTransform)
         
