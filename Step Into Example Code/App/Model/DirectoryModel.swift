@@ -540,6 +540,13 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  subtitle: "RealityKit Basics: Modify Component Values",
                  description: "How do we change the values of our components?")
 
+        ,Example(title: "Example 068",
+                 type: .SPACE,
+                 date: Date("4/13/2025"),
+                 isFeatured: true,
+                 subtitle: "ARKit: Set up and use an ARKit Session",
+                 description: "")
+
 
     ]
 
