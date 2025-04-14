@@ -63,8 +63,8 @@ struct Example068: View {
     
     private func generatePastelColor() -> Color {
         let hue = Double.random(in: 0...1)
-        let saturation = Double.random(in: 0.2...0.4) // Lower saturation for pastel
-        let brightness = Double.random(in: 0.8...1.0) // Higher brightness for pastel
+        let saturation = Double.random(in: 0.2...0.4)
+        let brightness = Double.random(in: 0.8...1.0)
         return Color(hue: hue, saturation: saturation, brightness: brightness)
     }
     
