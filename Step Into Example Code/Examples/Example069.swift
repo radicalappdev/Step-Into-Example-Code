@@ -2,11 +2,11 @@
 //
 //  Title: Example069
 //
-//  Subtitle:
+//  Subtitle: ARKit PlaneDetectionProvider: visualize detected planes
 //
-//  Description:
+//  Description: Converting anchor geometry into a meshes we can render.
 //
-//  Type:
+//  Type: Space
 //
 //  Created by Joseph Simpson on 4/15/25.
 
@@ -85,6 +85,9 @@ struct Example069: View {
             }
             part.positions = MeshBuffers.Positions(vertexArray)
 
+            print("vertices \(vertices)")
+            print("was converted to \(vertexArray)")
+
             // Convert faces to UInt32
             let faces = anchor.geometry.meshFaces
             var faceArray: [UInt32] = []
@@ -94,6 +97,9 @@ struct Example069: View {
                 faceArray.append(UInt32(face))
             }
             part.triangleIndices = MeshBuffer(faceArray)
+
+            print("faces \(faces)")
+            print("was converted to \(faceArray)")
 
             contents.models = [MeshResource.Model(id: "model", parts: [part])]
             meshResource = try MeshResource.generate(from: contents)

@@ -545,14 +545,14 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  date: Date("4/14/2025"),
                  isFeatured: true,
                  subtitle: "ARKit: Set up and use an ARKit Session",
-                 description: "")
+                 description: "Covering the basics to creating and running an ARKitSession with a DataProvider.")
 
         ,Example(title: "Example 069",
                  type: .SPACE,
                  date: Date("4/15/2025"),
                  isFeatured: true,
-                 subtitle: "ARKit: Set up and use an ARKit Session",
-                 description: "")
+                 subtitle: "ARKit PlaneDetectionProvider: visualize detected planes",
+                 description: "Converting anchor geometry into a meshes we can render.")
 
 
     ]

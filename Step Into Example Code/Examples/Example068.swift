@@ -2,11 +2,11 @@
 //
 //  Title: Example068
 //
-//  Subtitle:
+//  Subtitle: ARKit: Set up and use an ARKit Session
 //
-//  Description:
+//  Description: Covering the basics to creating and running an ARKitSession with a DataProvider.
 //
-//  Type:
+//  Type: Space
 //
 //  Created by Joseph Simpson on 4/14/25.
 
