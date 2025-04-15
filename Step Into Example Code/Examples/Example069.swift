@@ -51,8 +51,11 @@ struct Example069: View {
                         planeAnchors[anchor.id] = planeEntity
                     case .removed:
                         let anchor = update.anchor
-                        planeAnchors.removeValue(forKey: anchor.id)
-                        planeColors.removeValue(forKey: anchor.id)
+                        if let entity = planeAnchors[anchor.id] {
+                            entity.removeFromParent()
+                            planeAnchors.removeValue(forKey: anchor.id)
+                            planeColors.removeValue(forKey: anchor.id)
+                        }
                     }
                 }
             } catch {
@@ -115,8 +118,6 @@ struct Example069: View {
         entity.name = "Plane \(anchor.id)"
         entity.setTransformMatrix(anchor.originFromAnchorTransform, relativeTo: nil)
 
-
-
         var material = PhysicallyBasedMaterial()
         material.baseColor.tint = UIColor(color)
 
@@ -131,4 +132,3 @@ struct Example069: View {
 #Preview {
     Example069()
 }
-
