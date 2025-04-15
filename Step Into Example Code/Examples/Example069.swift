@@ -68,11 +68,7 @@ struct Example069: View {
         return Color(hue: hue, saturation: saturation, brightness: brightness)
     }
 
-    private func createPlaneEntity(for anchor: PlaneAnchor, color: Color) -> Entity {
-        let entity = Entity()
-        entity.name = "Plane \(anchor.id)"
-        entity.setTransformMatrix(anchor.originFromAnchorTransform, relativeTo: nil)
-
+    private func createMeshResource(anchor: PlaneAnchor) -> MeshResource? {
         // Generate a mesh for the plane (for occlusion).
         var meshResource: MeshResource? = nil
         do {
@@ -101,14 +97,24 @@ struct Example069: View {
 
             contents.models = [MeshResource.Model(id: "model", parts: [part])]
             meshResource = try MeshResource.generate(from: contents)
+            return meshResource
         } catch {
             print("Failed to create a mesh resource for a plane anchor: \(error).")
         }
+        return nil
+    }
+
+    private func createPlaneEntity(for anchor: PlaneAnchor, color: Color) -> Entity {
+        let entity = Entity()
+        entity.name = "Plane \(anchor.id)"
+        entity.setTransformMatrix(anchor.originFromAnchorTransform, relativeTo: nil)
+
+
 
         var material = PhysicallyBasedMaterial()
         material.baseColor.tint = UIColor(color)
 
-        if let meshResource {
+        if let meshResource = createMeshResource(anchor: anchor) {
             entity.components.set(ModelComponent(mesh: meshResource, materials: [material]))
         }
 
