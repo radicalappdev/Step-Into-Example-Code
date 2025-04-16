@@ -23,6 +23,23 @@ struct Example070: View {
     var body: some View {
         RealityView { content in
 
+            let subject = ModelEntity(
+                mesh: .generateSphere(radius: 0.1),
+                materials: [SimpleMaterial(color: .stepRed, isMetallic: false)])
+            subject.setPosition([1, 1, -1], relativeTo: nil)
+
+            let collision = CollisionComponent(shapes: [.generateSphere(radius: 0.1)])
+
+            var physics = PhysicsBodyComponent(massProperties: .default, material: .default, mode: .dynamic)
+            physics.isAffectedByGravity = false
+
+            let input = InputTargetComponent()
+            subject.components.set([collision, physics, input])
+
+            content.add(subject)
+
+
+
         } update: { content in
             for (_, entity) in planeAnchors {
                 if !content.entities.contains(entity) {
@@ -30,6 +47,7 @@ struct Example070: View {
                 }
             }
         }
+        
         .task {
             try! await setupAndRunPlaneDetection()
         }
@@ -130,6 +148,10 @@ struct Example070: View {
             if let shape = shape {
                 let collision = CollisionComponent(shapes: [shape], mode: .default)
                 entity.components.set(collision)
+
+                let physicsMaterial = PhysicsMaterialResource.generate()
+                let physics = PhysicsBodyComponent(shapes: [shape], mass: 0.0, material: physicsMaterial, mode: .static)
+                entity.components.set(physics)
             }
         }
 
