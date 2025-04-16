@@ -106,48 +106,6 @@ struct Example070: View {
         return Color(hue: hue, saturation: saturation, brightness: brightness)
     }
 
-    private func createMeshResource(anchor: PlaneAnchor) -> MeshResource? {
-        // Generate a mesh for the plane (for occlusion).
-        var meshResource: MeshResource? = nil
-        do {
-            var contents = MeshResource.Contents()
-            contents.instances = [MeshResource.Instance(id: "main", model: "model")]
-            var part = MeshResource.Part(id: "part", materialIndex: 0)
-
-            // Convert vertices to SIMD3<Float>
-            let vertices = anchor.geometry.meshVertices
-            var vertexArray: [SIMD3<Float>] = []
-            for i in 0..<vertices.count {
-                let vertex = vertices.buffer.contents().advanced(by: vertices.offset + vertices.stride * i).assumingMemoryBound(to: (Float, Float, Float).self).pointee
-                vertexArray.append(SIMD3<Float>(vertex.0, vertex.1, vertex.2))
-            }
-            part.positions = MeshBuffers.Positions(vertexArray)
-
-            print("vertices \(vertices)")
-            print("was converted to \(vertexArray)")
-
-            // Convert faces to UInt32
-            let faces = anchor.geometry.meshFaces
-            var faceArray: [UInt32] = []
-            let totalFaces = faces.count * faces.primitive.indexCount
-            for i in 0..<totalFaces {
-                let face = faces.buffer.contents().advanced(by: i * MemoryLayout<Int32>.size).assumingMemoryBound(to: Int32.self).pointee
-                faceArray.append(UInt32(face))
-            }
-            part.triangleIndices = MeshBuffer(faceArray)
-
-            print("faces \(faces)")
-            print("was converted to \(faceArray)")
-
-            contents.models = [MeshResource.Model(id: "model", parts: [part])]
-            meshResource = try MeshResource.generate(from: contents)
-            return meshResource
-        } catch {
-            print("Failed to create a mesh resource for a plane anchor: \(error).")
-        }
-        return nil
-    }
-
     private func createPlaneEntity(for anchor: PlaneAnchor, color: Color) -> Entity {
         let entity = Entity()
         entity.name = "Plane \(anchor.id)"
@@ -175,6 +133,42 @@ struct Example070: View {
         return entity
     }
 
+    private func createMeshResource(anchor: PlaneAnchor) -> MeshResource? {
+        // Generate a mesh for the plane (for occlusion).
+        var meshResource: MeshResource? = nil
+        do {
+            var contents = MeshResource.Contents()
+            contents.instances = [MeshResource.Instance(id: "main", model: "model")]
+            var part = MeshResource.Part(id: "part", materialIndex: 0)
+
+            // Convert vertices to SIMD3<Float>
+            let vertices = anchor.geometry.meshVertices
+            var vertexArray: [SIMD3<Float>] = []
+            for i in 0..<vertices.count {
+                let vertex = vertices.buffer.contents().advanced(by: vertices.offset + vertices.stride * i).assumingMemoryBound(to: (Float, Float, Float).self).pointee
+                vertexArray.append(SIMD3<Float>(vertex.0, vertex.1, vertex.2))
+            }
+            part.positions = MeshBuffers.Positions(vertexArray)
+
+            // Convert faces to UInt32
+            let faces = anchor.geometry.meshFaces
+            var faceArray: [UInt32] = []
+            let totalFaces = faces.count * faces.primitive.indexCount
+            for i in 0..<totalFaces {
+                let face = faces.buffer.contents().advanced(by: i * MemoryLayout<Int32>.size).assumingMemoryBound(to: Int32.self).pointee
+                faceArray.append(UInt32(face))
+            }
+            part.triangleIndices = MeshBuffer(faceArray)
+
+            contents.models = [MeshResource.Model(id: "model", parts: [part])]
+            meshResource = try MeshResource.generate(from: contents)
+            return meshResource
+        } catch {
+            print("Failed to create a mesh resource for a plane anchor: \(error).")
+        }
+        return nil
+    }
+    
     private func createCollisionShape(anchor: PlaneAnchor) async -> ShapeResource? {
         // Generate a collision shape for the plane
         var shape: ShapeResource? = nil
