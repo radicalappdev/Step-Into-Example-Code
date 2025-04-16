@@ -20,30 +20,30 @@ struct Example070: View {
     @State private var planeAnchors: [UUID: Entity] = [:]
     @State private var planeColors: [UUID: Color] = [:]
 
+    @State var subject : ModelEntity = {
+        let subject = ModelEntity(
+            mesh: .generateSphere(radius: 0.1),
+            materials: [SimpleMaterial(color: .stepRed, isMetallic: false)])
+        subject.setPosition([1, 1, -1], relativeTo: nil)
+
+        let collision = CollisionComponent(shapes: [.generateSphere(radius: 0.1)])
+
+        var physics = PhysicsBodyComponent(
+            massProperties: .default,
+            material: .generate(friction: 0, restitution: 1),
+            mode: .dynamic
+        )
+        physics.isAffectedByGravity = false
+        let input = InputTargetComponent()
+        subject.components.set([collision, physics, input])
+
+        return subject
+    }()
+
     var body: some View {
         RealityView { content in
 
-            let subject = ModelEntity(
-                mesh: .generateSphere(radius: 0.1),
-                materials: [SimpleMaterial(color: .stepRed, isMetallic: false)])
-            subject.setPosition([1, 1, -1], relativeTo: nil)
-
-            let collision = CollisionComponent(shapes: [.generateSphere(radius: 0.1)])
-
-            var physics = PhysicsBodyComponent(
-                massProperties: .default,
-                material: .generate(friction: 0, restitution: 1),
-                mode: .dynamic
-            )
-            physics.isAffectedByGravity = false
-
-
-            let input = InputTargetComponent()
-            subject.components.set([collision, physics, input])
-
             content.add(subject)
-
-
 
         } update: { content in
             for (_, entity) in planeAnchors {
@@ -53,25 +53,18 @@ struct Example070: View {
             }
         }
         .gesture(TapGesture()
-            .targetedToAnyEntity()
+            .targetedToEntity(subject)
             .onEnded { value in
-                // Get the tapped entity
-                let tappedEntity = value.entity
-                
-                // Check if it has a physics component
-                if let physics = tappedEntity.components[PhysicsBodyComponent.self] {
-                    // Generate a random force vector
-                    let force = SIMD3<Float>(
-                        x: Float.random(in: -1...1),
-                        y: Float.random(in: -1...1),
-                        z: Float.random(in: -1...1)
-                    )
-                    
-                    // Apply the force using PhysicsMotionComponent
-                    var motion = PhysicsMotionComponent()
-                    motion.linearVelocity = force
-                    tappedEntity.components.set(motion)
-                }
+                // Add some force when we tap the subject
+                let force = SIMD3<Float>(
+                    x: Float.random(in: -1...1),
+                    y: Float.random(in: -1...1),
+                    z: Float.random(in: -1...1)
+                )
+                var motion = PhysicsMotionComponent()
+                motion.linearVelocity = force * 3
+                value.entity.components.set(motion)
+
             })
         .task {
             try! await setupAndRunPlaneDetection()
