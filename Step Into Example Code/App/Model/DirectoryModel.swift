@@ -554,6 +554,13 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  subtitle: "ARKit PlaneDetectionProvider: visualize detected planes",
                  description: "Converting anchor geometry into a meshes we can render.")
 
+        ,Example(title: "Example 070",
+                 type: .SPACE,
+                 date: Date("4/16/2025"),
+                 isFeatured: true,
+                 subtitle: "ARKit PlaneDetectionProvider: adding collisions and physics",
+                 description: "Converting anchor geometry into a collision shapes.")
+
 
     ]
 
