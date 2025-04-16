@@ -125,7 +125,44 @@ struct Example070: View {
             entity.components.set(ModelComponent(mesh: meshResource, materials: [material]))
         }
 
+        Task {
+            let shape = await self.createCollisionShape(anchor: anchor)
+            if let shape = shape {
+                let collision = CollisionComponent(shapes: [shape], mode: .default)
+                entity.components.set(collision)
+            }
+        }
+
         return entity
+    }
+
+    private func createCollisionShape(anchor: PlaneAnchor) async -> ShapeResource? {
+        // Generate a collision shape for the plane
+        var shape: ShapeResource? = nil
+        do {
+            // Convert vertices to SIMD3<Float>
+            let vertices = anchor.geometry.meshVertices
+            var vertexArray: [SIMD3<Float>] = []
+            for i in 0..<vertices.count {
+                let vertex = vertices.buffer.contents().advanced(by: vertices.offset + vertices.stride * i).assumingMemoryBound(to: (Float, Float, Float).self).pointee
+                vertexArray.append(SIMD3<Float>(vertex.0, vertex.1, vertex.2))
+            }
+
+            // Convert faces to UInt16
+            let faces = anchor.geometry.meshFaces
+            var faceArray: [UInt16] = []
+            let totalFaces = faces.count * faces.primitive.indexCount
+            for i in 0..<totalFaces {
+                let face = faces.buffer.contents().advanced(by: i * MemoryLayout<Int32>.size).assumingMemoryBound(to: Int32.self).pointee
+                faceArray.append(UInt16(face))
+            }
+
+            shape = try await ShapeResource.generateStaticMesh(positions: vertexArray, faceIndices: faceArray)
+            return shape
+        } catch {
+            print("Failed to create a static mesh for a plane anchor: \(error).")
+        }
+        return nil
     }
 }
 
