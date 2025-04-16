@@ -2,11 +2,11 @@
 //
 //  Title: Example070
 //
-//  Subtitle:
+//  Subtitle: ARKit PlaneDetectionProvider: adding collisions and physics
 //
-//  Description:
+//  Description: Converting anchor geometry into collision shapes.
 //
-//  Type:
+//  Type: Space
 //
 //  Created by Joseph Simpson on 4/16/25.
 
@@ -168,7 +168,7 @@ struct Example070: View {
         }
         return nil
     }
-    
+
     private func createCollisionShape(anchor: PlaneAnchor) async -> ShapeResource? {
         // Generate a collision shape for the plane
         var shape: ShapeResource? = nil
@@ -193,7 +193,7 @@ struct Example070: View {
             shape = try await ShapeResource.generateStaticMesh(positions: vertexArray, faceIndices: faceArray)
             return shape
         } catch {
-            print("Failed to create a static mesh for a plane anchor: \(error).")
+            print("Failed to create a shape for collision \(error).")
         }
         return nil
     }
@@ -202,3 +202,4 @@ struct Example070: View {
 #Preview {
     Example070()
 }
+

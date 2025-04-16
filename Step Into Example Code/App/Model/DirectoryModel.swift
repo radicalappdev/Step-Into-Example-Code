@@ -559,7 +559,7 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  date: Date("4/16/2025"),
                  isFeatured: true,
                  subtitle: "ARKit PlaneDetectionProvider: adding collisions and physics",
-                 description: "Converting anchor geometry into a collision shapes.")
+                 description: "Converting anchor geometry into collision shapes.")
 
 
     ]
