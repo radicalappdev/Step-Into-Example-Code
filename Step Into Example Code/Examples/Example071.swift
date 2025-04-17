@@ -4,9 +4,9 @@
 //
 //  Subtitle:
 //
-//  Description:
+//  Description: We can filter anchors based on classification or alignment values.
 //
-//  Type:
+//  Type: Space
 //
 //  Created by Joseph Simpson on 4/17/25.
 
@@ -19,31 +19,12 @@ struct Example071: View {
     @State var session = ARKitSession()
     @State private var planeAnchors: [UUID: Entity] = [:]
 
-    @State var subject : ModelEntity = {
-        let subject = ModelEntity(
-            mesh: .generateSphere(radius: 0.1),
-            materials: [SimpleMaterial(color: .stepRed, isMetallic: false)])
-        subject.setPosition([1, 1, -1], relativeTo: nil)
-
-        let collision = CollisionComponent(shapes: [.generateSphere(radius: 0.1)])
-
-        var physics = PhysicsBodyComponent(
-            shapes: [.generateSphere(radius: 0.1)],
-            mass: 1.0,
-            material: .generate(friction: 0, restitution: 1),
-            mode: .dynamic
-        )
-        physics.isAffectedByGravity = false
-
-        let input = InputTargetComponent()
-        subject.components.set([collision, physics, input])
-
-        return subject
-    }()
+    /// Debug value: use classification colors when false, alignment colors when true
+    private var useAlighmentColors: Bool = false
 
     var body: some View {
         RealityView { content in
-            content.add(subject)
+
         } update: { content in
             for (_, entity) in planeAnchors {
                 if !content.entities.contains(entity) {
@@ -51,19 +32,7 @@ struct Example071: View {
                 }
             }
         }
-        .gesture(TapGesture()
-            .targetedToEntity(subject)
-            .onEnded { value in
-                // Add some force when we tap the subject
-                let force = SIMD3<Float>(
-                    x: Float.random(in: -1...1),
-                    y: Float.random(in: -1...1),
-                    z: Float.random(in: -1...1)
-                )
-                var motion = PhysicsMotionComponent()
-                motion.linearVelocity = force * 3
-                value.entity.components.set(motion)
-            })
+
         .task {
             try! await setupAndRunPlaneDetection()
         }
@@ -95,17 +64,35 @@ struct Example071: View {
         }
     }
 
+    private func createPlaneEntity(for anchor: PlaneAnchor) -> Entity {
+        let entity = Entity()
+        entity.name = "Plane \(anchor.id)"
+        entity.setTransformMatrix(anchor.originFromAnchorTransform, relativeTo: nil)
 
+        var material = PhysicallyBasedMaterial()
+        // Use eithr the classification or alignment colors
+        material.baseColor.tint = useAlighmentColors ? colorForPlaneAlignment(anchor.alignment) : colorForPlaneClassification(anchor.classification)
+
+        if let meshResource = createMeshResource(anchor: anchor) {
+            entity.components.set(ModelComponent(mesh: meshResource, materials: [material]))
+        }
+
+        return entity
+    }
+
+    // Helper functions to determine color from classification or alignment
     private func colorForPlaneClassification(_ classification: PlaneAnchor.Classification?) -> UIColor {
         guard let classification else {
             return .white
         }
-        
+
+        // Current cases: https://developer.apple.com/documentation/arkit/planeanchor/classification-swift.enum
+        // We only care about wall, ceiling, and floor today
         switch classification {
         case .wall:
             return .systemRed
         case .ceiling:
-            return .white
+            return .systemBlue
         case .floor:
             return .systemGreen
         default:
@@ -113,32 +100,24 @@ struct Example071: View {
         }
     }
 
-    private func createPlaneEntity(for anchor: PlaneAnchor) -> Entity {
-        let entity = Entity()
-        entity.name = "Plane \(anchor.id)"
-        entity.setTransformMatrix(anchor.originFromAnchorTransform, relativeTo: nil)
-
-        var material = PhysicallyBasedMaterial()
-        material.baseColor.tint = colorForPlaneClassification(anchor.classification)
-
-        if let meshResource = createMeshResource(anchor: anchor) {
-            entity.components.set(ModelComponent(mesh: meshResource, materials: [material]))
+    private func colorForPlaneAlignment(_ alignment: PlaneAnchor.Alignment?) -> UIColor {
+        guard let alignment else {
+            return .white
         }
 
-        Task {
-            let shape = await self.createCollisionShape(anchor: anchor)
-            if let shape = shape {
-                let collision = CollisionComponent(shapes: [shape], mode: .default)
-                entity.components.set(collision)
-
-                let physicsMaterial = PhysicsMaterialResource.generate(friction: 0, restitution: 0.8)
-                let physics = PhysicsBodyComponent(shapes: [shape], mass: 0.0, material: physicsMaterial, mode: .static)
-                entity.components.set(physics)
-            }
+        // Only three cases as of visionOS 2.4
+        switch alignment {
+        case .horizontal:
+            return .systemOrange
+        case .vertical:
+            return .systemPurple
+        case .slanted:
+            return .systemCyan
+        default:
+            return .white
         }
-
-        return entity
     }
+
 
     private func createMeshResource(anchor: PlaneAnchor) -> MeshResource? {
         // Generate a mesh for the plane (for occlusion).
@@ -176,34 +155,6 @@ struct Example071: View {
         return nil
     }
 
-    private func createCollisionShape(anchor: PlaneAnchor) async -> ShapeResource? {
-        // Generate a collision shape for the plane
-        var shape: ShapeResource? = nil
-        do {
-            // Convert vertices to SIMD3<Float>
-            let vertices = anchor.geometry.meshVertices
-            var vertexArray: [SIMD3<Float>] = []
-            for i in 0..<vertices.count {
-                let vertex = vertices.buffer.contents().advanced(by: vertices.offset + vertices.stride * i).assumingMemoryBound(to: (Float, Float, Float).self).pointee
-                vertexArray.append(SIMD3<Float>(vertex.0, vertex.1, vertex.2))
-            }
-
-            // Convert faces to UInt16
-            let faces = anchor.geometry.meshFaces
-            var faceArray: [UInt16] = []
-            let totalFaces = faces.count * faces.primitive.indexCount
-            for i in 0..<totalFaces {
-                let face = faces.buffer.contents().advanced(by: i * MemoryLayout<Int32>.size).assumingMemoryBound(to: Int32.self).pointee
-                faceArray.append(UInt16(face))
-            }
-
-            shape = try await ShapeResource.generateStaticMesh(positions: vertexArray, faceIndices: faceArray)
-            return shape
-        } catch {
-            print("Failed to create a shape for collision \(error).")
-        }
-        return nil
-    }
 }
 
 #Preview {

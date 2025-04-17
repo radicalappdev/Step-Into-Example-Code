@@ -566,7 +566,7 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  date: Date("4/16/2025"),
                  isFeatured: true,
                  subtitle: "ARKit PlaneDetectionProvider: classification and alignment",
-                 description: "")
+                 description: "We can filter anchors based on classification or alignment values.")
 
 
     ]
