@@ -501,35 +501,35 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
         ,Example(title: "Example 062",
                  type: .VOLUME,
                  date: Date("4/02/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Collisions & Physics: Hello Physics Simulation Component",
                  description: "We can override the default physics by using this component.")
 
         ,Example(title: "Example 063",
                  type: .VOLUME,
                  date: Date("4/03/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Collisions & Physics: Hello Physics Motion Component",
                  description: "We can use this component to read or write angular and linear velocity.")
 
         ,Example(title: "Example 064",
                  type: .VOLUME,
                  date: Date("4/04/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Collisions & Physics: Hello Physics Joints Component",
                  description: "We can create collections of entities that are linked together.")
 
         ,Example(title: "Example 065",
                  type: .VOLUME,
                  date: Date("4/07/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Collisions & Physics: Physics Mass Properties",
                  description: "We can adjust mass, inertia, and center of mass for Physics Bodies.")
 
         ,Example(title: "Example 066",
                  type: .VOLUME,
                  date: Date("4/08/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Collisions & Physics: Physics Material",
                  description: "We can adjust friction and restitution.")
 
@@ -560,6 +560,13 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  isFeatured: true,
                  subtitle: "ARKit PlaneDetectionProvider: adding collisions and physics",
                  description: "Converting anchor geometry into collision shapes.")
+
+        ,Example(title: "Example 071",
+                 type: .SPACE,
+                 date: Date("4/16/2025"),
+                 isFeatured: true,
+                 subtitle: "ARKit PlaneDetectionProvider: classification and alignment",
+                 description: "")
 
 
     ]
