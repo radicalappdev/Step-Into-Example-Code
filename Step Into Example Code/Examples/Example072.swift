@@ -4,9 +4,9 @@
 //
 //  Subtitle:
 //
-//  Description:
+//  Description: We can use the extent of the anchor to create simple planes and colliders.
 //
-//  Type:
+//  Type: Space
 //
 //  Created by Joseph Simpson on 4/18/25.
 
