@@ -563,10 +563,17 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
 
         ,Example(title: "Example 071",
                  type: .SPACE,
-                 date: Date("4/16/2025"),
+                 date: Date("4/17/2025"),
                  isFeatured: true,
                  subtitle: "ARKit PlaneDetectionProvider: classification and alignment",
                  description: "We can filter anchors based on classification or alignment values.")
+
+        ,Example(title: "Example 072",
+                 type: .SPACE,
+                 date: Date("4/18/2025"),
+                 isFeatured: true,
+                 subtitle: "ARKit PlaneDetectionProvider: TBD",
+                 description: "")
 
 
     ]
