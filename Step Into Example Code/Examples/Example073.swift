@@ -1,21 +1,21 @@
 //  Step Into Vision - Example Code
 //
-//  Title: Example072
+//  Title: Example073
 //
-//  Subtitle:
+//  Subtitle: ARKit PlaneDetectionProvider: occlusion material
 //
-//  Description: We can use the extent of the anchor to create simple planes and colliders.
+//  Description: We can use Occlusion material to hide our planes while letting them participate in collisions and physics.
 //
 //  Type: Space
 //
-//  Created by Joseph Simpson on 4/18/25.
+//  Created by Joseph Simpson on 4/19/25.
 
 import SwiftUI
 import RealityKit
 import RealityKitContent
 import ARKit
 
-struct Example072: View {
+struct Example073: View {
     @State var session = ARKitSession()
     @State private var planeAnchors: [UUID: Entity] = [:]
     @State private var planeAnchorsSimple: [UUID: Entity] = [:]
@@ -151,5 +151,5 @@ struct Example072: View {
 }
 
 #Preview {
-    Example072()
+    Example073()
 }
