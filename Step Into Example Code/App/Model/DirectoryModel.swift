@@ -575,9 +575,9 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  subtitle: "ARKit PlaneDetectionProvider: creating simple planes from anchors",
                  description: "We can use the extent of the anchor to create simple planes and colliders.")
 
-        ,Example(title: "Example 072",
+        ,Example(title: "Example 073",
                  type: .SPACE,
-                 date: Date("4/18/2025"),
+                 date: Date("4/19/2025"),
                  isFeatured: true,
                  subtitle: "ARKit PlaneDetectionProvider: occlusion material",
                  description: "We can use Occlusion material to hide our planes while letting them participate in collisions and physics.")
