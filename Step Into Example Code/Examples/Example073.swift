@@ -20,10 +20,32 @@ struct Example073: View {
 
     @State private var planeAnchorsSimple: [UUID: Entity] = [:]
 
+    @State var subject : ModelEntity = {
+        let subject = ModelEntity(
+            mesh: .generateSphere(radius: 0.1),
+            materials: [SimpleMaterial(color: .stepRed, isMetallic: false)])
+        subject.setPosition([1, 1, -1], relativeTo: nil)
+
+        let collision = CollisionComponent(shapes: [.generateSphere(radius: 0.1)])
+
+        var physics = PhysicsBodyComponent(
+            shapes: [.generateSphere(radius: 0.1)],
+            mass: 1.0,
+            material: .generate(friction: 0, restitution: 1),
+            mode: .dynamic
+        )
+        physics.isAffectedByGravity = false
+
+        let input = InputTargetComponent()
+        subject.components.set([collision, physics, input])
+
+        return subject
+    }()
+
 
     var body: some View {
         RealityView { content in
-
+            content.add(subject)
         } update: { content in
 
             for (_, entity) in planeAnchorsSimple {
@@ -32,6 +54,19 @@ struct Example073: View {
                 }
             }
         }
+        .gesture(TapGesture()
+            .targetedToEntity(subject)
+            .onEnded { value in
+                // Add some force when we tap the subject
+                let force = SIMD3<Float>(
+                    x: Float.random(in: -1...1),
+                    y: Float.random(in: -1...1),
+                    z: Float.random(in: -1...1)
+                )
+                var motion = PhysicsMotionComponent()
+                motion.linearVelocity = force * 3
+                value.entity.components.set(motion)
+            })
         .task {
             try! await setupAndRunPlaneDetection()
         }
@@ -69,10 +104,14 @@ struct Example073: View {
         let material = OcclusionMaterial()
 
         let entity = ModelEntity(mesh: mesh, materials: [material])
-        entity.generateCollisionShapes(recursive: true)
         entity.transform = Transform(matrix: matrix_multiply(anchor.originFromAnchorTransform, extent.anchorFromExtentTransform))
 
-
+        // We'll let RealityKit generate a simple collision shape based on the entity.
+        // For more detailed shapes see: https://stepinto.vision/example-code/arkit-planedetectionprovider-adding-collisions-and-physics/
+        entity.generateCollisionShapes(recursive: true)
+        let physicsMaterial = PhysicsMaterialResource.generate(friction: 0, restitution: 1)
+        let physics = PhysicsBodyComponent(massProperties: .default, material: physicsMaterial, mode: .static)
+        entity.components.set(physics)
 
         return entity
     }
