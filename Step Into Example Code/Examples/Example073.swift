@@ -18,8 +18,9 @@ import ARKit
 struct Example073: View {
     @State var session = ARKitSession()
 
-    @State private var planeAnchorsSimple: [UUID: Entity] = [:]
+    @State var planeAnchorsSimple: [UUID: Entity] = [:]
 
+    // An entity with physics that can bounce around the room
     @State var subject : ModelEntity = {
         let subject = ModelEntity(
             mesh: .generateSphere(radius: 0.1),
@@ -97,7 +98,7 @@ struct Example073: View {
         }
     }
 
-    private func createSimplePlaneEntity(for anchor: PlaneAnchor) -> Entity {
+    func createSimplePlaneEntity(for anchor: PlaneAnchor) -> Entity {
 
         let extent = anchor.geometry.extent
         let mesh = MeshResource.generatePlane(width: extent.width, height: extent.height)
@@ -108,7 +109,7 @@ struct Example073: View {
 
         // We'll let RealityKit generate a simple collision shape based on the entity.
         // For more detailed shapes see: https://stepinto.vision/example-code/arkit-planedetectionprovider-adding-collisions-and-physics/
-        entity.generateCollisionShapes(recursive: true)
+        entity.generateCollisionShapes(recursive: true, static: true)
         let physicsMaterial = PhysicsMaterialResource.generate(friction: 0, restitution: 1)
         let physics = PhysicsBodyComponent(massProperties: .default, material: physicsMaterial, mode: .static)
         entity.components.set(physics)
