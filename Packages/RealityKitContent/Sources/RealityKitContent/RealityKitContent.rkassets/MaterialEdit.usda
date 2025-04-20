@@ -28,7 +28,7 @@ def Xform "Root"
         int ui:nodegraph:node:stackingOrder = 8
         quatf xformOp:orient = (1, 0, 0, 0)
         float3 xformOp:scale = (1, 1, 1)
-        float3 xformOp:translate = (0.2, 0, 0)
+        float3 xformOp:translate = (0, -0.12, 0)
         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
 
         def "MaplePlywood" (
@@ -36,6 +36,9 @@ def Xform "Root"
             references = @MaplePlywood.usdz@
         )
         {
+            color3f inputs:Basecolor_Tint = (0.9607843, 0.9254902, 0.9254902) (
+                colorSpace = "srgb_displayp3"
+            )
             float inputs:Opacity = 1 (
                 customData = {
                     dictionary realitykit = {
@@ -67,7 +70,7 @@ def Xform "Root"
     {
         rel material:binding = </Root/Sphere/DefaultMaterial>
         double radius = 0.1
-        float3 xformOp:translate = (-0.2, 0, 0)
+        float3 xformOp:translate = (0, 0.12, 0)
         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
 
         def Material "DefaultMaterial"
@@ -80,8 +83,8 @@ def Xform "Root"
             def Shader "DefaultSurfaceShader"
             {
                 uniform token info:id = "UsdPreviewSurface"
-                color3f inputs:diffuseColor = (0.003921569, 0.17254902, 0.41960785) (
-                    colorSpace = "srgb_texture"
+                color3f inputs:diffuseColor = (0.9607843, 0.9254902, 0.9254902) (
+                    colorSpace = "srgb_displayp3"
                 )
                 float inputs:roughness = 0.75
                 token outputs:surface
