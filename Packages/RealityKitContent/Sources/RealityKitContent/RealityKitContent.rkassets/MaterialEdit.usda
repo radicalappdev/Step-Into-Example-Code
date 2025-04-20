@@ -36,9 +36,27 @@ def Xform "Root"
             references = @MaplePlywood.usdz@
         )
         {
+            float inputs:Opacity = 1 (
+                customData = {
+                    dictionary realitykit = {
+                        float2 positionInSubgraph = (324.20987, 30.729681)
+                        int stackingOrderInSubgraph = 2330
+                    }
+                }
+            )
             token outputs:mtlx:surface.connect = </Root/Box/MaplePlywood/PreviewSurface.outputs:out>
             float2 ui:nodegraph:node:pos = (100, 100)
             int ui:nodegraph:node:stackingOrder = 5
+            float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (823.76306, 402.21188)
+            int ui:nodegraph:realitykit:subgraphOutputs:stackingOrder = 2333
+
+            over "PreviewSurface"
+            {
+                color3f inputs:diffuseColor.connect = </Root/Box/MaplePlywood/Mix.outputs:out>
+                float inputs:opacity.connect = </Root/Box/MaplePlywood.inputs:Opacity>
+                int ui:nodegraph:node:stackingOrder = 2339
+                string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["Advanced"]
+            }
         }
     }
 

@@ -20,6 +20,7 @@ struct Example075: View {
     @State var boxEntity = Entity()
 
     @State var color: Color = .red
+    @State var opacity: Float = 1.0
 
     var body: some View {
         RealityView { content in
@@ -32,13 +33,15 @@ struct Example075: View {
             sphereEntity = sphere
             boxEntity = box
 
-        }
-        .onChange(of: color) { _, newValue in
-            let uiColor = UIColor(newValue) // color picker uses Color, but these materials want UIColor...
+        } update: { content in
+            let uiColor = UIColor(color) // color picker uses Color, but these materials want UIColor...
+            let opacityChange = opacity
 
             // Edit the color for a PhysicallyBasedMaterial
             if var pbrMaterial = sphereEntity.components[ModelComponent.self]?.materials.first as? PhysicallyBasedMaterial {
                 pbrMaterial.baseColor.tint = uiColor
+                pbrMaterial.blending =
+                    .transparent(opacity: PhysicallyBasedMaterial.Opacity(floatLiteral: opacityChange))
                 sphereEntity.components[ModelComponent.self]?.materials[0] = pbrMaterial
             }
 
@@ -46,6 +49,7 @@ struct Example075: View {
             if var shaderMaterial = boxEntity.components[ModelComponent.self]?.materials.first as? ShaderGraphMaterial {
                 do {
                     try shaderMaterial.setParameter(name: "Basecolor_Tint", value: MaterialParameters.Value.color(uiColor))
+                    try shaderMaterial.setParameter(name: "Opacity", value: MaterialParameters.Value.float(opacityChange))
                     boxEntity.components[ModelComponent.self]?.materials[0] = shaderMaterial
                 } catch {
                     print("could not set parameter")
@@ -59,6 +63,7 @@ struct Example075: View {
                     ColorPicker("Color", selection: $color)
                     Divider()
                         .padding(.horizontal, 12)
+                    Slider(value: $opacity, in: 0...1)
 
                 }
             })
