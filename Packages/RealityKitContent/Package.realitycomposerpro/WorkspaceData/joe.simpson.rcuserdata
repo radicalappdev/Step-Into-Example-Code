@@ -6,13 +6,17 @@
     "PhysicsBodyBasics.usda",
     "PhysicsMassProperties.usda",
     "PhysicsMaterialResource.usda",
-    "PortalFrame.usda"
+    "PortalFrame.usda",
+    "MaterialEdit.usda"
   ],
   "recentIdentifiers" : {
     "04966C20-2723-4378-BCAD-327CAD4E36CF" : [
 
     ],
     "04CE6D61-872A-4ADA-A754-31532C1C7C6B" : [
+
+    ],
+    "28D8110F-EF76-49DA-9604-8A92B08609CD" : [
 
     ],
     "2FB5E55D-1FD0-442E-BA3C-C9212530BE69" : [
@@ -517,6 +521,74 @@
           -0.106758356,
           0.2821801,
           0.6982136,
+          1
+        ]
+      }
+    ],
+    "28D8110F-EF76-49DA-9604-8A92B08609CD" : [
+      {
+        "date" : 766862739.185909,
+        "title" : "Untitled",
+        "transform" : [
+          0.9990772,
+          -1.3925663e-10,
+          -0.0429515,
+          0,
+          -0.019652706,
+          0.889181,
+          -0.45713347,
+          0,
+          0.038191654,
+          0.4575558,
+          0.8883604,
+          0,
+          0.098775074,
+          1.1833764,
+          2.2975667,
+          1
+        ]
+      },
+      {
+        "date" : 766862719.036036,
+        "title" : "Untitled",
+        "transform" : [
+          0.9990772,
+          9.630062e-11,
+          -0.0429515,
+          0,
+          -0.022551015,
+          0.8510811,
+          -0.52454984,
+          0,
+          0.0365552,
+          0.5250344,
+          0.8502956,
+          0,
+          0.09454272,
+          1.3578964,
+          2.1991196,
+          1
+        ]
+      },
+      {
+        "date" : 766862707.021781,
+        "title" : "Untitled",
+        "transform" : [
+          0.9999987,
+          8.286316e-12,
+          0.0016192568,
+          0,
+          0.0007438278,
+          0.8882484,
+          -0.45936307,
+          0,
+          -0.0014383022,
+          0.4593637,
+          0.8882472,
+          0,
+          -0.0037198805,
+          1.1880523,
+          2.2972736,
           1
         ]
       }
@@ -4353,5 +4425,5 @@
   "sceneViewportBackgroundColors" : {
 
   },
-  "selectedSceneRelativePath" : "PortalFrame.usda"
+  "selectedSceneRelativePath" : "MaterialEdit.usda"
 }

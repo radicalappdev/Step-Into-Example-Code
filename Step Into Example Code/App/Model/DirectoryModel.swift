@@ -589,6 +589,13 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  subtitle: "ARKit PlaneDetectionProvider: adding an entity to an anchor",
                  description: "Attaching virtual content to a plane anchor.")
 
+        ,Example(title: "Example 075",
+                 type: .WINDOW,
+                 date: Date("4/20/2025"),
+                 isFeatured: true,
+                 subtitle: "RealityKit Basics: Modify Material Values",
+                 description: "Changing material values is similar to changing component values, but with a few considerations.")
+
 
     ]
 
