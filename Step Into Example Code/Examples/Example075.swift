@@ -34,36 +34,31 @@ struct Example075: View {
 
         }
         .onChange(of: color) { _, newValue in
+            let uiColor = UIColor(newValue) // color picker uses Color, but these materials want UIColor...
+
+            // Edit the color for a PhysicallyBasedMaterial
             if var pbrMaterial = sphereEntity.components[ModelComponent.self]?.materials.first as? PhysicallyBasedMaterial {
-                pbrMaterial.baseColor.tint = UIColor(color)
+                pbrMaterial.baseColor.tint = uiColor
                 sphereEntity.components[ModelComponent.self]?.materials[0] = pbrMaterial
             }
 
+            // Edit the color for a ShaderGraphMaterial
             if var shaderMaterial = boxEntity.components[ModelComponent.self]?.materials.first as? ShaderGraphMaterial {
                 do {
-                    try shaderMaterial.setParameter(name: "Basecolor_Tint", value: MaterialParameters.Value.color(UIColor(newValue)))
+                    try shaderMaterial.setParameter(name: "Basecolor_Tint", value: MaterialParameters.Value.color(uiColor))
                     boxEntity.components[ModelComponent.self]?.materials[0] = shaderMaterial
                 } catch {
                     print("could not set parameter")
                 }
-
 
             }
         }
         .toolbar {
             ToolbarItem(placement: .bottomOrnament, content: {
                 HStack {
-
                     ColorPicker("Color", selection: $color)
                     Divider()
                         .padding(.horizontal, 12)
-
-//                    Button(action: {
-//                        subjectEntity.components.set(OpacityComponent(opacity: 0.25))
-//                    }, label: {
-//                        Image(systemName: "circle.dotted")
-//                    })
-
 
                 }
             })
