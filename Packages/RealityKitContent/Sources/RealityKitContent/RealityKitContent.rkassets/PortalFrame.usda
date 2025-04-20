@@ -1,0 +1,73 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "Reality Composer Pro Version 2.0 (448.100.13)"
+    }
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "Root"
+{
+    reorder nameChildren = ["picture_frame_01", "MaplePlywood", "portal_entity"]
+    def "MaplePlywood" (
+        active = true
+        references = @MaplePlywood.usdz@
+    )
+    {
+        color3f inputs:Basecolor_Tint = (0.5705636, 0.34103394, 0) (
+            colorSpace = "srgb_displayp3"
+        )
+        float2 inputs:UV_Scale = (0.5, 1)
+    }
+
+    def "picture_frame_02" (
+        active = true
+        references = @Meshes/picture_frame_02.usdz@
+    )
+    {
+        reorder nameChildren = ["Geom", "Materials", "portal_entity"]
+        float3 xformOp:scale = (1, 1, 1)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def Cube "portal_entity" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Root/picture_frame_02/portal_entity/DefaultMaterial>
+            double size = 0.46
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (1.02, 1.66, 0.01)
+            float3 xformOp:translate = (0, 0, 0.0046010837)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Material "DefaultMaterial"
+            {
+                token outputs:surface.connect = </Root/picture_frame_02/portal_entity/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+                def Shader "DefaultSurfaceShader"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (1, 1, 1)
+                    float inputs:roughness = 0.75
+                    token outputs:surface
+                }
+            }
+        }
+
+        over "Geom"
+        {
+            over "picture_frame_02" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                rel material:binding = </Root/MaplePlywood> (
+                    bindMaterialAs = "weakerThanDescendants"
+                )
+            }
+        }
+    }
+}
+
