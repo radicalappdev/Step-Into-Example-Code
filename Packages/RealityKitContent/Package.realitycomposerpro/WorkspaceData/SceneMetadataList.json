@@ -835,6 +835,25 @@
       {
         "isExpanded" : true,
         "isLocked" : false
+      },
+      [
+        "D1CE0851-BABB-421B-870F-C522D0908905",
+        "Root",
+        "picture_frame_02"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "D1CE0851-BABB-421B-870F-C522D0908905",
+        "Root",
+        "picture_frame_02",
+        "Geom"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
       }
     ]
   },

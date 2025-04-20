@@ -56,7 +56,10 @@ struct Example074: View {
                             print("WALL anchor added or updated")
                             if wallAnchor == nil {
                                 wallAnchor = anchor
+                                let transform = Transform(matrix: wallAnchor!.originFromAnchorTransform)
+
                                 frame.setTransformMatrix(wallAnchor!.originFromAnchorTransform, relativeTo: nil)
+
                                 frame.isEnabled = true
                                 print("WALL added a frame")
                             }
