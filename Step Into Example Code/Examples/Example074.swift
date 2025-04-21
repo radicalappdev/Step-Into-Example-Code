@@ -17,7 +17,7 @@ import ARKit
 
 struct Example074: View {
     @State var session = ARKitSession()
-    @State var frameParent = Entity()
+    @State var frameEntity = Entity()
 
     @State var portal = Entity()
     @State var wallAnchor: PlaneAnchor?
@@ -27,10 +27,10 @@ struct Example074: View {
             guard let scene = try? await Entity(named: "PortalFrame", in: realityKitContentBundle) else { return }
             content.add(scene)
 
-            guard let frameEntity = scene.findEntity(named: "picture_frame_02") else { return }
-            frameParent.addChild(frameEntity)
-            frameParent.isEnabled = false
-            scene.addChild(frameParent)
+            guard let frame = scene.findEntity(named: "picture_frame_02") else { return }
+            frameEntity = frame
+            frameEntity.isEnabled = false
+            scene.addChild(frameEntity)
 
 
         } update: { content in
@@ -55,24 +55,9 @@ struct Example074: View {
 
                         if(anchor.classification == .wall) {
                             if wallAnchor == nil {
-                                let transform = Transform(matrix: anchor.originFromAnchorTransform)
-                                let anchorPosition = transform.translation
-                                let anchorRotation = transform.rotation
-                                print("wall anchor position: \(anchorPosition)")
-                                print("wall anchor rotation: \(anchorRotation)")
-//                                frameParent.setPosition(anchorPosition, relativeTo: nil)
-//                                frameParent.children.first?.setOrientation(
-//                                    anchorRotation.inverse,
-//                                    relativeTo: nil
-//                                )
 
-//                                frameParent.setTransformMatrix(anchor.originFromAnchorTransform, relativeTo: nil)
-//                                frameParent.children.first?
-//                                    .setOrientation(
-//                                        simd_quatf(angle: .pi / 2, axis: [1, 0, 0]),
-//                                        relativeTo: frameParent
-//                                    )
-                                frameParent.isEnabled = true
+                                frameEntity.setTransformMatrix(anchor.originFromAnchorTransform, relativeTo: nil)
+                                frameEntity.isEnabled = true
                                 wallAnchor = anchor
 
                             }
@@ -83,7 +68,7 @@ struct Example074: View {
                         let anchor = update.anchor
                         if (anchor == wallAnchor) {
                             wallAnchor = nil
-                            frameParent.isEnabled = false
+                            frameEntity.isEnabled = false
                             print("WALL removed a frame")
                         }
 

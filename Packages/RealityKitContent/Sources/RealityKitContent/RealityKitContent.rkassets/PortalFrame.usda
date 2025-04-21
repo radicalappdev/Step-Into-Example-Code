@@ -28,7 +28,6 @@ def Xform "Root"
     )
     {
         reorder nameChildren = ["Geom", "Materials", "portal_entity"]
-        float3 xformOp:scale = (1, 1, 1)
         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
 
         def Cube "portal_entity" (
