@@ -1,13 +1,8 @@
 {
-  "advancedEditorSelectedIdentifier" : "ShaderGraphEditorPluginID",
+  "advancedEditorSelectedIdentifier" : "ProjectBrowser",
   "openSceneRelativePaths" : [
-    "PhysicsSimulationBasics.usda",
-    "PhysicsMotionBasics.usda",
-    "PhysicsBodyBasics.usda",
-    "PhysicsMassProperties.usda",
-    "PhysicsMaterialResource.usda",
     "PortalFrame.usda",
-    "MaterialEdit.usda"
+    "PortalFrameContent.usda"
   ],
   "recentIdentifiers" : {
     "04966C20-2723-4378-BCAD-327CAD4E36CF" : [
@@ -521,6 +516,30 @@
           -0.106758356,
           0.2821801,
           0.6982136,
+          1
+        ]
+      }
+    ],
+    "22224989-8BCA-4ECC-838B-F635D6B2FFE2" : [
+      {
+        "date" : 767015927.560584,
+        "title" : "Untitled",
+        "transform" : [
+          0.9362518,
+          -7.2004633e-09,
+          -0.35132977,
+          0,
+          -0.16315164,
+          0.8856344,
+          -0.4347796,
+          0,
+          0.31114975,
+          0.4643832,
+          0.8291768,
+          0,
+          2.4816353,
+          -0.28831324,
+          1.6132603,
           1
         ]
       }
