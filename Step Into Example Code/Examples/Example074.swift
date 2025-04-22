@@ -21,7 +21,6 @@ struct Example074: View {
 
     @State var frameEntity = Entity()
     @State var portal = Entity()
-    @State var wallAnchor: PlaneAnchor?
 
     var body: some View {
         RealityView { content in
@@ -44,11 +43,11 @@ struct Example074: View {
         .gesture(TapGesture()
             .targetedToAnyEntity()
             .onEnded { value in
-
+                // Place the frame on on the tapped plane
                 frameEntity.transform = value.entity.transform
                 frameEntity.isEnabled = true
-
             })
+
         .task {
             try! await setupAndRunPlaneDetection()
         }
@@ -72,11 +71,7 @@ struct Example074: View {
 
                     case .removed:
                         let anchor = update.anchor
-                        if (anchor == wallAnchor) {
-                            planeAnchorsSimple.removeValue(forKey: anchor.id)
-                            wallAnchor = nil
-                            frameEntity.isEnabled = false
-                        }
+                        planeAnchorsSimple.removeValue(forKey: anchor.id)
                     }
                 }
             } catch {
@@ -90,10 +85,6 @@ struct Example074: View {
         let extent = anchor.geometry.extent
         let mesh = MeshResource.generatePlane(width: extent.width, height: extent.height)
         let material = OcclusionMaterial()
-//        var material = PhysicallyBasedMaterial()
-//        material.baseColor.tint = UIColor(.stepBackgroundSecondary)
-//        material.blending =
-//            .transparent(opacity: PhysicallyBasedMaterial.Opacity(floatLiteral: 0.5))
 
         let entity = ModelEntity(mesh: mesh, materials: [material])
         entity.transform = Transform(matrix: matrix_multiply(anchor.originFromAnchorTransform, extent.anchorFromExtentTransform))
@@ -105,6 +96,8 @@ struct Example074: View {
     }
 
 }
+
+
 #Preview {
     Example074()
 }
