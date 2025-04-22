@@ -17,8 +17,9 @@ import ARKit
 
 struct Example074: View {
     @State var session = ARKitSession()
-    @State var frameEntity = Entity()
+    @State var planeAnchorsSimple: [UUID: Entity] = [:]
 
+    @State var frameEntity = Entity()
     @State var portal = Entity()
     @State var wallAnchor: PlaneAnchor?
 
@@ -34,10 +35,20 @@ struct Example074: View {
 
 
         } update: { content in
-
-
+            for (_, entity) in planeAnchorsSimple {
+                if !content.entities.contains(entity) {
+                    content.add(entity)
+                }
+            }
         }
+        .gesture(TapGesture()
+            .targetedToAnyEntity()
+            .onEnded { value in
 
+                frameEntity.transform = value.entity.transform
+                frameEntity.isEnabled = true
+
+            })
         .task {
             try! await setupAndRunPlaneDetection()
         }
@@ -54,21 +65,15 @@ struct Example074: View {
                         let anchor = update.anchor
 
                         if(anchor.classification == .wall) {
-                            if wallAnchor == nil {
-                                let anchorMatrix = anchor.originFromAnchorTransform
-                                let extentMatrix = anchor.geometry.extent.anchorFromExtentTransform
-                                frameEntity.transform = Transform(matrix: matrix_multiply(anchorMatrix, extentMatrix))
-
-                                frameEntity.isEnabled = true
-                                wallAnchor = anchor
-
-                            }
+                            let planeEntitySimple = createSimplePlaneEntity(for: anchor)
+                            planeAnchorsSimple[anchor.id] = planeEntitySimple
                         }
 
 
                     case .removed:
                         let anchor = update.anchor
                         if (anchor == wallAnchor) {
+                            planeAnchorsSimple.removeValue(forKey: anchor.id)
                             wallAnchor = nil
                             frameEntity.isEnabled = false
                         }
@@ -78,6 +83,25 @@ struct Example074: View {
                 print("ARKit session error \(error)")
             }
         }
+    }
+
+    func createSimplePlaneEntity(for anchor: PlaneAnchor) -> Entity {
+
+        let extent = anchor.geometry.extent
+        let mesh = MeshResource.generatePlane(width: extent.width, height: extent.height)
+        let material = OcclusionMaterial()
+//        var material = PhysicallyBasedMaterial()
+//        material.baseColor.tint = UIColor(.stepBackgroundSecondary)
+//        material.blending =
+//            .transparent(opacity: PhysicallyBasedMaterial.Opacity(floatLiteral: 0.5))
+
+        let entity = ModelEntity(mesh: mesh, materials: [material])
+        entity.transform = Transform(matrix: matrix_multiply(anchor.originFromAnchorTransform, extent.anchorFromExtentTransform))
+
+        entity.generateCollisionShapes(recursive: true, static: true)
+        entity.components.set(InputTargetComponent())
+
+        return entity
     }
 
 }
