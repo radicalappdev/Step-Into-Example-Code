@@ -55,8 +55,10 @@ struct Example074: View {
 
                         if(anchor.classification == .wall) {
                             if wallAnchor == nil {
+                                let anchorMatrix = anchor.originFromAnchorTransform
+                                let extentMatrix = anchor.geometry.extent.anchorFromExtentTransform
+                                frameEntity.transform = Transform(matrix: matrix_multiply(anchorMatrix, extentMatrix))
 
-                                frameEntity.setTransformMatrix(anchor.originFromAnchorTransform, relativeTo: nil)
                                 frameEntity.isEnabled = true
                                 wallAnchor = anchor
 
@@ -69,9 +71,7 @@ struct Example074: View {
                         if (anchor == wallAnchor) {
                             wallAnchor = nil
                             frameEntity.isEnabled = false
-                            print("WALL removed a frame")
                         }
-
                     }
                 }
             } catch {
