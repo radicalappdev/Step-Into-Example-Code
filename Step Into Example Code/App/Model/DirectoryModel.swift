@@ -596,6 +596,13 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  subtitle: "RealityKit Basics: Modify Material Values",
                  description: "Changing material values is similar to changing component values, but with a few considerations.")
 
+        ,Example(title: "Example 076",
+                 type: .SPACE,
+                 date: Date("4/23/2025"),
+                 isFeatured: true,
+                 subtitle: "Placing an entity using Anchoring Component",
+                 description: "")
+
 
     ]
 

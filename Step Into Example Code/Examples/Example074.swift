@@ -28,7 +28,7 @@ struct Example074: View {
             guard let scene = try? await Entity(named: "PortalFrame", in: realityKitContentBundle) else { return }
             content.add(scene)
 
-            // Loadd the scene that will serve as the content for the portal
+            // Load the scene that will serve as the content for the portal
             guard let portalContent = try? await Entity(named: "PortalFrameContent", in: realityKitContentBundle) else { return }
             portalContent.components.set(WorldComponent())
             scene.addChild(portalContent)
