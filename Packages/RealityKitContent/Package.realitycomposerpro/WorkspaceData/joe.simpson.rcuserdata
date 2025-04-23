@@ -2,7 +2,8 @@
   "advancedEditorSelectedIdentifier" : "ProjectBrowser",
   "openSceneRelativePaths" : [
     "PortalFrame.usda",
-    "PortalFrameContent.usda"
+    "PortalFrameContent.usda",
+    "SpatialEventLab.usda"
   ],
   "recentIdentifiers" : {
     "04966C20-2723-4378-BCAD-327CAD4E36CF" : [
@@ -4488,5 +4489,5 @@
   "sceneViewportBackgroundColors" : {
 
   },
-  "selectedSceneRelativePath" : "PortalFrame.usda"
+  "selectedSceneRelativePath" : "SpatialEventLab.usda"
 }

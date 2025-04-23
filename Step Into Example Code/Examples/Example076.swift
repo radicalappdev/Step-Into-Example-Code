@@ -2,11 +2,11 @@
 //
 //  Title: Example076
 //
-//  Subtitle:
+//  Subtitle: Placing an entity on a wall using Anchoring Component
 //
-//  Description:
+//  Description: We can use Anchoring Component to describe anchors that RealityKit should track.
 //
-//  Type:
+//  Type: Space
 //
 //  Created by Joseph Simpson on 4/23/25.
 
@@ -27,12 +27,12 @@ struct Example076: View {
             portalContent.components.set(WorldComponent())
             scene.addChild(portalContent)
 
-
+            // Get the frame entity
             guard let frame = scene.findEntity(named: "picture_frame_02") else { return }
 
+            // Create an anchor target and AnchoringComponent. Add the component to the frame entity
             let anchorTarget = AnchoringComponent.Target.plane(.vertical, classification: .wall, minimumBounds: [1, 1])
             let anchoringComponent = AnchoringComponent(anchorTarget)
-
             frame.components.set(anchoringComponent)
 
             // Rotate the frame to align with the wall
@@ -42,8 +42,6 @@ struct Example076: View {
             guard let portalEntity = scene.findEntity(named: "portal_entity") else { return }
             portalEntity.components[ModelComponent.self]?.materials[0] = PortalMaterial()
             portalEntity.components.set(PortalComponent(target: portalContent))
-
-        } update: { content in
 
         }
     }

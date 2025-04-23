@@ -600,8 +600,8 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  type: .SPACE,
                  date: Date("4/23/2025"),
                  isFeatured: true,
-                 subtitle: "Placing an entity using Anchoring Component",
-                 description: "")
+                 subtitle: "Placing an entity on a wall using Anchoring Component",
+                 description: "We can use Anchoring Component to describe anchors that RealityKit should track.")
 
 
     ]
