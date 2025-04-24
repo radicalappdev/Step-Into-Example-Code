@@ -543,28 +543,28 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
         ,Example(title: "Example 068",
                  type: .SPACE,
                  date: Date("4/14/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "ARKit: Set up and use an ARKit Session",
                  description: "Covering the basics to creating and running an ARKitSession with a DataProvider.")
 
         ,Example(title: "Example 069",
                  type: .SPACE,
                  date: Date("4/15/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "ARKit PlaneDetectionProvider: visualize detected planes",
                  description: "Converting anchor geometry into a meshes we can render.")
 
         ,Example(title: "Example 070",
                  type: .SPACE,
                  date: Date("4/16/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "ARKit PlaneDetectionProvider: adding collisions and physics",
                  description: "Converting anchor geometry into collision shapes.")
 
         ,Example(title: "Example 071",
                  type: .SPACE,
                  date: Date("4/17/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "ARKit PlaneDetectionProvider: classification and alignment",
                  description: "We can filter anchors based on classification or alignment values.")
 
@@ -602,6 +602,13 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  isFeatured: true,
                  subtitle: "Placing an entity on a wall using Anchoring Component",
                  description: "We can use Anchoring Component to describe anchors that RealityKit should track.")
+
+        ,Example(title: "Example 077",
+                 type: .VOLUME,
+                 date: Date("4/24/2025"),
+                 isFeatured: true,
+                 subtitle: "RealityKit Basics: moving entities",
+                 description: "We can use `move(to:)` and its variants to move entities to new locations.")
 
 
     ]
