@@ -2,11 +2,11 @@
 //
 //  Title: Example077
 //
-//  Subtitle:
+//  Subtitle: RealityKit Basics: moving entities
 //
-//  Description:
+//  Description: We can use `move(to:)` and its variants to move entities to new locations.
 //
-//  Type:
+//  Type: Volume
 //
 //  Created by Joseph Simpson on 4/24/25.
 
