@@ -610,6 +610,13 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  subtitle: "RealityKit Basics: moving entities",
                  description: "We can use `move(to:)` and its variants to move entities to new locations.")
 
+        ,Example(title: "Example 078",
+                 type: .VOLUME,
+                 date: Date("4/27/2025"),
+                 isFeatured: true,
+                 subtitle: "RealityKit Basics: pointing entities",
+                 description: "We can use `look(at:)` and its variants to orient entities to new directions.")
+
 
     ]
 
