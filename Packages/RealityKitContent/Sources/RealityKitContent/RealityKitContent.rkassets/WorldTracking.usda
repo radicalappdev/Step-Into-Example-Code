@@ -10,18 +10,27 @@
 
 def Xform "Root"
 {
-    def "ToyRocket" (
+    def Cube "PlacementPreview" (
         active = true
-        prepend references = @ToyRocket.usdz@
+        prepend apiSchemas = ["MaterialBindingAPI"]
     )
     {
-        float3 xformOp:scale = (1, 1, 1)
+        rel material:binding = </Root/PlacementPreview/DefaultMaterial>
+        double size = 0.2
         float3 xformOp:translate = (0, 1.2, -1)
         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
 
-        def RealityKitComponent "InputTarget"
+        def Material "DefaultMaterial"
         {
-            uniform token info:id = "RealityKit.InputTarget"
+            token outputs:surface.connect = </Root/PlacementPreview/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+            def Shader "DefaultSurfaceShader"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (1, 1, 1)
+                float inputs:roughness = 0.75
+                token outputs:surface
+            }
         }
 
         def RealityKitComponent "Collider"
@@ -33,14 +42,18 @@ def Xform "Root"
 
             def RealityKitStruct "Shape"
             {
-                float3 extent = (0.14075813, 0.23484674, 0.14075813)
+                float3 extent = (0.2, 0.2, 0.2)
                 token shapeType = "Box"
 
                 def RealityKitStruct "pose"
                 {
-                    float3 position = (-1.1175871e-8, 0.12399037, -3.7252903e-9)
                 }
             }
+        }
+
+        def RealityKitComponent "InputTarget"
+        {
+            uniform token info:id = "RealityKit.InputTarget"
         }
     }
 }
