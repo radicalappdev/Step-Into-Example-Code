@@ -31,10 +31,11 @@ struct Example079: View {
             content.add(scene)
 
             if let placementEntity = scene.findEntity(named: "PlacementPreview") {
-                subject = placementEntity
+                placement = placementEntity
             }
 
             if let subjectEntity = scene.findEntity(named: "SubjectTemplate") {
+                subjectEntity.isEnabled = false
                 subject = subjectEntity
             }
 
@@ -46,12 +47,13 @@ struct Example079: View {
             }
         }
         .modifier(DragGestureImproved())
+        .gesture(tapGesture)
         .task {
             try! await setupAndRunWorldTracking()
         }
     }
 
-    var tapPlacement: some Gesture {
+    var tapGesture: some Gesture {
         TapGesture()
             .targetedToAnyEntity()
             .onEnded { value in
@@ -63,9 +65,14 @@ struct Example079: View {
                         try await worldTracking.addAnchor(anchor)
                     }
                 } else {
-                    // Get the UUID we stored on the entity
-                    let uuid = UUID(uuidString: value.entity.name) ?? UUID()
-                    // if the UUID is in the worldAnchorEntities, remove it from the data provider
+                    Task {
+                        // Get the UUID we stored on the entity
+                        let uuid = UUID(uuidString: value.entity.name) ?? UUID()
+                        // if the UUID is in the worldAnchorEntities, remove it from the data provider
+                        if let _ = worldAnchorEntities[uuid] {
+                            try await worldTracking.removeAnchor(forID: uuid)
+                        }
+                    }
                 }
             }
     }
@@ -84,7 +91,9 @@ struct Example079: View {
                     case .added, .updated:
 
                         let subjectClone = subject.clone(recursive: true)
+                        subjectClone.isEnabled = true
                         subjectClone.name = update.anchor.id.uuidString
+                        subjectClone.transform = Transform(matrix: update.anchor.originFromAnchorTransform)
 
                         worldAnchorEntities[update.anchor.id] = subjectClone
                         print("Anchor position updated. \(update.anchor.id)")

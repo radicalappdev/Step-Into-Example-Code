@@ -430,6 +430,24 @@
     "objectMetadataList" : [
       [
         "70CF2B9A-C6FF-4934-8B7A-E8053A77A0A1",
+        "Root",
+        "PlacementPreview"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "70CF2B9A-C6FF-4934-8B7A-E8053A77A0A1",
+        "Root",
+        "SubjectTemplate"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "70CF2B9A-C6FF-4934-8B7A-E8053A77A0A1",
         "Root"
       ],
       {
