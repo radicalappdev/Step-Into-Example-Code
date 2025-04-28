@@ -18,19 +18,19 @@ import ARKit
 struct Example079: View {
     @State var session = ARKitSession()
     @State var worldTracking = WorldTrackingProvider()
+    @State var subject = Entity()
+    @State var anchorID: UUID?
 
     var body: some View {
-        RealityView { content, attachments in
+        RealityView { content in
 
             guard let scene = try? await Entity(named: "WorldTracking", in: realityKitContentBundle) else { return }
             content.add(scene)
 
-        } update: { content, attachments in
-
-        } attachments: {
-            Attachment(id: "AttachmentContent") {
-                Text("")
+            if let subjectEntity = scene.findEntity(named: "ToyRocket") {
+                subject = subjectEntity
             }
+
         }
         .modifier(DragGestureWithWorldAnchor(worldTracking: self.$worldTracking))
         .task {
@@ -43,6 +43,18 @@ struct Example079: View {
         if WorldTrackingProvider.isSupported {
             do {
                 try await session.run([worldTracking])
+
+                for await update in worldTracking.anchorUpdates {
+                    switch update.event {
+                    case .added, .updated:
+                        // Update the app's understanding of this world anchor.
+                        print("Anchor position updated. \(update.anchor.id)")
+                        subject.transform = Transform(matrix: update.anchor.originFromAnchorTransform)
+                    case .removed:
+                        // Remove content related to this anchor.
+                        print("Anchor position now unknown.")
+                    }
+                }
             } catch {
                 print("ARKit session error \(error)")
             }
@@ -94,6 +106,7 @@ fileprivate struct DragGestureWithWorldAnchor: ViewModifier {
                         isDragging = false
                         initialPosition = .zero
                         Task {
+
                             let anchor = WorldAnchor(originFromAnchorTransform: value.entity.transformMatrix(relativeTo: nil ))
                             try await worldTracking.addAnchor(anchor)
                         }
