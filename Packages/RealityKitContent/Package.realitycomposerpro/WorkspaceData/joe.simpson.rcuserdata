@@ -4,7 +4,8 @@
     "PortalFrame.usda",
     "PortalFrameContent.usda",
     "SpatialEventLab.usda",
-    "MoveToExamples.usda"
+    "MoveToExamples.usda",
+    "WorldTracking.usda"
   ],
   "recentIdentifiers" : {
     "04966C20-2723-4378-BCAD-327CAD4E36CF" : [
@@ -4715,5 +4716,5 @@
   "sceneViewportBackgroundColors" : {
 
   },
-  "selectedSceneRelativePath" : "MoveToExamples.usda"
+  "selectedSceneRelativePath" : "WorldTracking.usda"
 }

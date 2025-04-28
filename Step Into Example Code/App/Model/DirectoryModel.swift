@@ -617,6 +617,13 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  subtitle: "RealityKit Basics: pointing entities",
                  description: "We can use `look(at:)` and its variants to orient entities to new directions.")
 
+        ,Example(title: "Example 079",
+                 type: .SPACE,
+                 date: Date("4/28/2025"),
+                 isFeatured: true,
+                 subtitle: "ARKit WorldTrackingProvider: ",
+                 description: "")
+
 
     ]
 
