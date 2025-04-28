@@ -32,11 +32,19 @@ struct Example079: View {
             }
 
         }
-        .modifier(DragGestureWithWorldAnchor(worldTracking: self.$worldTracking))
+        .modifier(DragGestureWithWorldAnchor() {
+            Task {
+                let anchor = WorldAnchor(originFromAnchorTransform: subject.transformMatrix(relativeTo: nil))
+                try await worldTracking.addAnchor(anchor)
+                
+            }
+        })
         .task {
             try! await setupAndRunWorldTracking()
         }
     }
+
+
 
     func setupAndRunWorldTracking() async throws {
 
@@ -67,7 +75,12 @@ fileprivate struct DragGestureWithWorldAnchor: ViewModifier {
 
     @State var isDragging: Bool = false
     @State var initialPosition: SIMD3<Float> = .zero
-    @Binding var worldTracking: WorldTrackingProvider
+
+    let updateAnchor: (() -> Void)?
+
+    init(updateAnchor: (() -> Void)? = nil) {
+        self.updateAnchor = updateAnchor
+    }
 
     func body(content: Content) -> some View {
         content
@@ -105,15 +118,11 @@ fileprivate struct DragGestureWithWorldAnchor: ViewModifier {
                         // Clean up when the gesture has ended
                         isDragging = false
                         initialPosition = .zero
-                        Task {
-
-                            let anchor = WorldAnchor(originFromAnchorTransform: value.entity.transformMatrix(relativeTo: nil ))
-                            try await worldTracking.addAnchor(anchor)
+                        if let updateAnchor = updateAnchor {
+                            updateAnchor()
                         }
-
                     }
             )
-
     }
 }
 
