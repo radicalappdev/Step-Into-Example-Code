@@ -27,12 +27,9 @@ struct Example079: View {
         let subject = ModelEntity(
             mesh: .generateSphere(radius: 0.06),
             materials: [SimpleMaterial(color: .stepRed, isMetallic: false)])
-        subject.setPosition([1, 1, -1], relativeTo: nil)
+        subject.setPosition([0, 0, 0], relativeTo: nil)
 
         let collision = CollisionComponent(shapes: [.generateSphere(radius: 0.06)])
-
-
-
         let input = InputTargetComponent()
         subject.components.set([collision, input])
 
@@ -110,6 +107,13 @@ struct Example079: View {
 
                     case .updated:
 
+                        guard let entity = worldAnchorEntities[update.anchor.id] else {
+                            print("No entity found to update for anchor \(update.anchor.id)")
+                            return
+                        }
+
+                        entity.transform = Transform(matrix: update.anchor.originFromAnchorTransform)
+
                         print("Anchor updated \(update.anchor.id)")
 
                     case .removed:
@@ -117,6 +121,10 @@ struct Example079: View {
                         worldAnchorEntities[update.anchor.id]?.removeFromParent()
                         worldAnchorEntities.removeValue(forKey: update.anchor.id)
                         print("Anchor removed \(update.anchor.id)")
+
+                        if let remainingAnchors = await worldTracking.allAnchors {
+                            print("Remaining Anchors: \(remainingAnchors.count)")
+                        }
                     }
                 }
             } catch {
