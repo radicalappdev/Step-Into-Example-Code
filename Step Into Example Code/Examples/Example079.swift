@@ -103,7 +103,7 @@ struct Example079: View {
                         subjectClone.transform = Transform(matrix: update.anchor.originFromAnchorTransform)
 
                         worldAnchorEntities[update.anchor.id] = subjectClone
-                        print("Anchor added \(update.anchor.id)")
+                        print("🟢 Anchor added \(update.anchor.id)")
 
                     case .updated:
 
@@ -114,13 +114,13 @@ struct Example079: View {
 
                         entity.transform = Transform(matrix: update.anchor.originFromAnchorTransform)
 
-                        print("Anchor updated \(update.anchor.id)")
+                        print("🔵 Anchor updated \(update.anchor.id)")
 
                     case .removed:
 
                         worldAnchorEntities[update.anchor.id]?.removeFromParent()
                         worldAnchorEntities.removeValue(forKey: update.anchor.id)
-                        print("Anchor removed \(update.anchor.id)")
+                        print("🔴 Anchor removed \(update.anchor.id)")
 
                         if let remainingAnchors = await worldTracking.allAnchors {
                             print("Remaining Anchors: \(remainingAnchors.count)")
