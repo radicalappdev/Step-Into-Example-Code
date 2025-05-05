@@ -62,55 +62,5 @@ def Xform "Root"
             uniform token info:id = "RealityKit.InputTarget"
         }
     }
-
-    def Sphere "SubjectTemplate" (
-        active = true
-        prepend apiSchemas = ["MaterialBindingAPI"]
-    )
-    {
-        rel material:binding = </Root/SubjectTemplate/DefaultMaterial>
-        double radius = 0.08
-
-        def Material "DefaultMaterial"
-        {
-            token outputs:mtlx:surface
-            token outputs:realitykit:vertex
-            token outputs:surface.connect = </Root/SubjectTemplate/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
-
-            def Shader "DefaultSurfaceShader"
-            {
-                uniform token info:id = "UsdPreviewSurface"
-                color3f inputs:diffuseColor = (0.41960785, 0.003921569, 0.17254902) (
-                    colorSpace = "srgb_texture"
-                )
-                float inputs:roughness = 0.75
-                token outputs:surface
-            }
-        }
-
-        def RealityKitComponent "Collider"
-        {
-            uint group = 1
-            uniform token info:id = "RealityKit.Collider"
-            uint mask = 4294967295
-            token type = "Default"
-
-            def RealityKitStruct "Shape"
-            {
-                float3 extent = (0.16, 0.16, 0.16)
-                float radius = 0.08
-                token shapeType = "Sphere"
-
-                def RealityKitStruct "pose"
-                {
-                }
-            }
-        }
-
-        def RealityKitComponent "InputTarget"
-        {
-            uniform token info:id = "RealityKit.InputTarget"
-        }
-    }
 }
 

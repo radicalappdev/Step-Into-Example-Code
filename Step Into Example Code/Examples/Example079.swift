@@ -22,7 +22,22 @@ struct Example079: View {
     @State var worldAnchorEntities: [UUID: Entity] = [:]
 
     @State var placement = Entity()
-    @State var subject = Entity()
+
+    @State var subject : ModelEntity = {
+        let subject = ModelEntity(
+            mesh: .generateSphere(radius: 0.06),
+            materials: [SimpleMaterial(color: .stepRed, isMetallic: false)])
+        subject.setPosition([1, 1, -1], relativeTo: nil)
+
+        let collision = CollisionComponent(shapes: [.generateSphere(radius: 0.06)])
+
+
+
+        let input = InputTargetComponent()
+        subject.components.set([collision, input])
+
+        return subject
+    }()
 
     var body: some View {
         RealityView { content in
@@ -32,11 +47,6 @@ struct Example079: View {
 
             if let placementEntity = scene.findEntity(named: "PlacementPreview") {
                 placement = placementEntity
-            }
-
-            if let subjectEntity = scene.findEntity(named: "SubjectTemplate") {
-                subjectEntity.isEnabled = false
-                subject = subjectEntity
             }
 
         } update: { content in
@@ -61,19 +71,20 @@ struct Example079: View {
                 if value.entity.name == "PlacementPreview" {
                     // If we tapped the placement preview cube, create an anchor
                     Task {
-                        let anchor = WorldAnchor(originFromAnchorTransform: subject.transformMatrix(relativeTo: nil))
+                        let anchor = WorldAnchor(originFromAnchorTransform: value.entity.transformMatrix(relativeTo: nil))
                         try await worldTracking.addAnchor(anchor)
                     }
                 } else {
                     Task {
                         // Get the UUID we stored on the entity
                         let uuid = UUID(uuidString: value.entity.name) ?? UUID()
-                        // if the UUID is in the worldAnchorEntities, remove it from the data provider
-                        if let removeEntity = worldAnchorEntities[uuid] {
+
+                        do {
                             try await worldTracking.removeAnchor(forID: uuid)
-                            removeEntity.removeFromParent()
-                            
+                        } catch {
+                            print("Failed to remove world anchor \(uuid) with error: \(error).")
                         }
+
                     }
                 }
             }
@@ -87,25 +98,25 @@ struct Example079: View {
 
                 for await update in worldTracking.anchorUpdates {
                     switch update.event {
-                    case .added, .updated:
+                    case .added:
 
-                        if let _ = worldAnchorEntities[update.anchor.id] {
-                            print("Anchor already added to scene. \(update.anchor.id)")
-                        } else {
-                            let subjectClone = subject.clone(recursive: true)
-                            subjectClone.isEnabled = true
-                            subjectClone.name = update.anchor.id.uuidString
-                            subjectClone.transform = Transform(matrix: update.anchor.originFromAnchorTransform)
+                        let subjectClone = subject.clone(recursive: true)
+                        subjectClone.isEnabled = true
+                        subjectClone.name = update.anchor.id.uuidString
+                        subjectClone.transform = Transform(matrix: update.anchor.originFromAnchorTransform)
 
-                            worldAnchorEntities[update.anchor.id] = subjectClone
-                            print("Anchor position updated. \(update.anchor.id)")
-                        }
+                        worldAnchorEntities[update.anchor.id] = subjectClone
+                        print("Anchor added \(update.anchor.id)")
+
+                    case .updated:
+
+                        print("Anchor updated \(update.anchor.id)")
 
                     case .removed:
 
-                        print("Anchor removed. \(update.anchor.id)")
-
+                        worldAnchorEntities[update.anchor.id]?.removeFromParent()
                         worldAnchorEntities.removeValue(forKey: update.anchor.id)
+                        print("Anchor removed \(update.anchor.id)")
                     }
                 }
             } catch {
@@ -121,3 +132,5 @@ struct Example079: View {
 #Preview {
     Example079()
 }
+
+
