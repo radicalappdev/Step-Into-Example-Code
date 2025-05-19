@@ -624,6 +624,13 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  subtitle: "ARKit WorldTrackingProvider: ",
                  description: "")
 
+        ,Example(title: "Example 080",
+                 type: .VOLUME,
+                 date: Date("5/19/2025"),
+                 isFeatured: true,
+                 subtitle: "Spatial SwiftUI: Physical Metrics",
+                 description: "Scaling entities to exact real world metrics.")
+
 
     ]
 

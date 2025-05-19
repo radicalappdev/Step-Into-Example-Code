@@ -53,10 +53,11 @@ struct StepIntoApp: App {
         // 2. Volume:  Use this window group to open 3D Volumes
         WindowGroup(id: "RouterVolume", for: String.self, content: { $route in
             let initialSize = Size3D(width: 500, height: 500, depth: 500)
+            let scaler = 4.0
             ExampleRouter(route: $route)
-                .frame(minWidth: initialSize.width, maxWidth: initialSize.width * 2,
-                       minHeight: initialSize.height, maxHeight: initialSize.height * 2)
-                .frame(minDepth: initialSize.depth, maxDepth: initialSize.depth * 2)
+                .frame(minWidth: initialSize.width, maxWidth: initialSize.width * scaler,
+                       minHeight: initialSize.height, maxHeight: initialSize.height * scaler)
+                .frame(minDepth: initialSize.depth, maxDepth: initialSize.depth * scaler)
 
         })
         .windowStyle(.volumetric)
@@ -67,7 +68,7 @@ struct StepIntoApp: App {
             return WindowPlacement(.none)
         }
 
-        .windowResizability(.contentMinSize)
+        .windowResizability(.contentSize)
 
         // 3. Space:  Use this immersive scene to open a example in a full space
         ImmersiveSpace(id: "RouterSpace", for: String.self, content: { $route in
