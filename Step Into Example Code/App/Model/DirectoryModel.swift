@@ -631,6 +631,13 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  subtitle: "Spatial SwiftUI: Physical Metrics",
                  description: "Scaling entities to exact real world metrics.")
 
+        ,Example(title: "Example 081",
+                 type: .VOLUME,
+                 date: Date("5/20/2025"),
+                 isFeatured: true,
+                 subtitle: "Spatial SwiftUI: GeometryReader3D",
+                 description: "Reading Size3D and BoundingBox data from a proxy.")
+
 
     ]
 

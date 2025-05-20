@@ -67,7 +67,7 @@ struct StepIntoApp: App {
             }
             return WindowPlacement(.none)
         }
-
+        .defaultSize(width: 1000, height: 1000, depth: 1000)
         .windowResizability(.contentSize)
 
         // 3. Space:  Use this immersive scene to open a example in a full space
