@@ -571,21 +571,21 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
         ,Example(title: "Example 072",
                  type: .SPACE,
                  date: Date("4/18/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "ARKit PlaneDetectionProvider: creating simple planes from anchors",
                  description: "We can use the extent of the anchor to create simple planes and colliders.")
 
         ,Example(title: "Example 073",
                  type: .SPACE,
                  date: Date("4/19/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "ARKit PlaneDetectionProvider: occlusion material",
                  description: "We can use Occlusion material to hide our planes while letting them participate in collisions and physics.")
 
         ,Example(title: "Example 074",
                  type: .SPACE,
                  date: Date("4/20/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "ARKit PlaneDetectionProvider: adding an entity to an anchor",
                  description: "Placing virtual content on a plane anchor.")
 
@@ -599,21 +599,21 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
         ,Example(title: "Example 076",
                  type: .SPACE,
                  date: Date("4/23/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Placing an entity on a wall using Anchoring Component",
                  description: "We can use Anchoring Component to describe anchors that RealityKit should track.")
 
         ,Example(title: "Example 077",
                  type: .VOLUME,
                  date: Date("4/24/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "RealityKit Basics: moving entities",
                  description: "We can use `move(to:)` and its variants to move entities to new locations.")
 
         ,Example(title: "Example 078",
                  type: .VOLUME,
                  date: Date("4/27/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "RealityKit Basics: pointing entities",
                  description: "We can use `look(at:)` and its variants to orient entities to new directions.")
 
@@ -627,17 +627,23 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
         ,Example(title: "Example 080",
                  type: .VOLUME,
                  date: Date("5/19/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Spatial SwiftUI: Physical Metrics",
                  description: "Scaling entities to exact real world metrics.")
 
         ,Example(title: "Example 081",
                  type: .VOLUME,
                  date: Date("5/20/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Spatial SwiftUI: GeometryReader3D",
                  description: "Reading Size3D and BoundingBox data from a proxy.")
 
+        ,Example(title: "Example 082",
+                 type: .SPACE,
+                 date: Date("6/15/2025"),
+                 isFeatured: true,
+                 subtitle: "RealityKit Basics: Using ViewAttachmentComponent",
+                 description: "visionOS 26 brings us a new way to create attachments right along side our entities.")
 
     ]
 
