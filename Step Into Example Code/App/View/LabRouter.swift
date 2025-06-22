@@ -96,6 +96,12 @@ struct ExampleRouter: View {
         case "Example 081": Example081()
         case "Example 082": Example082()
 
+        case "Example 083": if #available(visionOS 26.0, *) {
+            Example083()
+        } else {
+            Text("This example is only available on visionOS 26.0 and later")
+        }
+
         case .none, .some:
 
             VStack {

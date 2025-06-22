@@ -645,6 +645,13 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  subtitle: "RealityKit Basics: Using ViewAttachmentComponent",
                  description: "visionOS 26 brings us a new way to create attachments right along side our entities.")
 
+        ,Example(title: "Example 083",
+                 type: .WINDOW_ALT,
+                 date: Date("6/22/2025"),
+                 isFeatured: true,
+                 subtitle: "Surface Snapping",
+                 description: "")
+
     ]
 
 }
