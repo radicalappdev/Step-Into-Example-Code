@@ -646,11 +646,11 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  description: "visionOS 26 brings us a new way to create attachments right along side our entities.")
 
         ,Example(title: "Example 083",
-                 type: .WINDOW_ALT,
+                 type: .WINDOW,
                  date: Date("6/22/2025"),
                  isFeatured: true,
-                 subtitle: "Surface Snapping",
-                 description: "")
+                 subtitle: "How to read window snapping state and classification",
+                 description: "We can use the surfaceSnappingInfo environment value to access window snapping data.")
 
     ]
 

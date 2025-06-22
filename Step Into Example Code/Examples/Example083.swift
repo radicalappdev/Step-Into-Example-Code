@@ -2,11 +2,11 @@
 //
 //  Title: Example083
 //
-//  Subtitle:
+//  Subtitle: How to read window snapping state and classification
 //
-//  Description:
+//  Description: We can use the surfaceSnappingInfo environment value to access window snapping data.
 //
-//  Type:
+//  Type: Window
 //
 //  Created by Joseph Simpson on 6/22/25.
 
@@ -18,35 +18,32 @@ import RealityKitContent
 struct Example083: View {
     @Environment(\.surfaceSnappingInfo) private var surfaceSnappingInfo
     var body: some View {
+
         VStack(spacing: 12) {
             Spacer()
             Text("Surface Snapping")
                 .font(.extraLargeTitle)
-            HStack(spacing: 12) {
-                Spacer()
-                Text("Is Snapped:")
-                    .font(.largeTitle)
-                Spacer()
-                Text("\(surfaceSnappingInfo.isSnapped ? "Yes" : "No")")
-                    .font(.largeTitle)
-                Spacer()
-            }
-
-            HStack(spacing: 12) {
-                Spacer()
-                Text("Classification:")
-                    .font(.largeTitle)
-                Spacer()
-                Text("\(surfaceSnappingInfo.classification?.description ?? "" )")
-                    .font(.largeTitle)
-                Spacer()
+            VStack(spacing: 12) {
+                HStack {
+                    Text("Is Snapped:")
+                        .font(.largeTitle)
+                        .frame(maxWidth: .infinity, alignment: .trailing)
+                    Text("\(surfaceSnappingInfo.isSnapped ? "Yes" : "No")")
+                        .font(.largeTitle)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                }
+                
+                HStack {
+                    Text("Classification:")
+                        .font(.largeTitle)
+                        .frame(maxWidth: .infinity, alignment: .trailing)
+                    Text("\(surfaceSnappingInfo.classification?.description ?? "" )")
+                        .font(.largeTitle)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                }
             }
             Spacer()
         }
-        .frame(width: .infinity, height: .infinity)
-        .background(surfaceSnappingInfo.isSnapped ? .stepGreen : .clear)
-        .clipShape(.rect(cornerRadius: 24))
-        .glassBackgroundEffect(displayMode: surfaceSnappingInfo.isSnapped ? .never : .always)
         .onChange(of: surfaceSnappingInfo) {
             if (!surfaceSnappingInfo.isSnapped && SurfaceSnappingInfo.authorizationStatus == .authorized) {
 
@@ -54,11 +51,11 @@ struct Example083: View {
                     case .wall:
                     print("Snapped to a wall")
                     
-                case .floor:
-                    print("Snapped to the floor")
-                    
+                case .door:
+                    print("Snapped to the door")
+
                 default:
-                    print("Snapped to something else")
+                    print("Snapped to something else: \(surfaceSnappingInfo.classification?.description ?? "" )")
 
                 }
 
@@ -71,3 +68,5 @@ struct Example083: View {
 //#Preview {
 //    Example083()
 //}
+
+
