@@ -653,7 +653,7 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  description: "We can use the surfaceSnappingInfo environment value to access window snapping data.")
 
         ,Example(title: "Example 084",
-                 type: .WINDOW,
+                 type: .VOLUME,
                  date: Date("6/23/2025"),
                  isFeatured: true,
                  subtitle: "How to read volume snapping state and classification",
