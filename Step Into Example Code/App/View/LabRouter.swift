@@ -95,12 +95,8 @@ struct ExampleRouter: View {
         case "Example 080": Example080()
         case "Example 081": Example081()
         case "Example 082": Example082()
-
-        case "Example 083": if #available(visionOS 26.0, *) {
-            Example083()
-        } else {
-            Text("This example is only available on visionOS 26.0 and later")
-        }
+        case "Example 083": Example083()
+        case "Example 084": Example084()
 
         case .none, .some:
 

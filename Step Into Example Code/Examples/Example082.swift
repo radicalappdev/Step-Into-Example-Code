@@ -21,12 +21,6 @@ struct Example082: View {
             guard let scene = try? await Entity(named: "Caution", in: realityKitContentBundle) else { return }
             content.add(scene)
 
-            // This lab can only run on version 26 and later
-            guard #available(visionOS 26.0, *) else {
-                print("WARNING: This lab requires VisionOS 26.0 or later.")
-                return
-            }
-
             // Example 01 - add an attachment as a child of an entity
             // Get the sign model from the scene
             if let wetFloorSign = scene.findEntity(named: "wet_floor_sign") {
