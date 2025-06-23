@@ -2,11 +2,11 @@
 //
 //  Title: Example084
 //
-//  Subtitle:
+//  Subtitle: How to read volume snapping state and classification
 //
-//  Description:
+//  Description: We can use the surfaceSnappingInfo environment value to access volume snapping data.
 //
-//  Type:
+//  Type: Volume
 //
 //  Created by Joseph Simpson on 6/23/25.
 
@@ -40,7 +40,7 @@ struct Example084: View {
             }
 
         }
-
+        // Some UI to show the snapping data
         .ornament(attachmentAnchor: .scene(.topBack), ornament: {
             VStack(spacing: 12) {
                 Text("Surface Snapping")
@@ -70,21 +70,22 @@ struct Example084: View {
             .glassBackgroundEffect()
         })
 
+        // Listen for changes to snapping info and update our scene state
         .onChange(of: surfaceSnappingInfo) {
-            if (!surfaceSnappingInfo.isSnapped && SurfaceSnappingInfo.authorizationStatus == .authorized) {
-
+            if (surfaceSnappingInfo.isSnapped && SurfaceSnappingInfo.authorizationStatus == .authorized) {
+                // When snapped to a surface
+                shouldLand = true
+                
                 switch surfaceSnappingInfo.classification {
                 case .table:
-                    print("Snapped to floor")
-                    shouldLand = true
+                   // When we snap to a table, hide the base
                     showBase = false
                 default:
-                    print("Snapped to something else: \(surfaceSnappingInfo.classification?.description ?? "" )")
-                    shouldLand = true
+                    // When we snap to anything else, show the base
                     showBase = true
                 }
-
             } else {
+                // When we are not snapped to anything, show the base and let the plane take off
                 shouldLand = false
                 showBase = true
             }
