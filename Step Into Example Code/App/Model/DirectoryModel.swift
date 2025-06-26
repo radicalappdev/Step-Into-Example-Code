@@ -487,7 +487,7 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
         ,Example(title: "Example 060",
                  type: .VOLUME,
                  date: Date("3/31/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Collisions & Physics: Getting Started with Physics Body Component",
                  description: "Adding the component in code and in Reality Composer Pro.")
 
@@ -641,7 +641,7 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
         ,Example(title: "Example 082",
                  type: .SPACE,
                  date: Date("6/15/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "RealityKit Basics: Using ViewAttachmentComponent",
                  description: "visionOS 26 brings us a new way to create attachments right along side our entities.")
 
