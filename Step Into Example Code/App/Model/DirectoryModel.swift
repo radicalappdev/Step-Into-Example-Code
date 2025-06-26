@@ -659,6 +659,13 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  subtitle: "How to read volume snapping state and classification",
                  description: "We can use the surfaceSnappingInfo environment value to access volume snapping data.")
 
+        ,Example(title: "Example 085",
+                 type: .VOLUME,
+                 date: Date("6/26/2025"),
+                 isFeatured: true,
+                 subtitle: "Using presentations in Volumes",
+                 description: "The era of \"Presentations are not currently supported in Volumetric contexts.\" is over")
+
     ]
 
 }
