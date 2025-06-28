@@ -31,10 +31,12 @@ struct Example086: View {
             mc.releaseBehavior = .reset
             sphere.components.set(mc)
 
-            // List to the transform change event and constrain the position within a fixed volume
+            // Listen to the transform change event and constrain the position within a fixed volume
             _ = content.subscribe(to: ManipulationEvents.DidUpdateTransform.self) { event in
                 let newPostion = event.entity.position
-                let limit: Float = 0.4
+                // An arbitrary value to constrain movement with the hardcoded volume size
+                // Ideally, this should be read from the current size of the volume
+                let limit: Float = 0.34
                 let posX = min(max(newPostion.x, -limit), limit)
                 let posY = min(max(newPostion.y, -limit), limit)
                 let posZ = min(max(newPostion.z, -limit), limit)
@@ -49,7 +51,6 @@ struct Example086: View {
 #Preview {
     Example086()
 }
-
 
 
 
@@ -71,3 +72,5 @@ extension View {
         }
     }
 }
+
+

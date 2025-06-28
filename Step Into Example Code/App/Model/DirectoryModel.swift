@@ -670,8 +670,8 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  type: .VOLUME,
                  date: Date("6/28/2025"),
                  isFeatured: true,
-                 subtitle: "TBD",
-                 description: "")
+                 subtitle: "Constrain position with ManipulationComponent",
+                 description: "Using the DidUpdateTransform to constrain the position of a manipulated entity.")
 
     ]
 
