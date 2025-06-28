@@ -1,0 +1,73 @@
+//  Step Into Vision - Example Code
+//
+//  Title: Example086
+//
+//  Subtitle:
+//
+//  Description:
+//
+//  Type:
+//
+//  Created by Joseph Simpson on 6/28/25.
+
+import SwiftUI
+import RealityKit
+import RealityKitContent
+
+struct Example086: View {
+    var body: some View {
+        RealityView { content in
+
+            // An entity we can manipulate
+            let sphere = ModelEntity(
+                mesh: .generateSphere(radius: 0.1),
+                materials: [SimpleMaterial(color: .stepRed, isMetallic: false)])
+
+            // We'll use configureEntity to set up input and collision
+            ManipulationComponent.configureEntity(sphere, collisionShapes: [.generateSphere(radius: 0.1)])
+
+            // Create the component and add it to the entity
+            var mc = ManipulationComponent()
+            mc.releaseBehavior = .reset
+            sphere.components.set(mc)
+
+            // List to the transform change event and constrain the position within a fixed volume
+            _ = content.subscribe(to: ManipulationEvents.DidUpdateTransform.self) { event in
+                let newPostion = event.entity.position
+                let limit: Float = 0.4
+                let posX = min(max(newPostion.x, -limit), limit)
+                let posY = min(max(newPostion.y, -limit), limit)
+                let posZ = min(max(newPostion.z, -limit), limit)
+                event.entity.position = .init(x: posX, y: posY, z: posZ)
+            }
+            content.add(sphere)
+        }
+        .debugBorder3D(.stepGreen)
+    }
+}
+
+#Preview {
+    Example086()
+}
+
+
+
+
+// See WWDC 2025 Session: Meet SwiftUI spatial layout
+// https://developer.apple.com/videos/play/wwdc2025/273
+extension View {
+    func debugBorder3D(_ color: Color) -> some View {
+        spatialOverlay {
+            ZStack {
+                Color.clear.border(color, width: 4)
+                ZStack {
+                    Color.clear.border(color, width: 4)
+                    Spacer()
+                    Color.clear.border(color, width: 4)
+                }
+                .rotation3DLayout(.degrees(90), axis: .y)
+                Color.clear.border(color, width: 4)
+            }
+        }
+    }
+}

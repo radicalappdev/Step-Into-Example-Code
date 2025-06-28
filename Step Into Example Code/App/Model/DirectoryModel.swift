@@ -666,6 +666,13 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  subtitle: "Using presentations in Volumes",
                  description: "The era of \"Presentations are not currently supported in Volumetric contexts.\" is over")
 
+        ,Example(title: "Example 086",
+                 type: .VOLUME,
+                 date: Date("6/28/2025"),
+                 isFeatured: true,
+                 subtitle: "TBD",
+                 description: "")
+
     ]
 
 }
