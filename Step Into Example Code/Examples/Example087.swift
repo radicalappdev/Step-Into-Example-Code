@@ -2,7 +2,7 @@
 //
 //  Title: Example087
 //
-//  Subtitle: Getting starteed with Manipulation Component
+//  Subtitle: Getting started with Manipulation Component
 //
 //  Description: A simple but powerful component to interact with entities in RealityKit.
 //
@@ -107,12 +107,13 @@ struct Example087: View {
                     Text("\(scalingBehavior == .unconstrained ? "Unconstrained" : "None")")
                 })
 
+                // If we're using physics...
                 Text("Inertia:")
                 HStack {
                     Button(action: {
                         inertia = .zero
                         if var mc = subject.components[ManipulationComponent.self] {
-                            mc.dynamics.scalingBehavior = scalingBehavior
+                            mc.dynamics.inertia = inertia
                             subject.components.set(mc)
                         }
                     }, label: {
@@ -122,7 +123,7 @@ struct Example087: View {
                     Button(action: {
                         inertia = .low
                         if var mc = subject.components[ManipulationComponent.self] {
-                            mc.dynamics.scalingBehavior = scalingBehavior
+                            mc.dynamics.inertia = inertia
                             subject.components.set(mc)
                         }
                     }, label: {
@@ -132,7 +133,7 @@ struct Example087: View {
                     Button(action: {
                         inertia = .medium
                         if var mc = subject.components[ManipulationComponent.self] {
-                            mc.dynamics.scalingBehavior = scalingBehavior
+                            mc.dynamics.inertia = inertia
                             subject.components.set(mc)
                         }
                     }, label: {
@@ -142,7 +143,7 @@ struct Example087: View {
                     Button(action: {
                         inertia = .high
                         if var mc = subject.components[ManipulationComponent.self] {
-                            mc.dynamics.scalingBehavior = scalingBehavior
+                            mc.dynamics.inertia = inertia
                             subject.components.set(mc)
                         }
                     }, label: {
