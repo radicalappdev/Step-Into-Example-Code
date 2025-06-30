@@ -19,17 +19,15 @@ struct Example086: View {
         RealityView { content in
 
             // An entity we can manipulate
-            let sphere = ModelEntity(
-                mesh: .generateSphere(radius: 0.1),
-                materials: [SimpleMaterial(color: .stepRed, isMetallic: false)])
+            let subject = createStepDemoBox()
 
             // We'll use configureEntity to set up input and collision
-            ManipulationComponent.configureEntity(sphere, collisionShapes: [.generateSphere(radius: 0.1)])
+            ManipulationComponent.configureEntity(subject, collisionShapes: [.generateSphere(radius: 0.1)])
 
             // Create the component and add it to the entity
             var mc = ManipulationComponent()
             mc.releaseBehavior = .reset
-            sphere.components.set(mc)
+            subject.components.set(mc)
 
             // Listen to the transform change event and constrain the position within a fixed volume
             _ = content.subscribe(to: ManipulationEvents.DidUpdateTransform.self) { event in
@@ -42,9 +40,9 @@ struct Example086: View {
                 let posZ = min(max(newPostion.z, -limit), limit)
                 event.entity.position = .init(x: posX, y: posY, z: posZ)
             }
-            content.add(sphere)
+            content.add(subject)
         }
-        .debugBorder3D(.stepGreen)
+        .debugBorder3D(.white)
     }
 }
 

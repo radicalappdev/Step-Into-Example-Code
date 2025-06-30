@@ -5,6 +5,7 @@
     "\/RealityKitContent\/Sources\/RealityKitContent\/RealityKitContent.rkassets\/Scene.usda" : "0A9B4653-B11E-4D6A-850E-C6FCB621626C",
     "RealityKitContent\/Sources\/RealityKitContent\/RealityKitContent.rkassets\/AnchorLabs.usda" : "AE94BE0E-4164-40A7-B2A3-B2F32F073A3A",
     "RealityKitContent\/Sources\/RealityKitContent\/RealityKitContent.rkassets\/AnchorLabsFloor.usda" : "86267924-5EE8-41B2-A8EC-94F3C25DD567",
+    "RealityKitContent\/Sources\/RealityKitContent\/RealityKitContent.rkassets\/BuildingBlocks\/StepDemoBox.usda" : "31C14B40-E39C-481C-8FD9-A918F41D6214",
     "RealityKitContent\/Sources\/RealityKitContent\/RealityKitContent.rkassets\/BuildingBlocks\/StepDome.usda" : "8D6C6740-C961-4F60-8D1A-50E5627793EC",
     "RealityKitContent\/Sources\/RealityKitContent\/RealityKitContent.rkassets\/BuildingBlocks\/StepSphereBlue.usda" : "B0A675C4-9971-4005-9DAB-4D7FB4C313CE",
     "RealityKitContent\/Sources\/RealityKitContent\/RealityKitContent.rkassets\/BuildingBlocks\/StepSphereGreen.usda" : "D64024C5-D682-48A5-B7B4-C7BCA702E53F",
@@ -36,6 +37,7 @@
     "RealityKitContent\/Sources\/RealityKitContent\/RealityKitContent.rkassets\/Scene.usda" : "D66134B1-3681-4A8E-AFE5-29F257229F3B",
     "RealityKitContent\/Sources\/RealityKitContent\/RealityKitContent.rkassets\/SpatialEventLab.usda" : "7CCDFE09-BCF8-4A48-99D6-A1740674C1D0",
     "RealityKitContent\/Sources\/RealityKitContent\/RealityKitContent.rkassets\/SpatialTapLab.usda" : "61A7FA42-C29D-4B9E-9A5C-7E857895FAA7",
+    "RealityKitContent\/Sources\/RealityKitContent\/RealityKitContent.rkassets\/StepDemoBox.usda" : "26548934-8C27-4861-885E-7D04082A553E",
     "RealityKitContent\/Sources\/RealityKitContent\/RealityKitContent.rkassets\/SwiftUIScienceLab.usda" : "96ADE60A-91E0-421B-B07E-724131EAECB0",
     "RealityKitContent\/Sources\/RealityKitContent\/RealityKitContent.rkassets\/VolumeSnapping.usda" : "B9E8F4C7-92CE-489C-816C-2F6D44BC5FFD",
     "RealityKitContent\/Sources\/RealityKitContent\/RealityKitContent.rkassets\/WorldTracking.usda" : "70CF2B9A-C6FF-4934-8B7A-E8053A77A0A1"
@@ -43,12 +45,17 @@
   "projectID" : -794096511852288729,
   "uuidToIntID" : {
     "22224989-8BCA-4ECC-838B-F635D6B2FFE2" : 3309797798808189454,
+    "26548934-8C27-4861-885E-7D04082A553E" : 6341636543930480705,
+    "31C14B40-E39C-481C-8FD9-A918F41D6214" : 889614374472151519,
     "5DCFECBE-D94C-41A8-875C-795D114E3AC7" : -6939065208650931304,
     "70CF2B9A-C6FF-4934-8B7A-E8053A77A0A1" : 9110248301078827422,
     "7853FDAC-47D4-436D-8639-E6F44E0CF2D9" : 8500719304483470431,
     "7CCDFE09-BCF8-4A48-99D6-A1740674C1D0" : -8933379809433826535,
     "96ADE60A-91E0-421B-B07E-724131EAECB0" : -7039844760313533728,
+    "B0A675C4-9971-4005-9DAB-4D7FB4C313CE" : -2651203682644209400,
     "B9E8F4C7-92CE-489C-816C-2F6D44BC5FFD" : 8127291819575263988,
-    "D1CE0851-BABB-421B-870F-C522D0908905" : 6905901807314007500
+    "D1CE0851-BABB-421B-870F-C522D0908905" : 6905901807314007500,
+    "D64024C5-D682-48A5-B7B4-C7BCA702E53F" : -8163887451447875259,
+    "F133DF12-089C-40F4-B76A-0BF945AEF125" : 1529082187626362151
   }
 }
