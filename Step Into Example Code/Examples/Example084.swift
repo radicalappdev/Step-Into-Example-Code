@@ -25,7 +25,7 @@ struct Example084: View {
 
             guard let scene = try? await Entity(named: "VolumeSnapping", in: realityKitContentBundle) else { return }
             content.add(scene)
-            scene.position.y = -0.35
+            scene.position.y = -0.4
 
         } update: { content in
 

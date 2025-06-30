@@ -21,8 +21,8 @@ struct Example085: View {
 
             guard let scene = try? await Entity(named: "SwiftUIScienceLab", in: realityKitContentBundle) else { return }
             content.add(scene)
-            scene.position.y = -0.3
-            scene.scale = .init(repeating: 0.7)
+            scene.position.y = -0.4
+//            scene.scale = .init(repeating: 0.7)
 
 
             if let panel = attachments.entity(for: "AttachmentContent") {
