@@ -22,7 +22,8 @@ struct Example086: View {
             let subject = createStepDemoBox()
 
             // We'll use configureEntity to set up input and collision
-            ManipulationComponent.configureEntity(subject, collisionShapes: [.generateSphere(radius: 0.1)])
+            ManipulationComponent.configureEntity(subject, collisionShapes: [.generateBox(width: 0.25, height: 0.25, depth: 0.25)])
+
 
             // Create the component and add it to the entity
             var mc = ManipulationComponent()
