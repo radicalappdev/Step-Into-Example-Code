@@ -678,7 +678,7 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  date: Date("6/30/2025"),
                  isFeatured: true,
                  subtitle: "Getting starteed with Manipulation Component",
-                 description: "")
+                 description: "A simple but powerful component to interact with entities in RealityKit.")
 
     ]
 

@@ -2,11 +2,11 @@
 //
 //  Title: Example087
 //
-//  Subtitle:
+//  Subtitle: Getting starteed with Manipulation Component
 //
-//  Description:
+//  Description: A simple but powerful component to interact with entities in RealityKit.
 //
-//  Type:
+//  Type: Volume
 //
 //  Created by Joseph Simpson on 6/30/25.
 
@@ -26,8 +26,6 @@ struct Example087: View {
     // An entity we can manipulate
     @State private var subject = createStepDemoBox()
 
-
-
     var body: some View {
         RealityView { content in
 
@@ -45,6 +43,8 @@ struct Example087: View {
         }
         .debugBorder3D(.white)
         .ornament(attachmentAnchor: .scene(.topBack), contentAlignment: .top, ornament: {
+
+            // Just a whole bunch of buttons to change the values
             VStack(alignment: .leading) {
                 
                 Button(action: {
@@ -86,7 +86,7 @@ struct Example087: View {
                 Button(action: {
                     rotationBehaviorSecondary = rotationBehaviorSecondary == .unconstrained ? .none : .unconstrained
                     if var mc = subject.components[ManipulationComponent.self] {
-                        mc.dynamics.primaryRotationBehavior = rotationBehaviorSecondary
+                        mc.dynamics.secondaryRotationBehavior = rotationBehaviorSecondary
                         subject.components.set(mc)
                     }
                 }, label: {
@@ -107,14 +107,54 @@ struct Example087: View {
                     Text("\(scalingBehavior == .unconstrained ? "Unconstrained" : "None")")
                 })
 
+                Text("Inertia:")
+                HStack {
+                    Button(action: {
+                        inertia = .zero
+                        if var mc = subject.components[ManipulationComponent.self] {
+                            mc.dynamics.scalingBehavior = scalingBehavior
+                            subject.components.set(mc)
+                        }
+                    }, label: {
+                        Label("Zero", systemImage: inertia == .zero ? "checkmark.circle" : "circle")
+                    })
 
+                    Button(action: {
+                        inertia = .low
+                        if var mc = subject.components[ManipulationComponent.self] {
+                            mc.dynamics.scalingBehavior = scalingBehavior
+                            subject.components.set(mc)
+                        }
+                    }, label: {
+                        Label("Low", systemImage: inertia == .low ? "checkmark.circle" : "circle")
+                    })
 
+                    Button(action: {
+                        inertia = .medium
+                        if var mc = subject.components[ManipulationComponent.self] {
+                            mc.dynamics.scalingBehavior = scalingBehavior
+                            subject.components.set(mc)
+                        }
+                    }, label: {
+                        Label("Medium", systemImage: inertia == .medium ? "checkmark.circle" : "circle")
+                    })
+
+                    Button(action: {
+                        inertia = .high
+                        if var mc = subject.components[ManipulationComponent.self] {
+                            mc.dynamics.scalingBehavior = scalingBehavior
+                            subject.components.set(mc)
+                        }
+                    }, label: {
+                        Label("High", systemImage: inertia == .high ? "checkmark.circle" : "circle")
+                    })
+                }
+                .controlSize(.small)
 
             }
             .frame(width: 400)
             .padding()
             .glassBackgroundEffect()
-
 
         })
 
