@@ -673,6 +673,13 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  subtitle: "Constrain position with ManipulationComponent",
                  description: "Using the DidUpdateTransform to constrain the position of a manipulated entity.")
 
+        ,Example(title: "Example 087",
+                 type: .VOLUME,
+                 date: Date("6/30/2025"),
+                 isFeatured: true,
+                 subtitle: "Getting starteed with Manipulation Component",
+                 description: "")
+
     ]
 
 }
