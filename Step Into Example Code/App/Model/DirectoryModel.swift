@@ -648,21 +648,21 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
         ,Example(title: "Example 083",
                  type: .WINDOW,
                  date: Date("6/22/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "How to read window snapping state and classification",
                  description: "We can use the surfaceSnappingInfo environment value to access window snapping data.")
 
         ,Example(title: "Example 084",
                  type: .VOLUME,
                  date: Date("6/23/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "How to read volume snapping state and classification",
                  description: "We can use the surfaceSnappingInfo environment value to access volume snapping data.")
 
         ,Example(title: "Example 085",
                  type: .VOLUME,
                  date: Date("6/26/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Using presentations in Volumes",
                  description: "The era of \"Presentations are not currently supported in Volumetric contexts.\" is over")
 
@@ -670,7 +670,7 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  type: .VOLUME,
                  date: Date("6/28/2025"),
                  isFeatured: true,
-                 subtitle: "Constrain position with ManipulationComponent",
+                 subtitle: "Constrain position with Manipulation Component",
                  description: "Using the DidUpdateTransform to constrain the position of a manipulated entity.")
 
         ,Example(title: "Example 087",
@@ -679,6 +679,13 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  isFeatured: true,
                  subtitle: "Getting started with Manipulation Component",
                  description: "A simple but powerful component to interact with entities in RealityKit.")
+
+        ,Example(title: "Example 088",
+                 type: .VOLUME,
+                 date: Date("7/01/2025"),
+                 isFeatured: true,
+                 subtitle: "Using events with Manipulation Component",
+                 description: "We can use events to modify the entity during the gesture or save state at the end.")
 
     ]
 
