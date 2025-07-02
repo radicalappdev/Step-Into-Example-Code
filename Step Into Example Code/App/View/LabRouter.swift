@@ -101,6 +101,8 @@ struct ExampleRouter: View {
         case "Example 086": Example086()
         case "Example 087": Example087()
         case "Example 088": Example088()
+        case "Example 089": Example089()
+        
 
         case .none, .some:
 

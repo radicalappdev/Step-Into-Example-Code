@@ -687,6 +687,13 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  subtitle: "Using events with Manipulation Component",
                  description: "We can use events to modify the entity during the gesture or save state at the end.")
 
+        ,Example(title: "Example 089",
+                 type: .VOLUME,
+                 date: Date("7/02/2025"),
+                 isFeatured: true,
+                 subtitle: "Using custom sounds with Manipulation Component",
+                 description: "We can silence the provided system sounds and play our own using Manipulation Events.")
+
     ]
 
 }
