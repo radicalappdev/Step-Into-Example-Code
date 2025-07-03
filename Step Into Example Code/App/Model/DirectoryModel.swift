@@ -694,6 +694,13 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  subtitle: "Using custom sounds with Manipulation Component",
                  description: "We can silence the provided system sounds and play our own using Manipulation Events.")
 
-    ]
+        ,Example(title: "Example 090",
+                 type: .VOLUME,
+                 date: Date("7/03/2025"),
+                 isFeatured: true,
+                 subtitle: "Redirect input with Manipulation Component",
+                 description: "We can use HitTargetComponent to send manipulation input from one entity to another.")
 
+    ]
+        
 }
