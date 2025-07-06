@@ -701,6 +701,13 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  subtitle: "Redirect input with Manipulation Component",
                  description: "We can use HitTargetComponent to send manipulation input from one entity to another.")
 
+        ,Example(title: "Example 091",
+                 type: .WINDOW,
+                 date: Date("7/06/2025"),
+                 isFeatured: true,
+                 subtitle: "Spatial SwiftUI: Layout Depth Alignment",
+                 description: "We can use `.depthAlignment` to align views in a 3D space.")
+
     ]
         
 }
