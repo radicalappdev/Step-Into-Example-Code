@@ -1,6 +1,6 @@
 //
-//  DirectoryModel.swift
 //  Step Into Examples
+//  DirectoryModel.swift
 //
 //  Created by Joseph Simpson on 10/3/24.
 //
@@ -713,7 +713,7 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  date: Date("7/07/2025"),
                  isFeatured: true,
                  subtitle: "Spatial SwiftUI: rotation3DLayout",
-                 description: "")
+                 description: "A rotation modifier that will impact frame and layout.")
 
 
     ]

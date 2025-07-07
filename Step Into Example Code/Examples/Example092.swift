@@ -2,11 +2,11 @@
 //
 //  Title: Example092
 //
-//  Subtitle:
+//  Subtitle: Spatial SwiftUI: rotation3DLayout
 //
-//  Description:
+//  Description: A rotation modifier that will impact frame and layout.
 //
-//  Type:
+//  Type: Window
 //
 //  Created by Joseph Simpson on 7/7/25.
 
@@ -17,9 +17,9 @@ import RealityKitContent
 struct Example092: View {
 
     @State private var alignment: DepthAlignment = .front
-    @State private var showDebugLines = true
+    @State private var showDebugLines = false
 
-    @State private var angle: Angle = .degrees(24)
+    @State private var angle: Angle = .degrees(0)
 
     var body: some View {
         VStackLayout().depthAlignment(alignment) {
@@ -70,6 +70,35 @@ struct Example092: View {
 
             
         }
+        .ornament(attachmentAnchor: .scene(.trailing), contentAlignment: .trailing, ornament: {
+            VStack(alignment: .center, spacing: 8) {
+                Button(action: {
+                    withAnimation {
+                        angle = .degrees(0)
+                    }
+                }, label: {
+                    Text("Angle: 0")
+                })
+
+                Button(action: {
+                    withAnimation {
+                        angle = .degrees(45)
+                    }
+                }, label: {
+                    Text("Angle: 45")
+                })
+
+                Button(action: {
+                    showDebugLines.toggle()
+                }, label: {
+                    Text("Debug")
+                })
+            }
+            .padding()
+            .controlSize(.small)
+            .glassBackgroundEffect()
+
+        })
 
     }
 }
