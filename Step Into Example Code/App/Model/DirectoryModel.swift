@@ -708,6 +708,14 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  subtitle: "Spatial SwiftUI: Layout Depth Alignment",
                  description: "We can use `.depthAlignment` to align views in a 3D space.")
 
+        ,Example(title: "Example 092",
+                 type: .WINDOW,
+                 date: Date("7/07/2025"),
+                 isFeatured: true,
+                 subtitle: "Spatial SwiftUI: rotation3DLayout",
+                 description: "")
+
+
     ]
         
 }

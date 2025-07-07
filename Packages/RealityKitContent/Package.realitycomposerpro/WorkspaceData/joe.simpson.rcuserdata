@@ -2,7 +2,8 @@
   "advancedEditorSelectedIdentifier" : "ProjectBrowser",
   "openSceneRelativePaths" : [
     "SwiftUIScienceLab.usda",
-    "BuildingBlocks\/StepSphereRed.usda"
+    "BuildingBlocks\/StepSphereRed.usda",
+    "PhysicsMaterialResource.usda"
   ],
   "recentIdentifiers" : {
     "04966C20-2723-4378-BCAD-327CAD4E36CF" : [
@@ -5011,5 +5012,5 @@
   "sceneViewportBackgroundColors" : {
 
   },
-  "selectedSceneRelativePath" : "SwiftUIScienceLab.usda"
+  "selectedSceneRelativePath" : "PhysicsMaterialResource.usda"
 }
