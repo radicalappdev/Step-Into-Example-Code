@@ -2,11 +2,11 @@
 //
 //  Title: Example093
 //
-//  Subtitle:
+//  Subtitle: Spatial SwiftUI: spatialOverlay
 //
-//  Description:
+//  Description: We can add secondary content within the bounds of views.
 //
-//  Type:
+//  Type: Window
 //
 //  Created by Joseph Simpson on 7/8/25.
 
@@ -16,7 +16,8 @@ import RealityKitContent
 
 struct Example093: View {
 
-    @State private var alignment: Alignment3D = .bottomFront
+    @State private var alignmentSign: Alignment3D = .bottomFront
+    @State private var alignmentMoon: Alignment3D = .topLeading
     @State private var showDebugLines = true
 
     var body: some View {
@@ -24,34 +25,67 @@ struct Example093: View {
         HStackLayout().depthAlignment(.center) {
 
             ModelView(name: "Earth")
-                .frame(width: 300, height: 300)
+                .frame(width: 260, height: 260)
                 .debugBorder3D(showDebugLines ? .white : .clear)
             // Add an overlay view to the Earth model
-                .spatialOverlay(alignment: alignment) {
+                .spatialOverlay(alignment: alignmentSign) {
                     VStack {
-                        Text("Earth")
+                        Text("Earth & Luna")
                             .font(.headline)
                     }
                     .padding()
                     .background(.black)
                     .cornerRadius(24)
                 }
-
-            ModelView(name: "Moon")
-                .frame(width: 150, height: 150)
+            // Add some padding after the first overlay to create some space around the first example
+                .padding(36)
                 .debugBorder3D(showDebugLines ? .white : .clear)
-            // Add an overlay view to the Moon model
-                .spatialOverlay(alignment: alignment) {
-                    VStack {
-                        Text("Luna")
-                            .font(.headline)
-                    }
-                    .padding()
-                    .background(.black)
-                    .cornerRadius(24)
+            // Add a second spatial overlay to place the moon model
+                .spatialOverlay(alignment: alignmentMoon) {
+                    ModelView(name: "Moon")
+                        .frame(width: 60, height: 60)
                 }
 
         }
+        // Controls to modify the example
+        .ornament(attachmentAnchor: .scene(.trailing), contentAlignment: .trailing, ornament: {
+            VStack(alignment: .center, spacing: 8) {
+                Button(action: {
+                    withAnimation {
+                        alignmentSign = .topTrailingFront
+                        alignmentMoon = .bottomLeading
+                    }
+                }, label: {
+                    Text("Demo 1")
+                })
+                Button(action: {
+                    withAnimation {
+                        alignmentSign = .front
+                        alignmentMoon = .trailingFront
+                    }
+                }, label: {
+                    Text("Demo 2")
+                })
+                Button(action: {
+                    withAnimation {
+                        alignmentSign = .bottomLeadingFront
+                        alignmentMoon = .topLeadingBack
+                    }
+                }, label: {
+                    Text("Demo 3")
+                })
+
+                Button(action: {
+                    showDebugLines.toggle()
+                }, label: {
+                    Text("Debug")
+                })
+            }
+            .padding()
+            .controlSize(.small)
+            .glassBackgroundEffect()
+
+        })
 
 
     }
@@ -81,4 +115,5 @@ fileprivate struct ModelView: View {
         }
     }
 }
+
 
