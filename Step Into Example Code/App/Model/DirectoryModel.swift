@@ -715,6 +715,13 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  subtitle: "Spatial SwiftUI: rotation3DLayout",
                  description: "A rotation modifier that will impact frame and layout.")
 
+        ,Example(title: "Example 093",
+                 type: .WINDOW,
+                 date: Date("7/08/2025"),
+                 isFeatured: true,
+                 subtitle: "Spatial SwiftUI: spatialOverlay",
+                 description: "")
+
 
     ]
         
