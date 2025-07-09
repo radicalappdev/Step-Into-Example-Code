@@ -53,7 +53,7 @@ struct Example090: View {
             delegate.components.set(InputTargetComponent())
             delegate.components.set(HoverEffectComponent())
             
-            let hitTargetComponent = ManipulationComponent.HitTargetComponent(redirectedEntityID: subject.id)
+            let hitTargetComponent = ManipulationComponent.HitTarget(redirectedEntity: subject)
             delegate.components.set(hitTargetComponent)
             content.add(delegate)
 
