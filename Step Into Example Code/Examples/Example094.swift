@@ -2,11 +2,11 @@
 //
 //  Title: Example094
 //
-//  Subtitle:
+//  Subtitle: Spatial SwiftUI: SpatialContainer
 //
-//  Description:
+//  Description: A Layout that can align overlapping views, allowing multiple views to exist in one space.
 //
-//  Type:
+//  Type: Window
 //
 //  Created by Joseph Simpson on 7/9/25.
 
@@ -89,3 +89,5 @@ struct Example094: View {
 #Preview {
     Example094()
 }
+
+
