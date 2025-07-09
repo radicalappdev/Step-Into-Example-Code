@@ -264,3 +264,41 @@ extension View {
         }
     }
 }
+
+// As a view instead of a modifier
+
+    func debugBorder3DView(_ color: Color) -> some View {
+        ZStack {
+            Color.clear.border(color, width: 4)
+            ZStack {
+                Color.clear.border(color, width: 4)
+                Spacer()
+                Color.clear.border(color, width: 4)
+            }
+            .rotation3DLayout(.degrees(90), axis: .y)
+            Color.clear.border(color, width: 4)
+        }
+    }
+
+
+// Adapted from Example 051 - Spatial SwiftUI: Model3D
+struct ModelViewSimple: View {
+
+    @State var name: String = ""
+    let bundle: Bundle
+
+    var body: some View {
+        Model3D(named: name, bundle: bundle)
+        { phase in
+            if let model = phase.model {
+                model
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+            } else if phase.error != nil {
+                Text("Could not load model \(name).")
+            } else {
+                ProgressView()
+            }
+        }
+    }
+}

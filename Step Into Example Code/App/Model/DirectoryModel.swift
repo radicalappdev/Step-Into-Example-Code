@@ -669,35 +669,35 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
         ,Example(title: "Example 086",
                  type: .VOLUME,
                  date: Date("6/28/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Constrain position with Manipulation Component",
                  description: "Using the DidUpdateTransform to constrain the position of a manipulated entity.")
 
         ,Example(title: "Example 087",
                  type: .VOLUME,
                  date: Date("6/30/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Getting started with Manipulation Component",
                  description: "A simple but powerful component to interact with entities in RealityKit.")
 
         ,Example(title: "Example 088",
                  type: .VOLUME,
                  date: Date("7/01/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Using events with Manipulation Component",
                  description: "We can use events to modify the entity during the gesture or save state at the end.")
 
         ,Example(title: "Example 089",
                  type: .VOLUME,
                  date: Date("7/02/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Using custom sounds with Manipulation Component",
                  description: "We can silence the provided system sounds and play our own using Manipulation Events.")
 
         ,Example(title: "Example 090",
                  type: .VOLUME,
                  date: Date("7/03/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Redirect input with Manipulation Component",
                  description: "We can use HitTargetComponent to send manipulation input from one entity to another.")
 
@@ -721,6 +721,13 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  isFeatured: true,
                  subtitle: "Spatial SwiftUI: spatialOverlay",
                  description: "We can add secondary content within the bounds of views.")
+
+        ,Example(title: "Example 094",
+                 type: .WINDOW,
+                 date: Date("7/09/2025"),
+                 isFeatured: true,
+                 subtitle: "Spatial SwiftUI: SpatialContainer",
+                 description: "")
 
 
     ]

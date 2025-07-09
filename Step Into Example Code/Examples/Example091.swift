@@ -39,7 +39,7 @@ struct Example091: View {
                 .frame(width: 220, height: 160)
 
                 // The largest view in this scene, all other content will align to this
-                ModelView(name: "Earth")
+                ModelViewSimple(name: "Earth", bundle: realityKitContentBundle)
                     .frame(width: 150, height: 150)
                     .debugBorder3D(showDebugLines ? .white : .clear)
 
@@ -49,7 +49,7 @@ struct Example091: View {
             // The moon is set to a smaller size than the earth. The alighment for this HStackLayout is controled by the parent
             HStackLayout().depthAlignment(alignment) {
 
-                ModelView(name: "Moon")
+                ModelViewSimple(name: "Moon", bundle: realityKitContentBundle)
                     .frame(width: 60, height: 60)
                     .debugBorder3D(showDebugLines ? .white : .clear)
                 VStack {
@@ -110,27 +110,6 @@ struct Example091: View {
 
 #Preview {
     Example091()
-}
-
-// Adapted from Example 051 - Spatial SwiftUI: Model3D
-fileprivate struct ModelView: View {
-
-    @State var name: String = ""
-
-    var body: some View {
-        Model3D(named: name, bundle: realityKitContentBundle)
-        { phase in
-            if let model = phase.model {
-                model
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-            } else if phase.error != nil {
-                Text("Could not load model \(name).")
-            } else {
-                ProgressView()
-            }
-        }
-    }
 }
 
 

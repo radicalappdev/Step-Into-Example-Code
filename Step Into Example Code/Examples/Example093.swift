@@ -24,7 +24,7 @@ struct Example093: View {
 
         HStackLayout().depthAlignment(.center) {
 
-            ModelView(name: "Earth")
+            ModelViewSimple(name: "Earth", bundle: realityKitContentBundle)
                 .frame(width: 260, height: 260)
                 .debugBorder3D(showDebugLines ? .white : .clear)
             // Add an overlay view to the Earth model
@@ -42,7 +42,7 @@ struct Example093: View {
                 .debugBorder3D(showDebugLines ? .white : .clear)
             // Add a second spatial overlay to place the moon model
                 .spatialOverlay(alignment: alignmentMoon) {
-                    ModelView(name: "Moon")
+                    ModelViewSimple(name: "Moon", bundle: realityKitContentBundle)
                         .frame(width: 60, height: 60)
                 }
 
@@ -94,26 +94,3 @@ struct Example093: View {
 #Preview {
     Example093()
 }
-
-// Adapted from Example 051 - Spatial SwiftUI: Model3D
-fileprivate struct ModelView: View {
-
-    @State var name: String = ""
-
-    var body: some View {
-        Model3D(named: name, bundle: realityKitContentBundle)
-        { phase in
-            if let model = phase.model {
-                model
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-            } else if phase.error != nil {
-                Text("Could not load model \(name).")
-            } else {
-                ProgressView()
-            }
-        }
-    }
-}
-
-

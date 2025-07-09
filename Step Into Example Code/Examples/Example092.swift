@@ -26,7 +26,7 @@ struct Example092: View {
 
             HStackLayout().depthAlignment(alignment) {
 
-                ModelView(name: "Earth")
+                ModelViewSimple(name: "Earth", bundle: realityKitContentBundle)
                     .frame(width: 150, height: 150)
                     .debugBorder3D(showDebugLines ? .blue : .clear)
                     .rotation3DEffect(angle, axis: .y)
@@ -48,7 +48,7 @@ struct Example092: View {
 
             HStackLayout().depthAlignment(alignment) {
 
-                ModelView(name: "Earth")
+                ModelViewSimple(name: "Earth", bundle: realityKitContentBundle)
                     .frame(width: 150, height: 150)
                     .debugBorder3D(showDebugLines ? .green : .clear)
                     .rotation3DLayout(angle, axis: .y)
@@ -105,25 +105,4 @@ struct Example092: View {
 
 #Preview {
     Example092()
-}
-
-// Adapted from Example 051 - Spatial SwiftUI: Model3D
-fileprivate struct ModelView: View {
-
-    @State var name: String = ""
-
-    var body: some View {
-        Model3D(named: name, bundle: realityKitContentBundle)
-        { phase in
-            if let model = phase.model {
-                model
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-            } else if phase.error != nil {
-                Text("Could not load model \(name).")
-            } else {
-                ProgressView()
-            }
-        }
-    }
 }
