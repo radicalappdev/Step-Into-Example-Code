@@ -71,7 +71,9 @@ struct Example071: View {
 
         var material = PhysicallyBasedMaterial()
         // Use eithr the classification or alignment colors
-        material.baseColor.tint = useAlighmentColors ? colorForPlaneAlignment(anchor.alignment) : colorForPlaneClassification(anchor.classification)
+        material.baseColor.tint = useAlighmentColors ? colorForPlaneAlignment(anchor.alignment) : colorForPlaneClassification(
+            anchor.surfaceClassification
+        )
 
         if let meshResource = createMeshResource(anchor: anchor) {
             entity.components.set(ModelComponent(mesh: meshResource, materials: [material]))
@@ -81,7 +83,7 @@ struct Example071: View {
     }
 
     // Helper functions to determine color from classification or alignment
-    private func colorForPlaneClassification(_ classification: PlaneAnchor.Classification?) -> UIColor {
+    private func colorForPlaneClassification(_ classification: SurfaceClassification?) -> UIColor {
         guard let classification else {
             return .white
         }

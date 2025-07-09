@@ -74,7 +74,7 @@ struct Example074: View {
                     case .added, .updated:
                         let anchor = update.anchor
                         // Only add walls for this demo
-                        if(anchor.classification == .wall) {
+                        if(anchor.surfaceClassification == .wall) {
                             let planeEntitySimple = createSimplePlaneEntity(for: anchor)
                             planeAnchorsSimple[anchor.id] = planeEntitySimple
                         }
