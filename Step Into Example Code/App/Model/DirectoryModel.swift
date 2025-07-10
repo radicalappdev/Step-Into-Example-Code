@@ -729,6 +729,13 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  subtitle: "Spatial SwiftUI: SpatialContainer",
                  description: "A Layout that can align overlapping views, allowing multiple views to exist in one space.")
 
+        ,Example(title: "Example 095",
+                 type: .VOLUME,
+                 date: Date("7/09/2025"),
+                 isFeatured: true,
+                 subtitle: "Spatial SwiftUI: realityViewSizingBehavior",
+                 description: "")
+
 
     ]
         
