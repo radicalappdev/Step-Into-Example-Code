@@ -734,7 +734,7 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  date: Date("7/09/2025"),
                  isFeatured: true,
                  subtitle: "Spatial SwiftUI: realityViewSizingBehavior",
-                 description: "")
+                 description: "A modifier that controls frame and alignment for RealityView.")
 
 
     ]
