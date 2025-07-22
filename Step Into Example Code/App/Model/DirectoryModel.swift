@@ -736,6 +736,13 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  subtitle: "Spatial SwiftUI: realityViewSizingBehavior",
                  description: "A modifier that controls frame and alignment for RealityView.")
 
+        ,Example(title: "Example 096",
+                 type: .WINDOW,
+                 date: Date("7/22/2025"),
+                 isFeatured: true,
+                 subtitle: "Spatial SwiftUI: scaling views",
+                 description: "We can use two convenient modifiers to scale views based on their parent size.")
+
 
     ]
         
