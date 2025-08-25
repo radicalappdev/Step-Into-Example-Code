@@ -743,6 +743,13 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  subtitle: "Spatial SwiftUI: scaling views",
                  description: "We can use two convenient modifiers to scale views based on their parent size.")
 
+        ,Example(title: "Example 097",
+                 type: .WINDOW,
+                 date: Date("8/20/2025"),
+                 isFeatured: true,
+                 subtitle: "Spatial SwiftUI: manipulable modifier",
+                 description: "")
+
 
     ]
         

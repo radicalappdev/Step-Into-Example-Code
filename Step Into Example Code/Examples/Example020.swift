@@ -97,7 +97,7 @@ struct Example020: View {
             }
         }
         .persistentSystemOverlays(.hidden)
-//        .upperLimbVisibility(.hidden)
+        .upperLimbVisibility(.hidden)
     }
 }
 

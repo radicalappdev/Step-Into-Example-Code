@@ -12,7 +12,7 @@ def Xform "Root"
 {
     reorder nameChildren = ["StepDome", "StepSphereBlue", "StepSphereGreen", "StepSphereRed", "StepSphereRed2"]
     def "StepDome" (
-        active = true
+        active = false
         references = @BuildingBlocks/StepDome.usda@
     )
     {

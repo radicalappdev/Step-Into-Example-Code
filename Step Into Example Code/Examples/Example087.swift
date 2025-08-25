@@ -34,12 +34,13 @@ struct Example087: View {
             // We'll use configureEntity to set up input and collision on the subject
             ManipulationComponent.configureEntity(subject, collisionShapes: [.generateBox(width: 0.25, height: 0.25, depth: 0.25)])
 
-            // Create the component and add it to the entity
-            let mc = ManipulationComponent()
+            // OR Create the component and add it to the entity
+            // let mc = ManipulationComponent()
+            // subject.components.set(mc)
 
-            // Add the component and
-            subject.components.set(mc)
             content.add(subject)
+
+            print("content make closure fired")
         }
         .debugBorder3D(.white)
         .ornament(attachmentAnchor: .scene(.topBack), contentAlignment: .top, ornament: {
