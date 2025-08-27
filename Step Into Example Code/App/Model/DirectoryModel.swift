@@ -751,11 +751,11 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  description: "")
 
         ,Example(title: "Example 098",
-                 type: .WINDOW,
+                 type: .VOLUME,
                  date: Date("8/27/2025"),
                  isFeatured: true,
-                 subtitle: "TBD",
-                 description: "")
+                 subtitle: "Spatial SwiftUI: Breakthrough Effect",
+                 description: "We can use this new modifier to keep content visible even when it is blocked other views or content.")
 
 
     ]
