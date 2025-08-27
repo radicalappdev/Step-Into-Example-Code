@@ -750,6 +750,13 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  subtitle: "Spatial SwiftUI: manipulable modifier",
                  description: "")
 
+        ,Example(title: "Example 098",
+                 type: .WINDOW,
+                 date: Date("8/27/2025"),
+                 isFeatured: true,
+                 subtitle: "TBD",
+                 description: "")
+
 
     ]
         
