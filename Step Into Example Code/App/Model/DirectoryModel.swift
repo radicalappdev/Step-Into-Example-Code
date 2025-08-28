@@ -757,6 +757,13 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  subtitle: "Spatial SwiftUI: Breakthrough Effect",
                  description: "We can use this new modifier to keep content visible even when it is blocked other views or content.")
 
+        ,Example(title: "Example 099",
+                 type: .VOLUME,
+                 date: Date("8/27/2025"),
+                 isFeatured: true,
+                 subtitle: "Spatial SwiftUI: Presentation Breakthrough Effect",
+                 description: "We can use this new modifier to override the system default breakthrough effect for presentations.")
+
 
     ]
         
