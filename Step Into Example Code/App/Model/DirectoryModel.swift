@@ -711,58 +711,65 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
         ,Example(title: "Example 092",
                  type: .WINDOW,
                  date: Date("7/07/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Spatial SwiftUI: rotation3DLayout",
                  description: "A rotation modifier that will impact frame and layout.")
 
         ,Example(title: "Example 093",
                  type: .WINDOW,
                  date: Date("7/08/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Spatial SwiftUI: spatialOverlay",
                  description: "We can add secondary content within the bounds of views.")
 
         ,Example(title: "Example 094",
                  type: .WINDOW,
                  date: Date("7/09/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Spatial SwiftUI: SpatialContainer",
                  description: "A Layout that can align overlapping views, allowing multiple views to exist in one space.")
 
         ,Example(title: "Example 095",
                  type: .VOLUME,
                  date: Date("7/09/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Spatial SwiftUI: realityViewSizingBehavior",
                  description: "A modifier that controls frame and alignment for RealityView.")
 
         ,Example(title: "Example 096",
                  type: .WINDOW,
                  date: Date("7/22/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Spatial SwiftUI: scaling views",
                  description: "We can use two convenient modifiers to scale views based on their parent size.")
 
         ,Example(title: "Example 097",
                  type: .WINDOW,
                  date: Date("8/20/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Spatial SwiftUI: manipulable modifier",
                  description: "")
 
         ,Example(title: "Example 098",
                  type: .VOLUME,
                  date: Date("8/27/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Spatial SwiftUI: Breakthrough Effect",
                  description: "We can use this new modifier to keep content visible even when it is blocked other views or content.")
 
         ,Example(title: "Example 099",
                  type: .VOLUME,
                  date: Date("8/27/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Spatial SwiftUI: Presentation Breakthrough Effect",
                  description: "We can use this new modifier to override the system default breakthrough effect for presentations.")
+
+        ,Example(title: "Example 100",
+                 type: .WINDOW,
+                 date: Date("9/3/2025"),
+                 isFeatured: true,
+                 subtitle: "Spatial SwiftUI: Using Look to Scroll",
+                 description: "We can let user look to scroll by using the .scrollInputBehavior modifier.")
 
 
     ]
