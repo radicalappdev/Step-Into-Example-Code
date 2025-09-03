@@ -769,7 +769,7 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  date: Date("9/3/2025"),
                  isFeatured: true,
                  subtitle: "Spatial SwiftUI: Using Look to Scroll",
-                 description: "We can let user look to scroll by using the .scrollInputBehavior modifier.")
+                 description: "We can let users look to scroll with the Scroll Input Behavior modifier.")
 
 
     ]

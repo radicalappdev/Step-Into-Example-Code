@@ -2,11 +2,11 @@
 //
 //  Title: Example100
 //
-//  Subtitle:
+//  Subtitle: Spatial SwiftUI: Using Look to Scroll
 //
-//  Description:
+//  Description: We can let users look to scroll with the Scroll Input Behavior modifier.
 //
-//  Type:
+//  Type: Window
 //
 //  Created by Joseph Simpson on 9/3/25.
 
@@ -15,6 +15,8 @@ import RealityKit
 import RealityKitContent
 
 struct Example100: View {
+
+    @State private var inputKind: ScrollInputKind = .look
 
     var body: some View {
         TabView {
@@ -52,8 +54,6 @@ struct Example100: View {
                 }
                 .padding()
             }
-            .background(.thickMaterial)
-            .frame(height: 200)
             .scrollInputBehavior(.enabled, for: .look)
             .tabItem {
                 Label("Horizontal", systemImage: "chevron.left.chevron.right")
@@ -77,7 +77,36 @@ struct Example100: View {
                 .padding()
             }
             .background(.thickMaterial)
-            .scrollInputBehavior(.enabled, for: .look)
+            .scrollInputBehavior(.enabled, for: inputKind)
+            .ornament(attachmentAnchor: .scene(.top), contentAlignment: .bottom, ornament: {
+                let display = inputKind == .look ? "All" : inputKind == .look(axes: .horizontal) ? "Horizontal" : "Vertical"
+                Text("\(display)")
+
+                .padding()
+                .glassBackgroundEffect()
+            })
+            .ornament(attachmentAnchor: .scene(.trailing), contentAlignment: .leading, ornament: {
+                VStack {
+                    Button(action: {
+                        inputKind = .look
+                    }, label: {
+                        Image(systemName: "arrow.up.and.down.and.arrow.left.and.right")
+                    })
+                    Button(action: {
+                        inputKind = .look(axes: .vertical)
+                    }, label: {
+                        Image(systemName: "chevron.up.chevron.down")
+                    })
+                    Button(action: {
+                        inputKind = .look(axes: .horizontal)
+                    }, label: {
+                        Image(systemName: "chevron.left.chevron.right")
+                    })
+                }
+
+                .padding()
+                .glassBackgroundEffect()
+            })
             .tabItem {
                 Label("Grid", systemImage: "square.grid.3x3")
             }
