@@ -57,17 +57,32 @@ struct Example101: View {
                     Text("Top Left Front")
                 })
 
-//                Button(action: {
-//                    alignmentSign = .init(horizontal: .combineExplicit(.center, .trailing), vertical: .top, depth: .front)
-//                }, label: {
-//                    Text("Custom Front")
-//                })
+                // init(_:): https://developer.apple.com/documentation/swiftui/horizontalalignment/init(_:)
+                Button(
+                    action: {
+                        withAnimation {
+                            alignmentSign = .init(
+                                horizontal: .init(ThirdAlignment.self),
+                                vertical: .init(ThirdAlignment.self),
+                                depth: .front
+                            )
+                    }
+                },label: {
+                    Text("Top Left Front")
+                })
+
 
             }
             .frame(width: 200)
             .padding()
             .glassBackgroundEffect()
         })
+    }
+}
+
+private struct ThirdAlignment: AlignmentID {
+    static func defaultValue(in context: ViewDimensions) -> CGFloat {
+        context.width / 3
     }
 }
 
