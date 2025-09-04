@@ -732,7 +732,7 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
         ,Example(title: "Example 095",
                  type: .VOLUME,
                  date: Date("7/09/2025"),
-                 isFeatured: false,
+                 isFeatured: true,
                  subtitle: "Spatial SwiftUI: realityViewSizingBehavior",
                  description: "A modifier that controls frame and alignment for RealityView.")
 
@@ -770,6 +770,13 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  isFeatured: true,
                  subtitle: "Spatial SwiftUI: Using Look to Scroll",
                  description: "We can let users look to scroll with the Scroll Input Behavior modifier.")
+
+        ,Example(title: "Example 101",
+                 type: .VOLUME,
+                 date: Date("9/4/2025"),
+                 isFeatured: true,
+                 subtitle: "Spatial SwiftUI: Custom alignment with spatialOverlay",
+                 description: "")
 
 
     ]
