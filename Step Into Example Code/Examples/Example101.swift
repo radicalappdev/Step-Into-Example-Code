@@ -2,11 +2,11 @@
 //
 //  Title: Example101
 //
-//  Subtitle:
+//  Subtitle: Spatial SwiftUI: Custom alignment with spatialOverlay
 //
-//  Description:
+//  Description: We can use AlignmentID to customize the alignment of a view within a spatialOverlay.
 //
-//  Type:
+//  Type: Volume
 //
 //  Created by Joseph Simpson on 9/4/25.
 
@@ -23,15 +23,16 @@ struct Example101: View {
 
             Spacer()
 
+            // Use an Earth Model with a simple 2D view as an overlay
             ModelViewSimple(name: "Earth", bundle: realityKitContentBundle)
                 .frame(width: 600, height: 600)
                 .debugBorder3D(.white)
-
-            // Add an overlay view to the Earth model
                 .spatialOverlay(alignment: alignmentSign) {
                     VStack {
-                        Text("Earth & Luna")
+                        Text("Earth")
                             .font(.headline)
+                        Text("The only planet known to serve ice cream")
+                            .font(.caption)
                     }
                     .padding()
                     .background(.black)
@@ -40,7 +41,7 @@ struct Example101: View {
                 }
         }
         .ornament(attachmentAnchor: .scene(.trailing), ornament: {
-            VStack {
+            VStack(alignment: .leading) {
                 Button(action: {
                     withAnimation {
                         alignmentSign = .init(horizontal: .center, vertical: .center, depth: .front)
@@ -57,35 +58,73 @@ struct Example101: View {
                     Text("Top Left Front")
                 })
 
-                // init(_:): https://developer.apple.com/documentation/swiftui/horizontalalignment/init(_:)
                 Button(
                     action: {
                         withAnimation {
                             alignmentSign = .init(
-                                horizontal: .init(ThirdAlignment.self),
-                                vertical: .init(ThirdAlignment.self),
+                                horizontal: .init(ThirdHorizontalAlignment.self),
+                                vertical: .init(ThirdVerticalAlignment.self),
                                 depth: .front
                             )
-                    }
-                },label: {
-                    Text("Top Left Front")
-                })
+                        }
+                    },label: {
+                        Text("Fractional Alignment")
+                    })
 
+                Button(
+                    action: {
+                        withAnimation {
+                            alignmentSign = .init(horizontal: .explicit,
+                                                  vertical: .explicit,
+                                                  depth: .front)
+
+                        }
+                    },label: {
+                        Text("Explicit Alignment")
+                    })
 
             }
-            .frame(width: 200)
+            .frame(width: 240)
             .padding()
             .glassBackgroundEffect()
         })
+
     }
+
 }
 
-private struct ThirdAlignment: AlignmentID {
+// Custom Fractional Examples
+fileprivate struct ThirdHorizontalAlignment: AlignmentID {
     static func defaultValue(in context: ViewDimensions) -> CGFloat {
         context.width / 3
     }
+}
+fileprivate struct ThirdVerticalAlignment: AlignmentID {
+    static func defaultValue(in context: ViewDimensions) -> CGFloat {
+        context.height / 3
+    }
+}
+
+// Explicite Examples: 0.66 on X and 1.0 on Y
+fileprivate struct ExplicitHorizontalAlignment: AlignmentID {
+    static func defaultValue(in context: ViewDimensions) -> CGFloat {
+        context.width * 0.66
+    }
+}
+fileprivate extension HorizontalAlignment {
+    static let explicit = HorizontalAlignment(ExplicitHorizontalAlignment.self)
+}
+
+fileprivate struct ExplicitVerticalAlignment: AlignmentID {
+    static func defaultValue(in context: ViewDimensions) -> CGFloat {
+        context.height * 1.0
+    }
+}
+fileprivate extension VerticalAlignment {
+    static let explicit = VerticalAlignment(ExplicitVerticalAlignment.self)
 }
 
 #Preview {
     Example101()
 }
+

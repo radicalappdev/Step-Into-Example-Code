@@ -776,7 +776,7 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  date: Date("9/4/2025"),
                  isFeatured: true,
                  subtitle: "Spatial SwiftUI: Custom alignment with spatialOverlay",
-                 description: "")
+                 description: "We can use AlignmentID to customize the alignment of a view within a spatialOverlay.")
 
 
     ]
