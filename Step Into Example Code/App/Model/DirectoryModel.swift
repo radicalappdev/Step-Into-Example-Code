@@ -778,6 +778,12 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  subtitle: "Spatial SwiftUI: Custom alignment with spatialOverlay",
                  description: "We can use AlignmentID to customize the alignment of a view within a spatialOverlay.")
 
+        ,Example(title: "Example 102",
+                 type: .WINDOW,
+                 date: Date("9/29/2025"),
+                 isFeatured: true,
+                 subtitle: "Spatial SwiftUI: onWorldRecenter",
+                 description: "We can use this modifier to execute code after the user has recentered their view.")
 
     ]
         
