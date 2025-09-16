@@ -780,10 +780,17 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
 
         ,Example(title: "Example 102",
                  type: .WINDOW,
-                 date: Date("9/29/2025"),
+                 date: Date("9/14/2025"),
                  isFeatured: true,
                  subtitle: "Spatial SwiftUI: onWorldRecenter",
                  description: "We can use this modifier to execute code after the user has recentered their view.")
+
+        ,Example(title: "Example 103",
+                 type: .WINDOW_ALT,
+                 date: Date("9/16/2025"),
+                 isFeatured: true,
+                 subtitle: "Spatial SwiftUI: glassBackgroundEffect",
+                 description: "")
 
     ]
         
