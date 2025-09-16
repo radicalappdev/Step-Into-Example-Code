@@ -24,21 +24,23 @@ struct Example103: View {
 
     var body: some View {
 
+        /// Feathered Example
+//        Text("Feathered Glass Background Effect")
+//            .font(.extraLargeTitle)
+//            .glassBackgroundEffect(.feathered(padding: 36, softEdgeRadius: 3), displayMode: .always)
+
+        /// Clip Shape Example
+//        Text("Moon")
+//            .font(.extraLargeTitle)
+//            .padding(48)
+//            .glassBackgroundEffect(.plate, in: .circle, displayMode: .always)
+
+        /// Layout Example
         VStackLayout().depthAlignment(alignment) {
 
             HStackLayout().depthAlignment(alignment) {
 
-                VStack {
-                    Text("Earth")
-                        .font(.title)
-                    Text("The only known planet known to serve ice cream.")
-                        .font(.caption)
-                }
-                .padding()
-                .background(.black)
-                .cornerRadius(24)
-                .shadow(radius: 20)
-                .frame(width: 220, height: 160)
+                earthCard
 
                 ModelViewSimple(name: "Earth", bundle: realityKitContentBundle)
                     .frame(width: 150, height: 150)
@@ -55,17 +57,8 @@ struct Example103: View {
                     .frame(width: 60, height: 60)
                     .padding(6)
                     .glassBackgroundEffect(.automatic, displayMode: .implicit)
-                VStack {
-                    Text("Luna")
-                        .font(.title)
-                    Text("Made amost entirely of cheese.")
-                        .font(.caption)
-                }
-                .padding()
-                .background(.black)
-                .cornerRadius(24)
-                .shadow(radius: 20)
-                .frame(width: 180, height: 140)
+
+                moonCard
             }
             .padding()
             .glassBackgroundEffect(.automatic, displayMode: childrenBackgroundMode)
@@ -106,6 +99,34 @@ struct Example103: View {
 
         })
 
+    }
+
+    var earthCard: some View {
+        VStack {
+            Text("Earth")
+                .font(.title)
+            Text("The only known planet known to serve ice cream.")
+                .font(.caption)
+        }
+        .padding()
+        .background(.black)
+        .cornerRadius(24)
+        .shadow(radius: 20)
+        .frame(width: 220, height: 160)
+    }
+
+    var moonCard: some View {
+        VStack {
+            Text("Luna")
+                .font(.title)
+            Text("Made amost entirely of cheese.")
+                .font(.caption)
+        }
+        .padding()
+        .background(.black)
+        .cornerRadius(24)
+        .shadow(radius: 20)
+        .frame(width: 180, height: 140)
     }
 }
 
