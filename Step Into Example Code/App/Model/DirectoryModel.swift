@@ -790,7 +790,7 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  date: Date("9/16/2025"),
                  isFeatured: true,
                  subtitle: "Spatial SwiftUI: glassBackgroundEffect",
-                 description: "")
+                 description: "We can use this to add a glass background to any view.")
 
     ]
         

@@ -2,11 +2,11 @@
 //
 //  Title: Example103
 //
-//  Subtitle:
+//  Subtitle: Spatial SwiftUI: glassBackgroundEffect
 //
-//  Description:
+//  Description: We can use this to add a glass background to any view.
 //
-//  Type:
+//  Type: Window
 //
 //  Created by Joseph Simpson on 9/16/25.
 
@@ -16,11 +16,11 @@ import RealityKitContent
 
 struct Example103: View {
 
-    @State private var alignment: DepthAlignment = .back
-    @State private var showDebugLines = false
-
+    @State private var parentBackgroundFeathered: Bool = false
     @State private var parentBackgroundMode: GlassBackgroundDisplayMode = .always
     @State private var childrenBackgroundMode: GlassBackgroundDisplayMode = .implicit
+
+    var alignment: DepthAlignment = .back
 
     var body: some View {
 
@@ -40,10 +40,10 @@ struct Example103: View {
                 .shadow(radius: 20)
                 .frame(width: 220, height: 160)
 
-                // The largest view in this scene, all other content will align to this
                 ModelViewSimple(name: "Earth", bundle: realityKitContentBundle)
                     .frame(width: 150, height: 150)
-                    .debugBorder3D(showDebugLines ? .white : .clear)
+                    .padding(6)
+                    .glassBackgroundEffect(.automatic, displayMode: .implicit)
 
             }
             .padding()
@@ -53,7 +53,8 @@ struct Example103: View {
 
                 ModelViewSimple(name: "Moon", bundle: realityKitContentBundle)
                     .frame(width: 60, height: 60)
-                    .debugBorder3D(showDebugLines ? .white : .clear)
+                    .padding(6)
+                    .glassBackgroundEffect(.automatic, displayMode: .implicit)
                 VStack {
                     Text("Luna")
                         .font(.title)
@@ -70,38 +71,33 @@ struct Example103: View {
             .glassBackgroundEffect(.automatic, displayMode: childrenBackgroundMode)
 
         }
-        .debugBorder3D(showDebugLines ? .white : .clear)
         .glassBackgroundEffect(.automatic, displayMode: parentBackgroundMode)
 
         // Controls to modify the example
         .ornament(attachmentAnchor: .scene(.trailing), contentAlignment: .trailing, ornament: {
             VStack(alignment: .center, spacing: 8) {
+                Text("VStack")
                 Button(action: {
-                    withAnimation {
-                        alignment = .back
-                    }
+                    parentBackgroundMode = .always
                 }, label: {
-                    Text("Back")
+                    Text("Always")
                 })
                 Button(action: {
-                    withAnimation {
-                        alignment = .center
-                    }
+                    parentBackgroundMode = .never
                 }, label: {
-                    Text("Center")
+                    Text("Never")
                 })
+                Text("HStacks")
                 Button(action: {
-                    withAnimation {
-                        alignment = .front
-                    }
+                    childrenBackgroundMode = .implicit
                 }, label: {
-                    Text("Front")
+                    Text("Implicit")
                 })
 
                 Button(action: {
-                    showDebugLines.toggle()
+                    childrenBackgroundMode = .never
                 }, label: {
-                    Text("Debug")
+                    Text("Never")
                 })
             }
             .padding()
