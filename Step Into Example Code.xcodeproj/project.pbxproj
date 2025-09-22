@@ -165,9 +165,6 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
-				INFOPLIST_KEY_GCSupportsControllerUserInteraction = YES;
-				INFOPLIST_KEY_NSHandsTrackingUsageDescription = "Hand tracking access is needed to explore the hand tracking example code";
-				INFOPLIST_KEY_NSWorldSensingUsageDescription = "World and plane detection access is needed to explore the ARKit example code";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -194,9 +191,6 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
-				INFOPLIST_KEY_GCSupportsControllerUserInteraction = YES;
-				INFOPLIST_KEY_NSHandsTrackingUsageDescription = "Hand tracking access is needed to explore the hand tracking example code";
-				INFOPLIST_KEY_NSWorldSensingUsageDescription = "World and plane detection access is needed to explore the ARKit example code";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

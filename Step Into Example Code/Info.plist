@@ -2,13 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>GCSupportedGameControllers</key>
-	<array>
-		<dict>
-			<key>ProfileName</key>
-			<string>SpatialGamepad</string>
-		</dict>
-	</array>
+	<key>UIWantsDetailedSurfaceInfo</key>
+	<true/>
+	<key>NSHandsTrackingUsageDescription</key>
+	<string>Hand tracking access is needed to explore the hand tracking example code</string>
+	<key>NSWorldSensingUsageDescription</key>
+	<string>World and plane detection access is needed to explore the ARKit example code</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationPreferredDefaultSceneSessionRole</key>
@@ -26,7 +25,5 @@
 			</array>
 		</dict>
 	</dict>
-	<key>UIWantsDetailedSurfaceInfo</key>
-	<true/>
 </dict>
 </plist>

@@ -792,13 +792,6 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  subtitle: "Spatial SwiftUI: glassBackgroundEffect",
                  description: "We can use this to add a glass background to any view.")
 
-        ,Example(title: "Example 104",
-                 type: .SPACE,
-                 date: Date("9/22/2025"),
-                 isFeatured: true,
-                 subtitle: "ARKit: Connecting to Tracked Controllers",
-                 description: "")
-
     ]
         
 }
