@@ -796,8 +796,8 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  type: .VOLUME,
                  date: Date("9/24/2025"),
                  isFeatured: true,
-                 subtitle: "Reading Input data from Manipulation Component",
-                 description: "")
+                 subtitle: "Reading input data from Manipulation Component",
+                 description: "We can use chirality and kind to customize input based on the user's hand or input device.")
 
     ]
         
