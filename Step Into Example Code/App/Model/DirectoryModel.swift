@@ -803,8 +803,8 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  type: .WINDOW,
                  date: Date("9/25/2025"),
                  isFeatured: true,
-                 subtitle: "Exploring the manipulable in SwiftUI",
-                 description: "We can use the SwiftUI equivalent of Manipulation as a modifier.")
+                 subtitle: "Spatial SwiftUI: Manipulation modifiers",
+                 description: "We can use the SwiftUI equivalent of Manipulation Component as a modifier.")
 
 
     ]

@@ -2,11 +2,11 @@
 //
 //  Title: Example105
 //
-//  Subtitle:
+//  Subtitle: Spatial SwiftUI: Manipulation modifiers
 //
-//  Description:
+//  Description: We can use the SwiftUI equivalent of Manipulation Component as a modifier.
 //
-//  Type:
+//  Type: Window
 //
 //  Created by Joseph Simpson on 9/25/25.
 
