@@ -2,11 +2,11 @@
 //
 //  Title: Example086
 //
-//  Subtitle:
+//  Subtitle: Constrain position with Manipulation Component
 //
-//  Description:
+//  Description: Using the DidUpdateTransform to constrain the position of a manipulated entity.
 //
-//  Type:
+//  Type: Volume
 //
 //  Created by Joseph Simpson on 6/28/25.
 

@@ -799,6 +799,14 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  subtitle: "Reading input data from Manipulation Component",
                  description: "We can use chirality and kind to customize input based on the user's hand or input device.")
 
+        ,Example(title: "Example 105",
+                 type: .WINDOW,
+                 date: Date("9/25/2025"),
+                 isFeatured: true,
+                 subtitle: "Exploring the manipulable in SwiftUI",
+                 description: "We can use the SwiftUI equivalent of Manipulation as a modifier.")
+
+
     ]
         
 }
