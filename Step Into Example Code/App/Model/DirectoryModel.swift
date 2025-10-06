@@ -732,7 +732,7 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
         ,Example(title: "Example 095",
                  type: .VOLUME,
                  date: Date("7/09/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Spatial SwiftUI: realityViewSizingBehavior",
                  description: "A modifier that controls frame and alignment for RealityView.")
 
@@ -767,35 +767,35 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
         ,Example(title: "Example 100",
                  type: .WINDOW,
                  date: Date("9/3/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Spatial SwiftUI: Using Look to Scroll",
                  description: "We can let users look to scroll with the Scroll Input Behavior modifier.")
 
         ,Example(title: "Example 101",
                  type: .VOLUME,
                  date: Date("9/4/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Spatial SwiftUI: Custom alignment with spatialOverlay",
                  description: "We can use AlignmentID to customize the alignment of a view within a spatialOverlay.")
 
         ,Example(title: "Example 102",
                  type: .WINDOW,
                  date: Date("9/14/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Spatial SwiftUI: onWorldRecenter",
                  description: "We can use this modifier to execute code after the user has recentered their view.")
 
         ,Example(title: "Example 103",
                  type: .WINDOW_ALT,
                  date: Date("9/16/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Spatial SwiftUI: glassBackgroundEffect",
                  description: "We can use this to add a glass background to any view.")
 
         ,Example(title: "Example 104",
                  type: .VOLUME,
                  date: Date("9/24/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Reading input data from Manipulation Component",
                  description: "We can use chirality and kind to customize input based on the user's hand or input device.")
 
