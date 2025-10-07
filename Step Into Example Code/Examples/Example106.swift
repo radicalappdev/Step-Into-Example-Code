@@ -83,8 +83,9 @@ struct Example106: View {
         }
         .onDisappear() {
             willBegin?.cancel()
+            willBegin = nil
             willRelease?.cancel()
-        }
+            willRelease = nil        }
         .toolbar {
             ToolbarItem(placement: .bottomOrnament, content: {
                 Toggle(isOn: animatedIsOffset, label: {

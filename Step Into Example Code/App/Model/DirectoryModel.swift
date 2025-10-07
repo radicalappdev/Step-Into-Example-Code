@@ -817,7 +817,7 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  type: .VOLUME,
                  date: Date("9/25/2025"),
                  isFeatured: true,
-                 subtitle: "RealityKit Basics: Events",
+                 subtitle: "RealityKit Basics: Working with Events",
                  description: "")
 
 
