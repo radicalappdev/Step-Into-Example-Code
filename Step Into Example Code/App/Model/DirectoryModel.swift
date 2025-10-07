@@ -818,7 +818,7 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  date: Date("9/25/2025"),
                  isFeatured: true,
                  subtitle: "RealityKit Basics: Working with Events",
-                 description: "")
+                 description: "Our apps can respond to a number of scene and component events.")
 
 
     ]

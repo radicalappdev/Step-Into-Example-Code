@@ -2,11 +2,11 @@
 //
 //  Title: Example107
 //
-//  Subtitle:
+//  Subtitle: RealityKit Basics: Working with Events
 //
-//  Description:
+//  Description: Our apps can respond to a number of scene and component events.
 //
-//  Type:
+//  Type: Volume
 //
 //  Created by Joseph Simpson on 10/7/25.
 
@@ -16,12 +16,12 @@ import RealityKitContent
 
 struct Example107: View {
 
-
     @State private var sceneEventExample: EventSubscription?
     @State private var componentEventExample: EventSubscription?
     @State private var willBegin: EventSubscription?
     @State private var willRelease: EventSubscription?
-    
+    @State private var collisionBeganUnfiltered: EventSubscription?
+
     var body: some View {
         RealityView { content in
 
@@ -42,10 +42,11 @@ struct Example107: View {
             content.add(subjectA)
 
             let subjectB = subjectA.clone(recursive: true)
-            subjectA.name = "subjectB"
+            subjectB.name = "subjectB"
             subjectB.position.x = -0.15
             content.add(subjectB)
 
+            // Manipulation Event Examples
             willBegin = content.subscribe(to: ManipulationEvents.WillBegin.self) { event in
                 print("picked up \(event.entity.name)")
             }
@@ -54,14 +55,24 @@ struct Example107: View {
                 print("released up \(event.entity.name)")
             }
 
+            // Collision Event Example
+            collisionBeganUnfiltered = content.subscribe(to: CollisionEvents.Began.self)  { collisionEvent in
+                print("Collision between \(collisionEvent.entityA.name) and \(collisionEvent.entityB.name)")
+            }
 
 
         }
         .onDisappear() {
+            sceneEventExample?.cancel()
+            sceneEventExample = nil
+            componentEventExample?.cancel()
+            componentEventExample = nil
             willBegin?.cancel()
             willBegin = nil
             willRelease?.cancel()
             willRelease = nil
+            collisionBeganUnfiltered?.cancel()
+            collisionBeganUnfiltered = nil
         }
     }
 }
