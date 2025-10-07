@@ -813,6 +813,13 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  subtitle: "RealityKit Basics: RealityViewContent",
                  description: "Provides access to entities, subscriptions, animations, and coordinate space conversions.")
 
+        ,Example(title: "Example 107",
+                 type: .VOLUME,
+                 date: Date("9/25/2025"),
+                 isFeatured: true,
+                 subtitle: "RealityKit Basics: Events",
+                 description: "")
+
 
     ]
         
