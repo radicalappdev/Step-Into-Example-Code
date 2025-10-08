@@ -808,17 +808,24 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
 
         ,Example(title: "Example 106",
                  type: .VOLUME,
-                 date: Date("9/25/2025"),
+                 date: Date("10/06/2025"),
                  isFeatured: true,
                  subtitle: "RealityKit Basics: RealityViewContent",
                  description: "Provides access to entities, subscriptions, animations, and coordinate space conversions.")
 
         ,Example(title: "Example 107",
                  type: .VOLUME,
-                 date: Date("9/25/2025"),
+                 date: Date("10/07/2025"),
                  isFeatured: true,
                  subtitle: "RealityKit Basics: Working with Events",
                  description: "Our apps can respond to a number of scene and component events.")
+
+        ,Example(title: "Example 108",
+                 type: .VOLUME,
+                 date: Date("10/08/2025"),
+                 isFeatured: true,
+                 subtitle: "RealityKit Basics: Coordinate Space Conversion",
+                 description: "")
 
 
     ]
