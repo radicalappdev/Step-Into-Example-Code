@@ -825,7 +825,7 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  date: Date("10/08/2025"),
                  isFeatured: true,
                  subtitle: "RealityKit Basics: Coordinate Space Conversion",
-                 description: "")
+                 description: "RealityViewContent provides several ways to work with and convert between coordinate spaces.")
 
 
     ]
