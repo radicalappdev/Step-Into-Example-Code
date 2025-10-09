@@ -2,11 +2,11 @@
 //
 //  Title: Example109
 //
-//  Subtitle:
+//  Subtitle: RealityKit Basics: Simple Animations
 //
-//  Description:
+//  Description: Starting in visionOS 26, we can perform SwiftUI animations in RealityKit.
 //
-//  Type:
+//  Type: Volume
 //
 //  Created by Joseph Simpson on 10/9/25.
 
@@ -25,16 +25,57 @@ struct Example109: View {
     @State private var subjectBToggle = false
 
     var body: some View {
+
+        HStack() {
+            Example109ExampleA()
+            Example109ExampleB()
+        }
+
+    }
+}
+
+fileprivate struct Example109ExampleA: View {
+
+    @State private var subjectA = Entity()
+    @State private var subjectAToggle = false
+    var subjectAToggleAnimation: Binding<Bool> {
+        $subjectAToggle.animation(.easeInOut(duration: 1))
+    }
+
+    var body: some View {
         RealityView { content in
 
             let subjectA = createStepDemoBox("subjectA", true)
             self.subjectA = subjectA
-            subjectA.position.x = -0.2
             content.add(subjectA)
 
+        } update: { content in
+
+            content.animate {
+                let scaler: Float = subjectAToggle ? 2.0 : 1.0
+                subjectA.scale = .init(repeating: scaler)
+            }
+
+        }
+        .toolbar {
+            ToolbarItem(placement: .bottomOrnament, content: {
+                Toggle(isOn: subjectAToggleAnimation, label: {
+                    Text("Toggle Subject A")
+                })
+            })
+        }
+    }
+}
+
+fileprivate struct Example109ExampleB: View {
+
+    // For this example, we'll use a state var. In a production app it makes more sense to keep entity state in components
+    @State private var subjectBToggle = false
+
+    var body: some View {
+        RealityView { content in
 
             let subjectB = createStepDemoBox("subjectB", true)
-            subjectB.position.x = 0.2
             content.add(subjectB)
 
             let tap = TapGesture().onEnded({ [weak subjectB] _ in
@@ -48,25 +89,6 @@ struct Example109: View {
             let gesture = GestureComponent(tap)
             subjectB.components.set(gesture)
 
-
-        } update: { content in
-
-            content.animate {
-                let scaler: Float = subjectAToggle ? 2.0 : 1.0
-                subjectA.scale = .init(repeating: scaler)
-            }
-
-        }
-        .toolbar {
-            ToolbarItem(placement: .bottomOrnament, content: {
-                Toggle(isOn: subjectAToggleAnimation, label: {
-                    Text("Toggle Subject")
-                })
-            })
         }
     }
-}
-
-#Preview {
-    Example109()
 }
