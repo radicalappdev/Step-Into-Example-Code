@@ -229,8 +229,8 @@ struct IndirectTransformGesture: ViewModifier {
 
 /// Creates a six-sided box: useful for testing gestures and rotations
 /// 0.25 units on all sides with a small corner radius
-func createStepDemoBox() -> Entity {
-    let mat1 = SimpleMaterial(color: .green, roughness: 0.2, isMetallic: false)
+func createStepDemoBox(_ name: String? = nil, _ withInputs: Bool = false) -> Entity {
+let mat1 = SimpleMaterial(color: .green, roughness: 0.2, isMetallic: false)
     let mat2 = SimpleMaterial(color: .yellow, roughness: 0.2, isMetallic: false)
     let mat3 = SimpleMaterial(color: .orange, roughness: 0.2, isMetallic: false)
     let mat4 = SimpleMaterial(color: .red, roughness: 0.2, isMetallic: false)
@@ -240,9 +240,21 @@ func createStepDemoBox() -> Entity {
     let stepDemoBox = ModelEntity(
         mesh: .generateBox(width: 0.25, height: 0.25, depth: 0.25, cornerRadius: 0.03, splitFaces: true),
         materials: [mat1, mat2, mat3, mat4, mat5, mat6])
-    stepDemoBox.name = "StepDemoBox"
+    stepDemoBox.name = name ?? "StepDemoBox"
+
+    if withInputs {
+        configureStepDemoBoxInteraction(for: stepDemoBox)
+    }
 
     return stepDemoBox
+}
+
+private func configureStepDemoBoxInteraction(for entity: Entity) {
+
+    entity.components.set(CollisionComponent(shapes: [.generateBox(size: .init(repeating: 0.25))]))
+    entity.components.set(InputTargetComponent())
+    entity.components.set(HoverEffectComponent())
+
 }
 
 

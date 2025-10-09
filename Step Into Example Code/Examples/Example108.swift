@@ -23,7 +23,6 @@ struct Example108: View {
                 content.add(scene)
 
             } update: { content in
-
                 if let rocket = content.entities.first {
                     let newFrame = content.convert(proxy.frame(in: .global), from: .global, to: .scene)
                     rocket.scale = [newFrame.extents.x, newFrame.extents.y, newFrame.extents.z]

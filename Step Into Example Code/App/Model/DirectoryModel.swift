@@ -827,6 +827,13 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  subtitle: "RealityKit Basics: Coordinate Space Conversion",
                  description: "RealityViewContent provides several ways to work with and convert between coordinate spaces.")
 
+        ,Example(title: "Example 109",
+                 type: .VOLUME,
+                 date: Date("10/09/2025"),
+                 isFeatured: true,
+                 subtitle: "RealityKit Basics: Simple Animations",
+                 description: "Starting in visionOS 26, we can perform SwiftUI animations in RealityKit.")
+
 
     ]
         
