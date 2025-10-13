@@ -1,0 +1,73 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "Reality Composer Pro Version 2.0 (494.8.1)"
+    }
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "Root"
+{
+    reorder nameChildren = ["SubjectA", "Base", "MaplePlywood"]
+    def "SubjectA" (
+        active = true
+        references = @BuildingBlocks/StepSphereGreen.usda@
+    )
+    {
+        reorder nameChildren = ["DefaultMaterial", "InputTarget", "Collider", "SpotLight"]
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (0, 0.4, 0)
+
+        def Xform "SpotLight" (
+            customData = {
+                float3 rotationEulerHint = (-1.5707961, -1.7881393e-7, -0.78539824)
+            }
+        )
+        {
+            quatf xformOp:orient = (0.65328157, -0.65328145, 0.270598, -0.27059817)
+            float3 xformOp:scale = (1, 1, 1)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def RealityKitComponent "SpotLight"
+            {
+                float3 color = (0.9999908, 1, 1)
+                token info:id = "RealityKit.SpotLight"
+                float intensity = 500
+
+                def RealityKitStruct "Shadow"
+                {
+                }
+            }
+        }
+    }
+
+    def Cube "Base" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        rel material:binding = </Root/MaplePlywood> (
+            bindMaterialAs = "weakerThanDescendants"
+        )
+        double size = 0.8
+        float2 ui:nodegraph:node:pos = (40, 40)
+        int ui:nodegraph:node:stackingOrder = 2
+        quatf xformOp:orient = (1, 0, 0, 0)
+        float3 xformOp:scale = (1, 0.05, 1)
+        float3 xformOp:translate = (0, -0.025, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def "MaplePlywood" (
+        active = true
+        references = @MaplePlywood.usdz@
+    )
+    {
+        token outputs:mtlx:surface.connect = </Root/MaplePlywood/PreviewSurface.outputs:out>
+        float2 ui:nodegraph:node:pos = (40, 40)
+        int ui:nodegraph:node:stackingOrder = 2
+    }
+}
+

@@ -1,11 +1,8 @@
 {
   "advancedEditorSelectedIdentifier" : "ProjectBrowser",
   "openSceneRelativePaths" : [
-    "SwiftUIScienceLab.usda",
-    "BuildingBlocks\/StepSphereRed.usda",
-    "PhysicsMaterialResource.usda",
-    "HandTrackingLabs.usda",
-    "PresentingEarth.usda"
+    "AnimatedComponents.usda",
+    "RKBasicsLoading.usda"
   ],
   "recentIdentifiers" : {
     "04966C20-2723-4378-BCAD-327CAD4E36CF" : [
@@ -15,6 +12,9 @@
 
     ],
     "28D8110F-EF76-49DA-9604-8A92B08609CD" : [
+
+    ],
+    "2B00FE1F-E92E-4EAE-87D1-4D30955BAAC4" : [
 
     ],
     "2FB5E55D-1FD0-442E-BA3C-C9212530BE69" : [
@@ -667,6 +667,74 @@
           -0.0037198805,
           1.1880523,
           2.2972736,
+          1
+        ]
+      }
+    ],
+    "2B00FE1F-E92E-4EAE-87D1-4D30955BAAC4" : [
+      {
+        "date" : 782059635.301657,
+        "title" : "Untitled",
+        "transform" : [
+          0.71293354,
+          3.2448835e-08,
+          -0.7012316,
+          0,
+          -0.2795325,
+          0.9171115,
+          -0.28419727,
+          0,
+          0.6431075,
+          0.39863086,
+          0.6538395,
+          0,
+          1.6083107,
+          1.0449687,
+          1.63515,
+          1
+        ]
+      },
+      {
+        "date" : 782059587.268416,
+        "title" : "Untitled",
+        "transform" : [
+          0.33509764,
+          7.990034e-09,
+          -0.94218343,
+          0,
+          -0.045200825,
+          0.9988486,
+          -0.016076168,
+          0,
+          0.9410986,
+          0.047974646,
+          0.33471182,
+          0,
+          2.2360969,
+          0.19084576,
+          0.79529184,
+          1
+        ]
+      },
+      {
+        "date" : 782058429.777044,
+        "title" : "Untitled",
+        "transform" : [
+          0.9998992,
+          2.3087765e-10,
+          0.014197711,
+          0,
+          0.0059865867,
+          0.90675473,
+          -0.42161605,
+          0,
+          -0.012873841,
+          0.4216586,
+          0.9066633,
+          0,
+          -0.032321613,
+          1.1026696,
+          2.2763073,
           1
         ]
       }
@@ -5107,5 +5175,5 @@
   "sceneViewportBackgroundColors" : {
 
   },
-  "selectedSceneRelativePath" : "PresentingEarth.usda"
+  "selectedSceneRelativePath" : "AnimatedComponents.usda"
 }
