@@ -16,17 +16,17 @@ def Xform "Root"
         references = @BuildingBlocks/StepSphereGreen.usda@
     )
     {
-        reorder nameChildren = ["DefaultMaterial", "InputTarget", "Collider", "SpotLight"]
+        reorder nameChildren = ["DefaultMaterial", "InputTarget", "Collider", "SpotLight", "ParticleEmitter"]
         float3 xformOp:scale = (1, 1, 1)
         float3 xformOp:translate = (0, 0.4, 0)
 
         def Xform "SpotLight" (
             customData = {
-                float3 rotationEulerHint = (-1.5707961, -1.7881393e-7, -0.78539824)
+                float3 rotationEulerHint = (-1.5707961, -2.3841854e-7, -2.1316285e-14)
             }
         )
         {
-            quatf xformOp:orient = (0.65328157, -0.65328145, 0.270598, -0.27059817)
+            quatf xformOp:orient = (0.7071068, -0.70710665, -8.429368e-8, -8.4293674e-8)
             float3 xformOp:scale = (1, 1, 1)
             uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
 
