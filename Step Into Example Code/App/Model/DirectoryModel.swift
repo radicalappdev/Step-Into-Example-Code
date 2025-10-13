@@ -839,7 +839,7 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  date: Date("10/13/2025"),
                  isFeatured: true,
                  subtitle: "RealityKit Basics: Exploring SwiftUi Animations",
-                 description: "Starting in visionOS 26, we can perform SwiftUI animations in RealityKit.")
+                 description: "Selecting from a short list of animation. Animating several RealityKit values.")
 
 
     ]
