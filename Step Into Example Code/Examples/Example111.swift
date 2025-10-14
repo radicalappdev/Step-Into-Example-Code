@@ -2,7 +2,7 @@
 //
 //  Title: Example111
 //
-//  Subtitle: RealityKit Basics: SwiftUi Animation Completion
+//  Subtitle: RealityKit Basics: SwiftUI Animation Completion
 //
 //  Description: Calling code when our animation finishes.
 //

@@ -838,14 +838,14 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  type: .VOLUME,
                  date: Date("10/13/2025"),
                  isFeatured: true,
-                 subtitle: "RealityKit Basics: Exploring SwiftUi Animations",
+                 subtitle: "RealityKit Basics: Exploring SwiftUI Animations",
                  description: "Selecting from a short list of animation. Animating several RealityKit values.")
 
         ,Example(title: "Example 111",
                  type: .VOLUME,
                  date: Date("10/14/2025"),
                  isFeatured: true,
-                 subtitle: "RealityKit Basics: SwiftUi Animation Completion",
+                 subtitle: "RealityKit Basics: SwiftUI Animation Completion",
                  description: "Calling code when our animation finishes.")
 
 

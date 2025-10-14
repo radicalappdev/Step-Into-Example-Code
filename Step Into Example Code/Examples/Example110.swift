@@ -2,7 +2,7 @@
 //
 //  Title: Example110
 //
-//  Subtitle: RealityKit Basics: Exploring SwiftUi Animations
+//  Subtitle: RealityKit Basics: Exploring SwiftUI Animations
 //
 //  Description: Selecting from a short list of animation. Animating several RealityKit values.
 //
