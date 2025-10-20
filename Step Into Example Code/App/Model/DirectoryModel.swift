@@ -802,28 +802,28 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
         ,Example(title: "Example 105",
                  type: .WINDOW,
                  date: Date("9/25/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Spatial SwiftUI: Manipulation modifiers",
                  description: "We can use the SwiftUI equivalent of Manipulation Component as a modifier.")
 
         ,Example(title: "Example 106",
                  type: .VOLUME,
                  date: Date("10/06/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "RealityKit Basics: RealityViewContent",
                  description: "Provides access to entities, subscriptions, animations, and coordinate space conversions.")
 
         ,Example(title: "Example 107",
                  type: .VOLUME,
                  date: Date("10/07/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "RealityKit Basics: Working with Events",
                  description: "Our apps can respond to a number of scene and component events.")
 
         ,Example(title: "Example 108",
                  type: .VOLUME,
                  date: Date("10/08/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "RealityKit Basics: Coordinate Space Conversion",
                  description: "RealityViewContent provides several ways to work with and convert between coordinate spaces.")
 
@@ -853,7 +853,7 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  date: Date("10/20/2025"),
                  isFeatured: true,
                  subtitle: "RealityKit Basics: Perform Entity Actions",
-                 description: "")
+                 description: "RealityKit simplifies many common actions like spin, orbit, playing audio, etc.")
 
 
     ]
