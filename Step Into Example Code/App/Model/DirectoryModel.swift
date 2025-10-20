@@ -848,6 +848,13 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  subtitle: "RealityKit Basics: SwiftUI Animation Completion",
                  description: "Calling code when our animation finishes.")
 
+        ,Example(title: "Example 112",
+                 type: .VOLUME,
+                 date: Date("10/20/2025"),
+                 isFeatured: true,
+                 subtitle: "RealityKit Basics: Perform Entity Actions",
+                 description: "")
+
 
     ]
         
