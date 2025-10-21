@@ -859,8 +859,8 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  type: .WINDOW,
                  date: Date("10/21/2025"),
                  isFeatured: true,
-                 subtitle: "Model3D: Basic Usage",
-                 description: "")
+                 subtitle: "Model3D: Getting Started",
+                 description: "Loading models from bundles and URLs. Showing progress views and errors.")
 
 
     ]
