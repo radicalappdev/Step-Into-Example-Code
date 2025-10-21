@@ -855,6 +855,13 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  subtitle: "RealityKit Basics: Perform Entity Actions",
                  description: "RealityKit simplifies many common actions like spin, orbit, playing audio, etc.")
 
+        ,Example(title: "Example 113",
+                 type: .WINDOW,
+                 date: Date("10/21/2025"),
+                 isFeatured: true,
+                 subtitle: "Model3D: Basic Usage",
+                 description: "")
+
 
     ]
         
