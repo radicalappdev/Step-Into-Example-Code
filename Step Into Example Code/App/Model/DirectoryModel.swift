@@ -620,7 +620,7 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
         ,Example(title: "Example 079",
                  type: .SPACE,
                  date: Date("4/28/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "ARKit WorldTrackingProvider: ",
                  description: "")
 
@@ -704,7 +704,7 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
         ,Example(title: "Example 091",
                  type: .WINDOW,
                  date: Date("7/06/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Spatial SwiftUI: Layout Depth Alignment",
                  description: "We can use `.depthAlignment` to align views in a 3D space.")
 
@@ -830,28 +830,28 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
         ,Example(title: "Example 109",
                  type: .VOLUME,
                  date: Date("10/09/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "RealityKit Basics: Simple Animations",
                  description: "Starting in visionOS 26, we can perform SwiftUI animations in RealityKit.")
 
         ,Example(title: "Example 110",
                  type: .VOLUME,
                  date: Date("10/13/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "RealityKit Basics: Exploring SwiftUI Animations",
                  description: "Selecting from a short list of animation. Animating several RealityKit values.")
 
         ,Example(title: "Example 111",
                  type: .VOLUME,
                  date: Date("10/14/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "RealityKit Basics: SwiftUI Animation Completion",
                  description: "Calling code when our animation finishes.")
 
         ,Example(title: "Example 112",
                  type: .VOLUME,
                  date: Date("10/20/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "RealityKit Basics: Perform Entity Actions",
                  description: "RealityKit simplifies many common actions like spin, orbit, playing audio, etc.")
 
@@ -861,6 +861,13 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  isFeatured: true,
                  subtitle: "Model3D: Getting Started",
                  description: "Loading models from bundles and URLs. Showing progress views and errors.")
+
+        ,Example(title: "Example 114",
+                 type: .WINDOW,
+                 date: Date("10/23/2025"),
+                 isFeatured: true,
+                 subtitle: "TBD",
+                 description: "")
 
 
     ]

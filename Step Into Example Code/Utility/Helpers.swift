@@ -314,3 +314,22 @@ struct ModelViewSimple: View {
         }
     }
 }
+
+
+// Added with Lab 092
+fileprivate extension RealityViewContent {
+    /// Traverses all entities in a RealityView and adds a `ManipulationComponent`
+    /// to any entity that already has an `InputTargetComponent` that does not already have one.
+    func addManipulationToInputTargets() async {
+        await MainActor.run {
+            var stack = Array(self.entities)
+            while let entity = stack.popLast() {
+                if entity.components.has(InputTargetComponent.self) &&
+                    !entity.components.has(ManipulationComponent.self) {
+                    entity.components.set(ManipulationComponent())
+                }
+                stack.append(contentsOf: entity.children)
+            }
+        }
+    }
+}
