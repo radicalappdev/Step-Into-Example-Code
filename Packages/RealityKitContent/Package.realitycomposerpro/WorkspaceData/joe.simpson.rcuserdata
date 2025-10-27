@@ -4,7 +4,8 @@
     "AnimatedComponents.usda",
     "RKBasicsLoading.usda",
     "EntityActionLab.usda",
-    "SwiftUIScienceLab.usda"
+    "SwiftUIScienceLab.usda",
+    "GestureLabs.usda"
   ],
   "recentIdentifiers" : {
     "04966C20-2723-4378-BCAD-327CAD4E36CF" : [
@@ -5314,5 +5315,5 @@
   "sceneViewportBackgroundColors" : {
 
   },
-  "selectedSceneRelativePath" : "EntityActionLab.usda"
+  "selectedSceneRelativePath" : "GestureLabs.usda"
 }

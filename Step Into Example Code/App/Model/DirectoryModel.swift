@@ -863,11 +863,11 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  description: "Loading models from bundles and URLs. Showing progress views and errors.")
 
         ,Example(title: "Example 114",
-                 type: .WINDOW,
+                 type: .SPACE,
                  date: Date("10/23/2025"),
                  isFeatured: true,
-                 subtitle: "TBD",
-                 description: "")
+                 subtitle: "Environment Blending Component",
+                 description: "We can use this to control how entities blend in with objects in our environment.")
 
 
     ]
