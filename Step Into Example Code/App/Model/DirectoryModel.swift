@@ -880,8 +880,8 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  type: .VOLUME,
                  date: Date("10/28/2025"),
                  isFeatured: true,
-                 subtitle: "Gesture Component Basics",
-                 description: "")
+                 subtitle: "Gesture Component",
+                 description: "Exploring a new way to add gestures directly to entities.")
 
 
     ]

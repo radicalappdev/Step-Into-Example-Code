@@ -102,6 +102,27 @@
       }
     ]
   },
+  "0D63E98D-C26E-450C-B8F0-CA525FAA5B25" : {
+    "objectMetadataList" : [
+      [
+        "0D63E98D-C26E-450C-B8F0-CA525FAA5B25",
+        "Root"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "0D63E98D-C26E-450C-B8F0-CA525FAA5B25",
+        "Root",
+        "ToyRocket"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      }
+    ]
+  },
   "1A3F13A3-84AD-48A1-BFC0-2A2D2216E8EF" : {
     "objectMetadataList" : [
       [
@@ -796,6 +817,25 @@
       [
         "A350E69D-C961-4D68-BB0E-B13DE1833656",
         "Root"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "A350E69D-C961-4D68-BB0E-B13DE1833656",
+        "Root",
+        "Earth"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "A350E69D-C961-4D68-BB0E-B13DE1833656",
+        "Root",
+        "Earth",
+        "geom"
       ],
       {
         "isExpanded" : true,

@@ -2,11 +2,11 @@
 //
 //  Title: Example116
 //
-//  Subtitle:
+//  Subtitle: Gesture Component
 //
-//  Description:
+//  Description: Exploring a new way to add gestures directly to entities.
 //
-//  Type:
+//  Type: Volume
 //
 //  Created by Joseph Simpson on 10/28/25.
 
@@ -18,33 +18,37 @@ struct Example116: View {
     var body: some View {
         RealityView { content in
 
-            guard let scene = try? await Entity(named: "GestureLabs", in: realityKitContentBundle) else { return }
+            guard let scene = try? await Entity(named: "TapGestureExample", in: realityKitContentBundle) else { return }
             scene.position.y = -0.4
             content.add(scene)
 
-            if let subjectA = scene.findEntity(named: "ToyCar") {
-                let tap = TapGesture().onEnded({ [weak subjectA] _ in
-                    if let subjectA = subjectA {
-                        let scaler: Float = subjectA.scale.x > 2.0 ? 1 : subjectA.scale.x + 0.25
-                        subjectA.scale = .init(repeating: scaler)
+            if let subject = scene.findEntity(named: "ToyRocket") {
+                let tap = TapGesture().onEnded({ [weak subject] _ in
+                    if let subject = subject {
+                        exampleAction1(entity: subject)
                     }
                 })
                 let gesture = GestureComponent(tap)
-                subjectA.components.set(gesture)
+                subject.components.set(gesture)
             }
 
-            if let subjectB = scene.findEntity(named: "ToyRocket") {
-                let drag = DragGesture(minimumDistance: 0.001)
-                    .onChanged { _ in
-                        print("Drag Gesture onChanged")
-                    }
-                    .onEnded { _ in
-                        print("Drag Gesture onEnd")
-                    }
-                let gesture = GestureComponent(drag)
-                subjectB.components.set(gesture)
-            }
 
+        }
+    }
+
+    // See RealityKit Basics: Perform Entity Actions: https://stepinto.vision/example-code/realitykit-basics-perform-entity-actions/
+    func exampleAction1(entity: Entity) {
+        Task {
+            let action = SpinAction(revolutions: 1,
+                                    localAxis: [0, 1, 0],
+                                    timingFunction: .easeInOut,
+                                    isAdditive: false)
+
+            let animation = try AnimationResource.makeActionAnimation(for: action,
+                                                                      duration: 1,
+                                                                      bindTarget: .transform)
+
+            entity.playAnimation(animation)
         }
     }
 }
@@ -52,3 +56,5 @@ struct Example116: View {
 #Preview {
     Example116()
 }
+
+

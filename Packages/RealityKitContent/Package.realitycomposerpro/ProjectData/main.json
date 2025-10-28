@@ -42,11 +42,13 @@
     "RealityKitContent\/Sources\/RealityKitContent\/RealityKitContent.rkassets\/SpatialTapLab.usda" : "61A7FA42-C29D-4B9E-9A5C-7E857895FAA7",
     "RealityKitContent\/Sources\/RealityKitContent\/RealityKitContent.rkassets\/StepDemoBox.usda" : "26548934-8C27-4861-885E-7D04082A553E",
     "RealityKitContent\/Sources\/RealityKitContent\/RealityKitContent.rkassets\/SwiftUIScienceLab.usda" : "96ADE60A-91E0-421B-B07E-724131EAECB0",
+    "RealityKitContent\/Sources\/RealityKitContent\/RealityKitContent.rkassets\/TapGestureExample.usda" : "0D63E98D-C26E-450C-B8F0-CA525FAA5B25",
     "RealityKitContent\/Sources\/RealityKitContent\/RealityKitContent.rkassets\/VolumeSnapping.usda" : "B9E8F4C7-92CE-489C-816C-2F6D44BC5FFD",
     "RealityKitContent\/Sources\/RealityKitContent\/RealityKitContent.rkassets\/WorldTracking.usda" : "70CF2B9A-C6FF-4934-8B7A-E8053A77A0A1"
   },
   "projectID" : -794096511852288729,
   "uuidToIntID" : {
+    "0D63E98D-C26E-450C-B8F0-CA525FAA5B25" : 342243343648929090,
     "1A3F13A3-84AD-48A1-BFC0-2A2D2216E8EF" : 7623682161645512639,
     "22224989-8BCA-4ECC-838B-F635D6B2FFE2" : 3309797798808189454,
     "26548934-8C27-4861-885E-7D04082A553E" : 6341636543930480705,
