@@ -876,6 +876,13 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  subtitle: "Model3D: Working with Configruations",
                  description: "")
 
+        ,Example(title: "Example 116",
+                 type: .VOLUME,
+                 date: Date("10/28/2025"),
+                 isFeatured: true,
+                 subtitle: "Gesture Component Basics",
+                 description: "")
+
 
     ]
         
