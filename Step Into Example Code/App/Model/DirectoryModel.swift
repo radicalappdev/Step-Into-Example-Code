@@ -869,6 +869,13 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  subtitle: "Environment Blending Component",
                  description: "We can use this to control how entities blend in with objects in our environment.")
 
+        ,Example(title: "Example 115",
+                 type: .WINDOW,
+                 date: Date("10/28/2025"),
+                 isFeatured: true,
+                 subtitle: "Model3D: Working with Configruations",
+                 description: "")
+
 
     ]
         
