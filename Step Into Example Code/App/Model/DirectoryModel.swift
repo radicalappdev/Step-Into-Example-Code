@@ -887,8 +887,8 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  type: .VOLUME,
                  date: Date("10/29/2025"),
                  isFeatured: true,
-                 subtitle: "Using Drag Gesture with Gesture Component",
-                 description: "We can capture the entity transform when a gesture starts, then use that value to move the entity as the user drags.")
+                 subtitle: "Transforming Entities with Gesture Component",
+                 description: "We can capture the entity transform when a gesture starts, then use that value when moving the entity as the user drags.")
 
 
     ]

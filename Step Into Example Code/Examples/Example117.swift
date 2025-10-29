@@ -2,11 +2,11 @@
 //
 //  Title: Example117swift
 //
-//  Subtitle:
+//  Subtitle: Transforming Entities with Gesture Component
 //
-//  Description:
+//  Description: We can capture the entity transform when a gesture starts, then use that value when moving the entity as the user drags
 //
-//  Type:
+//  Type: Volume
 //
 //  Created by Joseph Simpson on 10/29/25.
 
@@ -58,4 +58,3 @@ struct Example117: View {
         }
     }
 }
-
