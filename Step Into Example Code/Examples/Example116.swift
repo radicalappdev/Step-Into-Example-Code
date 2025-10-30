@@ -22,11 +22,23 @@ struct Example116: View {
             scene.position.y = -0.4
             content.add(scene)
 
+//            // Passing in a weak reference
+//            if let subject = scene.findEntity(named: "ToyRocket") {
+//                let tap = TapGesture().onEnded({ [weak subject] _ in
+//                    if let subject = subject {
+//                        exampleAction1(entity: subject)
+//                    }
+//                })
+//                let gesture = GestureComponent(tap)
+//                subject.components.set(gesture)
+//            }
+
+            // Targeted to entity
             if let subject = scene.findEntity(named: "ToyRocket") {
-                let tap = TapGesture().onEnded({ [weak subject] _ in
-                    if let subject = subject {
-                        exampleAction1(entity: subject)
-                    }
+                let tap = TapGesture()
+                    .targetedToEntity(subject)
+                    .onEnded({ value in
+                        exampleAction1(entity: value.entity)
                 })
                 let gesture = GestureComponent(tap)
                 subject.components.set(gesture)
@@ -56,5 +68,4 @@ struct Example116: View {
 #Preview {
     Example116()
 }
-
 
