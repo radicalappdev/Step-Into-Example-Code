@@ -2,11 +2,11 @@
 //
 //  Title: Example119
 //
-//  Subtitle:
+//  Subtitle: Timelines: Working with Notifications
 //
-//  Description:
+//  Description: Sending notifications from code to trigger a behavior, and sending notifications from a timeline to trigger code.
 //
-//  Type:
+//  Type: Volume
 //
 //  Created by Joseph Simpson on 11/5/25.
 
@@ -22,11 +22,9 @@ struct Example119: View {
 
     var body: some View {
         RealityView { content in
-
             guard let scene = try? await Entity(named: "SimpleTimeline", in: realityKitContentBundle) else { return }
             scene.position.y = -0.4
             content.add(scene)
-
         }
         .ornament(attachmentAnchor: .scene(.back), ornament: {
             VStack(spacing: 12) {
@@ -65,9 +63,14 @@ struct Example119: View {
             .padding()
             .glassBackgroundEffect()
         })
+        // 2. Timelines can use the Notification action to send a message that we can receive here
         .onReceive(NotificationCenter.default.publisher(for: Notification.Name("RealityKit.NotificationTrigger"))) { notification in
+            // We can unpack Scene and Identifier
+            // We use Identifier to determine what notification was sent
+            // We can use Scene if we need to do something inside the RealityKit context
             guard
                 let userInfo = notification.userInfo,
+                let scene = userInfo["RealityKit.NotificationTrigger.Scene"] as? RealityKit.Scene,
                 let identifier = userInfo["RealityKit.NotificationTrigger.Identifier"] as? String
             else { return }
 
@@ -79,11 +82,13 @@ struct Example119: View {
                 print("Timeline sent: ReachedLeft")
                 isLeft = true
             default:
+                print("Unknown message from timeline: \(identifier) in \(scene)")
                 break
             }
         }
     }
 
+    // 1. Send notifications to trigger a behavior on an entity, which will run a timeline
     func notifyTimeline(_ identifier: String) {
         if let scene = scene {
             NotificationCenter.default.post(
@@ -101,3 +106,5 @@ struct Example119: View {
 #Preview {
     Example119()
 }
+
+

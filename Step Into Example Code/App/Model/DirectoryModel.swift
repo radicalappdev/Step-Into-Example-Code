@@ -902,7 +902,7 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  date: Date("11/05/2025"),
                  isFeatured: true,
                  subtitle: "Timelines: Working with Notifications",
-                 description: "")
+                 description: "Sending notifications from code to trigger a behavior, and sending notifications from a timeline to trigger code.")
 
 
     ]

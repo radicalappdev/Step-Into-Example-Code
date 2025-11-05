@@ -1,12 +1,6 @@
 {
   "advancedEditorSelectedIdentifier" : "BehaviorsPluginID",
   "openSceneRelativePaths" : [
-    "AnimatedComponents.usda",
-    "RKBasicsLoading.usda",
-    "EntityActionLab.usda",
-    "SwiftUIScienceLab.usda",
-    "GestureLabs.usda",
-    "TapGestureExample.usda",
     "SimpleTimeline.usda"
   ],
   "recentIdentifiers" : {
@@ -3942,6 +3936,28 @@
       }
     ],
     "99DC1603-09FB-4E8D-AD81-5C481685CD34" : [
+      {
+        "date" : 784039891.107722,
+        "title" : "Untitled",
+        "transform" : [
+          0.9684984,
+          9.40117e-09,
+          -0.24901986,
+          0,
+          -0.13194478,
+          0.8480874,
+          -0.5131651,
+          0,
+          0.21119058,
+          0.52985644,
+          0.82137126,
+          0,
+          -0.2580849,
+          0.17781311,
+          0.19350219,
+          1
+        ]
+      },
       {
         "date" : 784036348.372623,
         "title" : "Untitled",
