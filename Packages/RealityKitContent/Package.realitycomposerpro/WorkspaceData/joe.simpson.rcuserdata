@@ -1,12 +1,13 @@
 {
-  "advancedEditorSelectedIdentifier" : "ProjectBrowser",
+  "advancedEditorSelectedIdentifier" : "BehaviorsPluginID",
   "openSceneRelativePaths" : [
     "AnimatedComponents.usda",
     "RKBasicsLoading.usda",
     "EntityActionLab.usda",
     "SwiftUIScienceLab.usda",
     "GestureLabs.usda",
-    "TapGestureExample.usda"
+    "TapGestureExample.usda",
+    "SimpleTimeline.usda"
   ],
   "recentIdentifiers" : {
     "04966C20-2723-4378-BCAD-327CAD4E36CF" : [
@@ -76,6 +77,9 @@
 
     ],
     "97EA406E-347D-4FB5-9DD3-8B7FF5700EC0" : [
+
+    ],
+    "99DC1603-09FB-4E8D-AD81-5C481685CD34" : [
 
     ],
     "A350E69D-C961-4D68-BB0E-B13DE1833656" : [
@@ -3937,6 +3941,30 @@
         ]
       }
     ],
+    "99DC1603-09FB-4E8D-AD81-5C481685CD34" : [
+      {
+        "date" : 784034516.183234,
+        "title" : "Untitled",
+        "transform" : [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0.7071069,
+          -0.70710677,
+          0,
+          0,
+          0.70710677,
+          0.7071069,
+          0,
+          -0.13526762,
+          1.0042032,
+          1.0042033,
+          1
+        ]
+      }
+    ],
     "A350E69D-C961-4D68-BB0E-B13DE1833656" : [
       {
         "date" : 783370940.419261,
@@ -5409,5 +5437,5 @@
   "sceneViewportBackgroundColors" : {
 
   },
-  "selectedSceneRelativePath" : "TapGestureExample.usda"
+  "selectedSceneRelativePath" : "SimpleTimeline.usda"
 }

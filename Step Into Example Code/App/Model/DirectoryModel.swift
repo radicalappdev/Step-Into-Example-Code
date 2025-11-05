@@ -897,6 +897,13 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  subtitle: "Targeting an Entity with Gesture Component",
                  description: "We can use three instance methods to access entities and additional features in our gestures.")
 
+        ,Example(title: "Example 119",
+                 type: .VOLUME,
+                 date: Date("11/05/2025"),
+                 isFeatured: true,
+                 subtitle: "Timelines: Working with Notifications",
+                 description: "")
+
 
     ]
         
