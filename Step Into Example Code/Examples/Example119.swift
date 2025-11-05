@@ -17,6 +17,9 @@ import RealityKitContent
 struct Example119: View {
     @Environment(\.realityKitScene) var scene
 
+    @State var isLeft: Bool = true
+    @State var isRight: Bool = false
+
     var body: some View {
         RealityView { content in
 
@@ -27,22 +30,58 @@ struct Example119: View {
         }
         .ornament(attachmentAnchor: .scene(.back), ornament: {
             VStack(spacing: 12) {
-                Button(action: {
-                    notifyTimeline("MoveRightMessage")
-                }, label: {
-                    Text("MoveRight")
-                })
+                HStack {
+                    Button(action: {
+                        notifyTimeline("MoveLeftMessage")
+                        isLeft = false
+                        isRight = false
+                    }, label: {
+                        Text("MoveLeft")
+                    })
 
-                Button(action: {
-                    notifyTimeline("MoveLeftMessage")
-                }, label: {
-                    Text("MoveLeft")
-                })
+                    Spacer()
+
+                    Button(action: {
+                        notifyTimeline("MoveRightMessage")
+                        isLeft = false
+                        isRight = false
+                    }, label: {
+                        Text("MoveRight")
+                    })
+                }
+
+                HStack {
+                    Circle()
+                        .fill(isLeft ? .green : .white)
+                        .frame(width: 60, height: 60)
+                    Spacer()
+                    Circle()
+                        .fill(isRight ? .green : .white)
+                        .frame(width: 60, height: 60)
+
+                }
+                .frame(width: 300)
             }
             .padding()
             .glassBackgroundEffect()
         })
-        
+        .onReceive(NotificationCenter.default.publisher(for: Notification.Name("RealityKit.NotificationTrigger"))) { notification in
+            guard
+                let userInfo = notification.userInfo,
+                let identifier = userInfo["RealityKit.NotificationTrigger.Identifier"] as? String
+            else { return }
+
+            switch identifier {
+            case "ReachedRight":
+                print("Timeline sent: ReachedRight")
+                isRight = true
+            case "ReachedLeft":
+                print("Timeline sent: ReachedLeft")
+                isLeft = true
+            default:
+                break
+            }
+        }
     }
 
     func notifyTimeline(_ identifier: String) {
