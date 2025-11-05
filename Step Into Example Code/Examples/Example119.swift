@@ -26,38 +26,36 @@ struct Example119: View {
 
         }
         .ornament(attachmentAnchor: .scene(.back), ornament: {
-            VStack {
+            VStack(spacing: 12) {
                 Button(action: {
-
-                    NotificationCenter.default.post(
-                        name: NSNotification.Name("RealityKit.NotificationTrigger"),
-                        object: nil,
-                        userInfo: [
-                            "RealityKit.NotificationTrigger.Scene": scene!,
-                            "RealityKit.NotificationTrigger.Identifier": "MoveRightMessage"
-                        ]
-                    )
-
+                    notifyTimeline("MoveRightMessage")
                 }, label: {
                     Text("MoveRight")
                 })
 
                 Button(action: {
-
-                    NotificationCenter.default.post(
-                        name: NSNotification.Name("RealityKit.NotificationTrigger"),
-                        object: nil,
-                        userInfo: [
-                            "RealityKit.NotificationTrigger.Scene": scene!,
-                            "RealityKit.NotificationTrigger.Identifier": "MoveLeftMessage"
-                        ]
-                    )
-
+                    notifyTimeline("MoveLeftMessage")
                 }, label: {
                     Text("MoveLeft")
                 })
             }
+            .padding()
+            .glassBackgroundEffect()
         })
+        
+    }
+
+    func notifyTimeline(_ identifier: String) {
+        if let scene = scene {
+            NotificationCenter.default.post(
+                name: NSNotification.Name("RealityKit.NotificationTrigger"),
+                object: nil,
+                userInfo: [
+                    "RealityKit.NotificationTrigger.Scene": scene,
+                    "RealityKit.NotificationTrigger.Identifier": identifier
+                ]
+            )
+        }
     }
 }
 

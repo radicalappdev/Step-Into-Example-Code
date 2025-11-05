@@ -10,7 +10,7 @@
 
 def Xform "Root"
 {
-    reorder nameChildren = ["MoveRight", "MoveLeft", "SpinHalf"]
+    reorder nameChildren = ["MoveRight", "MoveLeft"]
     def Cube "Base" (
         active = true
         prepend apiSchemas = ["MaterialBindingAPI"]
@@ -38,33 +38,96 @@ def Xform "Root"
         int ui:nodegraph:node:stackingOrder = 2
     }
 
-    def "ToyCar" (
-        active = true
-        customData = {
-            float3 rotationEulerHint = (0, 1.5707963, 0)
+    def RealityKitTimeline "MoveRight"
+    {
+        reorder nameChildren = ["Track", "Track2"]
+        def RealityKitTrack "Track"
+        {
+            def RealityKitAction "Transform_By"
+            {
+                string actionKind = "moveBy"
+                int blendLayer = 300
+                double duration = 2
+                uniform token info:id = "49BC2E2F-CD29-4A76-B2D2-0ED4E0655A33"
+                float3 position = (0.75, 0, 0)
+                double startTime = 0
+                rel target = </Root/StepSphereRed>
+
+                def RealityKitStruct "timingFunction"
+                {
+                }
+            }
         }
-        references = @ToyCar.usdz@
+
+        def RealityKitTrack "Track2"
+        {
+            def RealityKitAction "Notification"
+            {
+                string actionKind = "notification"
+                uniform token info:id = "B28E9BE7-DEDE-4F9D-8BAD-E6E2EED8DDB4"
+                string notificationName = "ReachedRight"
+                double startTime = 2
+                rel target = </Root/StepSphereRed>
+            }
+        }
+    }
+
+    def RealityKitTimeline "MoveLeft"
+    {
+        reorder nameChildren = ["Track3", "Track"]
+        def RealityKitTrack "Track3"
+        {
+            def RealityKitAction "Transform_By"
+            {
+                string actionKind = "moveBy"
+                int blendLayer = 300
+                double duration = 2
+                uniform token info:id = "079C4753-EBC3-43AF-8ED9-A43DD38C1ACF"
+                float3 position = (-0.75, 0, 0)
+                double startTime = 0
+                rel target = </Root/StepSphereRed>
+
+                def RealityKitStruct "timingFunction"
+                {
+                }
+            }
+        }
+
+        def RealityKitTrack "Track"
+        {
+            def RealityKitAction "Notification"
+            {
+                string actionKind = "notification"
+                uniform token info:id = "A7FA3C9D-5278-4E50-9B4A-909DFD14844A"
+                string notificationName = "ReachedLeft"
+                double startTime = 2
+                rel target = </Root/StepSphereRed>
+            }
+        }
+    }
+
+    def "StepSphereRed" (
+        active = true
+        prepend references = @BuildingBlocks/StepSphereRed.usda@
     )
     {
-        quatf xformOp:orient = (0.70710677, 0, 0.7071067, 0)
-        float3 xformOp:scale = (0.6, 0.6, 0.6)
-        float3 xformOp:translate = (-0.3, 0, 0)
-        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+        float3 xformOp:scale = (0.8, 0.8, 0.8)
+        float3 xformOp:translate = (-0.3, 0.08, 0)
 
         def RealityKitComponent "RCP_BehaviorsContainer"
         {
             rel behaviors = [
-                </Root/ToyCar/OnNotification>,
-                </Root/ToyCar/OnNotification2>,
+                </Root/StepSphereRed/OnNotification>,
+                </Root/StepSphereRed/OnNotification2>,
             ]
             uniform token info:id = "RCP.BehaviorsContainer"
         }
 
         def Preliminary_Behavior "OnNotification"
         {
-            rel actions = </Root/ToyCar/OnNotification/Action>
+            rel actions = </Root/StepSphereRed/OnNotification/Action>
             uniform bool exclusive
-            rel triggers = </Root/ToyCar/OnNotification/Trigger>
+            rel triggers = </Root/StepSphereRed/OnNotification/Trigger>
 
             def Preliminary_Trigger "Trigger"
             {
@@ -87,9 +150,9 @@ def Xform "Root"
 
         def Preliminary_Behavior "OnNotification2"
         {
-            rel actions = </Root/ToyCar/OnNotification2/Action>
+            rel actions = </Root/StepSphereRed/OnNotification2/Action>
             uniform bool exclusive
-            rel triggers = </Root/ToyCar/OnNotification2/Trigger>
+            rel triggers = </Root/StepSphereRed/OnNotification2/Trigger>
 
             def Preliminary_Trigger "Trigger"
             {
@@ -107,96 +170,6 @@ def Xform "Root"
                 int loops = 0
                 int performCount = 1
                 token type = "serial"
-            }
-        }
-    }
-
-    def RealityKitTimeline "MoveRight"
-    {
-        reorder nameChildren = ["Track", "Track2"]
-        def RealityKitTrack "Track"
-        {
-            def RealityKitAction "Transform_By"
-            {
-                string actionKind = "moveBy"
-                int blendLayer = 300
-                double duration = 2
-                uniform token info:id = "49BC2E2F-CD29-4A76-B2D2-0ED4E0655A33"
-                float3 position = (0, 0, 1)
-                double startTime = 0
-                rel target = </Root/ToyCar>
-
-                def RealityKitStruct "timingFunction"
-                {
-                }
-            }
-        }
-
-        def RealityKitTrack "Track2"
-        {
-            def RealityKitAction "Notification"
-            {
-                string actionKind = "notification"
-                uniform token info:id = "B28E9BE7-DEDE-4F9D-8BAD-E6E2EED8DDB4"
-                string notificationName = "ReachedRight"
-                double startTime = 2
-                rel target = </Root/ToyCar>
-            }
-        }
-    }
-
-    def RealityKitTimeline "MoveLeft"
-    {
-        reorder nameChildren = ["Track3", "Track"]
-        def RealityKitTrack "Track3"
-        {
-            def RealityKitAction "Transform_By"
-            {
-                string actionKind = "moveBy"
-                int blendLayer = 300
-                double duration = 2
-                uniform token info:id = "079C4753-EBC3-43AF-8ED9-A43DD38C1ACF"
-                float3 position = (0, 0, -1)
-                double startTime = 0
-                rel target = </Root/ToyCar>
-
-                def RealityKitStruct "timingFunction"
-                {
-                }
-            }
-        }
-
-        def RealityKitTrack "Track"
-        {
-            def RealityKitAction "Notification"
-            {
-                string actionKind = "notification"
-                uniform token info:id = "A7FA3C9D-5278-4E50-9B4A-909DFD14844A"
-                string notificationName = "ReachedLeft"
-                double startTime = 2
-                rel target = </Root/ToyCar>
-            }
-        }
-    }
-
-    def RealityKitTimeline "SpinHalf"
-    {
-        def RealityKitTrack "Track"
-        {
-            def RealityKitAction "Spin"
-            {
-                string actionKind = "spin"
-                int blendLayer = 400
-                double duration = 0.25
-                uniform token info:id = "E460FB43-0BB6-4153-8C14-08A0C3A1CCED"
-                float3 localAxis = (0, 0.5, 0)
-                float revolutions = 0.5
-                double startTime = 0
-                rel target = </Root/ToyCar>
-
-                def RealityKitStruct "timingFunction"
-                {
-                }
             }
         }
     }
