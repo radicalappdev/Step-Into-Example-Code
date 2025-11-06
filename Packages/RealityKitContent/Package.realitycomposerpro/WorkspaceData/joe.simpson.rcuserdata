@@ -1,7 +1,7 @@
 {
   "advancedEditorSelectedIdentifier" : "BehaviorsPluginID",
   "openSceneRelativePaths" : [
-    "SimpleTimeline.usda"
+    "SimpleBehaviors.usda"
   ],
   "recentIdentifiers" : {
     "04966C20-2723-4378-BCAD-327CAD4E36CF" : [
@@ -14,6 +14,9 @@
 
     ],
     "1A3F13A3-84AD-48A1-BFC0-2A2D2216E8EF" : [
+
+    ],
+    "1FD6B1E3-83E7-4CED-A383-002D9529FEB1" : [
 
     ],
     "28D8110F-EF76-49DA-9604-8A92B08609CD" : [
@@ -475,6 +478,30 @@
           -0.012725707,
           1.5297703,
           2.0853271,
+          1
+        ]
+      }
+    ],
+    "1FD6B1E3-83E7-4CED-A383-002D9529FEB1" : [
+      {
+        "date" : 784137650.506454,
+        "title" : "Untitled",
+        "transform" : [
+          1,
+          0,
+          -0,
+          0,
+          -0,
+          0.7071069,
+          -0.7071067,
+          0,
+          0,
+          0.7071067,
+          0.7071069,
+          0,
+          0.2496723,
+          0.22240674,
+          0.19797611,
           1
         ]
       }
@@ -5519,5 +5546,5 @@
   "sceneViewportBackgroundColors" : {
 
   },
-  "selectedSceneRelativePath" : "SimpleTimeline.usda"
+  "selectedSceneRelativePath" : "SimpleBehaviors.usda"
 }

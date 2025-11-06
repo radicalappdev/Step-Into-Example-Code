@@ -904,6 +904,13 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  subtitle: "Timelines: Working with Notifications",
                  description: "Sending notifications from code to trigger a behavior, and sending notifications from a timeline to trigger code.")
 
+        ,Example(title: "Example 120",
+                 type: .VOLUME,
+                 date: Date("11/06/2025"),
+                 isFeatured: true,
+                 subtitle: "Working with Behaviors",
+                 description: "We can use Behaviors in Reality Composer Pro run Timelines that contain one or more actions.")
+
 
     ]
         
