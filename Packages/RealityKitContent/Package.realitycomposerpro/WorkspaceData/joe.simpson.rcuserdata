@@ -1,7 +1,7 @@
 {
   "advancedEditorSelectedIdentifier" : "BehaviorsPluginID",
   "openSceneRelativePaths" : [
-    "SimpleBehaviors.usda"
+    "SimpleTimelines.usda"
   ],
   "recentIdentifiers" : {
     "04966C20-2723-4378-BCAD-327CAD4E36CF" : [
@@ -32,6 +32,9 @@
 
     ],
     "4629C9E9-26E2-4EAC-A682-1E379211B1A8" : [
+
+    ],
+    "49C888CF-B80D-485B-BD99-0DF9A4EB41F4" : [
 
     ],
     "4EA577E8-CF08-4F6B-8090-61CB20667042" : [
@@ -1528,6 +1531,74 @@
           0.10327545,
           1.2377794,
           -0.083398744,
+          1
+        ]
+      }
+    ],
+    "49C888CF-B80D-485B-BD99-0DF9A4EB41F4" : [
+      {
+        "date" : 784587729.827545,
+        "title" : "Untitled",
+        "transform" : [
+          0.9991609,
+          -1.1062032e-09,
+          -0.040956955,
+          0,
+          -0.011759896,
+          0.9578922,
+          -0.28688726,
+          0,
+          0.039232347,
+          0.28712818,
+          0.9570884,
+          0,
+          0.036526028,
+          0.26674244,
+          0.8892432,
+          1
+        ]
+      },
+      {
+        "date" : 784587726.204512,
+        "title" : "Untitled",
+        "transform" : [
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          7.468462e-05,
+          -3.159046e-05,
+          0.9291066,
+          1
+        ]
+      },
+      {
+        "date" : 784587286.663064,
+        "title" : "Untitled",
+        "transform" : [
+          0.99992764,
+          -2.2795404e-11,
+          -0.012029701,
+          0,
+          -0.006030392,
+          0.86527824,
+          -0.50125575,
+          0,
+          0.0104090385,
+          0.50129193,
+          0.8652157,
+          0,
+          0.026891947,
+          1.2964914,
+          2.2328954,
           1
         ]
       }
@@ -5546,5 +5617,5 @@
   "sceneViewportBackgroundColors" : {
 
   },
-  "selectedSceneRelativePath" : "SimpleBehaviors.usda"
+  "selectedSceneRelativePath" : "SimpleTimelines.usda"
 }

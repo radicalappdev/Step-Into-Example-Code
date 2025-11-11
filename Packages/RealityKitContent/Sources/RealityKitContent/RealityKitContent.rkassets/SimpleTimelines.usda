@@ -1,0 +1,199 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "Reality Composer Pro Version 2.0 (494.40.1)"
+    }
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "Root"
+{
+    reorder nameChildren = ["EarthTimeline", "MoonTimeline", "LoopTimelines"]
+    def RealityKitTimeline "EarthTimeline"
+    {
+        reorder nameChildren = ["Track", "Track2"]
+        def RealityKitTrack "Track"
+        {
+            def RealityKitAction "Spin"
+            {
+                string actionKind = "spin"
+                int blendLayer = 400
+                double duration = 2
+                uniform token info:id = "A8844928-B205-4347-B3BD-ADD5DB405F87"
+                double startTime = 0
+                rel target = </Root/Earth>
+
+                def RealityKitStruct "timingFunction"
+                {
+                    token type = "easeInOut"
+                }
+            }
+        }
+
+        def RealityKitTrack "Track2"
+        {
+            def RealityKitAction "Emphasize"
+            {
+                string actionKind = "emphasize"
+                int blendLayer = 300
+                double duration = 0.5
+                uniform token info:id = "7FA14466-837D-4C1E-AF70-FAC8882C74D0"
+                token motionType = "spin"
+                double startTime = 2
+                token style = "playful"
+                rel target = </Root/Earth>
+            }
+        }
+    }
+
+    def RealityKitTimeline "LoopTimelines"
+    {
+        reorder nameChildren = ["Track", "Track2"]
+        def RealityKitTrack "Track"
+        {
+            def RealityKitAction "Play_Timeline"
+            {
+                string actionKind = "timeline"
+                int blendLayer = 500
+                double duration = 2.5
+                uniform token info:id = "20AF84BC-7D7B-44F2-A8BC-01AF63D743C6"
+                double loopCount = 0
+                double startTime = 0
+                rel timeline = </Root/EarthTimeline>
+            }
+        }
+
+        def RealityKitTrack "Track2"
+        {
+            def RealityKitAction "Play_Timeline"
+            {
+                string actionKind = "timeline"
+                int blendLayer = 500
+                double duration = 5
+                uniform token info:id = "58350DE6-29B1-48A0-B861-1960B045FEA0"
+                double loopCount = 0
+                double startTime = 0
+                rel timeline = </Root/MoonTimeline>
+            }
+        }
+    }
+
+    def "Earth" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (0, 0, -0.40142575)
+        }
+        references = @Earth.usdz@
+    )
+    {
+        quatf xformOp:orient = (0.9799247, 0, 0, -0.19936794)
+        float3 xformOp:scale = (2, 2, 2)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def "Moon" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (0, 0, -0.26179937)
+        }
+        references = @Moon.usdz@
+    )
+    {
+        quatf xformOp:orient = (0.9914449, 0, 0, -0.13052619)
+        float3 xformOp:scale = (0.5, 0.5, 0.5)
+        float3 xformOp:translate = (-0.4, 0.1, -0.6)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def RealityKitComponent "HierarchicalFade"
+        {
+            uniform token info:id = "RealityKit.HierarchicalFade"
+        }
+    }
+
+    def RealityKitTimeline "MoonTimeline"
+    {
+        reorder nameChildren = ["Track", "Track3", "Track2", "Track4"]
+        def RealityKitTrack "Track2"
+        {
+            def RealityKitAction "Show"
+            {
+                string actionKind = "show"
+                int blendLayer = 300
+                double duration = 0.8
+                uniform token info:id = "9F7F030F-714B-490A-83EA-BD47ADC77EAA"
+                double startTime = 4.2
+                rel target = </Root/Moon>
+
+                def RealityKitStruct "timingFunction"
+                {
+                }
+            }
+        }
+
+        def RealityKitTrack "Track4"
+        {
+            def RealityKitAction "Orbit"
+            {
+                string actionKind = "orbit"
+                int blendLayer = 300
+                double duration = 5
+                uniform token info:id = "6DC1527D-5B32-4571-87DC-082FADE29D6D"
+                token orbitDirection = "counterClockwise"
+                bool orientToPath = 0
+                rel pivotEntity = </Root/Earth>
+                double startTime = 0
+                rel target = </Root/Moon>
+            }
+        }
+
+        def RealityKitTrack "Track"
+        {
+            def RealityKitAction "Hide"
+            {
+                string actionKind = "hide"
+                int blendLayer = 300
+                double duration = 0.8
+                uniform token info:id = "D7FDF47F-1480-4BBE-819B-4C19EDFAF2FA"
+                double startTime = 2
+                rel target = </Root/Moon>
+
+                def RealityKitStruct "timingFunction"
+                {
+                }
+            }
+        }
+    }
+
+    def RealityKitComponent "RCP_BehaviorsContainer"
+    {
+        rel behaviors = </Root/OnAddedToScene>
+        uniform token info:id = "RCP.BehaviorsContainer"
+    }
+
+    def Preliminary_Behavior "OnAddedToScene"
+    {
+        rel actions = </Root/OnAddedToScene/Action>
+        uniform bool exclusive
+        rel triggers = </Root/OnAddedToScene/Trigger>
+
+        def Preliminary_Trigger "Trigger"
+        {
+            rel affectedObjects = </Root>
+            token info:id = "SceneTransition"
+        }
+
+        def Preliminary_Action "Action"
+        {
+            rel affectedObjects = </Root>
+            rel animationLibraryKey = </Root/LoopTimelines>
+            rel animationLibraryKeyOverrideKey = </Root/OnAddedToScene/Trigger>
+            token info:id = "PlayTimeline"
+            int loops = 0
+            int performCount = 1
+            token type = "serial"
+        }
+    }
+}
+

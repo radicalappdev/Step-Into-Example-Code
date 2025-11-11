@@ -911,6 +911,12 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  subtitle: "Working with Behaviors",
                  description: "We can use Behaviors in Reality Composer Pro run Timelines that contain one or more actions.")
 
+        ,Example(title: "Example 121",
+                 type: .VOLUME,
+                 date: Date("11/11/2025"),
+                 isFeatured: true,
+                 subtitle: "Working with Timelines",
+                 description: "We can use RealityKit Timelines to add interaction and animation to our scenes.")
 
     ]
         
