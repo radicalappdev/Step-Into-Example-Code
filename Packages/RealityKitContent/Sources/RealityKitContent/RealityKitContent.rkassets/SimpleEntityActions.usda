@@ -1,0 +1,327 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "Reality Composer Pro Version 2.0 (494.40.1)"
+    }
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "Root"
+{
+    reorder nameChildren = ["EarthActions", "MoonActions"]
+    def "Earth" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (0, 0, -0.40142575)
+        }
+        references = @Earth.usdz@
+    )
+    {
+        float2 ui:nodegraph:node:pos = (20, 20)
+        int ui:nodegraph:node:stackingOrder = 1
+        quatf xformOp:orient = (0.9799247, 0, 0, -0.19936794)
+        float3 xformOp:scale = (2, 2, 2)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def RealityKitComponent "HierarchicalFade"
+        {
+            uniform token info:id = "RealityKit.HierarchicalFade"
+        }
+
+        def RealityKitComponent "RCP_BehaviorsContainer"
+        {
+            rel behaviors = </Root/Earth/OnTap>
+            uniform token info:id = "RCP.BehaviorsContainer"
+        }
+
+        def Preliminary_Behavior "OnTap"
+        {
+            rel actions = </Root/Earth/OnTap/Action>
+            uniform bool exclusive
+            rel triggers = </Root/Earth/OnTap/Trigger>
+
+            def Preliminary_Trigger "Trigger"
+            {
+                rel affectedObjects = </Root/Earth>
+                token info:id = "TapGesture"
+            }
+
+            def Preliminary_Action "Action"
+            {
+                rel affectedObjects = </Root>
+                rel animationLibraryKey = </Root/EarthActions>
+                rel animationLibraryKeyOverrideKey = </Root/Earth/OnTap/Trigger>
+                token info:id = "PlayTimeline"
+                int loops = 0
+                int performCount = 1
+                token type = "serial"
+            }
+        }
+    }
+
+    def "Moon" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (0, 0, -0.26179937)
+        }
+        references = @Moon.usdz@
+    )
+    {
+        float2 ui:nodegraph:node:pos = (20, 20)
+        int ui:nodegraph:node:stackingOrder = 1
+        quatf xformOp:orient = (0.9914449, 0, 0, -0.13052619)
+        float3 xformOp:scale = (0.5, 0.5, 0.5)
+        float3 xformOp:translate = (-0.4, 0.1, -0.6)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def RealityKitComponent "HierarchicalFade"
+        {
+            uniform token info:id = "RealityKit.HierarchicalFade"
+        }
+
+        def RealityKitComponent "Collider"
+        {
+            uint group = 1
+            uniform token info:id = "RealityKit.Collider"
+            uint mask = 4294967295
+            token type = "Default"
+
+            def RealityKitStruct "Shape"
+            {
+                float3 extent = (0.2, 0.2, 0.2)
+                token shapeType = "Box"
+
+                def RealityKitStruct "pose"
+                {
+                    float3 position = (2.9802322e-8, 0, 3.7252903e-8)
+                }
+            }
+        }
+
+        def RealityKitComponent "RigidBody"
+        {
+            bool gravityEnabled = 0
+            uniform token info:id = "RealityKit.RigidBody"
+
+            def RealityKitStruct "massFrame"
+            {
+                def RealityKitStruct "m_pose"
+                {
+                }
+            }
+
+            def RealityKitStruct "material"
+            {
+            }
+        }
+
+        def RealityKitComponent "Billboard"
+        {
+            float blendFactor = 0
+            uniform token info:id = "RealityKit.Billboard"
+        }
+
+        def RealityKitComponent "RCP_BehaviorsContainer"
+        {
+            rel behaviors = </Root/Moon/OnTap>
+            uniform token info:id = "RCP.BehaviorsContainer"
+        }
+
+        def Preliminary_Behavior "OnTap"
+        {
+            rel actions = </Root/Moon/OnTap/Action>
+            uniform bool exclusive
+            rel triggers = </Root/Moon/OnTap/Trigger>
+
+            def Preliminary_Trigger "Trigger"
+            {
+                rel affectedObjects = </Root/Moon>
+                token info:id = "TapGesture"
+            }
+
+            def Preliminary_Action "Action"
+            {
+                rel affectedObjects = </Root>
+                rel animationLibraryKey = </Root/MoonActions>
+                rel animationLibraryKeyOverrideKey = </Root/Moon/OnTap/Trigger>
+                token info:id = "PlayTimeline"
+                int loops = 0
+                int performCount = 1
+                token type = "serial"
+            }
+        }
+    }
+
+    def RealityKitTimeline "EarthActions"
+    {
+        reorder nameChildren = ["Track2", "Track", "Track3", "Track4", "Track5", "Track6"]
+        def RealityKitTrack "Track"
+        {
+            def RealityKitAction "Spin"
+            {
+                string actionKind = "spin"
+                int blendLayer = 400
+                double duration = 1
+                uniform token info:id = "FD713B46-D950-4B7B-85D4-744E25E89A2D"
+                double startTime = 1
+                rel target = </Root/Earth>
+
+                def RealityKitStruct "timingFunction"
+                {
+                }
+            }
+        }
+
+        def RealityKitTrack "Track2"
+        {
+            def RealityKitAction "Enable_Entity"
+            {
+                string actionKind = "enable"
+                double duration = 0
+                uniform token info:id = "3410B32A-02FF-4C26-8081-463071FDD807"
+                double startTime = 0
+                rel target = </Root/Earth>
+            }
+        }
+
+        def RealityKitTrack "Track3"
+        {
+            def RealityKitAction "Hide"
+            {
+                string actionKind = "hide"
+                int blendLayer = 300
+                double duration = 0.5
+                uniform token info:id = "15DD7A1A-082A-4535-A5FC-EA5C5B49D504"
+                double startTime = 2
+                rel target = </Root/Earth>
+
+                def RealityKitStruct "timingFunction"
+                {
+                }
+            }
+        }
+
+        def RealityKitTrack "Track4"
+        {
+            def RealityKitAction "Show"
+            {
+                string actionKind = "show"
+                int blendLayer = 300
+                double duration = 0.5
+                uniform token info:id = "83CB647B-C86D-45A2-9E0E-6AED0BCF60E0"
+                double startTime = 2.5
+                rel target = </Root/Earth>
+
+                def RealityKitStruct "timingFunction"
+                {
+                }
+            }
+        }
+
+        def RealityKitTrack "Track5"
+        {
+            def RealityKitAction "Emphasize"
+            {
+                string actionKind = "emphasize"
+                int blendLayer = 300
+                double duration = 1
+                uniform token info:id = "CB800896-23A1-432B-8F16-8ACBB2EC8961"
+                token motionType = "flip"
+                double startTime = 3
+                token style = "basic"
+                rel target = </Root/Earth>
+            }
+        }
+
+        def RealityKitTrack "Track6"
+        {
+            def RealityKitAction "Disable_Entity"
+            {
+                string actionKind = "disable"
+                uniform token info:id = "066F3AE7-CA6B-46EC-9948-9975BFF13C18"
+                double startTime = 4
+                rel target = </Root/Earth>
+            }
+        }
+    }
+
+    def RealityKitTimeline "MoonActions"
+    {
+        reorder nameChildren = ["Track", "Track2", "Track3", "Track4"]
+        def RealityKitTrack "Track"
+        {
+            def RealityKitAction "Orbit"
+            {
+                string actionKind = "orbit"
+                int blendLayer = 300
+                double duration = 1
+                uniform token info:id = "8D10C037-8C2A-4805-8CED-EE8CF112CDA1"
+                rel pivotEntity = </Root/Earth>
+                double startTime = 0
+                rel target = </Root/Moon>
+            }
+        }
+
+        def RealityKitTrack "Track2"
+        {
+            def RealityKitAction "Transform_To"
+            {
+                string actionKind = "moveTo"
+                int blendLayer = 300
+                double duration = 1
+                uniform token info:id = "03780511-55A9-4C9B-A074-21A656066461"
+                float3 position = (0.4, -0.2, -0.6)
+                quatf rotation = (0.9914449, 0, 0, -0.130526)
+                float3 scale = (0.5, 0.5, 0.5)
+                double startTime = 1
+                rel target = </Root/Moon>
+
+                def RealityKitStruct "transformMode"
+                {
+                    rel referenceEntity = </Root>
+                    token type = "parent"
+                }
+
+                def RealityKitStruct "timingFunction"
+                {
+                }
+            }
+        }
+
+        def RealityKitTrack "Track3"
+        {
+            def RealityKitAction "Transform_By"
+            {
+                string actionKind = "moveBy"
+                int blendLayer = 300
+                double duration = 1
+                uniform token info:id = "BBB256A2-4D5C-4067-AA63-9900EBFDF6DE"
+                float3 position = (-0.8, 0.4, 0)
+                float3 scale = (1.5, 1.5, 1.5)
+                double startTime = 2.009734295385921
+                rel target = </Root/Moon>
+
+                def RealityKitStruct "timingFunction"
+                {
+                }
+            }
+        }
+
+        def RealityKitTrack "Track4"
+        {
+            def RealityKitAction "Enable_Entity"
+            {
+                string actionKind = "enable"
+                double duration = 0
+                uniform token info:id = "3410B32A-02FF-4C26-8081-463071FDD807"
+                double startTime = 0
+                rel target = </Root/Earth>
+                float2 ui:nodegraph:node:pos = (20, 20)
+                int ui:nodegraph:node:stackingOrder = 1
+            }
+        }
+    }
+}
+

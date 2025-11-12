@@ -918,6 +918,13 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  subtitle: "Working with Timelines",
                  description: "We can use RealityKit Timelines to add interaction and animation to our scenes.")
 
+        ,Example(title: "Example 122",
+                 type: .VOLUME,
+                 date: Date("11/12/2025"),
+                 isFeatured: true,
+                 subtitle: "Working with Entity Actions",
+                 description: "We can use Entity Actions in Timelines to animate changes to our scenes.")
+
     ]
         
 }

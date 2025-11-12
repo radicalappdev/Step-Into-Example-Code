@@ -2,11 +2,11 @@
 //
 //  Title: Example121
 //
-//  Subtitle:
+//  Subtitle: Working with Timelines
 //
-//  Description:
+//  Description: We can use RealityKit Timelines to add interaction and animation to our scenes.
 //
-//  Type:
+//  Type: Volume
 //
 //  Created by Joseph Simpson on 11/11/25.
 
