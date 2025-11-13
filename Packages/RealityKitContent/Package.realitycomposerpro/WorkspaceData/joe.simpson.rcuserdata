@@ -1,8 +1,8 @@
 {
   "advancedEditorSelectedIdentifier" : "BehaviorsPluginID",
   "openSceneRelativePaths" : [
-    "SimpleTimelines.usda",
-    "SimpleEntityActions.usda"
+    "SharedNotification.usda",
+    "SharedNotificationChild.usda"
   ],
   "recentIdentifiers" : {
     "04966C20-2723-4378-BCAD-327CAD4E36CF" : [
@@ -32,6 +32,9 @@
     "31C14B40-E39C-481C-8FD9-A918F41D6214" : [
 
     ],
+    "3F8192D7-AD44-4049-8E97-99C1745E3FAF" : [
+
+    ],
     "4629C9E9-26E2-4EAC-A682-1E379211B1A8" : [
 
     ],
@@ -39,6 +42,9 @@
 
     ],
     "4EA577E8-CF08-4F6B-8090-61CB20667042" : [
+
+    ],
+    "4EFEF0AF-5F67-4DA8-A699-C5872932868C" : [
 
     ],
     "5DCFECBE-D94C-41A8-875C-795D114E3AC7" : [
@@ -5843,5 +5849,5 @@
   "sceneViewportBackgroundColors" : {
 
   },
-  "selectedSceneRelativePath" : "SimpleEntityActions.usda"
+  "selectedSceneRelativePath" : "SharedNotification.usda"
 }

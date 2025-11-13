@@ -1,0 +1,190 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "Reality Composer Pro Version 2.0 (494.40.1)"
+    }
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "Root"
+{
+    def RealityKitTimeline "Rocket"
+    {
+        reorder nameChildren = ["Track", "Track2"]
+        float2 ui:nodegraph:node:pos = (20, 20)
+        int ui:nodegraph:node:stackingOrder = 1
+
+        def RealityKitTrack "Track"
+        {
+            def RealityKitAction "Emphasize"
+            {
+                string actionKind = "emphasize"
+                int blendLayer = 300
+                double duration = 1
+                uniform token info:id = "E85F04D8-8C62-477B-A343-F5B24304C122"
+                token motionType = "spin"
+                double startTime = 0
+                token style = "playful"
+                rel target = </Root/ToyRocket>
+            }
+        }
+
+        def RealityKitTrack "Track2"
+        {
+            def RealityKitAction "Emphasize"
+            {
+                string actionKind = "emphasize"
+                int blendLayer = 300
+                double duration = 1
+                uniform token info:id = "75751CDE-89F6-4D01-98C2-E3C7F46914B6"
+                token motionType = "float"
+                double startTime = 0
+                rel target = </Root/ToyRocket>
+            }
+        }
+    }
+
+    def "ToyRocket" (
+        active = true
+        references = @ToyRocket.usdz@
+    )
+    {
+        float2 ui:nodegraph:node:pos = (60, 60)
+        int ui:nodegraph:node:stackingOrder = 3
+        float3 xformOp:scale = (1, 1, 1)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "geom" (
+            variants = {
+                string styles = "realistic"
+            }
+        )
+        {
+            over "realistic"
+            {
+                over "materials"
+                {
+                    over "usdpreviewsurface1sg"
+                    {
+                        string inputs:file6:varname (
+                            customData = {
+                                dictionary realitykit = {
+                                    float2 positionInSubgraph = (321.375, 970.5)
+                                }
+                            }
+                        )
+                        string inputs:file7:varname (
+                            customData = {
+                                dictionary realitykit = {
+                                    float2 positionInSubgraph = (532.875, 970.5)
+                                }
+                            }
+                        )
+                        string inputs:file8:varname (
+                            customData = {
+                                dictionary realitykit = {
+                                    float2 positionInSubgraph = (746.375, 970.5)
+                                }
+                            }
+                        )
+                        string inputs:file9:varname (
+                            customData = {
+                                dictionary realitykit = {
+                                    float2 positionInSubgraph = (959.375, 970.5)
+                                }
+                            }
+                        )
+                        string inputs:file10:varname (
+                            customData = {
+                                dictionary realitykit = {
+                                    float2 positionInSubgraph = (1178.875, 970.5)
+                                }
+                            }
+                        )
+                        token outputs:realitykit:vertex
+                        float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (1415.25, 397.5)
+
+                        over "file9_mtlx"
+                        {
+                            float2 ui:nodegraph:node:pos = (622.75, 612)
+                        }
+
+                        over "file10_mtlx"
+                        {
+                            float2 ui:nodegraph:node:pos = (350, 532)
+                        }
+
+                        over "Lookup_st"
+                        {
+                            float2 ui:nodegraph:node:pos = (91, 441.5)
+                        }
+
+                        over "file10_mtlx_scale"
+                        {
+                            float2 ui:nodegraph:node:pos = (622.75, 433.5)
+                        }
+
+                        over "toy_rocket_realistic_mat_mtlx"
+                        {
+                            float2 ui:nodegraph:node:pos = (1162, 397.5)
+                        }
+
+                        over "file10_mtlx_offset"
+                        {
+                            float2 ui:nodegraph:node:pos = (892.25, 433.5)
+                        }
+
+                        over "file7_mtlx"
+                        {
+                            float2 ui:nodegraph:node:pos = (350, 271)
+                        }
+
+                        over "file8_mtlx"
+                        {
+                            float2 ui:nodegraph:node:pos = (892.25, 782.5)
+                        }
+
+                        over "file6_mtlx"
+                        {
+                            float2 ui:nodegraph:node:pos = (622.75, 100.5)
+                        }
+                    }
+                }
+            }
+        }
+
+        def RealityKitComponent "RCP_BehaviorsContainer"
+        {
+            rel behaviors = </Root/ToyRocket/OnNotification>
+            uniform token info:id = "RCP.BehaviorsContainer"
+        }
+
+        def Preliminary_Behavior "OnNotification"
+        {
+            rel actions = </Root/ToyRocket/OnNotification/Action>
+            uniform bool exclusive
+            rel triggers = </Root/ToyRocket/OnNotification/Trigger>
+
+            def Preliminary_Trigger "Trigger"
+            {
+                rel affectedObjects = </Root/ToyRocket>
+                string identifier = "RunTimelines"
+                token info:id = "Notification"
+            }
+
+            def Preliminary_Action "Action"
+            {
+                rel affectedObjects = </Root>
+                rel animationLibraryKey = </Root/Rocket>
+                rel animationLibraryKeyOverrideKey = </Root/ToyRocket/OnNotification/Trigger>
+                token info:id = "PlayTimeline"
+                int loops = 0
+                int performCount = 1
+                token type = "serial"
+            }
+        }
+    }
+}
+

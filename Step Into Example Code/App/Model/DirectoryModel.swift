@@ -858,42 +858,42 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
         ,Example(title: "Example 113",
                  type: .WINDOW,
                  date: Date("10/21/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Model3D: Getting Started",
                  description: "Loading models from bundles and URLs. Showing progress views and errors.")
 
         ,Example(title: "Example 114",
                  type: .SPACE,
                  date: Date("10/23/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Environment Blending Component",
                  description: "We can use this to control how entities blend in with objects in our environment.")
 
         ,Example(title: "Example 115",
                  type: .WINDOW,
                  date: Date("10/28/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Model3D: Working with Configruations",
                  description: "")
 
         ,Example(title: "Example 116",
                  type: .VOLUME,
                  date: Date("10/28/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Gesture Component",
                  description: "Exploring a new way to add gestures directly to entities.")
 
         ,Example(title: "Example 117",
                  type: .VOLUME,
                  date: Date("10/29/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Transforming Entities with Gesture Component",
                  description: "We can capture the entity transform when a gesture starts, then use that value when moving the entity as the user drags.")
 
         ,Example(title: "Example 118",
                  type: .VOLUME,
                  date: Date("10/30/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Targeting an Entity with Gesture Component",
                  description: "We can use three instance methods to access entities and additional features in our gestures.")
 
@@ -924,6 +924,14 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  isFeatured: true,
                  subtitle: "Working with Entity Actions",
                  description: "We can use Entity Actions in Timelines to animate changes to our scenes.")
+
+        ,Example(title: "Example 123",
+                 type: .VOLUME,
+                 date: Date("11/13/2025"),
+                 isFeatured: true,
+                 subtitle: "Timelines: Sending one Notification to trigger multiple Behaviors",
+                 description: "We can trigger more than one Behavior/Timeline using a single notification, even when the timelines are defined in different files.")
+
 
     ]
         
