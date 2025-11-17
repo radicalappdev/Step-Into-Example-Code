@@ -10,7 +10,7 @@
 
 def Xform "Root"
 {
-    reorder nameChildren = ["Car", "Plane", "ToggleBase"]
+    reorder nameChildren = ["ParentTimeline", "Car", "Plane", "ToggleBase"]
     def Cube "Base" (
         active = true
         prepend apiSchemas = ["MaterialBindingAPI"]
@@ -70,7 +70,10 @@ def Xform "Root"
 
         def RealityKitComponent "RCP_BehaviorsContainer"
         {
-            rel behaviors = </Root/Base/OnNotification>
+            rel behaviors = [
+                </Root/Base/OnNotification>,
+                </Root/Base/OnNotification2>,
+            ]
             uniform token info:id = "RCP.BehaviorsContainer"
         }
 
@@ -92,6 +95,31 @@ def Xform "Root"
                 rel affectedObjects = </Root>
                 rel animationLibraryKey = </Root/ToggleBase>
                 rel animationLibraryKeyOverrideKey = </Root/Base/OnNotification/Trigger>
+                token info:id = "PlayTimeline"
+                int loops = 0
+                int performCount = 1
+                token type = "serial"
+            }
+        }
+
+        def Preliminary_Behavior "OnNotification2"
+        {
+            rel actions = </Root/Base/OnNotification2/Action>
+            uniform bool exclusive
+            rel triggers = </Root/Base/OnNotification2/Trigger>
+
+            def Preliminary_Trigger "Trigger"
+            {
+                rel affectedObjects = </Root/Base>
+                string identifier = "RunParent"
+                token info:id = "Notification"
+            }
+
+            def Preliminary_Action "Action"
+            {
+                rel affectedObjects = </Root>
+                rel animationLibraryKey = </Root/ParentTimeline>
+                rel animationLibraryKeyOverrideKey = </Root/Base/OnNotification2/Trigger>
                 token info:id = "PlayTimeline"
                 int loops = 0
                 int performCount = 1
@@ -293,6 +321,86 @@ def Xform "Root"
                 def RealityKitStruct "timingFunction"
                 {
                 }
+            }
+        }
+    }
+
+    def RealityKitTimeline "ParentTimeline"
+    {
+        reorder nameChildren = ["Track", "Track4", "Track2", "Track3"]
+        def RealityKitTrack "Track2"
+        {
+            def RealityKitAction "Play_Timeline"
+            {
+                string actionKind = "timeline"
+                int blendLayer = 500
+                double duration = 1
+                uniform token info:id = "85919595-81BB-41BC-B5E9-BA3B8679B736"
+                double startTime = 0.5
+                rel timeline = </Root/SharedNotificationChild/Rocket>
+            }
+
+            def RealityKitAction "Rocket"
+            {
+                string actionKind = "timeline"
+                int blendLayer = 500
+                double duration = 1
+                uniform token info:id = "85919595-81BB-41BC-B5E9-BA3B8679B736"
+                double startTime = 2.368
+                rel timeline = </Root/SharedNotificationChild/Rocket>
+                float2 ui:nodegraph:node:pos = (20, 20)
+                int ui:nodegraph:node:stackingOrder = 1
+            }
+        }
+
+        def RealityKitTrack "Track3"
+        {
+            def RealityKitAction "Play_Timeline"
+            {
+                string actionKind = "timeline"
+                int blendLayer = 500
+                double duration = 1
+                uniform token info:id = "0C166A6C-0E3A-4949-8BFA-F7792C604F84"
+                double startTime = 1
+                rel timeline = </Root/Plane>
+            }
+
+            def RealityKitAction "Plane"
+            {
+                string actionKind = "timeline"
+                int blendLayer = 500
+                double duration = 1
+                uniform token info:id = "0C166A6C-0E3A-4949-8BFA-F7792C604F84"
+                double loopCount = 1
+                double startTime = 2
+                rel timeline = </Root/Plane>
+                float2 ui:nodegraph:node:pos = (20, 20)
+                int ui:nodegraph:node:stackingOrder = 1
+            }
+        }
+
+        def RealityKitTrack "Track"
+        {
+            def RealityKitAction "Play_Timeline"
+            {
+                string actionKind = "timeline"
+                int blendLayer = 500
+                double duration = 1.2
+                uniform token info:id = "3C5FBB3D-C95E-4396-B274-311A91F33392"
+                double startTime = 0
+                rel timeline = </Root/Car>
+            }
+
+            def RealityKitAction "Car"
+            {
+                string actionKind = "timeline"
+                int blendLayer = 500
+                double duration = 1.2
+                uniform token info:id = "3C5FBB3D-C95E-4396-B274-311A91F33392"
+                double startTime = 3
+                rel timeline = </Root/Car>
+                float2 ui:nodegraph:node:pos = (20, 20)
+                int ui:nodegraph:node:stackingOrder = 1
             }
         }
     }

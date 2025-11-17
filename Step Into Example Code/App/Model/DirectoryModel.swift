@@ -932,6 +932,13 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  subtitle: "Timelines: Sending one Notification to trigger multiple Behaviors",
                  description: "We can trigger more than one Behavior/Timeline using a single notification, even when the timelines are defined in different files.")
 
+        ,Example(title: "Example 124",
+                 type: .VOLUME,
+                 date: Date("11/17/2025"),
+                 isFeatured: true,
+                 subtitle: "Timelines: Composing Timelines",
+                 description: "We can next Timelines in others to group actions into small sequences.")
+
 
     ]
         
