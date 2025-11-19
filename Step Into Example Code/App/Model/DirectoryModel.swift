@@ -939,6 +939,13 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  subtitle: "Timelines: Composing Timelines",
                  description: "We can next Timelines in others to group actions into small sequences.")
 
+        ,Example(title: "Example 125",
+                 type: .VOLUME,
+                 date: Date("11/19/2025"),
+                 isFeatured: true,
+                 subtitle: "Timelines: Composing Timelines with Behavior Collisions",
+                 description: "We can use Behaviors in a parent scene to trigger Timelines in a child scene.")
+
 
     ]
         
