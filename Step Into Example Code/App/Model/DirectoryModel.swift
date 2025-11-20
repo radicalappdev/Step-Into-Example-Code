@@ -946,6 +946,13 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  subtitle: "Timelines: Composing Timelines with Behavior Collisions",
                  description: "We can use Behaviors in a parent scene to trigger Timelines in a child scene.")
 
+        ,Example(title: "Example 126",
+                 type: .VOLUME,
+                 date: Date("11/20/2025"),
+                 isFeatured: true,
+                 subtitle: "Timelines: Select multiple Entities with Collision Behaviors",
+                 description: "The `OnCollision` Behavior can fire a Timeline when colliding with more than one Entity.")
+
 
     ]
         

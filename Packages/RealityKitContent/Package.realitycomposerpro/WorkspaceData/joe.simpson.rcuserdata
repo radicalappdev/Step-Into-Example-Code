@@ -1,8 +1,7 @@
 {
   "advancedEditorSelectedIdentifier" : "BehaviorsPluginID",
   "openSceneRelativePaths" : [
-    "SharedCollisions.usda",
-    "SharedCollisionPlane.usda"
+    "SharedGroupActions.usda"
   ],
   "recentIdentifiers" : {
     "04966C20-2723-4378-BCAD-327CAD4E36CF" : [
@@ -48,6 +47,9 @@
 
     ],
     "4EFEF0AF-5F67-4DA8-A699-C5872932868C" : [
+
+    ],
+    "509FBEFC-3B8A-4C1A-AD34-6D2507C98591" : [
 
     ],
     "5DCFECBE-D94C-41A8-875C-795D114E3AC7" : [
@@ -6079,5 +6081,5 @@
   "sceneViewportBackgroundColors" : {
 
   },
-  "selectedSceneRelativePath" : "SharedCollisions.usda"
+  "selectedSceneRelativePath" : "SharedGroupActions.usda"
 }
