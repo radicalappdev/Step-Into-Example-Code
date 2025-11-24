@@ -900,58 +900,65 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
         ,Example(title: "Example 119",
                  type: .VOLUME,
                  date: Date("11/05/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Timelines: Working with Notifications",
                  description: "Sending notifications from code to trigger a behavior, and sending notifications from a timeline to trigger code.")
 
         ,Example(title: "Example 120",
                  type: .VOLUME,
                  date: Date("11/06/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Working with Behaviors",
                  description: "We can use Behaviors in Reality Composer Pro run Timelines that contain one or more actions.")
 
         ,Example(title: "Example 121",
                  type: .VOLUME,
                  date: Date("11/11/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Working with Timelines",
                  description: "We can use RealityKit Timelines to add interaction and animation to our scenes.")
 
         ,Example(title: "Example 122",
                  type: .VOLUME,
                  date: Date("11/12/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Working with Entity Actions",
                  description: "We can use Entity Actions in Timelines to animate changes to our scenes.")
 
         ,Example(title: "Example 123",
                  type: .VOLUME,
                  date: Date("11/13/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Timelines: Sending one Notification to trigger multiple Behaviors",
                  description: "We can trigger more than one Behavior/Timeline using a single notification, even when the timelines are defined in different files.")
 
         ,Example(title: "Example 124",
                  type: .VOLUME,
                  date: Date("11/17/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Timelines: Composing Timelines",
                  description: "We can next Timelines in others to group actions into small sequences.")
 
         ,Example(title: "Example 125",
                  type: .VOLUME,
                  date: Date("11/19/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Timelines: Composing Timelines with Behavior Collisions",
                  description: "We can use Behaviors in a parent scene to trigger Timelines in a child scene.")
 
         ,Example(title: "Example 126",
                  type: .VOLUME,
                  date: Date("11/20/2025"),
-                 isFeatured: true,
+                 isFeatured: false,
                  subtitle: "Timelines: Select multiple Entities with Collision Behaviors",
                  description: "The `OnCollision` Behavior can fire a Timeline when colliding with more than one Entity.")
+
+        ,Example(title: "Example 127",
+                 type: .WINDOW,
+                 date: Date("11/24/2025"),
+                 isFeatured: true,
+                 subtitle: "Working with Image Presentation Component",
+                 description: "")
 
 
     ]
