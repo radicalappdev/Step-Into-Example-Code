@@ -957,8 +957,8 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  type: .SPACE,
                  date: Date("11/24/2025"),
                  isFeatured: true,
-                 subtitle: "Working with Image Presentation Component",
-                 description: "")
+                 subtitle: "Loading Photos with Image Presentation Component",
+                 description: "This component allows us to display standard and Spatial photos. We can also generate Spatial Scenes from existing photos.")
 
 
     ]

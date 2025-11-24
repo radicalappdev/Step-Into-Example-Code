@@ -1,5 +1,5 @@
 {
-  "advancedEditorSelectedIdentifier" : "BehaviorsPluginID",
+  "advancedEditorSelectedIdentifier" : "ProjectBrowser",
   "openSceneRelativePaths" : [
     "SharedGroupActions.usda"
   ],
@@ -65,6 +65,9 @@
 
     ],
     "696DFAAD-0C25-4B8C-AF62-DF9E974496AF" : [
+
+    ],
+    "6B8BAC39-9638-4CFE-B021-8C30C2B826A7" : [
 
     ],
     "703A938B-F39E-41B4-97E8-9FCF45911A18" : [
@@ -2665,6 +2668,30 @@
           -0.13377583,
           0.2683627,
           1.5492624,
+          1
+        ]
+      }
+    ],
+    "6B8BAC39-9638-4CFE-B021-8C30C2B826A7" : [
+      {
+        "date" : 785700692.441722,
+        "title" : "Untitled",
+        "transform" : [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0.7071069,
+          -0.70710677,
+          0,
+          0,
+          0.70710677,
+          0.7071069,
+          0,
+          0,
+          3.8638089,
+          3.8638093,
           1
         ]
       }
