@@ -333,3 +333,4 @@ fileprivate extension RealityViewContent {
         }
     }
 }
+
