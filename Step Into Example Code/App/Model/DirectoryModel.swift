@@ -954,7 +954,7 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  description: "The `OnCollision` Behavior can fire a Timeline when colliding with more than one Entity.")
 
         ,Example(title: "Example 127",
-                 type: .WINDOW,
+                 type: .SPACE,
                  date: Date("11/24/2025"),
                  isFeatured: true,
                  subtitle: "Working with Image Presentation Component",
