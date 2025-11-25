@@ -2,11 +2,11 @@
 //
 //  Title: Example128
 //
-//  Subtitle:
+//  Subtitle: Explore Viewing Modes with Image Presentation Component
 //
-//  Description:
+//  Description: The available viewing modes depend on the type of image the component is presenting.
 //
-//  Type:
+//  Type: Space
 //
 //  Created by Joseph Simpson on 11/25/25.
 
@@ -30,6 +30,7 @@ struct Example128: View {
             let controlMenu = Entity()
             let controlAttachment = ViewAttachmentComponent(
                 rootView: ControlsPanel(
+                    currentMode: $currentMode,
                     availableModes: $availableModes,
                     loadPhoto: { Task { await loadPhoto(entity: photoEntity) } },
                     loadSpatialPhoto: { Task { await loadSpatialPhoto(entity: photoEntity) } },
@@ -40,19 +41,19 @@ struct Example128: View {
             controlMenu.setPosition([0, 1.2, -1.8], relativeTo: nil)
             content.add(controlMenu)
         }
-    }
+        // Listen for changes to mode and update the component
+        .onChange(of: currentMode, { _, newValue in
+            photoEntity.components[ImagePresentationComponent.self]?.desiredViewingMode = newValue
+        })
 
-    // MARK: - Loaders
+    }
 
     /// Load a regular (non-spatial) photo
     func loadPhoto(entity: Entity) async {
         guard let url = Bundle.main.url(forResource: "bell-01", withExtension: "jpeg") else { return }
         do {
             let component = try await ImagePresentationComponent(contentsOf: url)
-
-            // Update state that drives the controls
             availableModes = component.availableViewingModes
-
             entity.components.set(component)
         } catch {
             print("Failed to load image: \(error)")
@@ -64,14 +65,11 @@ struct Example128: View {
         guard let url = Bundle.main.url(forResource: "bell-01-s", withExtension: "HEIC") else { return }
         do {
             var component = try await ImagePresentationComponent(contentsOf: url)
-
             availableModes = component.availableViewingModes
-
             if availableModes.contains(.spatialStereo) {
                 component.desiredViewingMode = .spatialStereo
             }
             entity.components.set(component)
-
         } catch {
             print("Failed to load image: \(error)")
         }
@@ -85,22 +83,20 @@ struct Example128: View {
             try await converted.generate()
 
             var component = ImagePresentationComponent(spatial3DImage: converted)
-
             availableModes = component.availableViewingModes
-
             if availableModes.contains(.spatial3D) {
                 component.desiredViewingMode = .spatial3D
             }
             entity.components.set(component)
-
         } catch {
             print("Failed to load image: \(error)")
         }
     }
 }
 
-/// The panel that actually lives inside the ViewAttachmentComponent
+// Moving the control panel to a view
 struct ControlsPanel: View {
+    @Binding var currentMode: ImagePresentationComponent.ViewingMode
     @Binding var availableModes: Set<ImagePresentationComponent.ViewingMode>
 
     let loadPhoto: () -> Void
@@ -131,35 +127,35 @@ struct ControlsPanel: View {
 
             HStack {
                 Button(action: {
-                    print("mono")
+                    currentMode = .mono
                 }, label: {
                     Text("mono")
                 })
                 .disabled(!availableModes.contains(.mono))
 
                 Button(action: {
-                    print("spatialStereo")
+                    currentMode = .spatialStereo
                 }, label: {
                     Text("spatialStereo")
                 })
                 .disabled(!availableModes.contains(.spatialStereo))
 
                 Button(action: {
-                    print("spatialStereoImmersive")
+                    currentMode = .spatialStereoImmersive
                 }, label: {
                     Text("spatialStereoImmersive")
                 })
                 .disabled(!availableModes.contains(.spatialStereoImmersive))
 
                 Button(action: {
-                    print("spatial3D")
+                    currentMode = .spatial3D
                 }, label: {
                     Text("spatial3D")
                 })
                 .disabled(!availableModes.contains(.spatial3D))
 
                 Button(action: {
-                    print("spatial3DImmersive")
+                    currentMode = .spatial3DImmersive
                 }, label: {
                     Text("spatial3DImmersive")
                 })
