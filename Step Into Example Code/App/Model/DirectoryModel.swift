@@ -960,6 +960,13 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  subtitle: "Loading Photos with Image Presentation Component",
                  description: "This component allows us to display standard and Spatial photos. We can also generate Spatial Scenes from existing photos.")
 
+        ,Example(title: "Example 128",
+                 type: .SPACE,
+                 date: Date("11/25/2025"),
+                 isFeatured: true,
+                 subtitle: "Exploring View Modes with Image Presentation Component",
+                 description: "")
+
 
     ]
         
