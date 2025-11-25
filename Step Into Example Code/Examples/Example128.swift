@@ -26,55 +26,33 @@ struct Example128: View {
             photoEntity.scale = .init(repeating: 0.6)
             content.add(photoEntity)
 
-            // Add some buttons to switch photos
+            // Attach SwiftUI controls into the scene
             let controlMenu = Entity()
-            let controlAttachment = ViewAttachmentComponent(rootView: controls)
+            let controlAttachment = ViewAttachmentComponent(
+                rootView: ControlsPanel(
+                    availableModes: $availableModes,
+                    loadPhoto: { Task { await loadPhoto(entity: photoEntity) } },
+                    loadSpatialPhoto: { Task { await loadSpatialPhoto(entity: photoEntity) } },
+                    loadPhotoToConvert: { Task { await loadPhotoToConvert(entity: photoEntity) } }
+                )
+            )
             controlMenu.components.set(controlAttachment)
             controlMenu.setPosition([0, 1.2, -1.8], relativeTo: nil)
             content.add(controlMenu)
         }
     }
-    var controls: some View {
-        VStack {
-            HStack {
-                Text(availableModes.description) // always empty []
-            }
-            HStack(spacing: 12) {
-                Button(action: {
-                    Task {
-                        await loadPhoto(entity: photoEntity)
-                    }
-                }, label: {
-                    Text("Photo")
-                })
-                Button(action: {
-                    Task {
-                        await loadSpatialPhoto(entity: photoEntity)
-                    }
-                }, label: {
-                    Text("Spatial Photo")
-                })
-                Button(action: {
-                    Task {
-                        await loadPhotoToConvert(entity: photoEntity)
-                    }
-                }, label: {
-                    Text("Spatial Scene")
-                })
-            }
-        }
-        .padding()
-        .background(.black)
-        .clipShape(.capsule)
-        .controlSize(.extraLarge)
-    }
+
+    // MARK: - Loaders
 
     /// Load a regular (non-spatial) photo
     func loadPhoto(entity: Entity) async {
         guard let url = Bundle.main.url(forResource: "bell-01", withExtension: "jpeg") else { return }
         do {
             let component = try await ImagePresentationComponent(contentsOf: url)
+
+            // Update state that drives the controls
             availableModes = component.availableViewingModes
+
             entity.components.set(component)
         } catch {
             print("Failed to load image: \(error)")
@@ -86,8 +64,10 @@ struct Example128: View {
         guard let url = Bundle.main.url(forResource: "bell-01-s", withExtension: "HEIC") else { return }
         do {
             var component = try await ImagePresentationComponent(contentsOf: url)
+
             availableModes = component.availableViewingModes
-            if(availableModes .contains(.spatialStereo)) {
+
+            if availableModes.contains(.spatialStereo) {
                 component.desiredViewingMode = .spatialStereo
             }
             entity.components.set(component)
@@ -101,16 +81,14 @@ struct Example128: View {
     func loadPhotoToConvert(entity: Entity) async {
         guard let url = Bundle.main.url(forResource: "bell-01", withExtension: "jpeg") else { return }
         do {
-            // Load the image as a Spatial3DImage
             let converted = try await ImagePresentationComponent.Spatial3DImage(contentsOf: url)
-            // The call generate. Note that this always fails in the Simulator as of November 2025. Make sure you test this on a device.
             try await converted.generate()
 
-            // Create the component
             var component = ImagePresentationComponent(spatial3DImage: converted)
+
             availableModes = component.availableViewingModes
 
-            if(availableModes .contains(.spatial3D)) {
+            if availableModes.contains(.spatial3D) {
                 component.desiredViewingMode = .spatial3D
             }
             entity.components.set(component)
@@ -118,6 +96,83 @@ struct Example128: View {
         } catch {
             print("Failed to load image: \(error)")
         }
+    }
+}
+
+/// The panel that actually lives inside the ViewAttachmentComponent
+struct ControlsPanel: View {
+    @Binding var availableModes: Set<ImagePresentationComponent.ViewingMode>
+
+    let loadPhoto: () -> Void
+    let loadSpatialPhoto: () -> Void
+    let loadPhotoToConvert: () -> Void
+
+    var body: some View {
+        VStack(spacing: 12) {
+
+            HStack(spacing: 12) {
+                Button(action: {
+                    loadPhoto()
+                }, label: {
+                    Text("Photo")
+                })
+                Button(action: {
+                    loadSpatialPhoto()
+                }, label: {
+                    Text("Spatial Photo")
+                })
+                Button(action: {
+                    loadPhotoToConvert()
+                }, label: {
+                    Text("Spatial Scene")
+                })
+            }
+            .controlSize(.extraLarge)
+
+            HStack {
+                Button(action: {
+                    print("mono")
+                }, label: {
+                    Text("mono")
+                })
+                .disabled(!availableModes.contains(.mono))
+
+                Button(action: {
+                    print("spatialStereo")
+                }, label: {
+                    Text("spatialStereo")
+                })
+                .disabled(!availableModes.contains(.spatialStereo))
+
+                Button(action: {
+                    print("spatialStereoImmersive")
+                }, label: {
+                    Text("spatialStereoImmersive")
+                })
+                .disabled(!availableModes.contains(.spatialStereoImmersive))
+
+                Button(action: {
+                    print("spatial3D")
+                }, label: {
+                    Text("spatial3D")
+                })
+                .disabled(!availableModes.contains(.spatial3D))
+
+                Button(action: {
+                    print("spatial3DImmersive")
+                }, label: {
+                    Text("spatial3DImmersive")
+                })
+                .disabled(!availableModes.contains(.spatial3DImmersive))
+
+            }
+            .controlSize(.small)
+            .padding()
+
+        }
+        .padding()
+        .background(.black)
+        .clipShape(.capsule)
     }
 }
 
