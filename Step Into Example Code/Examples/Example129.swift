@@ -1,24 +1,31 @@
 //  Step Into Vision - Example Code
 //
-//  Title: Example128
+//  Title: Example129
 //
-//  Subtitle: Explore Viewing Modes with Image Presentation Component
+//  Subtitle: Using Events with Image Presentation Component
 //
-//  Description: The available viewing modes depend on the type of image the component is presenting.
+//  Description: There are two events we can use to listen for changes to viewing mode, with some caveats.
 //
 //  Type: Space
 //
-//  Created by Joseph Simpson on 11/25/25.
+//  Created by Joseph Simpson on 11/26/25.
 
 import SwiftUI
 import RealityKit
 import RealityKitContent
 
-struct Example128: View {
+struct Example129: View {
     @State var photoEntity = Entity()
 
     @State private var currentMode = ImagePresentationComponent.ViewingMode.mono
     @State private var availableModes: Set<ImagePresentationComponent.ViewingMode> = []
+
+    // Capture the events in state
+    @State private var transitionStarted: EventSubscription?
+    @State private var transitionCompleted: EventSubscription?
+
+    @State private var applySurroundingEffect = false
+    @State private var transitionCounter = 0
 
     var body: some View {
         RealityView { content in
@@ -32,6 +39,7 @@ struct Example128: View {
                 rootView: ControlsPanel(
                     currentMode: $currentMode,
                     availableModes: $availableModes,
+                    transitionCounter: $transitionCounter,
                     loadPhoto: { Task { await loadPhoto(entity: photoEntity) } },
                     loadSpatialPhoto: { Task { await loadSpatialPhoto(entity: photoEntity) } },
                     loadPhotoToConvert: { Task { await loadPhotoToConvert(entity: photoEntity) } }
@@ -40,11 +48,34 @@ struct Example128: View {
             controlMenu.components.set(controlAttachment)
             controlMenu.setPosition([0, 1.2, -1.8], relativeTo: nil)
             content.add(controlMenu)
+
+
+            // Only fires when an animated transition occurs (spatial3D to spatial3DImmersive)
+            transitionStarted = content.subscribe(to: ImagePresentationEvents.TransitionStarted.self) { event in
+                print("🟢 started with: \(event.currentViewingMode) target: \(event.targetViewingMode)")
+                transitionCounter += 1
+            }
+
+            // Always fires after a viewing mode change
+            transitionCompleted = content.subscribe(to: ImagePresentationEvents.TransitionCompleted.self) { event in
+                print("🔴 completed with: \(event.currentViewingMode) previous: \(event.previousViewingMode)")
+
+                // Apple the effect once we enter spatial3DImmersive or spatialStereoImmersive
+                applySurroundingEffect = event.currentViewingMode == .spatial3DImmersive || event.currentViewingMode == .spatialStereoImmersive
+            }
         }
+        .preferredSurroundingsEffect(applySurroundingEffect ? .ultraDark : nil)
         // Listen for changes to mode and update the component
         .onChange(of: currentMode, { _, newValue in
             photoEntity.components[ImagePresentationComponent.self]?.desiredViewingMode = newValue
         })
+        .onDisappear() {
+            // cancel the subscriptions and remove the references
+            transitionStarted?.cancel()
+            transitionStarted = nil
+            transitionCompleted?.cancel()
+            transitionCompleted = nil
+        }
 
     }
 
@@ -98,6 +129,7 @@ struct Example128: View {
 fileprivate struct ControlsPanel: View {
     @Binding var currentMode: ImagePresentationComponent.ViewingMode
     @Binding var availableModes: Set<ImagePresentationComponent.ViewingMode>
+    @Binding var transitionCounter: Int
 
     let loadPhoto: () -> Void
     let loadSpatialPhoto: () -> Void
@@ -165,6 +197,9 @@ fileprivate struct ControlsPanel: View {
             .controlSize(.small)
             .padding()
 
+            Text("Transitions: \(transitionCounter)")
+                .contentTransition(.numericText(countsDown: false))
+
         }
         .padding()
         .background(.black)
@@ -173,5 +208,5 @@ fileprivate struct ControlsPanel: View {
 }
 
 #Preview {
-    Example128()
+    Example129()
 }
