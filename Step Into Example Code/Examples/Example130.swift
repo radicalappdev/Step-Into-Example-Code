@@ -17,8 +17,10 @@ import RealityKitContent
 struct Example130: View {
     @State var photoEntity = Entity()
 
+    @State private var generationState: GenerationState = .empty
     @State private var currentMode = ImagePresentationComponent.ViewingMode.mono
     @State private var availableModes: Set<ImagePresentationComponent.ViewingMode> = []
+
 
     var body: some View {
         RealityView { content in
@@ -30,9 +32,12 @@ struct Example130: View {
             let controlMenu = Entity()
             let controlAttachment = ViewAttachmentComponent(
                 rootView: ControlsPanel(
+                    generationState: $generationState,
                     currentMode: $currentMode,
                     availableModes: $availableModes,
-                    loadPhotoToConvert: { Task { await loadPhotoToConvert(entity: photoEntity) } }
+                    clearPhoto: { clearPhoto() },
+                    loadPhotoPreGen: { Task { await loadPhotoPreGen(entity: photoEntity) } },
+                    loadPhotoPostGen: { Task { await loadPhotoPostGen(entity: photoEntity) } }
                 )
             )
             controlMenu.components.set(controlAttachment)
@@ -47,41 +52,106 @@ struct Example130: View {
         })
     }
 
+    // Clear the current component
+    func clearPhoto() {
+        photoEntity.components.remove(ImagePresentationComponent.self)
+        generationState = .empty
+        currentMode = .mono
+    }
+
     /// Load a regular (non-spatial) photo, then convert it to a Spatial Scene
-    func loadPhotoToConvert(entity: Entity) async {
+    func loadPhotoPreGen(entity: Entity) async {
         guard let url = Bundle.main.url(forResource: "bell-01", withExtension: "jpeg") else { return }
         do {
             let converted = try await ImagePresentationComponent.Spatial3DImage(contentsOf: url)
+            generationState = .loading
             try await converted.generate()
+            generationState = .success
 
             var component = ImagePresentationComponent(spatial3DImage: converted)
             availableModes = component.availableViewingModes
+
             if availableModes.contains(.spatial3D) {
                 component.desiredViewingMode = .spatial3D
+                currentMode = .spatial3D
             }
             entity.components.set(component)
         } catch {
             print("Failed to load image: \(error)")
         }
     }
+
+    /// Load a regular (non-spatial) photo, but do not generate it yet.
+    func loadPhotoPostGen(entity: Entity) async {
+        guard let url = Bundle.main.url(forResource: "bell-01", withExtension: "jpeg") else { return }
+        do {
+            let converted = try await ImagePresentationComponent.Spatial3DImage(contentsOf: url)
+            let component = ImagePresentationComponent(spatial3DImage: converted)
+            entity.components.set(component)
+
+            generationState = .loading
+            try await converted.generate()
+            generationState = .success
+            availableModes = component.availableViewingModes
+            currentMode = .mono
+
+        } catch {
+            print("Failed to load image: \(error)")
+        }
+    }
+
+}
+
+fileprivate enum GenerationState {
+    case empty
+    case loading
+    case success
+    case failure
 }
 
 // Moving the control panel to a view
 fileprivate struct ControlsPanel: View {
+    @Binding var generationState: GenerationState
     @Binding var currentMode: ImagePresentationComponent.ViewingMode
     @Binding var availableModes: Set<ImagePresentationComponent.ViewingMode>
 
-    let loadPhotoToConvert: () -> Void
+    let clearPhoto: () -> Void
+    let loadPhotoPreGen: () -> Void
+    let loadPhotoPostGen: () -> Void
 
     var body: some View {
         VStack(spacing: 12) {
+            HStack {
+                switch generationState {
+                case .empty:
+                    Text("No photo loaded.")
+                case .loading:
+                    Text("Generating Spatial Scene...")
+                case .success:
+                    Text("Spatial Scene generated.")
+                case .failure:
+                    Text("Failed to generate Spatial Scene.")
+                }
+            }
 
             HStack(spacing: 12) {
 
                 Button(action: {
-                    loadPhotoToConvert()
+                    clearPhoto()
                 }, label: {
-                    Text("Load Photo")
+                    Text("Clear")
+                })
+
+                Button(action: {
+                    loadPhotoPreGen()
+                }, label: {
+                    Text("Pre Gen")
+                })
+
+                Button(action: {
+                    loadPhotoPostGen()
+                }, label: {
+                    Text("Post Gen")
                 })
             }
             .controlSize(.extraLarge)
