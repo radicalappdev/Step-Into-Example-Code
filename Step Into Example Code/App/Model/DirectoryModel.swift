@@ -978,8 +978,8 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  type: .SPACE,
                  date: Date("11/30/2025"),
                  isFeatured: true,
-                 subtitle: "Explore Spatial3DImage in Detail",
-                 description: "")
+                 subtitle: "Explore Spatial Scenes with Image Presentation Component",
+                 description: "We can pre or post generate Spatial Scenes, depending on the needs of our app.")
 
     ]
         

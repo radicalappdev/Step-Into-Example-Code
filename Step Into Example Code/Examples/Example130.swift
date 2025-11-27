@@ -2,9 +2,9 @@
 //
 //  Title: Example130
 //
-//  Subtitle:
+//  Subtitle: Explore Spatial Scenes with Image Presentation Component
 //
-//  Description:
+//  Description: We can pre or post generate Spatial Scenes, depending on the needs of our app.
 //
 //  Type:
 //
@@ -79,7 +79,7 @@ struct Example130: View {
                 entity.components.set(component)
                 generationState = .success
             } catch {
-                var component = ImagePresentationComponent(spatial3DImage: converted)
+                let component = ImagePresentationComponent(spatial3DImage: converted)
                 entity.components.set(component)
                 availableModes = component.availableViewingModes
                 currentMode = .mono
@@ -119,7 +119,6 @@ struct Example130: View {
             print("Failed to load image: \(error)")
         }
     }
-
 }
 
 fileprivate enum GenerationState {
@@ -212,3 +211,5 @@ fileprivate struct ControlsPanel: View {
 #Preview {
     Example130()
 }
+
+
