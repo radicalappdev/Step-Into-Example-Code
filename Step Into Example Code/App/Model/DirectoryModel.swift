@@ -974,6 +974,12 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  subtitle: "Using Events with Image Presentation Component",
                  description: "There are two events we can use to listen for changes to viewing mode, with some caveats.")
 
+        ,Example(title: "Example 130",
+                 type: .SPACE,
+                 date: Date("11/30/2025"),
+                 isFeatured: true,
+                 subtitle: "Explore Spatial3DImage in Detail",
+                 description: "")
 
     ]
         
