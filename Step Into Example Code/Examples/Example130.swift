@@ -64,18 +64,30 @@ struct Example130: View {
         guard let url = Bundle.main.url(forResource: "bell-01", withExtension: "jpeg") else { return }
         do {
             let converted = try await ImagePresentationComponent.Spatial3DImage(contentsOf: url)
+
             generationState = .loading
-            try await converted.generate()
-            generationState = .success
 
-            var component = ImagePresentationComponent(spatial3DImage: converted)
-            availableModes = component.availableViewingModes
+            do {
+                try await converted.generate()
+                var component = ImagePresentationComponent(spatial3DImage: converted)
+                availableModes = component.availableViewingModes
 
-            if availableModes.contains(.spatial3D) {
-                component.desiredViewingMode = .spatial3D
-                currentMode = .spatial3D
+                if availableModes.contains(.spatial3D) {
+                    component.desiredViewingMode = .spatial3D
+                    currentMode = .spatial3D
+                }
+                entity.components.set(component)
+                generationState = .success
+            } catch {
+                var component = ImagePresentationComponent(spatial3DImage: converted)
+                entity.components.set(component)
+                availableModes = component.availableViewingModes
+                currentMode = .mono
+                generationState = .failure
+                print("Generation failed: \(error.localizedDescription)")
+                return
             }
-            entity.components.set(component)
+
         } catch {
             print("Failed to load image: \(error)")
         }
@@ -90,10 +102,18 @@ struct Example130: View {
             entity.components.set(component)
 
             generationState = .loading
-            try await converted.generate()
-            generationState = .success
-            availableModes = component.availableViewingModes
-            currentMode = .mono
+            do {
+                try await converted.generate()
+                availableModes = component.availableViewingModes
+                currentMode = .mono
+                generationState = .success
+            } catch {
+                availableModes = component.availableViewingModes
+                currentMode = .mono
+                generationState = .failure
+                print("Generation failed: \(error.localizedDescription)")
+                return
+            }
 
         } catch {
             print("Failed to load image: \(error)")
