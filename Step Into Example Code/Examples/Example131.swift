@@ -15,12 +15,16 @@ import RealityKit
 import RealityKitContent
 
 struct Example131: View {
+
     @State var photoEntity = Entity()
 
     @State private var currentMode = ImagePresentationComponent.ViewingMode.mono
     @State private var availableModes: Set<ImagePresentationComponent.ViewingMode> = []
 
     @State private var aspectRatio: Float?
+
+    @State private var presentationScreenSize: SIMD2<Float> = .zero
+    @State private var screenImageDimension: SIMD2<Float> = .zero
 
     var body: some View {
         RealityView { content in
@@ -35,6 +39,8 @@ struct Example131: View {
                     currentMode: $currentMode,
                     availableModes: $availableModes,
                     aspectRatio: $aspectRatio,
+                    presentationScreenSize: $presentationScreenSize,
+                    screenImageDimension: $screenImageDimension,
                     loadPhoto: { Task { await loadPhoto(entity: photoEntity) } },
                     loadSpatialPhoto: { Task { await loadSpatialPhoto(entity: photoEntity) } },
                     loadPhotoToConvert: { Task { await loadPhotoToConvert(entity: photoEntity) } }
@@ -48,7 +54,13 @@ struct Example131: View {
         .onChange(of: currentMode, { _, newValue in
             if var component = photoEntity.components[ImagePresentationComponent.self] {
                 component.desiredViewingMode = newValue
+
+                // Capture the metadata
                 aspectRatio = component.aspectRatio(for: newValue)
+                presentationScreenSize = component.presentationScreenSize
+                print("space: \(photoEntity.scale(relativeTo: photoEntity.parent))")
+                print("space: \(photoEntity.scale(relativeTo: photoEntity.parent))")
+                screenImageDimension = component.screenImageDimension
                 photoEntity.components.set(component)
             }
         })
@@ -113,79 +125,87 @@ fileprivate struct ControlsPanel: View {
     @Binding var currentMode: ImagePresentationComponent.ViewingMode
     @Binding var availableModes: Set<ImagePresentationComponent.ViewingMode>
     @Binding var aspectRatio: Float?
+    @Binding var presentationScreenSize: SIMD2<Float>
+    @Binding var screenImageDimension: SIMD2<Float>
 
     let loadPhoto: () -> Void
     let loadSpatialPhoto: () -> Void
     let loadPhotoToConvert: () -> Void
 
     var body: some View {
-        VStack(spacing: 12) {
+        HStack {
 
-            HStack(spacing: 12) {
-                Button(action: {
-                    loadPhoto()
-                }, label: {
-                    Text("Photo")
-                })
-                Button(action: {
-                    loadSpatialPhoto()
-                }, label: {
-                    Text("Spatial Photo")
-                })
-                Button(action: {
-                    loadPhotoToConvert()
-                }, label: {
-                    Text("Spatial Scene")
-                })
+
+            VStack(spacing: 12) {
+
+                HStack(spacing: 12) {
+                    Button(action: {
+                        loadPhoto()
+                    }, label: {
+                        Text("Photo")
+                    })
+                    Button(action: {
+                        loadSpatialPhoto()
+                    }, label: {
+                        Text("Spatial Photo")
+                    })
+                    Button(action: {
+                        loadPhotoToConvert()
+                    }, label: {
+                        Text("Spatial Scene")
+                    })
+                }
+                .controlSize(.extraLarge)
+
+                HStack {
+                    Button(action: {
+                        currentMode = .mono
+                    }, label: {
+                        Text("mono")
+                    })
+                    .disabled(!availableModes.contains(.mono))
+
+                    Button(action: {
+                        currentMode = .spatialStereo
+                    }, label: {
+                        Text("spatialStereo")
+                    })
+                    .disabled(!availableModes.contains(.spatialStereo))
+
+                    Button(action: {
+                        currentMode = .spatialStereoImmersive
+                    }, label: {
+                        Text("spatialStereoImmersive")
+                    })
+                    .disabled(!availableModes.contains(.spatialStereoImmersive))
+
+                    Button(action: {
+                        currentMode = .spatial3D
+                    }, label: {
+                        Text("spatial3D")
+                    })
+                    .disabled(!availableModes.contains(.spatial3D))
+
+                    Button(action: {
+                        currentMode = .spatial3DImmersive
+                    }, label: {
+                        Text("spatial3DImmersive")
+                    })
+                    .disabled(!availableModes.contains(.spatial3DImmersive))
+
+                }
+                .controlSize(.small)
+                .padding()
+
+
             }
-            .controlSize(.extraLarge)
 
-            HStack {
-                Button(action: {
-                    currentMode = .mono
-                }, label: {
-                    Text("mono")
-                })
-                .disabled(!availableModes.contains(.mono))
-
-                Button(action: {
-                    currentMode = .spatialStereo
-                }, label: {
-                    Text("spatialStereo")
-                })
-                .disabled(!availableModes.contains(.spatialStereo))
-
-                Button(action: {
-                    currentMode = .spatialStereoImmersive
-                }, label: {
-                    Text("spatialStereoImmersive")
-                })
-                .disabled(!availableModes.contains(.spatialStereoImmersive))
-
-                Button(action: {
-                    currentMode = .spatial3D
-                }, label: {
-                    Text("spatial3D")
-                })
-                .disabled(!availableModes.contains(.spatial3D))
-
-                Button(action: {
-                    currentMode = .spatial3DImmersive
-                }, label: {
-                    Text("spatial3DImmersive")
-                })
-                .disabled(!availableModes.contains(.spatial3DImmersive))
-
+            // Display the metadata
+            VStack {
+                Vector2Display(title: "Aspect Ratio", vector: aspectVectorNormalized(aspectRatio ?? 0))
+                Vector2Display(title: "Presentation size", vector: presentationScreenSize)
+                Vector2Display(title: "Image Dimension", vector: screenImageDimension)
             }
-            .controlSize(.small)
-            .padding()
-
-            HStack {
-
-                Text("Aspect Ratio: \(aspectRatio ?? 0)")
-
-            }
-
         }
         .padding()
         .background(.black)

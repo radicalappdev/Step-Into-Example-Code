@@ -334,3 +334,55 @@ fileprivate extension RealityViewContent {
     }
 }
 
+struct Vector3Display: View {
+    let title: String
+    let vector: SIMD3<Float>
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 6) {
+            Text(title)
+                .fontWeight(.bold)
+
+            HStack {
+                ForEach(["X", "Y", "Z"], id: \.self) { axis in
+                    let value = axis == "X" ? vector.x : axis == "Y" ? vector.y : vector.z
+                    HStack {
+                        Text("\(axis):")
+                            .fontWeight(.bold)
+                        Text(String(format: "%2.3f", value.isNaN ? 0 : value))
+                    }
+                    .frame(width: 150, alignment: .leading)
+                }
+            }
+        }
+    }
+}
+
+struct Vector2Display: View {
+    let title: String
+    let vector: SIMD2<Float>
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 6) {
+            Text(title)
+                .fontWeight(.bold)
+
+            HStack {
+                ForEach(["X", "Y"], id: \.self) { axis in
+                    let value = axis == "X" ? vector.x : vector.y
+                    HStack {
+                        Text("\(axis):")
+                            .fontWeight(.bold)
+                        Text(String(format: "%2.3f", value.isNaN ? 0 : value))
+                    }
+                    .frame(width: 150, alignment: .leading)
+                }
+            }
+        }
+    }
+}
+
+/// Returns a size vector where `y` is 1 and `x` is the aspect ratio (width / height).
+func aspectVectorNormalized(_ aspect: Float) -> SIMD2<Float> {
+    SIMD2<Float>(aspect, 1)
+}
