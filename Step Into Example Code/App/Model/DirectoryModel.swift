@@ -981,6 +981,13 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  subtitle: "Explore Spatial Scenes with Image Presentation Component",
                  description: "We can pre or post generate Spatial Scenes, depending on the needs of our app.")
 
+        ,Example(title: "Example 131",
+                 type: .SPACE,
+                 date: Date("12/01/2025"),
+                 isFeatured: true,
+                 subtitle: "Read meta data from Image Presentation Component",
+                 description: "")
+
     ]
         
 }
