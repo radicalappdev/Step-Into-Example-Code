@@ -2,11 +2,11 @@
 //
 //  Title: Example131
 //
-//  Subtitle:
+//  Subtitle: Read meta data from Image Presentation Component
 //
-//  Description:
+//  Description: This component provides access to aspect ratio, image size, and the size if the presentation in our scene."
 //
-//  Type:
+//  Type: Space
 //
 //  Created by Joseph Simpson on 11/28/25.
 
@@ -24,6 +24,7 @@ struct Example131: View {
     @State private var aspectRatio: Float?
 
     @State private var presentationScreenSize: SIMD2<Float> = .zero
+    @State private var worldScreenSize: SIMD2<Float> = .zero
     @State private var screenImageDimension: SIMD2<Float> = .zero
 
     var body: some View {
@@ -41,6 +42,7 @@ struct Example131: View {
                     aspectRatio: $aspectRatio,
                     presentationScreenSize: $presentationScreenSize,
                     screenImageDimension: $screenImageDimension,
+                    worldScreenSize: $worldScreenSize,
                     loadPhoto: { Task { await loadPhoto(entity: photoEntity) } },
                     loadSpatialPhoto: { Task { await loadSpatialPhoto(entity: photoEntity) } },
                     loadPhotoToConvert: { Task { await loadPhotoToConvert(entity: photoEntity) } }
@@ -58,9 +60,12 @@ struct Example131: View {
                 // Capture the metadata
                 aspectRatio = component.aspectRatio(for: newValue)
                 presentationScreenSize = component.presentationScreenSize
-                print("space: \(photoEntity.scale(relativeTo: photoEntity.parent))")
-                print("space: \(photoEntity.scale(relativeTo: photoEntity.parent))")
                 screenImageDimension = component.screenImageDimension
+
+                // Just a quick hack to calculate world scale. This assumes uniform scale.
+                let worldScale = photoEntity.scale(relativeTo: nil).x
+                worldScreenSize = presentationScreenSize * worldScale
+
                 photoEntity.components.set(component)
             }
         })
@@ -127,6 +132,7 @@ fileprivate struct ControlsPanel: View {
     @Binding var aspectRatio: Float?
     @Binding var presentationScreenSize: SIMD2<Float>
     @Binding var screenImageDimension: SIMD2<Float>
+    @Binding var worldScreenSize: SIMD2<Float>
 
     let loadPhoto: () -> Void
     let loadSpatialPhoto: () -> Void
@@ -203,7 +209,8 @@ fileprivate struct ControlsPanel: View {
             // Display the metadata
             VStack {
                 Vector2Display(title: "Aspect Ratio", vector: aspectVectorNormalized(aspectRatio ?? 0))
-                Vector2Display(title: "Presentation size", vector: presentationScreenSize)
+                Vector2Display(title: "Presentation size (local)", vector: presentationScreenSize)
+                Vector2Display(title: "Presentation size (world)", vector: worldScreenSize)
                 Vector2Display(title: "Image Dimension", vector: screenImageDimension)
             }
         }
