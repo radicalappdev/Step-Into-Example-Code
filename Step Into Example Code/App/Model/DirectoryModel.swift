@@ -986,7 +986,7 @@ Capture the initial scale of the entity when the gesture starts. Multiply the ma
                  date: Date("12/01/2025"),
                  isFeatured: true,
                  subtitle: "Read meta data from Image Presentation Component",
-                 description: "This component provides access to aspect ratio, image size, and the size if the presentation in our scene.")
+                 description: "This component provides access to aspect ratio, image size, and the size of the presentation in our scene.")
 
     ]
         

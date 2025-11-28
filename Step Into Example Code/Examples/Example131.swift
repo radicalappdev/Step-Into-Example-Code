@@ -4,7 +4,7 @@
 //
 //  Subtitle: Read meta data from Image Presentation Component
 //
-//  Description: This component provides access to aspect ratio, image size, and the size if the presentation in our scene."
+//  Description: This component provides access to aspect ratio, image size, and the size of the presentation in our scene.
 //
 //  Type: Space
 //
