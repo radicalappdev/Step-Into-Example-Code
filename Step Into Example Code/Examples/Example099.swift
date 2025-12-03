@@ -14,22 +14,6 @@ import SwiftUI
 import RealityKit
 import RealityKitContent
 
-fileprivate struct EarthCard: View {
-
-    @Binding var effect: BreakthroughEffect
-
-    var body : some View {
-        VStack {
-            Text("Earth")
-                .font(.title)
-            Text("The only known planet known to serve ice cream.")
-                .font(.caption)
-        }
-        .padding()
-        .presentationBreakthroughEffect(effect)
-    }
-
-}
 
 struct Example099: View {
 
@@ -104,6 +88,23 @@ struct Example099: View {
 
         })
     }
+}
+
+fileprivate struct EarthCard: View {
+
+    @Binding var effect: BreakthroughEffect
+
+    var body : some View {
+        VStack {
+            Text("Earth")
+                .font(.title)
+            Text("The only known planet known to serve ice cream.")
+                .font(.caption)
+        }
+        .padding()
+        .presentationBreakthroughEffect(effect)
+    }
+
 }
 
 

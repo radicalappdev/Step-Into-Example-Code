@@ -8,6 +8,8 @@
 //
 //  Type: Space
 //
+//  Featured: true
+//
 //  Created by Joseph Simpson on 11/28/25.
 
 import SwiftUI

@@ -11,3 +11,30 @@ I'm not currently accepting pull requests. If you would like to suggest an examp
 Support my work
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/C0C51CD3LH)
+
+## Auto-generating the Example list
+
+The huge switch and `ModelData` array are now generated from the example files themselves.
+
+Each example already has a short metadata header the generator reads:
+
+```swift
+//  Title: Example150
+//  Subtitle: Something cool
+//  Description: A short description
+//  Type: Volume   // Window | Window Alt | Volume | Space | Space Full
+//  Featured: false
+//  Success: true
+```
+
+Regenerate the registry (`App/Generated/ExampleRegistry.swift`) any time you add or change examples:
+
+```bash
+xcrun swift Tools/generate_examples.swift
+```
+
+If you want Xcode to do this automatically, add a “Run Script” build phase before “Compile Sources” with:
+
+```bash
+xcrun swift "$SRCROOT/Tools/generate_examples.swift"
+```
