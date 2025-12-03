@@ -26,7 +26,7 @@ struct Example048: View {
                 content.add(model)
                 logEntries.append("Sphere created \(Date())")
             }
-
+            .realityViewLayoutBehavior(.fixedSize)
             .tabItem {
                 Image(systemName: "circle.fill")
                 Text("Sphere")
@@ -39,7 +39,7 @@ struct Example048: View {
                 content.add(model)
                 logEntries.append("Box created \(Date())")
             }
-
+            .realityViewLayoutBehavior(.fixedSize)
             .tabItem {
                 Image(systemName: "rectangle.fill")
                 Text("Box")
@@ -52,6 +52,7 @@ struct Example048: View {
                 content.add(model)
                 logEntries.append("Cylynder created \(Date())")
             }
+            .realityViewLayoutBehavior(.fixedSize)
             .tabItem {
                 Image(systemName: "capsule.fill")
                 Text("Cylynder")
