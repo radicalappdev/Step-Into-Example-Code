@@ -2,29 +2,59 @@
 //
 //  Title: Example132
 //
-//  Subtitle: Some name
+//  Subtitle: Spatial SwiftUI: Preferred Surroundings Effect
 //
-//  Description: wow
+//  Description: We can use this SwiftUI modifier to adjust the lighting and tint color for the passthrough feed.
 //
 //  Type: Window
-// Featured: true
-//  Created by Joseph Simpson on 12/3/25.
+//
+//  Featured: true
+//
+//  Created by Joseph Simpson on 12/8/25.
 
 import SwiftUI
 import RealityKit
 import RealityKitContent
 
 struct Example132: View {
+
+    @State private var effect: SurroundingsEffect? = nil
+
     var body: some View {
-        RealityView { content, attachments in
+        VStack {
+            Text("Spatial SwiftUI: SurroundingsEffect")
+                .font(.largeTitle)
 
-        } update: { content, attachments in
+            HStack(spacing: 12) {
 
-        } attachments: {
-            Attachment(id: "AttachmentContent") {
-                Text("")
+                Button(action: {
+                    effect = nil
+                }, label: {
+                    Text("Unset")
+                })
+
+                Button(action: {
+                    effect = .semiDark
+                }, label: {
+                    Text("Semi Dark")
+                })
+
+                Button(action: {
+                    effect = .dark
+                }, label: {
+                    Text("Dark")
+                })
+
+                Button(action: {
+                    effect = .ultraDark
+                }, label: {
+                    Text("Ultra Dark")
+                })
+
             }
+
         }
+        .preferredSurroundingsEffect(effect)
     }
 }
 

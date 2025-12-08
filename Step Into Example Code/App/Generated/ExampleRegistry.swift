@@ -1316,10 +1316,10 @@ struct ExampleRegistry {
     Example(
         title: "Example 132",
         type: .WINDOW,
-        date: Date("12/3/2025"),
+        date: Date("12/8/2025"),
         isFeatured: true,
-        subtitle: "Some name",
-        description: "wow",
+        subtitle: "Spatial SwiftUI: Preferred Surroundings Effect",
+        description: "We can use this SwiftUI modifier to adjust the lighting and tint color for the passthrough feed.",
         success: true,
         makeView: { AnyView(Example132()) }
     )
