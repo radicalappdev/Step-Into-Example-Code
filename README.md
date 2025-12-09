@@ -33,8 +33,16 @@ Regenerate the registry (`App/Generated/ExampleRegistry.swift`) any time you add
 xcrun swift Tools/generate_examples.swift
 ```
 
-If you want Xcode to do this automatically, add a “Run Script” build phase before “Compile Sources” with:
-
-```bash
-xcrun swift "$SRCROOT/Tools/generate_examples.swift"
-```
+If you want Xcode to trigger this for you, add a **Run Script build phase** (runs on every build):
+- Select the app target → Build Phases → + → New Run Script Phase.  
+- Paste:
+  ```bash
+  set -euo pipefail
+  SRC="$SRCROOT/Step Into Example Code/Examples"
+  OUT="$SRCROOT/Step Into Example Code/App/Generated/ExampleRegistry.swift"
+  xcrun --sdk macosx swift "$SRCROOT/Tools/generate_examples.swift" --src "$SRC" --out "$OUT"
+  ```
+- Drag it before “Compile Sources”.
+- Inputs: `$(SRCROOT)/Tools/generate_examples.swift`, `$(SRCROOT)/Step Into Example Code/Examples`  
+  Output: `$(SRCROOT)/Step Into Example Code/App/Generated/ExampleRegistry.swift`
+- To avoid Xcode sandbox blocks, set **Build Settings → User Script Sandboxing (ENABLE_USER_SCRIPT_SANDBOXING)** to **No** (you can limit this to Debug).

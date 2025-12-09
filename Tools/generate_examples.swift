@@ -174,7 +174,7 @@ let swiftFiles = files.filter { $0.pathExtension == "swift" }.sorted { $0.lastPa
 var parsedEntries: [ParsedExample] = []
 
 for file in swiftFiles {
-    guard let content = try? String(contentsOf: file) else { continue }
+    guard let content = try? String(contentsOf: file, encoding: .utf8) else { continue }
     if let entry = parseExample(from: content, fileName: file.lastPathComponent) {
         parsedEntries.append(entry)
     } else {
@@ -195,4 +195,8 @@ parsedEntries.sort { lhs, rhs in
 let output = render(entries: parsedEntries)
 try fm.createDirectory(at: outURL.deletingLastPathComponent(), withIntermediateDirectories: true)
 try output.write(to: outURL, atomically: true, encoding: .utf8)
-print("Generated \(parsedEntries.count) examples -> \(args.outputPath)")
+if swiftFiles.isEmpty {
+    fputs("❌ No .swift files found at \(srcURL.path)\n", stderr)
+    exit(1)
+}
+print("Scanned \(swiftFiles.count) files; generated \(parsedEntries.count) examples -> \(args.outputPath)")
