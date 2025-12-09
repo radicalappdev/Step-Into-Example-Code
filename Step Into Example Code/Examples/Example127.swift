@@ -8,6 +8,8 @@
 //
 //  Type: Space
 //
+//  Featured: true
+//
 //  Created by Joseph Simpson on 11/24/25.
 
 import SwiftUI
@@ -113,4 +115,3 @@ struct Example127: View {
 #Preview {
     Example127()
 }
-

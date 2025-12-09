@@ -6,7 +6,9 @@
 //
 //  Description: We can pre or post generate Spatial Scenes, depending on the needs of our app.
 //
-//  Type:
+//  Type: Space
+//
+//  Featured: true
 //
 //  Created by Joseph Simpson on 11/27/25.
 
@@ -211,5 +213,4 @@ fileprivate struct ControlsPanel: View {
 #Preview {
     Example130()
 }
-
 
