@@ -1322,6 +1322,16 @@ struct ExampleRegistry {
         description: "We can use this SwiftUI modifier to adjust the lighting and tint color for the passthrough feed.",
         success: true,
         makeView: { AnyView(Example132()) }
+    ),
+    Example(
+        title: "Example 133",
+        type: .VOLUME,
+        date: Date("12/10/2025"),
+        isFeatured: true,
+        subtitle: "RealityKit Basics: using realityKitScene Environment Variable",
+        description: "Sometimew we may beed to access the RealityKit Scene from outside of a RealityView",
+        success: true,
+        makeView: { AnyView(Example133()) }
     )
     ]
 
