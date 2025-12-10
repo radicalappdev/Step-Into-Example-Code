@@ -1329,7 +1329,7 @@ struct ExampleRegistry {
         date: Date("12/10/2025"),
         isFeatured: true,
         subtitle: "RealityKit Basics: using realityKitScene Environment Variable",
-        description: "Sometimew we may beed to access the RealityKit Scene from outside of a RealityView",
+        description: "We can access the RealityKit Scene of the nearest RealityView",
         success: true,
         makeView: { AnyView(Example133()) }
     )

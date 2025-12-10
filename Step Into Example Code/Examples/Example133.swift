@@ -32,6 +32,7 @@ struct Example133: View {
             ToolbarItem(placement: .bottomOrnament, content: {
 
                 HStack {
+                    // Example 01 - find and update an entity
                     Button(action: {
                         if let earth = realityKitScene?.findEntity(named: "Earth") {
                             earth.orientation *= simd_quatf(angle: .pi/2, axis: [0,1,0])
@@ -47,6 +48,17 @@ struct Example133: View {
                     }, label: {
                         Image(systemName: "arrow.right")
                     })
+
+                    // Example 02 - query the entities in the scene
+                    Button(action: {
+                        guard let scene = realityKitScene else { return }
+                        let query = EntityQuery(where: .has(ModelComponent.self))
+                        let enumerated = scene.performQuery(query).enumerated()
+                        print("Entities in scene:", enumerated)
+                    }, label: {
+                        Text("Print Entities")
+                    })
+
                 }
 
             })
@@ -57,3 +69,4 @@ struct Example133: View {
 #Preview {
     Example133()
 }
+
