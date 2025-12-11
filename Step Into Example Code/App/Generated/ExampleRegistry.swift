@@ -1332,6 +1332,16 @@ struct ExampleRegistry {
         description: "We can access the RealityKit Scene of the nearest RealityView",
         success: true,
         makeView: { AnyView(Example133()) }
+    ),
+    Example(
+        title: "Example 134",
+        type: .VOLUME,
+        date: Date("12/11/2025"),
+        isFeatured: true,
+        subtitle: "TBD",
+        description: "",
+        success: true,
+        makeView: { AnyView(Example134()) }
     )
     ]
 
