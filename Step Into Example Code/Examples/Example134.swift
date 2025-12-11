@@ -49,7 +49,7 @@ struct Example134: View {
             scaleContent(by: volumeSize)
 
         }
-        .ornament(attachmentAnchor: .scene(.back), ornament: {
+        .ornament(attachmentAnchor: .scene(.bottomLeadingBack), ornament: {
             VStack(alignment: .leading, spacing: 12) {
                 Text("X: \(volumePosition.x)")
                 Text("Y: \(volumePosition.y)")
@@ -83,11 +83,6 @@ struct Example134: View {
         volumeRootEntity.setScale(.init(repeating: scale), relativeTo: nil)
     }
 
-    /// Rotate the 3D content to face world origin
-    func faceWorldOrigin(from volumePosition: Point3D) {
-        // using the current volumePosition value, rotate the content to face world origin
-
-    }
 }
 
 #Preview {
