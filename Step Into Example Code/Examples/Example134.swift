@@ -2,9 +2,9 @@
 //
 //  Title: Example134
 //
-//  Subtitle: TBD
+//  Subtitle: Spatial SwiftUI: onGeometryChange3D
 //
-//  Description:
+//  Description: We can use this modifier to access data from GeometryProxy3D without using GeometryReader3D
 //
 //  Type: Volume
 //
@@ -18,13 +18,8 @@ import RealityKitContent
 
 struct Example134: View {
 
-    /// We'll need to use a converter from physicalMetrics
     @Environment(\.physicalMetrics) var physicalMetrics
-
-    /// This will store the size of the volume
     @State private var volumeSize: Size3D = .zero
-
-    /// A top level entity that will be scaled with the volume. Only the root view will be added to this
     @State private var volumeRootEntity = Entity()
 
     // A place to store the bounds of our 3D content
@@ -40,12 +35,8 @@ struct Example134: View {
 
             guard let baseRoot = try? await Entity(named: "ToyBiplane", in: realityKitContentBundle) else { return }
             volumeRootEntity.addChild(baseRoot, preservingWorldTransform: true)
-
-            // Capture the base extents from visual bounds
             baseExtents = baseRoot.visualBounds(relativeTo: nil).extents / baseRoot.scale
-            baseRoot.position.y = -baseExtents.y / 2 // Align the scene on the y axis
-
-            // Call our new function once for the initial size
+            baseRoot.position.y = -baseExtents.y / 2
             scaleContent(by: volumeSize)
 
         }
@@ -61,23 +52,26 @@ struct Example134: View {
             .glassBackgroundEffect()
         })
         .debugBorder3D(.white)
-        // Anytime the volume changes in size we'll scale the RealityView content
+
+        // Example 01: Anytime the volume changes in size we'll scale the RealityView content
         .onGeometryChange3D(for: Rect3D.self) { proxy in
             return proxy.frame(in: .global)
         } action: { new in
             volumeSize = new.size
             scaleContent(by: volumeSize)
         }
-        // Anytime the position of the volume changes
+
+        // Example 02: Capture the position of the volume when it changes
         .onGeometryChange3D(for: Point3D.self) { proxy in try! proxy
                 .coordinateSpace3D()
                 .convert(value: Point3D.zero, to: .worldReference)
         } action: { _, new in
-            volumePosition = new
+            volumePosition = new // We'll just show this in an ornament
         }
     }
 
     /// Scale the 3D content based on the size of the Volume
+    /// See this article for details: https://stepinto.vision/example-code/using-ongeometrychange3d-to-scale-realityview-content-when-a-volume-is-resized/
     func scaleContent(by volumeSize: Size3D) {
         let scale = Float(physicalMetrics.convert(volumeSize.width, to: .meters)) / baseExtents.x
         volumeRootEntity.setScale(.init(repeating: scale), relativeTo: nil)

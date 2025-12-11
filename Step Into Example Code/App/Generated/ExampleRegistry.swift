@@ -1338,8 +1338,8 @@ struct ExampleRegistry {
         type: .VOLUME,
         date: Date("12/11/2025"),
         isFeatured: true,
-        subtitle: "TBD",
-        description: "",
+        subtitle: "Spatial SwiftUI: onGeometryChange3D",
+        description: "We can use this modifier to access data from GeometryProxy3D without using GeometryReader3D",
         success: true,
         makeView: { AnyView(Example134()) }
     )
