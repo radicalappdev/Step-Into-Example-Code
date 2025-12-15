@@ -1434,6 +1434,15 @@
       {
         "isExpanded" : true,
         "isLocked" : false
+      },
+      [
+        "8953EBB4-6901-4B5D-9862-9E6CA0FC7C37",
+        "Root",
+        "Earth"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
       }
     ]
   },
