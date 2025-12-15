@@ -4,7 +4,7 @@
 //
 //  Subtitle: RealityKit Basics: Visual Bounds
 //
-//  Description:
+//  Description: We can use visual bounds to get the center, extent, and other properties of a bounding box for a given entity.
 //
 //  Type: Volume
 //
@@ -16,19 +16,7 @@ import SwiftUI
 import RealityKit
 import RealityKitContent
 
-fileprivate enum BoundsExamples: String, CaseIterable, Identifiable {
-    case earth = "Earth"
-    case moon = "Moon"
-    case rocket = "ToyRocket"
-    case earthCollection = "Earth Collection"
-
-    var id: Self { self }
-}
-
 struct Example135: View {
-
-    @State private var showBoundsOn: BoundsExamples = .earth
-    @State private var boundingBoxVis = Entity()
 
     var boundsMat: PhysicallyBasedMaterial {
         var boundsMat = PhysicallyBasedMaterial()
@@ -42,15 +30,23 @@ struct Example135: View {
 
             guard let scene = try? await Entity(named: "VisualBounds", in: realityKitContentBundle) else { return }
             content.add(scene)
-            content.add(boundingBoxVis)
 
+            // Draw bounds around a single entity
             guard let earth = scene.findEntity(named: "Earth") else { return }
+            let earthBounds = earth.visualBounds(relativeTo: nil)
+            let earthSize = earthBounds.extents
+            let earthCenter = earthBounds.center
+            let earthBox = ModelEntity(mesh: .generateBox(size: earthSize), materials: [boundsMat])
+            earthBox.position = scene.position + earthCenter
+            content.add(earthBox)
 
-            let boxSize = earth.visualBounds(recursive: true, relativeTo: scene).extents
-            let boundsCenter = earth.visualBounds(recursive: true, relativeTo: scene).center
-            boundingBoxVis = ModelEntity(mesh: .generateBox(size: boxSize), materials: [boundsMat])
-            boundingBoxVis.position = scene.position + boundsCenter
-            content.add(boundingBoxVis)
+            // Draw bounds around all entites in the scene
+            let sceneBounds = scene.visualBounds(recursive: true, relativeTo: scene)
+            let sceneSize = sceneBounds.extents
+            let sceneCenter = sceneBounds.center
+            let sceneBox = ModelEntity(mesh: .generateBox(size: sceneSize), materials: [boundsMat])
+            sceneBox.position = scene.position + sceneCenter
+            content.add(sceneBox)
 
         }
     }
