@@ -1,7 +1,10 @@
 {
   "advancedEditorSelectedIdentifier" : "ProjectBrowser",
   "openSceneRelativePaths" : [
-    "SharedGroupActions.usda"
+    "SharedGroupActions.usda",
+    "AnimationTest.usda",
+    "VisualBounds.usda",
+    "EntityActionLab.usda"
   ],
   "recentIdentifiers" : {
     "04966C20-2723-4378-BCAD-327CAD4E36CF" : [
@@ -1756,6 +1759,30 @@
           0,
           0.8320426,
           1.4370507,
+          1
+        ]
+      }
+    ],
+    "509FBEFC-3B8A-4C1A-AD34-6D2507C98591" : [
+      {
+        "date" : 787143335.178137,
+        "title" : "Untitled",
+        "transform" : [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0.7071069,
+          -0.70710677,
+          0,
+          0,
+          0.70710677,
+          0.7071069,
+          0,
+          0.07665682,
+          1.8071076,
+          1.8504729,
           1
         ]
       }
@@ -6108,5 +6135,5 @@
   "sceneViewportBackgroundColors" : {
 
   },
-  "selectedSceneRelativePath" : "SharedGroupActions.usda"
+  "selectedSceneRelativePath" : "VisualBounds.usda"
 }

@@ -1342,6 +1342,16 @@ struct ExampleRegistry {
         description: "We can use this modifier to access data from GeometryProxy3D without using GeometryReader3D",
         success: true,
         makeView: { AnyView(Example134()) }
+    ),
+    Example(
+        title: "Example 135",
+        type: .VOLUME,
+        date: Date("12/15/2025"),
+        isFeatured: true,
+        subtitle: "RealityKit Basics: Visual Bounds",
+        description: "",
+        success: true,
+        makeView: { AnyView(Example135()) }
     )
     ]
 
