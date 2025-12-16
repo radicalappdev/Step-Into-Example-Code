@@ -1352,6 +1352,16 @@ struct ExampleRegistry {
         description: "We can use visual bounds to get the center, extent, and other properties of a bounding box for a given entity.",
         success: true,
         makeView: { AnyView(Example135()) }
+    ),
+    Example(
+        title: "Example 136",
+        type: .VOLUME,
+        date: Date("12/16/2025"),
+        isFeatured: true,
+        subtitle: "RealityKit Basics: 3D Text",
+        description: "",
+        success: true,
+        makeView: { AnyView(Example136()) }
     )
     ]
 
