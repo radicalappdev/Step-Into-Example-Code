@@ -1359,7 +1359,7 @@ struct ExampleRegistry {
         date: Date("12/16/2025"),
         isFeatured: true,
         subtitle: "RealityKit Basics: 3D Text",
-        description: "",
+        description: "We can generate 3D text from an attributed string and some configuration options.",
         success: true,
         makeView: { AnyView(Example136()) }
     )
