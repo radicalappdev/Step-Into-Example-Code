@@ -1362,6 +1362,16 @@ struct ExampleRegistry {
         description: "We can generate 3D text from an attributed string and some configuration options.",
         success: true,
         makeView: { AnyView(Example136()) }
+    ),
+    Example(
+        title: "Example 137",
+        type: .VOLUME,
+        date: Date("12/17/2025"),
+        isFeatured: true,
+        subtitle: "RealityKit Basics: Extruding Meshes",
+        description: "",
+        success: true,
+        makeView: { AnyView(Example137()) }
     )
     ]
 
