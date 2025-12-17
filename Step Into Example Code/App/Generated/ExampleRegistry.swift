@@ -1369,7 +1369,7 @@ struct ExampleRegistry {
         date: Date("12/17/2025"),
         isFeatured: true,
         subtitle: "RealityKit Basics: Extruding Meshes",
-        description: "",
+        description: "We use data from a Swift Path to extrude a 3D Shape.",
         success: true,
         makeView: { AnyView(Example137()) }
     )
