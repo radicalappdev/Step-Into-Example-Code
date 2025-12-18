@@ -45,6 +45,7 @@ struct Example137: View {
         // Create a Mesh Resource using the provided path and the extrusion options
         let mesh = try! await MeshResource(extruding: path, extrusionOptions: extrusionOptions)
 
+
         // Create an entity with the Mesh Resource and an array of materials
         return ModelEntity(mesh: mesh, materials: [mat1, mat2, mat3, mat4])
 
