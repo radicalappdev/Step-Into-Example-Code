@@ -146,10 +146,10 @@ struct ExampleRegistry {
     Example(
         title: "Example 015",
         type: .SPACE,
-        date: Date("12/11/2024"),
-        isFeatured: true,
-        subtitle: "Working with SpatialEventGesture",
-        description: "",
+        date: Date("12/23/2025"),
+        isFeatured: false,
+        subtitle: "Spatial Event Gesture",
+        description: "We can use this gesture to tap into a stream of input events happening in our scene.",
         success: true,
         makeView: { AnyView(Example015()) }
     ),

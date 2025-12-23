@@ -2,15 +2,15 @@
 //
 //  Title: Example015
 //
-//  Subtitle: Working with SpatialEventGesture
+//  Subtitle: Spatial Event Gesture
 //
-//  Description:
+//  Description: We can use this gesture to tap into a stream of input events happening in our scene.
 //
 //  Type: Space
 //
-//  Featured: true
+//  Featured: false
 //
-//  Created by Joseph Simpson on 12/11/24.
+//  Created by Joseph Simpson on 12/23/25.
 
 import SwiftUI
 import RealityKit
@@ -25,7 +25,7 @@ struct Example015: View {
                 materials: [SimpleMaterial(color: .stepBackgroundSecondary, isMetallic: false)]
             )
             target.name = "Target"
-            target.position = SIMD3(0, 1, -0.6)
+            target.position = SIMD3(0, 1.2, -1)
             target.components.set(InputTargetComponent())
             target.generateCollisionShapes(recursive: false)
 
@@ -245,3 +245,5 @@ fileprivate enum GizmoFactory {
         entity.generateCollisionShapes(recursive: false)
     }
 }
+
+
