@@ -38,7 +38,6 @@ struct Example137: View {
 
         // Set up our extrusion options. Here we'll set a depth and chamfer. We can also assign material indexes to each face.
         var extrusionOptions = MeshResource.ShapeExtrusionOptions()
-        extrusionOptions.extrusionMethod = .linear(depth: 0.05) // in meters
         extrusionOptions.chamferRadius = 0.01
         extrusionOptions.materialAssignment = .init(front: 0, back: 1, extrusion: 2, frontChamfer: 3, backChamfer: 3)
 

@@ -2,11 +2,13 @@
 //
 //  Title: Example015
 //
-//  Subtitle:
+//  Subtitle: Working with SpatialEventGesture
 //
 //  Description:
 //
-//  Type:
+//  Type: Space
+//
+//  Featured: true
 //
 //  Created by Joseph Simpson on 12/11/24.
 
@@ -17,31 +19,20 @@ import RealityKitContent
 struct Example015: View {
 
     var body: some View {
-        RealityView { content, attachments in
-
-            if let scene = try? await Entity(named: "SpatialEventLab", in: realityKitContentBundle) {
-                content.add(scene)
-
-            }
-
-
-        } update: { content, attachments in
-
-        } attachments: {
-            Attachment(id: "AttachmentContent") {
-                Text("")
-            }
+        RealityView { content in
+            guard let scene = try? await Entity(named: "SpatialEventLab", in: realityKitContentBundle) else { return }
+            scene.position.z = -0.5
+            content.add(scene)
         }
         .modifier(SpatialEventGestureExample())
     }
-
 }
 
 #Preview {
     Example015()
 }
 
-struct SpatialEventGestureExample: ViewModifier {
+fileprivate struct SpatialEventGestureExample: ViewModifier {
     @State var isDragging: Bool = false
     @State var targetEntity: Entity?
     @State var lastHandPosition: SIMD3<Float>?
