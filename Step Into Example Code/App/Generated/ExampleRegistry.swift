@@ -785,10 +785,10 @@ struct ExampleRegistry {
     ),
     Example(
         title: "Example 079",
-        type: .WINDOW,
+        type: .SPACE,
         date: Date("4/28/2025"),
-        isFeatured: false,
-        subtitle: "Untitled",
+        isFeatured: true,
+        subtitle: "WorldTrackingProvider",
         description: "",
         success: true,
         makeView: { AnyView(Example079()) }

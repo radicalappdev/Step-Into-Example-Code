@@ -2,11 +2,13 @@
 //
 //  Title: Example079
 //
-//  Subtitle:
+//  Subtitle: WorldTrackingProvider
 //
 //  Description:
 //
-//  Type:
+//  Type: Space
+//
+//  Featured: true
 //
 //  Created by Joseph Simpson on 4/28/25.
 
