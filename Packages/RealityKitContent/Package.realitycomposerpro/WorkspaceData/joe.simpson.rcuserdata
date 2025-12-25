@@ -1,10 +1,11 @@
 {
-  "advancedEditorSelectedIdentifier" : "ProjectBrowser",
+  "advancedEditorSelectedIdentifier" : "BehaviorsPluginID",
   "openSceneRelativePaths" : [
     "SharedGroupActions.usda",
     "AnimationTest.usda",
     "VisualBounds.usda",
-    "EntityActionLab.usda"
+    "EntityActionLab.usda",
+    "EntityObservationDemo.usda"
   ],
   "recentIdentifiers" : {
     "04966C20-2723-4378-BCAD-327CAD4E36CF" : [
@@ -104,6 +105,9 @@
 
     ],
     "99DC1603-09FB-4E8D-AD81-5C481685CD34" : [
+
+    ],
+    "A0C5FCA0-DF90-473B-B245-4523F2A77050" : [
 
     ],
     "A350E69D-C961-4D68-BB0E-B13DE1833656" : [
@@ -4578,6 +4582,96 @@
         ]
       }
     ],
+    "A0C5FCA0-DF90-473B-B245-4523F2A77050" : [
+      {
+        "date" : 788353694.70084,
+        "title" : "Untitled",
+        "transform" : [
+          0.99999833,
+          -1.7896594e-11,
+          -0.0018359715,
+          0,
+          -0.0015172934,
+          0.56304634,
+          -0.82642394,
+          0,
+          0.0010337369,
+          0.8264254,
+          0.5630454,
+          0,
+          0.0012275239,
+          0.54306895,
+          0.45500758,
+          1
+        ]
+      },
+      {
+        "date" : 788353689.056761,
+        "title" : "Untitled",
+        "transform" : [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0.7071069,
+          -0.7071067,
+          0,
+          0,
+          0.7071067,
+          0.7071069,
+          0,
+          0.0011265296,
+          0.38751817,
+          0.4193821,
+          1
+        ]
+      },
+      {
+        "date" : 788353579.122112,
+        "title" : "Untitled",
+        "transform" : [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0.7071069,
+          -0.7071067,
+          0,
+          0,
+          0.7071067,
+          0.7071069,
+          0,
+          1.8626451e-09,
+          0.40345013,
+          0.40345025,
+          1
+        ]
+      },
+      {
+        "date" : 788353532.229948,
+        "title" : "Untitled",
+        "transform" : [
+          1,
+          0,
+          -0,
+          0,
+          -0,
+          0.7071069,
+          -0.7071067,
+          0,
+          0,
+          0.7071067,
+          0.7071069,
+          0,
+          1.8626451e-09,
+          0.2114796,
+          0.21147968,
+          1
+        ]
+      }
+    ],
     "A350E69D-C961-4D68-BB0E-B13DE1833656" : [
       {
         "date" : 783370940.419261,
@@ -6272,5 +6366,5 @@
   "sceneViewportBackgroundColors" : {
 
   },
-  "selectedSceneRelativePath" : "VisualBounds.usda"
+  "selectedSceneRelativePath" : "EntityObservationDemo.usda"
 }

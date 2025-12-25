@@ -1372,6 +1372,16 @@ struct ExampleRegistry {
         description: "We use data from a Swift Path to extrude a 3D Shape.",
         success: true,
         makeView: { AnyView(Example137()) }
+    ),
+    Example(
+        title: "Example 138",
+        type: .VOLUME,
+        date: Date("12/25/2025"),
+        isFeatured: true,
+        subtitle: "RealityKit Basics: Entity Observation",
+        description: "",
+        success: true,
+        makeView: { AnyView(Example138()) }
     )
     ]
 
