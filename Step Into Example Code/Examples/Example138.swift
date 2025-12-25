@@ -4,7 +4,7 @@
 //
 //  Subtitle: RealityKit Basics: Entity Observation
 //
-//  Description:
+//  Description: Starting in visionOS 26, we can observe changes to component data on entities.
 //
 //  Type: Volume
 //
@@ -43,19 +43,22 @@ struct Example138: View {
                     subject.components[WaypointTracker.self]?.waypoint = collisionEvent.entityB.name
                     print("Waypoint Collision: \(subject.components[WaypointTracker.self]!.waypoint)")
                 }
-
-
         }
+        // Listen for changes, peform side effects, and apply the data to state
         .onChange(of: subject.observable.position) { _, newValue in
+            // Apply any side effects here
             self.observedPosition = newValue
         }
         .onChange(of: subject.observable.components[WaypointTracker.self]?.waypoint) { _, newValue in
             if let newValue = newValue {
+                // Apply any side effects here
+                print("Observed Waypoint: \(newValue), applying side effects...")
                 self.observedWaypoint = newValue
             }
         }
         .ornament(attachmentAnchor: .scene(.bottomFront), ornament: {
             VStack(alignment: .leading, spacing: 10) {
+                // Example 1: Direct usage of the observed data in SwiftUI views
                 Vector3Display(title: "Direct Usage", vector: subject.observable.position)
 
                 HStack(spacing: 10) {
@@ -66,6 +69,7 @@ struct Example138: View {
                 Divider()
                     .padding(.vertical, 2)
 
+                // Example 2: Observing state that is updated using onChange
                 Vector3Display(title: "onChange Examples", vector: observedPosition)
 
                 HStack(spacing: 10) {
@@ -108,6 +112,8 @@ fileprivate struct WaypointMap: View {
         HStack(spacing: 8) {
             Image(systemName: symbolName)
                 .font(.system(size: 22, weight: .semibold))
+                .contentTransition(.symbolEffect(.replace))
+                .animation(.easeInOut(duration: 0.25), value: symbolName)
 
             Text(waypoint)
                 .font(.system(size: 14, weight: .medium, design: .rounded))
@@ -115,13 +121,12 @@ fileprivate struct WaypointMap: View {
     }
 }
 
+fileprivate struct WaypointTracker: Component, Codable {
+    public var waypoint: String = "not set"
+    public init() {}
+}
+
 #Preview {
     Example138()
 }
 
-fileprivate struct WaypointTracker: Component, Codable {
-
-    public var waypoint: String = "not set"
-
-    public init() {}
-}

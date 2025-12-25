@@ -1379,7 +1379,7 @@ struct ExampleRegistry {
         date: Date("12/25/2025"),
         isFeatured: true,
         subtitle: "RealityKit Basics: Entity Observation",
-        description: "",
+        description: "Starting in visionOS 26, we can observe changes to component data on entities.",
         success: true,
         makeView: { AnyView(Example138()) }
     )

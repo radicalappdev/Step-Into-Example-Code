@@ -8,9 +8,16 @@
     upAxis = "Y"
 )
 
-def Xform "Root"
+def Xform "Root" (
+    customData = {
+        float3 rotationEulerHint = (0, 0, 0)
+    }
+)
 {
     reorder nameChildren = ["Subject", "Center", "Waypoint", "Left", "Back", "Front", "Right", "OrbitSubject", "LoopSubject"]
+    quatf xformOp:orient = (1, 0, 0, 0)
+    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
     def Sphere "Center" (
         active = true
         prepend apiSchemas = ["MaterialBindingAPI"]
