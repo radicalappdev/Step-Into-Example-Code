@@ -2,9 +2,9 @@
 //
 //  Title: Example140
 //
-//  Subtitle: Useful Imports
+//  Subtitle: RealityKit Basics: Import Spatial
 //
-//  Description: Exploring other imports that may be useful when working in 3D.
+//  Description: Spatial is a collection of types for working with 3D mathematical primitives.
 //
 //  Type: Volume
 //
@@ -15,9 +15,7 @@
 import SwiftUI
 import RealityKit
 import RealityKitContent
-
-import Spatial
-import GameplayKit
+//import Spatial
 
 struct Example140: View {
 
@@ -57,13 +55,16 @@ struct Example140: View {
                 VStack {
                     HStack {
                         Button(action: {
-                            subject.position = randomPointInVolume(0.4)
+                            let p = randomPointInVolume(0.4)
+                            subject.position = SIMD3<Float>(p)
+                            faceSubjectTowardTarget()
                         }, label: {
                             Text("Move Subject")
                         })
 
                         Button(action: {
-                            target.position = randomPointInVolume(0.45)
+                            let p = randomPointInVolume(0.45)
+                            target.position = SIMD3<Float>(p)
                             faceSubjectTowardTarget()
                         }, label: {
                             Text("Move Target")
@@ -81,13 +82,35 @@ struct Example140: View {
         }
     }
 
-    private func randomPointInVolume(_ range: Double = 0.5) -> SIMD3<Float> {
-        let point = Point3D(
-            x: Double.random(in: -range ... range),
-            y: Double.random(in: -range ... range),
-            z: Double.random(in: -range ... range)
-        )
-        return SIMD3<Float>(point)
+    // These helper functions are **intentionally contrived** to show off the Math features of Spaital.
+
+    // There are easier ways to do these things
+    private func randomPointInVolume(_ range: Double = 0.5) -> Point3D {
+        // Build a random direction vector using angles, then normalize it (Spatial math).
+        let yaw = Angle2D.radians(Double.random(in: 0 ... (2 * .pi)))
+        let pitch = Angle2D.radians(Double.random(in: (-.pi / 6) ... (.pi / 6))) // mostly horizontal
+
+        let cy = cos(yaw.radians)
+        let sy = sin(yaw.radians)
+        let cp = cos(pitch.radians)
+        let sp = sin(pitch.radians)
+
+        // Forward-biased direction (negative Z is "forward" in RealityKit by convention)
+        var dir = Vector3D(x: sy * cp, y: sp, z: -cy * cp)
+        let len = dir.length
+        guard len > 0.000001 else { return .zero }
+        dir /= len
+
+        // Pick a distance from the origin
+        let distance = Double.random(in: 0.15 ... range)
+
+        // Convert vector -> point and keep it inside a simple cube bound.
+        var p = Point3D(x: dir.x * distance, y: dir.y * distance, z: dir.z * distance)
+        p.x = max(-range, min(range, p.x))
+        p.y = max(-range, min(range, p.y))
+        p.z = max(-range, min(range, p.z))
+
+        return p
     }
 
     // Building a helper function that will update cause the subject to face the target
@@ -124,11 +147,10 @@ struct Example140: View {
 
         let angleRadians = acos(d)
 
-        // Convert ONLY at the boundary back to RealityKit
+        // Convert back to RealityKit
         let axisF = SIMD3<Float>(Float(axis.x), Float(axis.y), Float(axis.z))
         subject.orientation = simd_quatf(angle: Float(angleRadians), axis: axisF)
     }
-
 }
 
 #Preview {

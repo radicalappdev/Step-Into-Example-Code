@@ -1398,8 +1398,8 @@ struct ExampleRegistry {
         type: .VOLUME,
         date: Date("12/26/2025"),
         isFeatured: true,
-        subtitle: "Useful Imports",
-        description: "Exploring other imports that may be useful when working in 3D.",
+        subtitle: "RealityKit Basics: Import Spatial",
+        description: "Spatial is a collection of types for working with 3D mathematical primitives.",
         success: true,
         makeView: { AnyView(Example140()) }
     )
