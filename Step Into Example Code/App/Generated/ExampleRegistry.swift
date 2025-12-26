@@ -1382,6 +1382,16 @@ struct ExampleRegistry {
         description: "Starting in visionOS 26, we can observe changes to component data on entities.",
         success: true,
         makeView: { AnyView(Example138()) }
+    ),
+    Example(
+        title: "Example 139",
+        type: .SPACE,
+        date: Date("12/26/2025"),
+        isFeatured: true,
+        subtitle: "RealityKit Basics: Using Convenience Entities",
+        description: "When should we use Convenience Entities vs. components.",
+        success: true,
+        makeView: { AnyView(Example139()) }
     )
     ]
 
