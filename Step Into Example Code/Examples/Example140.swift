@@ -22,7 +22,7 @@ import GameplayKit
 struct Example140: View {
 
     @State private var target: ModelEntity = {
-        let material = SimpleMaterial(color: .stepGreen, isMetallic: false)
+        let material = SimpleMaterial(color: .orange, isMetallic: false)
         let entity = ModelEntity(
             mesh: .generateSphere(radius: 0.03),
             materials: [material]
@@ -33,7 +33,7 @@ struct Example140: View {
     }()
 
     @State private var subject: Entity = {
-        
+
         let entity = createStepDemoBox()
         entity.position = [-0.25, 0.1, -0.2]
         entity.scale = .init(repeating: 0.5)
@@ -57,16 +57,14 @@ struct Example140: View {
                 VStack {
                     HStack {
                         Button(action: {
-                            // Move subject using Spatial
-                            let p = Point3D(x: -0.2, y: 0.1, z: -0.35)
-                            subject.position = SIMD3<Float>(p)
+                            subject.position = randomPointInVolume(0.4)
                         }, label: {
                             Text("Move Subject")
                         })
 
                         Button(action: {
-                            // Move target using plain SIMD
-                            target.position = SIMD3<Float>(0.25, 0.18, -0.15)
+                            target.position = randomPointInVolume(0.45)
+                            faceSubjectTowardTarget()
                         }, label: {
                             Text("Move Target")
                         })
@@ -81,6 +79,15 @@ struct Example140: View {
                 .controlSize(.small)
             }
         }
+    }
+
+    private func randomPointInVolume(_ range: Double = 0.5) -> SIMD3<Float> {
+        let point = Point3D(
+            x: Double.random(in: -range ... range),
+            y: Double.random(in: -range ... range),
+            z: Double.random(in: -range ... range)
+        )
+        return SIMD3<Float>(point)
     }
 
     // Building a helper function that will update cause the subject to face the target
