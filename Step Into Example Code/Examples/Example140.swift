@@ -21,19 +21,22 @@ import GameplayKit
 
 struct Example140: View {
 
-    @State private var subject: ModelEntity = {
-        let material = SimpleMaterial(color: .stepRed, isMetallic: false)
+    @State private var target: ModelEntity = {
+        let material = SimpleMaterial(color: .stepGreen, isMetallic: false)
         let entity = ModelEntity(
-            mesh: .generateBox(size: 0.1, cornerRadius: 0.01),
+            mesh: .generateSphere(radius: 0.03),
             materials: [material]
         )
+        entity.position = [0.25, 0.1, -0.2]
+        ManipulationComponent.configureEntity(entity)
+        return entity
+    }()
 
-        // Initial placement using Spatial
-        let startPoint = Point3D(x: 0, y: 0.1, z: -0.4)
-
-        entity.transform = Transform(
-            translation: SIMD3<Float>(startPoint)
-        )
+    @State private var subject: Entity = {
+        
+        let entity = createStepDemoBox()
+        entity.position = [-0.25, 0.1, -0.2]
+        entity.scale = .init(repeating: 0.5)
 
         return entity
     }()
@@ -41,6 +44,12 @@ struct Example140: View {
     var body: some View {
         RealityView { content in
             content.add(subject)
+            content.add(target)
+            faceSubjectTowardTarget()
+
+            _ = content.subscribe(to: ManipulationEvents.DidUpdateTransform.self) { event in
+                faceSubjectTowardTarget()
+            }
         }
         .debugBorder3D(.white)
         .toolbar {
@@ -48,53 +57,69 @@ struct Example140: View {
                 VStack {
                     HStack {
                         Button(action: {
-                            let targetPoint = Point3D(x: 0.25, y: 0.15, z: 0)
-                            subject.position = SIMD3<Float>(targetPoint)
+                            // Move subject using Spatial
+                            let p = Point3D(x: -0.2, y: 0.1, z: -0.35)
+                            subject.position = SIMD3<Float>(p)
                         }, label: {
-                            Text("Move: Point3D")
+                            Text("Move Subject")
                         })
 
                         Button(action: {
-                            let simdPosition = SIMD3<Float>(-0.25, -0.15, 0)
-                            subject.position = simdPosition
+                            // Move target using plain SIMD
+                            target.position = SIMD3<Float>(0.25, 0.18, -0.15)
                         }, label: {
-                            Text("Move; SIMD3")
+                            Text("Move Target")
+                        })
+
+                        Button(action: {
+                            faceSubjectTowardTarget()
+                        }, label: {
+                            Text("Face Target")
                         })
                     }
-
-                    HStack {
-                        Button(action: {
-                            // Scale with Size3D
-                        }, label: {
-                            Text("Scale: Size3D")
-                        })
-
-                        Button(action: {
-                            // Scale as normal
-                        }, label: {
-                            Text("Scale; SIMD3")
-                        })
-                    }
-
-                    HStack {
-                        Button(action: {
-                            // Rotate with Rotation3D or Pose3D
-                        }, label: {
-                            Text("Rotate: ")
-                        })
-
-                        Button(action: {
-                            // Rotate as normal
-                        }, label: {
-                            Text("Rotate; ")
-                        })
-                    }
-
-
                 }
                 .controlSize(.small)
             }
         }
+    }
+
+    // Building a helper function that will update cause the subject to face the target
+    private func faceSubjectTowardTarget() {
+        // Read positions from RealityKit
+        let s = subject.position
+        let t = target.position
+
+        // Do the math in Spatial (Double-based)
+        let subjectPos = Vector3D(x: Double(s.x), y: Double(s.y), z: Double(s.z))
+        let targetPos  = Vector3D(x: Double(t.x), y: Double(t.y), z: Double(t.z))
+
+        // Direction from subject -> target
+        var dir = targetPos - subjectPos
+        let dirLen = dir.length
+        guard dirLen > 0.0001 else { return }
+        dir /= dirLen
+
+        // RealityKit's "forward" is typically -Z in local space
+        let forward = Vector3D(x: 0, y: 0, z: -1)
+
+        // Rotation that takes `forward` to `dir`
+        let d = max(-1.0, min(1.0, forward.dot(dir)))
+        var axis = forward.cross(dir)
+
+        // If forward and dir are (anti)parallel, cross is near-zero.
+        if axis.length < 0.000001 {
+            // If pointing the same way, no rotation. If opposite, rotate 180° around Y.
+            if d > 0.999999 { return }
+            axis = Vector3D(x: 0, y: 1, z: 0)
+        } else {
+            axis /= axis.length
+        }
+
+        let angleRadians = acos(d)
+
+        // Convert ONLY at the boundary back to RealityKit
+        let axisF = SIMD3<Float>(Float(axis.x), Float(axis.y), Float(axis.z))
+        subject.orientation = simd_quatf(angle: Float(angleRadians), axis: axisF)
     }
 
 }
