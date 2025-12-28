@@ -1419,7 +1419,7 @@ struct ExampleRegistry {
         date: Date("12/28/2025"),
         isFeatured: true,
         subtitle: "RealityKit Basics: Loading Entities on Device",
-        description: "",
+        description: "We can load entities from our app bundle if we're not working with Reality Composer Pro.",
         success: true,
         makeView: { AnyView(Example142()) }
     )

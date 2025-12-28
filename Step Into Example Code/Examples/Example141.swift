@@ -2,7 +2,7 @@
 //
 //  Title: Example141
 //
-//  Subtitle: Loading an Entity from Data
+//  Subtitle: RealityKit Basics: Loading an Entity from Data
 //
 //  Description: We can load Entities from a block of Data, which we can can retrieve remotely or on device.
 //
@@ -44,6 +44,7 @@ fileprivate struct LoadingExample01: View {
         RealityView { content in
             if let (data, _) = try? await URLSession.shared.data(from: remoteURL) {
                 if let entity = try? await Entity(from: data) {
+                    entity.scale = .init(repeating: 2.0)
                     content.add(entity)
                 }
             }
@@ -70,6 +71,7 @@ fileprivate struct LoadingExample02: View {
                 let (data, response) = try await URLSession.shared.data(from: remoteURL)
                 fileName = response.suggestedFilename ?? "unknown"
                 let entity = try await Entity(from: data)
+                entity.scale = .init(repeating: 2.0)
                 content.add(entity)
                 isLoading = false
             } catch {

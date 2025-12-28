@@ -59,6 +59,7 @@ fileprivate struct LoadingExample: View {
 
             // From a standalone file in the app's main bundle
             let entity = try! await Entity(named: fileName)
+            entity.scale = .init(repeating: 2.0)
             content.add(entity)
 
             // Capture elapsed time just after adding to the scene
