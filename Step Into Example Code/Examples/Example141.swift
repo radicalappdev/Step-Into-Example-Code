@@ -10,7 +10,7 @@
 //
 //  Featured: true
 //
-//  Created by Joseph Simpson on 12/28/25.
+//  Created by Joseph Simpson on 12/31/25.
 
 import SwiftUI
 import RealityKit
@@ -26,6 +26,7 @@ struct Example141: View {
                     Image(systemName: "1.circle")
                     Text("Minimal Example")
                 }
+
             LoadingExample02()
                 .tabItem {
                     Image(systemName: "2.circle")
