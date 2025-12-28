@@ -1409,7 +1409,7 @@ struct ExampleRegistry {
         date: Date("12/28/2025"),
         isFeatured: true,
         subtitle: "Loading an Entity from Data",
-        description: "",
+        description: "We can load Entities from a block of Data, which we can can retrieve remotely or on device.",
         success: true,
         makeView: { AnyView(Example141()) }
     )
