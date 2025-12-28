@@ -1406,12 +1406,22 @@ struct ExampleRegistry {
     Example(
         title: "Example 141",
         type: .VOLUME,
-        date: Date("12/28/2025"),
+        date: Date("12/31/2025"),
         isFeatured: true,
         subtitle: "Loading an Entity from Data",
         description: "We can load Entities from a block of Data, which we can can retrieve remotely or on device.",
         success: true,
         makeView: { AnyView(Example141()) }
+    ),
+    Example(
+        title: "Example 142",
+        type: .VOLUME,
+        date: Date("12/28/2025"),
+        isFeatured: true,
+        subtitle: "RealityKit Basics: Loading Entities on Device",
+        description: "",
+        success: true,
+        makeView: { AnyView(Example142()) }
     )
     ]
 
