@@ -1402,6 +1402,16 @@ struct ExampleRegistry {
         description: "Spatial is a collection of types for working with 3D mathematical primitives.",
         success: true,
         makeView: { AnyView(Example140()) }
+    ),
+    Example(
+        title: "Example 141",
+        type: .VOLUME,
+        date: Date("12/28/2025"),
+        isFeatured: true,
+        subtitle: "Loading an Entity from Data",
+        description: "",
+        success: true,
+        makeView: { AnyView(Example141()) }
     )
     ]
 
