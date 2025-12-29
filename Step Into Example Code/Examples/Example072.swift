@@ -2,7 +2,7 @@
 //
 //  Title: Example072
 //
-//  Subtitle:
+//  Subtitle: ARKit PlaneDetectionProvider: creating simple planes from anchors
 //
 //  Description: We can use the extent of the anchor to create simple planes and colliders.
 //

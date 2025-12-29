@@ -2,11 +2,11 @@
 //
 //  Title: Example005
 //
-//  Subtitle:
+//  Subtitle: Spatial Tap Gesture
 //
-//  Description:
+//  Description: Expanding on the Spatial version of tap gesture with RealityKit
 //
-//  Type:
+//  Type: Volume
 //
 //  Created by Joseph Simpson on 10/28/24.
 

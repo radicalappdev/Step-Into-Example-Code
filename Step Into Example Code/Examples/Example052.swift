@@ -2,11 +2,11 @@
 //
 //  Title: Example052
 //
-//  Subtitle:
+//  Subtitle: Spatial SwiftUI: Background UI for Volumes
 //
-//  Description:
+//  Description: We can use the back anchors for ornaments to to display user interfaces and data related to our content.
 //
-//  Type:
+//  Type: Volume
 //
 //  Created by Joseph Simpson on 2/28/25.
 

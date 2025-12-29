@@ -2,11 +2,11 @@
 //
 //  Title: Example018
 //
-//  Subtitle:
+//  Subtitle: Hand tracking with handAnchors(at:)
 //
-//  Description:
+//  Description: Exploring a way to get the predicted pose of hand anchors
 //
-//  Type:
+//  Type: Space
 //
 //  Created by Joseph Simpson on 12/12/24.
 

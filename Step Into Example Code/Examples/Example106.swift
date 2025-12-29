@@ -2,11 +2,11 @@
 //
 //  Title: Example106
 //
-//  Subtitle:
+//  Subtitle: RealityKit Basics: RealityViewContent
 //
-//  Description:
+//  Description: Provides access to entities, subscriptions, animations, and coordinate space conversions
 //
-//  Type:
+//  Type: Volume
 //
 //  Created by Joseph Simpson on 10/6/25.
 

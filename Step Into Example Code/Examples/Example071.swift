@@ -2,7 +2,7 @@
 //
 //  Title: Example071
 //
-//  Subtitle:
+//  Subtitle: ARKit PlaneDetectionProvider: classification and alignment
 //
 //  Description: We can filter anchors based on classification or alignment values.
 //

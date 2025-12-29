@@ -2,11 +2,11 @@
 //
 //  Title: Example017
 //
-//  Subtitle:
+//  Subtitle: Getting started with Hand Tracking
 //
-//  Description:
+//  Description: Exploring two ways to anchor entities to our hands.
 //
-//  Type:
+//  Type: Space
 //
 //  Created by Joseph Simpson on 12/10/24.
 

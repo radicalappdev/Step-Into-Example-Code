@@ -2,11 +2,11 @@
 //
 //  Title: Example115
 //
-//  Subtitle:
+//  Subtitle: Model3D: Working with Configruations
 //
-//  Description:
+//  Description: WIP
 //
-//  Type:
+//  Type: Window
 //
 //  Created by Joseph Simpson on 10/26/25.
 

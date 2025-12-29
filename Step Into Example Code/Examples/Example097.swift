@@ -2,11 +2,11 @@
 //
 //  Title: Example097
 //
-//  Subtitle:
+//  Subtitle: Spatial SwiftUI: manipulable modifier
 //
 //  Description:
 //
-//  Type:
+//  Type: Window
 //
 //  Created by Joseph Simpson on 8/20/25.
 

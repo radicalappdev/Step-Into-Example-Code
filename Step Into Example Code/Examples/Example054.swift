@@ -2,11 +2,11 @@
 //
 //  Title: Example054
 //
-//  Subtitle:
+//  Subtitle: Spatial SwiftUI: Volumetric pickers with attachments
 //
-//  Description:
+//  Description: As of visionOS 2, we can not use the SwiftUI presentations API with RealityView attachments.
 //
-//  Type:
+//  Type: Volume
 //
 //  Created by Joseph Simpson on 3/4/25.
 

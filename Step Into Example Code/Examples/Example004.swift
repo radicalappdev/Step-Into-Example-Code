@@ -2,11 +2,11 @@
 //
 //  Title: Example 004
 //
-//  Subtitle:
+//  Subtitle: Tap Gesture
 //
-//  Description:
+//  Description: Using a tap gesture with RealityKit
 //
-//  Type:
+//  Type: Volume
 //
 //  Created by Joseph Simpson on 10/15/24.
 

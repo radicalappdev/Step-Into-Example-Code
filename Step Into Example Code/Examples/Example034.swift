@@ -2,11 +2,11 @@
 //
 //  Title: Example034
 //
-//  Subtitle:
+//  Subtitle: Anchor Entity Floor Plane
 //
-//  Description:
+//  Description: Detecting a floor with Anchor Entity and Spatial Tracking Session
 //
-//  Type:
+//  Type: Space
 //
 //  Created by Joseph Simpson on 1/9/25.
 

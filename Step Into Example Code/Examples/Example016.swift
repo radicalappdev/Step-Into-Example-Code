@@ -2,11 +2,11 @@
 //
 //  Title: Example016
 //
-//  Subtitle:
+//  Subtitle: We can hide the system hand menu in Immersive Spaces
 //
-//  Description:
+//  Description: SwiftUI has a modifier called `persistentSystemOverlays` that allows us to hide the system hand menu in Immersive Spaces.
 //
-//  Type:
+//  Type: Space
 //
 //  Created by Joseph Simpson on 12/4/24.
 
