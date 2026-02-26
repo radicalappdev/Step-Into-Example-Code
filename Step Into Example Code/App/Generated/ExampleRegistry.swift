@@ -849,7 +849,7 @@ struct ExampleRegistry {
         date: Date("6/26/2025"),
         isFeatured: false,
         subtitle: "Using presentations in Volumes",
-        description: "",
+        description: "Using SwiftUI presentations and controls within a Volume",
         success: true,
         makeView: { AnyView(Example085()) }
     ),
@@ -1148,8 +1148,8 @@ struct ExampleRegistry {
         type: .WINDOW,
         date: Date("10/26/2025"),
         isFeatured: false,
-        subtitle: "Untitled",
-        description: "",
+        subtitle: "Model3D: Working with Configruations",
+        description: "WIP",
         success: true,
         makeView: { AnyView(EarthVariantsView()) }
     ),

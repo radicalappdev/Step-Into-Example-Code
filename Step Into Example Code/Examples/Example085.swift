@@ -4,9 +4,11 @@
 //
 //  Subtitle: Using presentations in Volumes
 //
-//  Description:
+//  Description: Using SwiftUI presentations and controls within a Volume
 //
 //  Type: Volume
+//
+//  Featured: false
 //
 //  Created by Joseph Simpson on 6/26/25.
 
@@ -22,8 +24,6 @@ struct Example085: View {
             guard let scene = try? await Entity(named: "SwiftUIScienceLab", in: realityKitContentBundle) else { return }
             content.add(scene)
             scene.position.y = -0.4
-//            scene.scale = .init(repeating: 0.7)
-
 
             if let panel = attachments.entity(for: "AttachmentContent") {
                 panel.position = [0, -0.1, 0.1]
@@ -69,6 +69,7 @@ fileprivate struct FormView: View {
             )
 
         }
+        .padding(EdgeInsets(top: 8, leading: 0, bottom: 8, trailing: 0))
         .sheet(isPresented: $showingSheet) {
             VStack {
                 Text("Sheets show up somewhere in the volume, relative to the user")
@@ -87,7 +88,7 @@ fileprivate struct FormView: View {
                 })
             }
         })
-        .frame(width: 400, height: 300)
+        .frame(width: 400, height: 360)
         .glassBackgroundEffect()
     }
 }
