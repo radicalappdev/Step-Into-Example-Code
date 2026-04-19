@@ -1,7 +1,8 @@
 {
-  "advancedEditorSelectedIdentifier" : "BehaviorsPluginID",
+  "advancedEditorSelectedIdentifier" : "ProjectBrowser",
   "openSceneRelativePaths" : [
-    "EntityObservationDemo.usda"
+    "EntityObservationDemo.usda",
+    "GestureLabs.usda"
   ],
   "recentIdentifiers" : {
     "04966C20-2723-4378-BCAD-327CAD4E36CF" : [
@@ -6450,5 +6451,5 @@
   "sceneViewportBackgroundColors" : {
 
   },
-  "selectedSceneRelativePath" : "EntityObservationDemo.usda"
+  "selectedSceneRelativePath" : "GestureLabs.usda"
 }

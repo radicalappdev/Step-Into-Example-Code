@@ -857,7 +857,7 @@ struct ExampleRegistry {
         title: "Example 086",
         type: .VOLUME,
         date: Date("6/28/2025"),
-        isFeatured: false,
+        isFeatured: true,
         subtitle: "Constrain position with Manipulation Component",
         description: "Using the DidUpdateTransform to constrain the position of a manipulated entity.",
         success: true,

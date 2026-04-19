@@ -8,6 +8,8 @@
 //
 //  Type: Volume
 //
+//  Featured: true
+//
 //  Created by Joseph Simpson on 6/28/25.
 
 import SwiftUI
