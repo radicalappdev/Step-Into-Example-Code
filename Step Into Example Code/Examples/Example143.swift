@@ -2,7 +2,7 @@
 //
 //  Title: Example143
 //
-//  Subtitle: RealityKit Basics: MeshDescriptor
+//  Subtitle: RealityKit Basics: Create shapes with MeshDescriptor
 //
 //  Description: We can use MeshDescriptor to build shapes and render them with MeshResource.
 //
@@ -98,3 +98,6 @@ struct Example143: View {
 #Preview {
     Example143()
 }
+
+
+

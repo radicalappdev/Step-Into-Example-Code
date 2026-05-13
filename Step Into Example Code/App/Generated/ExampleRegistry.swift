@@ -1428,7 +1428,7 @@ struct ExampleRegistry {
         type: .VOLUME,
         date: Date("5/13/2026"),
         isFeatured: true,
-        subtitle: "RealityKit Basics: MeshDescriptor",
+        subtitle: "RealityKit Basics: Create shapes with MeshDescriptor",
         description: "We can use MeshDescriptor to build shapes and render them with MeshResource.",
         success: true,
         makeView: { AnyView(Example143()) }
