@@ -857,7 +857,7 @@ struct ExampleRegistry {
         title: "Example 086",
         type: .VOLUME,
         date: Date("6/28/2025"),
-        isFeatured: true,
+        isFeatured: false,
         subtitle: "Constrain position with Manipulation Component",
         description: "Using the DidUpdateTransform to constrain the position of a manipulated entity.",
         success: true,
@@ -1422,6 +1422,16 @@ struct ExampleRegistry {
         description: "We can load entities from our app bundle if we're not working with Reality Composer Pro.",
         success: true,
         makeView: { AnyView(Example142()) }
+    ),
+    Example(
+        title: "Example 143",
+        type: .VOLUME,
+        date: Date("5/13/2026"),
+        isFeatured: true,
+        subtitle: "RealityKit Basics: MeshDescriptor",
+        description: "We can use MeshDescriptor to build shapes and render them with MeshResource.",
+        success: true,
+        makeView: { AnyView(Example143()) }
     )
     ]
 
