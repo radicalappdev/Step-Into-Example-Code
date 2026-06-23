@@ -34,6 +34,7 @@ struct Example143: View {
             // Create our entity and add it to the scene
             let entity = ModelEntity(mesh: mesh, materials: materials)
             spinSubject(entity: entity)
+
             content.add(entity)
 
         }
